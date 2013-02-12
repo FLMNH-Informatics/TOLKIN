@@ -1,0 +1,46 @@
+- form_for :project, :url => edit_project_path do |f|
+  .project_info
+    %p
+      =# raw f.label :name
+      %br= raw f.text_field :label
+    %p
+      = f.label :logo
+      %br= raw f.text_field :logo
+    %p
+      = f.label :website
+      %br= raw f.text_field :website
+    %p
+      = f.label "Default permission for new records"
+      %br Make Public
+      =# raw project_is_public
+    %p
+      = f.label "Public Use License Type"
+      %br= raw license_type_control
+      *A reference to this license will be provided with any data you share through Tolkin or export to EOL.
+      #existing_license_info
+        %span#license_name
+          Name:
+          = raw license_name_field
+        %span#license_label
+          Label:
+          = raw license_label_field
+        %span#license_link
+          Link:
+          = raw license_link_field
+        %span#license_description
+          Description:
+          = raw license_description_field
+    #new_license_info{:style => "display:none"}
+      %p
+        = f.label "License Name"
+        %br= raw new_license_name_field
+      %p
+        = f.label "Label"
+        %br= raw new_license_label_field
+      %p
+        = f.label "Link"
+        %br= raw new_license_link_field
+      %p
+        = f.label "License Description"
+        %br= raw new_license_description_field
+        %br *(only use if you're defining your own license)

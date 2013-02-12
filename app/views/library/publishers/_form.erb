@@ -1,0 +1,36 @@
+<%= form.error_messages %>
+<div class="formrow">
+    <label for="publishers_name">
+        Name: 
+    </label>
+    <span class="field"><%= form.text_field 'name' %></span>
+</div>
+<div class="formrow">
+    <label for="publishers_url">
+        URL: 
+    </label>
+    <%= form.text_field 'url' %>
+</div>
+<div class="formrow">
+    <label for="publishers_copyright_notice">
+        Copyright Notice: 
+    </label>
+    <%= form.text_field 'copyright_notice' %>
+</div>
+<%if !@publisher.nil? && !@publisher.new_record? %>
+<div class="formrow">
+    <label for="publishers_created_at">
+        Created At:
+    </label>
+    <span><%= @publisher.created_at %></span>
+</div>
+<div class="formrow">
+    <label for="publishers_updated_at">
+        Updated At:
+    </label>
+    <span><%= @publisher.updated_at %></span>
+</div>
+<%end%>
+<div class="left_btn">
+    <%= form.submit "Update" %>
+</div>

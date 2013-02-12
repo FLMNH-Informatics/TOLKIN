@@ -1,0 +1,10 @@
+ <h2>User: <%=h @user.login %></h2>
+ <p>Joined on: <%= @user.created_at.to_s(:long) %></p>
+ <%= error_messages_for :user %>
+<% form_for @user do |user_form| -%>
+
+<%= render :partial=>"form", :locals=>{	:user_form=> user_form, :show=> true }, :layout=>false%>
+
+<p><%= submit_tag 'Save' %></p>
+<% end -%>
+

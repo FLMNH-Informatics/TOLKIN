@@ -1,0 +1,35 @@
+<div class="title">User Roles</div>
+<div style="margin:20px 0px 5px 0px;font-weight:bold;">Name: <%= @user.last_name + ', ' + @user.first_name %> </div>
+<div style="margin:0px 0px 20px 0px;font-weight:bold;">Username: <%= @user.username %> </div>
+
+
+
+<div style="float:left;text-align: left;font-weight:bold;clear:right;margin-right:70px;">
+  <p>Projects You Can Assign:</p>
+  <form action="/admin/users/<%= @user.id %>/assign" method="post">
+  <table>
+    <% @projects_available.each do |p| %>
+        <tr>
+         <td><input type="checkbox" value="true" name="project[<%= p.id %>][member]" /></td><td><%= p.label %></td><td><select name="project[<%= p.id %>][role]" ><%=  roles_options  %></select></td>
+        </tr>
+    <% end %>
+    <tr>
+      <td></td><td></td><td><input type="submit" value="Submit"/></td>
+    </tr>
+  </table>
+  </form>
+</div>
+
+<div style="float:left;text-align: left;font-weight:bold">
+ <p>Users Projects:</p>
+<table id="user-projects-table">
+    <tr><td>Project</td><td>Role</td></tr>
+    <% @user_projects.each do |p| %>
+       <tr>
+         <td><%= p.label %></td>
+         <td><%= roles_list[Basic::GrantedRole.where("user_id = ? AND project_id = ?", @user.id, p.id ).first.role_type_id] %></td>
+         <td><form action="/admin/users/<%= @user.id %>/unassign?project_id=<%= p.id %>" method="post"><input type="submit" value="remove" /></form></td>
+       </tr>
+    <% end %>
+</table>
+</div>

@@ -1,0 +1,10 @@
+<%#= raw window_head 'New OTU Group', 'windowdiv' %>
+
+<% form_remote_for :otu_group_create, :url => project_otu_groups_path, :html => { :id => 'new_otu_group_form' } do |f| %>
+<div class="formrow">
+    <%= f.label  :name %> <font face="verdana" size="1" color="red"> * </font>
+    <span class="smallfield"><%= f.text_field :name, :size => 30 %>
+    </span>
+</div>
+
+<% end %>

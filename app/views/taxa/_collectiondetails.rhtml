@@ -1,0 +1,29 @@
+<table id="tbl_col_det" border="2">
+    <tr>
+        <td id="coll_drghandle">
+            Collection details
+        </td>
+        <%= draggable_element :coll_drghandle %>
+        <td onclick="$('tbl_col_det').hide();">
+            x
+        </td>
+    </tr>
+    <tr>
+        <td id="lblresult" colspan=2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form id="coll_form" colspan=2>
+                <% for column in Collection.content_columns %>
+                <b><%= column.human_name %>:</b>
+                <span id="<%=column.name%>_<%=collectiondetails.col_id.to_s%>"><%=collectiondetails[column.name] %></span>
+                <script type="text/javascript">
+                    new Ajax.InPlaceEditor("<%=column.name%>_<%=collectiondetails.col_id.to_s%>", '/set_<%=column.name%>');
+                </script>
+                <br>
+                <% end %>
+            </form>
+        </td>
+    </tr>
+</table>

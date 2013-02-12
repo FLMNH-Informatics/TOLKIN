@@ -1,0 +1,112 @@
+.dialog
+
+  .saveButtonContainer
+    float: right
+    padding-top: 8px
+
+  .createCopyButtonContainer
+    float: right
+    padding-top: 8px
+
+  .publicityButtonContainer
+    float: right
+    padding-top: 8px
+
+  .button
+    cursor: pointer
+    &.inactive
+      cursor: auto
+    &.back
+      width: 12px
+      height: 12px
+      background-image: url('../images/l.png')
+      &.inactive
+        background-image: url('../images/l_gray.png')
+
+
+
+  .window_title
+    height: 2em
+    z-index: 200003
+  .tab_bar
+    height: 1.5em
+    z-index: 2002
+  .contents
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    overflow: auto
+    z-index: -1
+
+  .footer
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    background-color: white
+
+  table
+    &.metadata
+      border-top: 2px solid $gray
+      border-collapse: collapse
+
+    tr.divide_row
+      td
+        border-top: 2px solid $gray
+
+
+
+  .highlighted
+    background-color: #FF9
+    cursor: pointer
+
+
+  .key_cell
+    border: 1px solid #aaa
+    background-color: #555
+    color: white
+    font-weight: bolder
+
+  td
+    vertical-align: top
+    padding: 3px
+
+  .status_icon_area
+    padding-right: 5px
+    float: right
+    position: relative
+    top: 0.4em
+
+  .tab_bar
+    font-size: 11px
+    border-bottom: 1px solid $light_gray
+    background-color: white
+
+    .tab
+      border-width: 1px
+      border-style: solid solid solid none
+      border-color: $light_gray
+      background-color: $dark_beige
+      cursor: pointer
+
+      &.selected
+        background-color: $orange
+        border-width: 1px
+        border-style: solid
+        border-color: $light_gray $light_gray $light_gray $beige
+        &:hover
+          cursor: auto
+
+  .dialog_message
+    padding: 15px
+    max-width: 500px
+
+.bottom
+  td
+    border: none !important
+    font-size:  1em !important
+  input[type="button"]
+    font-size: 100% !important
+    height: 24px !important

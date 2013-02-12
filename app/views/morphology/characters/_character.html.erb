@@ -1,0 +1,6 @@
+<tr class="<%= cycle('body-odd', 'body-even') %>" >
+  <td><input id="otu_<%=character.id%>" type="checkbox" value="<%=character.id%>" name="chrs[]"/></td>
+  <td class="b"><%= link_to character.name, project_character_path(@project.id, character.id) %></td>
+  <td class="b"><%=h character.short_name %></td>
+  <td class="b"><%=h character.creator.login  %></td>
+</tr>

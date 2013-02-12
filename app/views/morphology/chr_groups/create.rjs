@@ -1,0 +1,15 @@
+page << <<JS
+  var catalog = init.viewport().widgets().get('viewport_content_frame').widgets().get('viewport_content_frame_morphology_chr_groups_catalog');
+  catalog.collection().load();
+JS
+
+unless flash[:error]
+  #page.insert_html :bottom, :chrgrouptable, :partial => 'chr_group', :object => @chr_group
+  page["newchrgroupdiv"].hide
+end
+page.replace_html :notice, flash[:error] || flash[:notice]
+
+#page << "if(!$('errorNewCharacterGroup')){"
+page.insert_html :after, 'windowtitle', error_messages_for('chr_group', :header_message => nil, :message => nil, :id => 'errorNewCharacterGroup')
+#page << "}"
+flash.discard

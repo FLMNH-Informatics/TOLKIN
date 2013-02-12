@@ -1,0 +1,10 @@
+<% if citation_type == Library::BookSection %>
+  <%= render partial: 'book_section', locals: { f: f, citation_type: citation_type } %>
+<% elsif citation_type == Library::Book %>
+  <%= render partial: 'book', locals: { f: f, citation_type: citation_type } %>
+<% elsif citation_type == Library::Journal %>
+  <%= render partial: 'journal', locals: { f: f, citation_type: citation_type } %>
+<% elsif citation_type == Library::Others %>
+  <%= render partial: 'others', locals: { f: f, citation_type: citation_type } %>
+<% else fail "unrecognized citation type" %>
+<% end %>

@@ -1,0 +1,25 @@
+<%= window_head 'Add Selected to OTU', 'windowdiv' %>
+<form  action ="<%=add_to_otu_project_taxa_path(params[:project_id])%>" id="form_add_to_otu">
+  <table>
+    <tbody>
+      <tr>
+        <td><%=label 'otu', 'otu' %></td>
+        <td><%= text_field_with_auto_complete :otu, :name, {:size => 40}, {:url => {:action => "auto_complete_for_otu_name", :project_id => params[:project_id], :id => params[:id]},  :method => :get}  %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= submit_tag "Add" %></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+<script>
+  $('form_add_to_otu').observe("submit" , function(event){
+    //alert($('form_sel_list').serialize(true));
+    new Ajax.Request(this.action.toString(), {
+      method: 'post',
+      parameters: $H($H(this.serialize(true)).merge($('form_sel_list').serialize(true)))
+    });
+    event.stop();
+  });
+</script>

@@ -1,0 +1,2 @@
+2011.03.30
+- Removed #spawnThread method, role, and Thread class in favor of using Polling role and #poll method

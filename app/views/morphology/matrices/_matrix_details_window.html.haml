@@ -1,0 +1,28 @@
+#matrix_details_window.window
+
+  .windowtitle
+    %span{ :class => "title" } Matrix Details
+    %span{ :class => "closebutton", :onclick => "$('matrix_details_window').hide();"} X
+  .window_contents
+    .notice_area
+    %table#matrix_details_table
+      %tr
+        %td Name
+        /%td= raw editable_content_tag :span, @matrix.branch, :name, @allow_edit, :url => project_morphology_matrix_path
+        %td= raw editable_textarea @matrix.branch, :name, project_morphology_matrix_path, @allow_edit, :rows => 1, :columns => 45
+      %tr
+        %td Description
+        %td= raw editable_textarea @matrix.branch, :description, project_morphology_matrix_path, @allow_edit, :rows => 8, :cols => 30
+      %tr
+        %td Created By
+        %td= @matrix.creator
+      %tr
+        %td Created On
+        %td= @matrix.created_at
+      %tr
+        %td Last Updated By
+        %td= @matrix.updater
+      %tr
+        %td Last Updated On
+        %td= @matrix.updated_at
+= draggable_element :matrix_details_window, :handle => "'windowtitle'"

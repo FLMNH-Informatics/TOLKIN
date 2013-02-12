@@ -1,0 +1,8 @@
+%table#probes_list.chrom
+  %tr
+    %th.h Probe
+    %th.h Type
+    %th.h Dye
+    %th.h
+  - @z_file.hybridizations.each do |hybridization|
+    = render(:partial => "probe_row.html.haml", :locals => {:hybridization => hybridization})

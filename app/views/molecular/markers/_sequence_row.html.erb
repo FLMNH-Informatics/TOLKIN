@@ -1,0 +1,32 @@
+<tr class="<%= raw cycle("body-even","body-odd") %>" data-seq-id="<%= raw seq.id %>">
+  <td>
+    <% if seq.locus && !seq.locus.nil? %>
+      <a target="_blank" href="http://www.ncbi.nlm.nih.gov/nuccore/<%= raw seq.locus %>">
+        <img src="/images/genbank.gif" alt="[GB]">
+      </a>
+    <% end %>
+  </td>
+  <td>
+    <span style="font-family:monospace;" data-seq-id="<%= raw seq.id %>" title="<%= seq.sequence %>">
+      <%= raw truncate(seq.sequence, :length => 25) %>
+    </span>
+  </td>
+  <td>
+    <% unless seq.taxon_id.nil? %>
+      <a class="seq_organism" data-taxon-id="<%= seq.taxon_id unless seq.taxon_id.nil? %>" href="#">
+        <%= seq.organism unless seq.organism.nil?%>
+      </a>
+    <% end %>
+  </td>
+  <td>
+    <%= seq.length.to_s unless seq.length.nil? %>
+  </td>
+  <td>
+    <a class="seq_view" href="/projects/<%= raw current_project.project_id %>/molecular/sequences/<%= raw seq.id %>" target="_blank"  data-seq-id="<%= raw seq.id %>">
+      <img data-seq-id="<%= raw seq.id %>" src="/images/icon-zoom-14-smudged.gif" alt="[?]">
+    </a>
+  </td>
+  <td style="font-size:80%;">
+    (<a class="seq_show"  data-seq-id="<%= raw seq.id %>">show</a>)
+  </td>
+</tr>

@@ -1,0 +1,24 @@
+<div id="<%=id_for_shopping_cart%>" class="shopping_cart widget">
+  <div class="windowtitle" >My Cart</div>
+  <div id="replace_cart"><table>        
+        <%mycart_content.each do |type , value|%>    
+          <tr id="<%=type.downcase%>_cart" class= "tree_view_node">
+          <td  valign="top" class="shopping_cart_expander"><span id="cart_<%=type.downcase%>_expander"><%=display_expander(type)%></span></td>
+          <td class="shopping_cart_group_select">
+          <div>
+          <%=display_header( type) %>
+          </div>
+          <table id="cart_<%=type.downcase%>_list" style="display:none"><tr><td></td></tr>
+           
+          <%mycart_content[type].each do |item|%>
+            <%if item%>
+            <tr id="<%=type.downcase%>_<%=item[:id]%>" class="id"><td >&nbsp;&nbsp;</td><td class="shopping_cart_individual_select"><%=item[:label]%>&nbsp;&nbsp;<span id="deselect_<%=type.downcase%>" class="shopping_cart_deselect link small">deselect</span></td></tr>
+            <%end%>
+          <%end%>
+          </table>
+          </td></tr>
+        <%end%>        
+ </table>
+  </div>
+</div>
+

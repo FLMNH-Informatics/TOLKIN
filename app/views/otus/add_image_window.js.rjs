@@ -1,0 +1,6 @@
+page << "if($('newimagediv')) {"
+  page.replace 'newimagediv', :partial => 'add_image'
+page << "} else {"
+  page.insert_html :bottom, 'contents', :partial => 'add_image'
+page << "}"
+page.call :showWindow, :newimagediv

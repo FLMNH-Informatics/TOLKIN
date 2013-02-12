@@ -1,0 +1,14 @@
+<br />
+NOTE:  At this time, only FASTA generation is available.
+<br />
+<br />
+<%= render :partial => "alignments" %>
+<div id="alignment_info_container">
+  <br />
+  <div id="alignment_control_container" style="display: none;">
+    <%= raw action_button('select')%><%= raw action_button('export') %>
+  </div>
+  <%= render :partial => 'details' %>
+  <div id="alignment_text">
+  </div>
+</div>

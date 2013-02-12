@@ -1,0 +1,12 @@
+<script type='text/javascript'>
+  function a(otu_id, chr_id)
+  { new Ajax.Request('/projects/<%= @project.id %>/matrices/<%=@matrix.to_param %>/get_states/' + otu_id + '/' + chr_id, {asynchronous:true, evalScripts:true, method:'get', parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')});    return false;  }
+  function cp(type, move, id)
+  {
+  	new Ajax.Request('/projects/<%= @project.id %>/matrices/<%=@matrix.to_param %>/change_position?chr_id=' + id + '&amp;move=' + move + '&amp;type=' + type, {asynchronous:true,  method:'put', evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')});    return false;
+  }
+
+</script>
+
+    <%=  render :partial => "matrix_table" %>
+<%#*<div id="tooltip" class="tooltip" ></div>%>

@@ -1,0 +1,104 @@
+<div id="navpane">
+  <%= render :partial => "right_nav" %>
+</div>
+
+<div id="contentpane">
+  <div class="clearer">
+    <div id="detailsdiv" class="detailsdiv">
+      <table width="100%" border="0" cellpadding="3px" cellspacing="2px">
+        <tr>
+          <td colspan="1" align="right">
+            <span class="titletext">Name: </span>
+          </td>
+          <td colspan="3"><span class="bodytext"><%=h @chr_group.name %> <%= render :partial=>"tags/tagme", :locals => { :tagme => @chr_group } %></span></td>
+        </tr>
+
+        <tr>
+          <td align="right" valign="top">
+            <span class="titletext">Created By: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @chr_group.creator.label %></span>
+          </td>
+          <td align="right" valign="top">
+            <span class="titletext">Last Updated By: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @chr_group.updator.label %></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="right" valign="top">
+            <span class="titletext">Created At: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @chr_group.created_at %></span>
+          </td>
+          <td align="right" valign="top">
+            <span class="titletext">Last Updated At: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @chr_group.updated_at %></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="4">
+            <span class="bodytext">
+              <%= link_to 'Back', project_morphology_chr_groups_path(params[:project_id]) %> |
+              <%= link_to 'Edit', edit_project_morphology_chr_group_path(params[:project_id], @chr_group) %> |
+              <%= link_to 'Delete', project_morphology_chr_group_path(params[:project_id], @chr_group), :confirm => 'Are you sure?', :method => :delete %>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="imagesdiv" class="imagesdiv">
+
+    </div>
+  </div>
+
+  <div id="detailsdiv" class="detailsdiv">
+    <h5>Listing Characters in this group</h5>
+
+    <% form_tag remove_selected_project_morphology_chr_groups_path(params[:project_id]), { :method => :post, :name=>"chrs_form", :id=>"chrs_form" } do %>
+
+      <table id="chr_group_<%=@chr_group.id %>_character_list">
+        <tr>
+          <th class="h"><input type="hidden"  id="chr_group_id" value="<%= @chr_group.id%>" name="chr_group_id"></th>
+          <th class="h">Name</th>
+          <th class="h" colspan="5">Action</th>
+
+        </tr>
+        <% @chr_group.characters.each do |character| %>
+        <tr id="tr_chr_<%=character.id%>" class="<%= cycle('body-odd', 'body-even') %> ">
+          <td><input type="checkbox" id="character_#<%=character.id %>" value="<%= character.id %>" name="chr_ids[]" /></td>
+          <td class="b"><%=h character.name %></td>
+          <td class="b"><%= link_to image_tag("f.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => character.id, :move_type => 'move_to_top' }, :method => :post %></td>
+          <td class="b"><%= link_to image_tag("u.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => character.id, :move_type => 'move_higher' }, :method => :post %></td>
+          <td class="b"><%= link_to image_tag("d.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => character.id, :move_type => 'move_lower' }, :method => :post %></td>
+          <td class="b"><%= link_to image_tag("la.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => character.id, :move_type => 'move_to_bottom' }, :method => :post %></td>
+          <td class="b"><%= link_to_remote image_tag("x.png", :border=>0), :url => remove_character_project_morphology_chr_group_path, :with => "'character=#{character.id}'" %></td>
+        </tr>
+        <% end %>
+        <%#= render :partial => 'list_characters_character', :collection => @characters  %>
+
+      </table>
+
+
+    <% end %>
+  </div>
+
+  <!--<div id="windowdiv" class="windowdiv" style="z-index: 5; display: none;">
+  </div>-->
+  <%#= draggable_element :windowdiv %>
+
+</div>
+
+
+
+
+
+

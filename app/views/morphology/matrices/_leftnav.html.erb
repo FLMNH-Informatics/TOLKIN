@@ -1,0 +1,64 @@
+<%# @javascript_includes << "morphology/matrices/_leftnav" -%>
+
+<%#*<div id="navpane">%>
+  <%#*<div class="windowtitle">Options1</div>%>
+
+  <%#*<ul class="listmain">%>
+    <%# if controller.action_name == 'show' -%>
+      <%#*<li><%= link_to_function 'Enter Quick Edit Mode', :id => "toggle_quick_edit_mode_link" %></li>%>
+      <%#*<li><%= link_to_remote 'Edit Name / Description', :url => show_matrix_details_project_morphology_matrix_path, :method => :get %></li>%>
+      <%#*<li><%= link_to 'Edit Characters / Otus', modify_matrix_project_morphology_matrix_path(@project.id, :id => @matrix.address) %></li>%>
+      <%#*<li><%= link_to_remote 'Revert to Previous Version', :url => show_revert_to_version_project_morphology_matrix_path(@project, @matrix, :type => 'new'), :method => :get %></li>%>
+      <%#*<li><%= link_to_remote 'Copy Matrix To', :url => show_copy_matrix_options_window_project_morphology_matrix_path, :method => :get %></li>%>
+    <%# elsif controller.action_name == 'modify_matrix' %>
+      <%#*<li><%= link_to 'Show Matrix', project_morphology_matrix_path(@project.id, :id => @matrix.address) %></li>%>
+      <%#*<li><%= link_to_remote 'Add Character/Group', :url => add_character_project_morphology_matrix_path(@project, @matrix, :type => 'new'), :method => :get  %></li>%>
+      <%#*<li><%= link_to_remote 'Add Otu/Group', :url => add_otu_project_morphology_matrix_path(@project, @matrix, :type => 'new'), :method => :get %></li>%>
+      <%#*<li><%= link_to 'Delete selected', "#", :id=>"lnk_del_sel" %></li>%>
+    <%# end -%>
+
+    <%# if controller.action_name=='index' %>
+      <%#*<li><%= link_to_remote 'New Matrix', :url => new_project_morphology_matrix_path(@project), :method => :get  %></li>%>
+      <%#*<li><%= link_to_remote 'Import Matrix', :url => new_project_nexus_dataset_path(@project), :method => :get  %></li>%>
+      <%#*<li><%= link_to 'Delete Selected', "javascript:void(0)", :id=>"lnk_del_sel" %></li>%>
+      <%#*<li><%= link_to 'Modify Matrix', "javascript:void(0)", :id=>"sp_modify_matrix" %></li>%>
+      <%#*<script>%>
+        <%#*$('sp_modify_matrix').observe('click', function(){%>
+          <%#*$('list_items_form').writeAttribute('action', '<%= process_index_modify_matrix_project_morphology_matrices_path(@project) %>');%>
+          <%#*$('list_items_form').writeAttribute('method', 'post');%>
+          <%#*$('list_items_form').submit();%>
+        <%#*});%>
+        <%#*$('lnk_del_sel').observe('click', function(that){ var hasConfirmed = confirm('Are you sure you would like to delete these matrices ?');%>
+          <%#*if(hasConfirmed) {%>
+            <%#*new Ajax.Request('<%=delete_selected_project_morphology_matrices_path(params[:project_id])%>', {asynchronous:true, evalScripts:true, method:'post', parameters:Form.serialize("list_items_form", true)}); return false;%>
+          <%#*}%>
+        <%#*});%>
+      <%#*</script>%>
+      <%#*<li><%= link_to_remote 'Merge Matrices', :url => show_merge_window_project_morphology_matrices_path(@project), :method => :get %></li>%>
+      <%#*<li><%= link_to_remote 'Designate Submatrix', :url => show_designate_submatrix_window_project_morphology_matrices_path(@project), :method => :get %></li>%>
+       <%# end %>
+
+    <%# if controller.action_name=='show' %>
+      <%#*<li><%= link_to_remote 'Export', :url => export_matrix_project_morphology_matrix_path(@project.id, @matrix), :method => :get %></li>%>
+      <%#*<li><%= link_to_remote 'Create Submatrix', :url => new_submatrix_project_morphology_matrix_path, :method => :get %></li>%>
+      <%#*<li><%= link_to 'Delete', destroy_branch_project_morphology_matrix_path, :confirm => 'Are you sure you would like to delete this matrix ?', :method => :delete %></li>%>
+    <%# end %>
+
+  <%#*</ul>%>
+
+  <%# if @matrix -%>
+    <%#= render :partial => "shared/panes/versioning_pane" %>
+  <%# end -%>
+  <%#*<!--div class="windowtitle"> Search%>
+  <%#*</div>%>
+
+  <%#*<ul class="listmain">%>
+    <%#*<li>%>
+      <%#*<#%= text_field_with_auto_complete :matrix, :name, { :size => 15 }, {:method => :get}%>
+      <%#*#text_field 'chr_matrix', 'name', :size => 15 %>%>
+      <%#*<#%= link_to 'GO', '#' %>%>
+    <%#*</li>%>
+  <%#*</ul-->%>
+<%#*</div>%>
+
+

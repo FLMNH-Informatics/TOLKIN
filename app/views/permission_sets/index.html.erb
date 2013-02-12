@@ -1,0 +1,6 @@
+<div><a href="<%= new_project_permission_set_path %>">New</a></div>
+<ul>
+  <% @permission_sets.each do |p_set| %>
+    <li><%= p_set.label %></li>
+  <% end %>
+</ul>

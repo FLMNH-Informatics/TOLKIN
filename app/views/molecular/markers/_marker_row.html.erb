@@ -1,0 +1,9 @@
+<tr class="<%= raw cycle("body-even","body-odd") %>" data-marker-id="<%= raw marker.id %>">
+  <td data-marker-id="<%= raw marker.id %>"><input type="checkbox" name="marker_ids[]" data-marker-id="<%= raw marker.id%>" data-marker-name="<%= raw marker.name %>" value="<%= raw marker.id %>"/></td>
+  <td data-marker-id="<%= raw marker.id %>"><%= raw marker.name%></td>
+  <td data-marker-id="<%= raw marker.id %>"><%= raw marker.type.blank? ? "unlisted" : marker.type %></td>
+  <td class="td_divider" data-marker-id="<%= raw marker.id %>"><%= raw marker_seq_connections_link(marker) %></td>
+  <td class="td_divider" data-marker-id="<%= raw marker.id %>"><%= raw marker_timeline_connections_link(marker) %></td>
+  <td class="td_divider" data-marker-id="<%= raw marker.id %>"><%= raw marker_primer_connections_link(marker) %></td>
+  <td class="td_divider" data-marker-id="<%= raw marker.id %>">(<a class="edit_marker" href="#">edit</a>)</td>
+</tr>

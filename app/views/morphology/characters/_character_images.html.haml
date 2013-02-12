@@ -1,0 +1,10 @@
+.add_new
+  = form_for @character, :as => :character, :url => params[:matrix_id] ? attach_image_project_morphology_matrix_character_path : attach_image_project_morphology_character_path, :html => { :multipart => true } do |f|
+    Add Image:
+    %br
+    = f.file_field :uploaded_data
+    %button#attach_character_image Attach
+    #upload
+    %iframe{:id => 'upload_frame', :name => 'upload_frame', :style => 'width:1px;height:1px;border:0px', :src => 'about:blank'}
+.character_images
+  = raw display_images

@@ -1,0 +1,50 @@
+<h3>Scored Morphology References for <%= @taxon.name  %>:</h3>
+  <table>
+    <tr>
+      <td><span class="titletext">Legend: </span></td>
+      <td height="5px" width="10px" class="bti"></td>
+      <td class="b" width="50px">(I)ncomplete</td>
+      <td height="5px" width="10px" class="btc"></td>
+      <td class="b" width="50px">(C)omplete</td>
+      <td height="5px" width="10px" class="btp"></td>
+      <td class="b" width="50px">(P)roblem</td>
+    </tr>
+  </table>
+<table>
+  <tbody>
+    <tr>
+      <th>Matrix</th>
+      <th>Characters</th>
+    </tr>
+    <%  @codings.each do |matrix_coding_array| %>
+      <%if matrix_coding_array.size > 1 %>
+        <tr>
+          <td>
+            <%=  image_tag("r.png", :onclick => "$('mat_chr_#{matrix_coding_array[0].id}').toggle(); ($('mat_chr_#{matrix_coding_array[0].id}').visible()) ? this.src = '/images/d.png' : this.src = '/images/r.png'")  %>
+            <%= link_to matrix_coding_array[0].branch.name, project_morphology_matrix_path(@project, matrix_coding_array[0]) %>
+          </td>
+          <td>
+            <table id="mat_chr_<%=matrix_coding_array[0].id%>" style="display:none">
+              <%matrix_coding_array[1..-1].each do |coding|%>
+                <tr>
+                  <td>
+                    <%= link_to coding.character.name, project_morphology_character_path(@project, coding.character) %>
+                  </td>
+                  <td class="bt<%=coding.status[0..0]%>">
+                    <%= coding.codings %>
+                  </td>
+                  <td>
+                    <% coding.images.each do |image| %>
+                      <%= image_tag image.public_filename(:thumb) %>
+                    <%  end %>
+                  </td>
+                </tr>
+              <%end%>
+            </table>
+          </td>
+        </tr>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>
+

@@ -1,0 +1,6 @@
+<%= link_to 'Back', project_library_publications_path(params[:project_id]) %>
+<h5>Editing publications</h5>
+
+<% form_for :publication, @publication, :url=> project_library_publication_path(params[:project_id],@publication), :html=>{:method=>:put} do |form_pubs| %>
+<%= render "form", :object=>form_pubs %>
+<% end %>

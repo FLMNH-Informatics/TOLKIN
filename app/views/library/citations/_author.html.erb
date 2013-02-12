@@ -1,0 +1,5 @@
+<li id="list_author_people_<%=author.id%>">
+<%=link_to author.name, edit_project_person_path(params[:project_id], author.id) %>
+  <a href="javascript:void(0)" onClick="$('list_author_people_<%=author.id%>').remove()" style="padding-right: 100px" class="close_button">x</a>
+<input id="author_people_<%=author.id%>" name="author_ids[]" type="hidden" value="<%=author.id%>" />
+</li>

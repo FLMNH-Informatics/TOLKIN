@@ -1,0 +1,59 @@
+%table.character_chr_state{:id => "chr_state_table_" + state.id.to_s}
+  %tr
+    %td
+      %table
+        %tr
+          %td{:style => "width:75px;"} Name:
+          %td{:style => "width:160px;font-weight:bold;"}
+            = raw state.name
+          %td State:
+          %td
+            = raw state.state
+            = raw chr_state_buttons(state)
+        %tr
+          %td Polarity:
+          %td
+            = raw state.polarity
+          %td Description:
+          %td
+            = raw state.description
+        %tr
+          %td Created by:
+          %td
+            = raw state.creator.full_name
+          %td Last update:
+          %td
+            = raw state.updator.full_name
+        %tr
+          %td Created at:
+          %td
+            = raw state.created_at
+          %td Updated at:
+          %td{:style => "width:160px;"}
+            = raw state.updated_at
+        %tr
+          %td
+            Citations:
+          %td
+            (
+            %a.add_citation_to_state{:href => '#', :data => {:state_id => state.id}}
+              add
+            )
+        %tr
+          %td
+          %td.smaller_text{:colspan => 3, :data => {:state_id => state.id, :character_id => state.character.id}}
+            - if state.citations.empty?
+              no citations attached
+            - else
+              - state.citations.sort{|c1, c2| "#{c1.contributors.first.try(:name) ||''}" <=> "#{c2.contributors.first.try(:name) ||''}" }.each do |citation|
+                = render :partial => "shared/list_citations_alt.html.haml", :locals => {:citation => citation}
+    %td.state_images{:style => 'width: 275px'}
+      .chr_state_imagesdiv{:id => 'imagesdiv_chr_state_' + state.id.to_s}
+        .sectiontitle
+          %span.titletext
+            Images &nbsp; &nbsp;
+            (
+            %a.add_image_to_state{:href => '#', :data => {:state_id => state.id}}
+              add
+            )
+        = raw display_chr_state_images(state)

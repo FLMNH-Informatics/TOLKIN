@@ -1,0 +1,13 @@
+#addCharacterWindow{ :class => "window" }
+  .windowtitle
+    %span{ :class => "title" } Add Character to Group
+    %span{ :class => "closebutton", :onclick => "$('addCharacterWindow').hide();"} X
+
+  - remote_form_for 'Morphology::Character', :url => add_character_project_chr_group_path do |f|
+    = f.label :name
+    = text_field_with_auto_complete 'Morphology::Character', :name, { }, { :method => :get }
+
+    .submitbuttonrow
+      = submit_tag "Create", { :class => "simple-button" }
+    
+= draggable_element :addCharacterWindow

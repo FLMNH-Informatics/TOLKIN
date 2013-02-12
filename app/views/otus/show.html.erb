@@ -1,0 +1,128 @@
+<%= render(:partial => 'shared/user_panel') %>
+<div id="contentpane">
+  <div id="clearer">
+    <div id="detailsdiv" class="detailsdiv">
+      <table border="0" cellpadding="1px" cellspacing="2px">
+        <tr>
+          <td width="15%" align="right" valign="top">
+            <span class="titletext"><b>Name:</b></span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @otu.name %><%= render :partial=>"tags/tagme", :locals => { :tagme => @otu } %></span>
+          </td>
+          <% if @otu.timeline.deleted_at  %>
+            <td align="right"><span class="bodytext">DELETED</span></td>
+          <% elsif !@otu.is_current %>
+            <td align="right"><span class="bodytext">SUPERCEDED (<a href="<%= project_otu_path(@current_project, @current_project.otus.first(conditions: { is_current: true, timeline_nid: @otu.timeline_nid }))%>">view most recent version</a>)</span></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td align="right" valign="top">
+            <span class="titletext">Library References: </span>
+          </td>
+          <td valign="top">
+            <span>
+              <ul style="margin: 0; padding: 0; list-style: none;">
+                <%@otu.citations.each() do |citation| %>
+                  <li><a href="javascript:void(0)" onClick=<%= "cit_det(#{citation.id},#{params[:project_id]});" %>><%= raw citation.display_name %></a></li>
+                <%end %>
+              </ul>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td align="right" valign="top">
+            <span class="titletext">OTU Number: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @otu.original_position %></span>
+          </td>
+        </tr>
+        <tr>
+          <td align="right" valign="top">
+            <span class="titletext">Description: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @otu.description %></span>
+          </td>
+        </tr>
+        <tr>
+          <td align="right" valign="top">
+            <span class="titletext">Created By: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @otu.creator.full_name %></span>
+          </td>
+          <td align="right" valign="top">
+            <span class="titletext">Last Updated By: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @otu.updator.full_name %></span>
+          </td>
+        </tr>
+        <tr>
+          <td align="right" valign="top">
+            <span class="titletext">Created At: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @otu.created_at %></span>
+          </td>
+          <td align="right" valign="top">
+            <span class="titletext">Last Updated At: </span>
+          </td>
+          <td valign="top">
+            <span class="bodytext"><%=h @otu.updated_at %></span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" align="right">
+            <span class="bodytext">
+              <% if session[:last_uri] %>
+                <% if params[:matrix_id] %>
+                  <%= link_to 'Back', project_morphology_matrix_path(:id => params[:matrix_id], :page => session[:matrix_page]) %>
+                <% else %>
+                <%= link_to 'Back', :back %>
+              <% end %>
+              <% end %>
+              <% if !@otu.timeline.deleted_at && @otu.is_current  %>
+                |
+                <%= link_to 'Edit', optional_matrix_resource_url(:controller => 'otus', :action => 'edit', :matrix_id => params[:matrix_id], :project_id => params[:project_id], :id => @otu.id) %>&nbsp;|&nbsp;
+                <%= link_to 'Delete', optional_matrix_resource_url(:controller => 'otus', :action => 'destroy', :matrix_id => params[:matrix_id], :project_id => params[:project_id], :id => @otu.id), :confirm => 'Are you sure?', :method => :delete %>
+              <% end %>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <%#*<table>%>
+      <%#*<tr><th>Version</th><th></th><th></th></tr>%>
+      <%#*<tr>%>
+        <%#*<td><%=   @otu.version %><!--/td>% -->
+        <%# unless params[:matrix_id] -%>
+          <%#*<td><%= link_to(:previous, optional_matrix_resource_url(:action => :show, :project_id => @project.id, :matrix_id => params[:matrix_id], :id => @otu.previous_version.id)) if @otu.previous_version </td>%>
+          <%#*<td><%= link_to(:next, optional_matrix_resource_url(:action => :show, :project_id => @project.id, :matrix_id => params[:matrix_id], :id => @otu.next_version.id)) if @otu.next_version </td>%>
+        <%# end -%>
+      <%#*</tr>%>
+
+    <%#*</table>%>
+
+    <div>
+      <h3>Taxa</h3>
+      <table id="otu_<%=@otu.id %>_taxa_list">
+        <tr>
+          <th class="h">Name</th>
+          <th class="h"></th>
+        </tr>
+        <%= render :partial => "list_taxa", :collection => @otu.taxa %>
+      </table>
+    </div>
+
+    <div id="imagesdiv" class="imagesdiv">
+      <h3>Images</h3>
+      <%= render :partial => 'shared/image', :collection => @otu.otu_images %>
+    </div>
+
+  </div>
+</div>
+

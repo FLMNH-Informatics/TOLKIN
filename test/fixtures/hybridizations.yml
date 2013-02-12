@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ hybridization_1:
+   z_file_id: 2
+   probe_id : 3
+   dye_id   : 33
+
+

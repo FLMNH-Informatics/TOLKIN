@@ -1,0 +1,82 @@
+<% 
+  [ :year,
+    :title,
+    :journal,
+    :volume,
+    :number,
+    :issue,
+    :pages,
+    :edition,
+    :key,
+    :keywords,
+    :abstract,
+    :editor,
+    :series_editor,
+    :series_title,
+    :series_volume,
+    :isbn_or_issn,
+    :url,
+    :doi,
+    :notes,
+    :city,
+    :publisher_id,
+    :number_of_volumes,
+    :chapter,
+    :book_title
+  ].each do |column_name| 
+    column_name = column_name.to_s
+%>
+  
+  <% if citation_type.custom_attributes.include?(column_name.intern) %>
+    <tr><td><%= f.label(column_name, get_pseudo_column_name(column_name)) %></td>
+      <td>
+        <%if column_name.upcase == "PUBLICATION" %>
+          <%= text_field "publication", "name" %>
+          <%= link_to_remote("create publications",
+            :url => project_publications_path(params[:project_id]),
+            :with => "'publication[name]=' + $('publication_name').value"
+          ) %>
+          <%= observe_field("publication_name",
+            :frequency => 1,
+            :update     => "div_publications",
+            :url        => publications_search_project_citations_path(params[:project_id]),
+            :with => "search",
+            :method => :get
+          ) %>
+          <div id="div_publications">
+          </div>
+        <%elsif column_name.upcase == "PUBLISHER_ID" %>
+          <%=  text_field "publisher", "name"%>
+          <%= link_to_remote("create publisher",
+            :url => project_publishers_path(params[:project_id]),
+            :with => "'publisher[name]=' + $('publisher_name').value"
+          ) %>
+          <%= observe_field("publisher_name",
+            :frequency => 1,
+            :update     => "div_publisher",
+            :url        => publishers_search_project_publishers_path(params[:project_id]),
+            :with => "'object_type=#{"citation".downcase}&search=' + value",
+            :method => :get
+          ) %>
+          <div id="div_publisher">
+            <%= select "citation", "publisher_id", [[@citation.try(:publisher).try(:name), @citation.try(:publisher_id)]] , {:include_blank => true}%>
+          </div>
+        <%elsif column_name.upcase != "AUTHOR" %>
+          <%= f.text_field column_name %>
+        <%else %>
+        <%end %>
+          </td>
+</tr>
+      <% end %>
+    <% end %>
+    <!--% f.fields_for :citations_attribute do |citations_attribute_fields| %>
+    <!--%Library::CitationsAttribute.column_names.each do |attr| %>
+    <!--% if citation_type.custom_attributes.include?(attr.intern) %>
+  <tr>
+    <td><!--%=citations_attribute_fields.label(attr, get_pseudo_column_name(attr)) %></td>
+    <td><!--%= citations_attribute_fields.text_field attr, :value => @citation.citations_attribute.try(:send,attr) %></td>
+  </tr -->
+    <!--%end% -->
+    <!-- %end% -->
+    <!-- % end % -->
+<tr><td><%= label :pubfile, :attachment %></td><td><%= file_field :pubfile, :attachment %></td></tr>

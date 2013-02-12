@@ -1,0 +1,9 @@
+page.insert_html :bottom, :chartable,
+  :partial => 'shared/list_items_item', :collection => [@dna_sample],
+  :locals => { :attributes => @attributes_to_show, :attribute_display_properties => @attribute_display_properties }
+page.replace_html :notice, flash[:notice]
+page["newItemWindow"].hide
+flash.discard
+page << "$('item_select_#{@dna_sample.id}').observe('click', function() {this.parentNode.parentNode.toggleClassName('selected_row')});"
+page << "$('list_item_#{@dna_sample.id}').observe('mouseover', function() {this.addClassName('highlighted_row')});"
+page << "$('list_item_#{@dna_sample.id}').observe('mouseout', function() {this.removeClassName('highlighted_row')});"

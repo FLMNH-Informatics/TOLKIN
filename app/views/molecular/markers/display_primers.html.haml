@@ -1,0 +1,12 @@
+#matrices_container
+  %h4= raw "Primers for " + @marker.name
+  %table
+    %thead
+      %tr
+        %td.h Name
+        %td.h Target Organism
+        %td.h Gene
+        %td.h Purification Method
+    %tbody
+      -@primers.each do |primer|
+        = render(:partial => 'primer_row', :locals => {:primer => primer})

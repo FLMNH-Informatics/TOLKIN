@@ -1,0 +1,25 @@
+%form{ action: project_molecular_alignments_path, method: 'post', enctype: 'multipart/form-data' }
+  %table.attributes
+    %tr
+      %td.key_cell{ colspan: 1 }
+        %label.key{ for: 'alignment[name]' } Name
+      %td.value
+        %input{ type: 'text', name: 'alignment[name]' }
+        %font{ color: 'red'} required
+    %tr
+      %td.key_cell{ colspan: 1 }
+        %label.key{ for: 'alignment[description]' } Description
+      %td.value
+        %textarea{ name: 'alignment[description]', cols: '70', rows: '3' }
+    %tr
+      %td.key_cell{ colspan: 1 }
+        %label.key{ for: 'alignment[seq]' } Alignment
+      %td.value
+        %input{ type: 'file', name: 'alignment[file]' }
+        %br
+        or
+        %br
+        %textarea{ name: 'alignment[seq]', cols: '70', rows: '10' }
+        %div{ style: 'text-align: right' }
+          %span.status_area{ style: 'color: red' }
+          %input{ type: 'submit', value: 'Import' }

@@ -1,0 +1,3 @@
+.notice_area
+= form_for :primer, @primer, url: project_molecular_primers_path do |f|
+  = render partial: 'form_fields', locals: { f: f }

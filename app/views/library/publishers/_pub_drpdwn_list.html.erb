@@ -1,0 +1,5 @@
+<%if !params[:object_type].nil?%>
+  <h6><%= collection_select(params[:object_type], :publisher_id, @publishers, :id, :name, {:include_blank => true}) %> <%= @publishers.size %> results </h6>
+<%else%>
+<%= collection_select(:publisher, :id, @publishers, :id, :name) %> 
+<%end%>

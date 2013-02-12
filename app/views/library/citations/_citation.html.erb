@@ -1,0 +1,25 @@
+
+<tr id="cit_<%=citation.id%>" class="<%= cycle('body-odd', 'body-even') %>" data-id="<%= citation.id %> " >
+    <td class="b">
+		<input type="checkbox" id="citation_<%=citation.id%>" name="citation_ids[]" value=<%= citation.id %> />
+    </td>
+    <td class="b">
+        <% citation.contributors.each do |author| %>
+        <%= author.name %>
+        <% end %>
+    </td>
+    <td class="b"><%=h citation.year %></td>
+    <td class="b"><%= link_to h(citation.title),  {}, :href=>"#" %></td>
+    <td class="b"><%=h citation.publication %></td>
+    <td class="b"><%=h citation.type.gsub!("Library::","") %></td>
+    <td class="b">
+        <% if citation.citation_file %>
+          <%=
+            link_to(
+              citation.citation_file.original_name,
+              getfile_project_library_citations_path(params[:project_id], :id=>citation.id)
+            )
+          %>
+        <% end %>
+    </td>
+</tr>

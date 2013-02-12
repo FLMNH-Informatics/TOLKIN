@@ -1,0 +1,10 @@
+<tr id="character_row_<%= mchar.character.id%>" class="<%= cycle('body-odd', 'body-even') %>" >
+  <td class="b"><input type="checkbox" name="character_id[]" value="<%= mchar.character.id %>"/></td>
+  <td class="b"><%=h mchar.position%></td>
+  <td class="b" title="<%= mchar.character.name %>"><%=h truncate(mchar.character.name, :length => 60) %></td>
+  <%= raw modify_matrix_controls(mchar) %>
+  <!--<td class="b">-->
+    <%#= link_to image_tag("x.png", :border=>0),
+                remove_character_project_morphology_matrix_path(:project_id => params[:project_id], :id=>@timeline, :character_id => mchar.character.id),
+                :method => :put, :confirm => "Are you sure you would like to remove '#{mchar.character.name}' from the matrix?" %>
+  <!--</td>-->

@@ -1,0 +1,3 @@
+<h1>Show photo</h1>
+<p><%= link_to image_tag(@image.public_filename(:medium)), @image.public_filename %></p>
+<%= link_to 'Index', project_images_path(current_project) %>

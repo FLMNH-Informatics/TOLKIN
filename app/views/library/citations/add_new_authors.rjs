@@ -1,0 +1,1 @@
+page.insert_html :bottom , :div_contributorships_authors, :partial => "author", :locals => {:author => @author}

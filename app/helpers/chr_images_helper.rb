@@ -1,0 +1,2 @@
+module ChrImagesHelper
+end

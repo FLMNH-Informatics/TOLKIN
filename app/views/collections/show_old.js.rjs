@@ -1,0 +1,6 @@
+page << "if($('showCollectionWindow')) {"
+  page.replace 'showCollectionWindow', :partial => 'collection_details'
+page << "} else {"
+  page.insert_html :bottom, 'contents', :partial => 'collection_details'
+page << "}"
+page.call :showWindow, :showCollectionWindow

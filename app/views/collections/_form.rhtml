@@ -1,0 +1,564 @@
+<script language="javascript">
+    function checkAccuracySelected(value){
+        //alert(value);
+        //alert($('collection_accuracy').length-1);
+        if (value == $('collection_accuracy').length - 1) {
+            //alert('hi equal');
+            $('collection_aux_accuracy').disabled = false;
+        }
+        else {
+            $('collection_aux_accuracy').disabled = 'true';
+        }
+    }
+
+    function addRowToTable(){
+
+        var tbl = document.getElementById('collection_tblSample');
+        var lastRow = tbl.rows.length;
+        // if there's no header row in the table, then iteration = lastRow + 1
+        var iteration = lastRow;
+        var row = tbl.insertRow(lastRow);
+
+        // right cell
+        var cellRight = row.insertCell(0);
+        var el = document.createElement('input');
+        el.type = 'text';
+        el.name = 'annotation' + iteration + '[taxon]';
+        el.id = 'txtRow' + iteration + '_taxon';
+        el.size = 20;
+        cellRight.appendChild(el);
+
+        cellRight = row.insertCell(1);
+        el = document.createElement('input');
+        el.type = 'text';
+        el.name = 'annotation' + iteration + '[name]';
+        el.id = 'txtRow' + iteration + '_name';
+        el.size = 20;
+        cellRight.appendChild(el);
+
+        cellRight = row.insertCell(2);
+        el = document.createElement('input');
+        el.type = 'text';
+        el.name = 'annotation' + iteration + '[date]';
+        el.id = 'txtRow' + iteration + '_date';
+        el.size = 10;
+        cellRight.appendChild(el);
+
+        cellRight = row.insertCell(3);
+        el = document.createElement('input');
+        el.type = 'text';
+        el.name = 'annotation' + iteration + '[inst]';
+        el.id = 'txtRow' + iteration + '_inst';
+        el.size = 10;
+        cellRight.appendChild(el);
+        // select cell
+
+    }
+
+    function removeRowFromTable(){
+        var tbl = document.getElementById('collection_tblSample');
+        var lastRow = tbl.rows.length;
+        if (lastRow > 1)
+            tbl.deleteRow(lastRow - 1);
+    }
+</script>
+<%= error_messages_for 'collection' %>
+<!--[form:collection]-->
+<table>
+    <tr>
+      <td align="right">
+                <label for="collection_collector">
+                  <b>COLLECTOR: </b>
+                </label>
+        </td>
+        <td>
+                <%= text_field 'collection', 'collector', 'size' => 60 %><%if request.symbolized_path_parameters[:action]=="edit" %>
+                <%= render :partial=>"tags/tagme", :locals => { :tagme => @collection } %>
+                <%end %>
+                <font size="1" face="verdana" color="red">
+                    *
+                </font>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_associate_collectors">
+                  <b> ASSOCIATE<br/>COLLECTORS: </b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'associate_collectors', 'size' => 60 %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_collection_number">
+                  <b> COLLECTION #: </b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'collection_number', 'size' => 30 %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_prefix">
+                  <b>PREFIX:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'prefix', 'size' => 15  %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_suffix">
+                  <b>SUFFIX:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'suffix', 'size' => 15  %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_coll_start_date">
+                  <b>COL START DATE:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= date_select 'collection', 'coll_start_date' , :start_year => 1000, include_blank: true, default: nil %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_coll_end_date">
+                  <b>COL END DATE:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= date_select 'collection', 'coll_end_date' , :start_year => 1000, include_blank: true, default: nil %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_verbatim_coll_date">
+                  <b>VERBATIM COL <br/> DATE:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'verbatim_coll_date' %>           
+        </td>
+    </tr>
+
+    <tr>
+      <td align="right">
+          <label for="collection_taxon">
+            <b>TAXON:</b>
+          </label>
+      </td>
+      <td>
+           <%= taxon_combo_box %>
+      </td>
+    </tr>
+
+    <tr>
+        <td align="right">
+            
+                <label for="collection_identification_qualifier">
+                  <b>ID. QUALIFIER:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'identification_qualifier', 'size' => 15  %>
+        </td>
+    </tr>
+     <tr>
+        <td align="right">
+            
+                <label for="collection_barcode">
+                  <b>BARCODE:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'barcode', 'size' => 20  %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_accession_num">
+                  <b>ACCESSION #:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'accession_num' , 'size' => 20%>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_institution_code">
+                  <b>INSTITUTION CODE:</b>
+                </label>
+                <%if !@collection.institution_code.nil? %>
+                <a href="http://sweetgum.nybg.org/ih/herbarium_list.php?+Search+=+Search+&QueryName=DetailedQuery&QueryPage=/ih/index.php&Restriction=NamPartyType+%3D+%27IH+Herbarium%27&StartAt=1&col_NamOrganisationAcronym=<%=@collection.institution_code%>" target="_blank">Index Herbariorum</a>
+                <%end %>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'institution_code', 'size' => 20 %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_country">
+                  <b>COUNTRY:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'country', 'size' => 20 %>
+        </td>
+    </tr>
+     <tr>
+        <td align="right">
+            
+                <label for="collection_state_province">
+                  <b>STATE/PROVINCE:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'state_province', 'size' => 20 %>
+        </td>
+     </tr>
+      <tr>
+        <td align="right">
+            
+                <label for="collection_island">
+                  <b> ISLAND: </b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'island', 'size' => 20 %>
+        </td>
+      </tr>
+     <tr>
+        <td align="right">
+            
+                <label for="collection_county">
+                  <b>COUNTY:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'county', 'size' => 20 %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_locality">
+                  <b>LOCALITY:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'locality', 'size' => 60 %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_latitude">
+                  <b>LATITUDE:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'lat_degree', 'size' => 5 %>
+                &#176&nbsp;
+                <%= text_field 'collection', 'lat_min', 'size' => 5 %>
+                '&nbsp;
+                <%= text_field 'collection', 'lat_sec', 'size' => 5 %>
+                ''&nbsp;
+                <select name='collection[lat_dir]'><option value='n'/>N<option value='s'/>S</select>
+                &nbsp;&nbsp;
+                or
+                &nbsp;&nbsp;
+                <%= text_field 'collection', 'latitude', 'size' => 15 %>
+                &nbsp;(decimal)
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_longitude">
+                  <b>LONGITUDE:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'long_degree', 'size' => 5 %>
+                &#176&nbsp;
+                <%= text_field 'collection', 'long_min', 'size' => 5 %>
+                '&nbsp;
+                <%= text_field 'collection', 'long_sec', 'size' => 5 %>
+                ''&nbsp;
+                <select name='collection[long_dir]'><option value='e'/>E<option value='w'/>W</select>
+                &nbsp;&nbsp;
+                or
+                &nbsp;&nbsp;
+                <%= text_field 'collection', 'longitude', 'size' => 15 %>
+                &nbsp;(decimal)
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            
+                <label for="collection_elevation">
+                  <b>ELEVATION:</b>
+                </label>
+            
+        </td>
+        <td>
+                <%= text_field 'collection', 'elevation_start', 'size' => 10 %>-<%= text_field 'collection', 'elevation_end', 'size' => 10 %><%= collection_select(:collection, :length_unit_id, LengthUnit.find(:all), :id, :name,{:include_blank => false}) %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <%#= text_field 'collection', 'elevation_unit' %>
+            
+                <label for="collection_accuracy">
+                  <b>ACCURACY:</b>
+                </label>
+            
+        </td>
+        <td>
+                <select id="collection_accuracy" name="collection[accuracy]" onchange="checkAccuracySelected($('collection_accuracy').selectedIndex)">
+                    <option value="1">1</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="5000">5000</option>
+                    <option value="10000">10000</option>
+                    <option value="50000">50000</option>
+                    <option value="100000">100000</option>
+                    <option value="other" selected="true">other</option>
+                </select>
+                <input type="text" id="collection_aux_accuracy" name="collection_aux_accuracy" disabled="false" value='<%=@collection.accuracy%>' />
+        </td>
+    </tr>
+
+    <tr>
+      <td align="right">
+           <label for="collections_annotations">
+             <b>ANNOTATIONS:</b>
+           </label>
+      </td>
+      <td>
+    <div id="collections_annotations">
+        <input type="button" value="Add" onclick="addRowToTable();"/><input type="button" value="Remove" onclick="removeRowFromTable();"/>
+        <table border="1" id="collection_tblSample">
+            <tr>
+                <td>
+                    taxon
+                </td>
+                <td>
+                    name
+                </td>
+                <td>
+                    date
+                </td>
+                <td>
+                    institution
+                </td>
+            </tr>
+            <% if !@annotations.nil? %>
+            <% for element in @annotations %>
+            <tr>
+                <td>
+                    <input type="text" name="annotation1[taxon]" id="collection_txtRow1_taxon" size="20" value= "<%=element.taxon %>">
+                    </input>
+                </td>
+                <td>
+                    <input type="text" name="annotation1[name]" id="collection_txtRow1_taxon" size="20" value= "<%=element.name %>">
+                    </input>
+                </td>
+                <td>
+                    <input type="text" name="annotation1[date]" id="collection_txtRow1_taxon" size="10" value= "<%=element.date %>">
+                    </input>
+                </td>
+                <td>
+                    <input type="text" name="annotation1[inst]" id="collection_txtRow1_taxon" size="10" value= "<%=element.inst %>">
+                    </input>
+                </td>
+            </tr><% end %>
+            <% end %>
+        </table>
+    </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td align="right">
+        <label for="collection_source_url">
+          <b>SOURCE URL:</b>
+        </label>
+      </td>
+      <td>
+        <%= text_field 'collection', 'source_url',:size=>80 %>
+      </td>
+    </tr>
+
+    <tr>
+      <td align="right">
+        <label for="collection_label_text">
+          <b>LABEL TEXT:</b>
+        </label>
+      </td>
+      <td>
+        <%= text_area 'collection', 'label_text'  , :cols => 80, :rows => 4 %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        <label for="collection_desc">
+          <b>DESCRIPTION:</b>
+        </label>
+      </td>
+      <td>
+        <%= text_area 'collection', 'plant_description'  , :cols => 80, :rows => 4 %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <label for="collection_fruiting">
+            FRUITING
+        </label>
+        <%=check_box("collection","fruiting") %>
+        <label for="collection_flowering">
+            FLOWERING
+        </label>
+        <%=check_box("collection","flowering") %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        <label for="collection_vegetation">
+          <b>VEGETATION:</b>
+        </label>
+      </td>
+      <td>
+        <%= text_area 'collection', 'vegetation' , :cols => 80, :rows => 4 %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td align="right">
+    <label for="collection_geology">
+      <b>GEOLOGY:</b>
+    </label>
+      </td>
+      <td>
+    <%= text_area 'collection', 'geology' , :cols => 80, :rows => 4 %>
+      </td>
+    </tr>
+
+    <tr>
+      <td align="right">
+        <label for="collection_date_trans">
+          <b>DATE<br/>TRANSCRIBED:</b>
+    </label>
+      </td>
+      <td>
+    <%= text_field 'collection', 'date_trans' %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+    <label for="collection_notes">
+      <b>NOTES:</b>
+    </label>
+      </td>
+      <td>
+    <%= text_area 'collection', 'notes',:cols=>80, :rows => 4 %>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td align="right">
+    <label for="collection_permission">
+      <b>RECORD<br/>PERMISSIONS:</b>
+    </label>
+        </td>
+        <td>
+    <%= collection_select(:collection, :recpermission_id, Recpermission.find(:all), :id, :name,{:include_blank => false}) %>
+        </td>
+    </tr>
+    <tr>
+      <td align="right">
+     <label for="collection_silica_sample">
+       <b>SILICA SAMPLE</b>
+     </label>
+      </td>
+      <td>
+     <%= check_box 'collection', 'silica_sample' %>
+      </td>
+    </tr>
+</table>
+
+    <!--table-->
+
+  <!--tr-->
+        <!--td colspan="2"-->
+            <!--div id="taxon"-->
+                <%# if !@collection.nil? && !@collection.id.nil? && !@collection.taxon.nil? %>
+                <!--b>Taxon:</b-->
+                <%#=link_to @collection.taxon.name, project_taxon_path(@collection.taxon.project_id,@collection.taxon.id) %>
+                <%#= @collection.taxon.name %>
+                <!--br/>
+                <%#=check_box_tag 'dissociate_taxon' %>Dissociate Taxon
+                <%# end %>
+
+                    Taxon Search
+                    <br/-->
+                    <%#= text_field "taxon", "search", "size" => 20 , "maxsize" => 255 %>
+                    <%#= observe_field(:taxon_search,
+                    :frequency => 0.5,
+                    :update     => :taxon_results,
+                    :url        => auxsearch_path,
+                    :with		=> "search"
+                    ) %>
+                    <!--div id="taxon_results"-->
+                    <!--/div-->
+
+            <!--/div-->
+        <!--/td-->
+    <!--/tr-->
+
+<!--/table-->
+<!--[eoform:collection]-->

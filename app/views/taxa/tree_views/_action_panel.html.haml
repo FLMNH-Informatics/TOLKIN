@@ -1,0 +1,44 @@
+.widget.action_panel.bar{ id: id }
+  .button#create_taxon_at_root
+    %table
+      %tr
+        %td
+          %img{:src => "/images/addnew.gif", :style => "height: 14px; width: 14px;"}
+        %td
+          %span Create Taxon
+  .button#move_taxon_button
+    %table
+      %tr
+        %td
+          %img{:src => "/images/16-move-arrow.png"}
+        %td
+          %span Move
+  .button#delete_taxon_button
+    %table
+      %tr
+        %td
+          %img{:src => "/images/16-em-cross.png"}
+        %td
+          %span Delete
+  -#.button#add_to_otu
+  -#  %table
+  -#    %tr
+  -#      %td
+  -#        %img{:src => "/images/addnew.gif", :style => "height: 14px; width: 14px;"}
+  -#     %td
+  -#        %span Add to OTU
+  .button#export_to_csv
+    %table
+      %tr
+        %td
+          %img{:src => "/images/report.png", :style => "height: 16px; width: 16px;"}
+        %td
+          %span Create a Report
+  .selected_count
+  #add_to_otu_window{:style => "position: relative; display: none;"}
+    %form#adding_to_otu
+      %input#otu_name{:name => "otu_name", :type => "text"}
+      #add_to_otu_button
+        %input{:type => "button", :value => "add to otu"}
+%br
+-#adds a break to position treeview correctly

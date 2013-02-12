@@ -1,0 +1,25 @@
+
+  <% form_remote_for :dna_sample, @dna_sample, :url => project_molecular_dna_samples_path, :html => { :id => 'new_item_form' } do |f| %>
+    <table>
+      <% @attributes.each do |attribute| %>
+        <tr>
+          <td style="font-weight:bold;"><%= f.label attribute[:name], attribute[:label] %></td>
+          <td>
+          <% if attribute[:edit_type] == :collection %>
+            <%= collection_select(:dna_sample, :recpermission_id, Recpermission.find(:all), :id, :name, {:include_blank => false}) %>
+          <% elsif attribute[:edit_type] == :autocomplete %>
+             <% if attribute[:name] == :taxon_id %>
+               <%= raw taxon_combo_box  %>
+             <% end %>
+          <% else %>
+            <%= raw f.text_field attribute[:name] %>
+          <% end %>
+          </td>
+         </tr>
+      <% end %>
+    </table>
+    <!-- <div class="submitbuttonrow">
+      <%#= submit_tag "Create" %>
+    </div> -->
+
+  <% end %>

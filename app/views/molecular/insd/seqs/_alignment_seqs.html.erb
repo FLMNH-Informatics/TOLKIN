@@ -1,0 +1,30 @@
+  <% @seqs.each do |seq| %>
+    <tr class="seq_row" id="seq_<%= raw seq.id %>">
+      <td class="exclude_seq"><a class="remove_seq"><img src="/images/16-em-cross.png" alt="don\'t save" /></a></td>
+      <td class="seq_td" id="td_<%= raw seq.id %>">
+        <div class="seq_org"><%= raw seq.organism %></div>
+        <div class="seq_definition indent"><%= raw seq.definition %></div>
+        <div class="seq_seq indent"><%= raw seq.sequence %></div>
+        <div class="seq_marker indent">
+          <% if seq.markers %>
+            Markers: <table>
+              <tr>
+                <% seq.seq_markers.each do |sm| %>
+                  <td>
+                    <div>Type:</div>
+                    <div>Name:</div>
+                    <div>Position:</div>
+                  </td>
+                  <td>
+                    <div><%= sm.marker.type ? sm.marker.type : 'n/a' %></div>
+                    <div><%= sm.marker.name ? sm.marker.name : 'n/a' %></div>
+                    <div><%= sm.position    ? sm.position    : 'n/a' %></div>
+                  </td>
+                <% end %>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>

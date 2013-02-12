@@ -1,0 +1,108 @@
+<div style="float:left;margin:10px;">
+  <%= form_for @probe, :url => project_chromosome_probe_path, :method => :put do |pro| %>
+  <table>
+    <tr>
+      <td class="key_cell" align="right" style="padding-right:5px">
+        <label for="probe">
+          <b>Probe: </b>
+        </label>
+      </td>
+      <td class='value' align="left" style="padding-left:10px">
+        <%= @probe.value %>
+      </td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="right" style="padding-right:5px"><b>Probe Type: </b></td>
+      <td align="left" style="padding-left:10px"><%= probe_type_field @probe.probe_type %></td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="right" style="padding-right:5px"><b>Sequence Description: </b></td>
+
+      <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :sequence_desc %></td>
+    </tr>
+  <tr>
+      <td class="key_cell" align="right" style="padding-right:5px"><b>Southern Signal: </b></td>
+
+      <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :southern_signal %></td>
+    </tr>
+  <tr>
+      <td class="key_cell" align="right" style="padding-right:5px"><b>FISH Signal: </b></td>
+
+      <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :fish_signal %></td>
+    </tr>
+  <tr>
+        <td class="key_cell" align="right" style="padding-right:5px"><b>Centromere Repeat: </b></td>
+
+        <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :centromere_repeat %></td>
+      </tr>
+  <tr>
+        <td class="key_cell" align="right" style="padding-right:5px"><b>BES Start: </b></td>
+
+        <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :bes_start %></td>
+      </tr>
+  <tr>
+        <td class="key_cell" align="right" style="padding-right:5px"><b>BES End: </b></td>
+
+        <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :bes_end %></td>
+      </tr>
+  <tr>
+        <td class="key_cell" align="right" style="padding-right:5px"><b>AmTr v10 Scaffold ID: </b></td>
+
+        <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :scaffold_id %></td>
+      </tr>
+  <tr>
+          <td class="key_cell" align="right" style="padding-right:5px"><b>AmTr v10 Scaffold Length: </b></td>
+
+          <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :scaffold_length %></td>
+        </tr>
+  <tr>
+          <td class="key_cell" align="right" style="padding-right:5px"><b>Chromosome: </b></td>
+
+          <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :chromosome %></td>
+        </tr>
+  <tr>
+          <td class="key_cell" align="right" style="padding-right:5px"><b>Genome Builder Super Scaffold: </b></td>
+
+          <td width="1" align="left" style="padding-left:10px"><%= text_field_or_text @probe, :genome_builder_super_scaffold %></td>
+        </tr>
+
+  </table>
+  <% end %>
+</div>
+<div style="float:left;margin:10px;">
+  <label for="z_file">
+    <b>ZVI File(s): </b> <% if @hybrids.size > 1 %><a href="<%= z_files_project_chromosome_probe_path %>" >Download all ZVI files</a> <% end %>
+  </label>
+  <table>
+    <% @hybrids.each do |hybrid| %>
+      <tr>
+        <td valign ="top">   
+           <div style="padding:5px;border-radius:3px;background-color:#eee;border:1px solid #ddd">       
+              <table> 
+                <tr>
+                  <td colspan="<%= hybrid.z_file.zimages.size %>" style="text-align:left">
+                    File: <a href="<%= hybrid.z_file.zvi.url %>"> <%= hybrid.z_file.zvi_file_name %> </a> (<a target="_blank" title="view on Tolkin" href="<%= project_chromosome_z_file_path(current_project, hybrid.z_file)%>">view&#8599;</a>)
+                  </td>
+                </tr>        
+                <tr>
+                  <td colspan="<%= hybrid.z_file.zimages.size %>" style="text-align:left">Dye: <%= hybrid.dye.dye_value %></td>
+                </tr>
+                <tr>
+                    <% hybrid.z_file.zimages.each do |image| %> 
+                      <td align="center">
+                       <a target="_blank" href="<%= image.attachment.url(:original) %>"> <img class="zvi_image_thumb" src="<%= image.attachment.url(:thumb) %>" style="height:50px" /> </a>
+                      </td>  
+                    <% end %>
+                  </tr>
+                  
+              </table> 
+           </div>         
+        </td>   
+      </tr>
+    <% end %>
+  </table>
+
+</div>
+
+
+<%#= link_to 'Back', project_chromosome_probes_path %>

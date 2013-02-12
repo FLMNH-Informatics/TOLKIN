@@ -1,0 +1,10 @@
+#page << <<JS
+#$('div_citation').hide();
+#init.viewport().notifier().success('Citation updated.');
+#var catalog = init.viewport().widgets().get('viewport_content_frame').widgets().get('viewport_content_frame_library_citations_catalog');
+#if (catalog){
+#  catalog.collection().load();
+#}
+#JS
+##page.visual_effect :highlight, "div_citation"
+#flash.discard

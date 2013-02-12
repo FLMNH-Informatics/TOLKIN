@@ -1,0 +1,6 @@
+<select id="columnMappingSelect<%= index %>" class="columnMappingOption" index="<%= index %>" style="font-size: 12px;">
+  <option>Please Select</option>
+  <% @option_attributes.each_pair do |attr_key, attr_value | %>
+      <option value="<%= attr_key %>"><%= attr_value %></option>
+  <% end %>
+</select>

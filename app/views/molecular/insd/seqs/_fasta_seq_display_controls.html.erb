@@ -1,0 +1,23 @@
+<div style="width:100%;text-align:center;">
+<span id="fasta_seq_display_type" style="display:none"><!-- TODO:  display this when list mode is implemented -->
+  <ul class="horizontal_list">
+    <li>View type:</li>
+    <li><input type="radio" name="display_type" value="detailed" checked="true" />Detailed</li>
+    <li><input type="radio" name="display_type" value="list" />List</li>
+  </ul>
+</span>
+<span id="fasta_seq_choose" style="margin:auto;">
+    <%= raw fasta_filenames_select %>
+</span>
+</div>
+<div id="fasta_seq_paging">
+  <ul class="three_cols">
+    <li class="first">
+      <a id="prev_fasta_seq" href="#"><< Previous</a>
+    </li>
+    <li class="middle" id="current_seq_num">...</li>
+    <li class="last">
+      <a id="next_fasta_seq" href="#">Next >></a>
+    </li>
+  </ul>
+</div>

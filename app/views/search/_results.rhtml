@@ -1,0 +1,15 @@
+ <div id="SearchResults" style="padding: 0px 0px 0px 50px;">
+<% i=1%>
+
+Search Yielded : <%= @count %> Results
+<% results.each do |result| %>
+
+ <div id=<%= "result_"+i.to_s  %> >
+     <p>  <%=link_to result.name.to_s+" ",  project_taxon_url({:project_id=>params[:project_id],:id => result.id.to_s}) %>  <br/>
+	<%= result.author.to_s+" "+ result.year.to_s%>	<br/>
+	<%= result.description.to_s %>
+	</p>
+ <div id=<%= "result_"+i.to_s  %> >
+<% i=i+1 %>
+<% end %>
+</div>

@@ -1,0 +1,15 @@
+#chr_states_table {
+  border: 2px solid #CDCDCD;
+  padding: 5px 15px 5px 5px;
+  background-color: #FCFBF1;
+}
+
+#chr_states_table *, #chr_attributes_table * {
+  vertical-align: top;
+
+}
+
+.char_table td {
+  padding: 2px 5px;
+}
+

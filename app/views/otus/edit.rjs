@@ -1,0 +1,6 @@
+#page << "if($('editOtuWindow')) {"
+#  page.replace 'editOtuWindow', :partial => 'edit'
+#page << "} else {"
+#  page.insert_html :bottom, 'contents', :partial => 'edit'
+#page << "}"
+#page.call :showWindow, :editOtuWindow

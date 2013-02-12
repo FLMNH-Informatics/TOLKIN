@@ -1,0 +1,28 @@
+ <%
+   mapped = {'molecular/insd/seqs' => 'molecular/sequences' }
+   cont = mapped.has_key?(params[:controller]) ? mapped[params[:controller]] : params[:controller]
+ %>
+<form name="tolkin_export_col_form" action="/projects/<%= current_project.id %>/<%= cont %>.csv" method="get">
+<table>
+  <tr>
+    <td></td>
+    <td>
+      <select name="report_format">
+          <option value='xls'>Excel</option>
+          <option value='csv'>CSV</option>
+
+      </select>
+    </td>
+  </tr>
+  <tr><td><input type="checkbox"  class="check_all"/></td><td> <input type="submit" /></td></tr>
+
+
+  <%@count =0%>
+  <%@table_col.each do  |name|%>
+  <tr><td><input type="checkbox" name="select[]" value="<%=name%>"/></td><td><%=name%></td></tr>
+  <%@count =@count+1%>
+  <%end%>
+</table>
+  <div id="search_conditions" style="style:block"></div>
+
+</form>

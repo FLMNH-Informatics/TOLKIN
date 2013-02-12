@@ -1,0 +1,88 @@
+<table class="char_table">
+  <% if @character.timeline.deleted_at  %>
+    <tr>
+      <td align="right" colspan="3">
+        <h6>
+          <span id="character_was_deleted" class="bodytext">DELETED</span>
+        </h6>
+      </td>
+    </tr>
+  <% elsif params[:matrix_id] %>
+    <tr>
+      <td align="center" colspan="3">
+          <span id="character_attached_to_matrix" class="bodytext">
+            Attached to matrix: <%= raw link_to(@character.timelines.find(params[:matrix_id]).name, project_morphology_matrix_path(@current_project, @character.timelines.find(params[:matrix_id]))) %>
+          </span>
+      </td>
+    </tr><tr>
+      <td align="center" colspan="3">
+          <span id="character_was_superceded" class="bodytext">
+            <a href="<%= project_morphology_character_path(@current_project, @current_project.characters.first(conditions: { is_current: true, timeline_nid: @character.timeline_nid }))%>">View most recent version</a>
+          </span>
+      </td>
+    </tr>
+  <% elsif !@character.is_current %>
+    <tr>
+      <td align="right" colspan="3">
+        <h6>
+          <span id="character_was_superceded" class="bodytext">
+            SUPERCEDED (<a href="<%= project_morphology_character_path(@current_project, @current_project.characters.first(conditions: { is_current: true, timeline_nid: @character.timeline_nid }))%>">view most recent version</a>)
+          </span>
+        </h6>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td align="right" valign="top" style="width:75px;">
+      <span class="titletext"><b>Name:</b> </span>
+    </td>
+    <td valign="top" style="width:160px;">
+      <span class="bodytext"><%=h @character.name %></span>
+    </td>
+    <td align="right" valign="top">
+      <span class="titletext">Short Name: </span>
+    </td>
+    <td valign="top">
+      <span class="bodytext"><%=h @character.short_name %></span>
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">
+      <span class="titletext">Description: </span>
+    </td>
+    <td valign="top" colspan="3">
+      <span class="bodytext"><%=h @character.description %></span>
+    </td>
+
+  </tr>
+
+  <tr>
+    <td align="right" valign="top">
+      <span class="titletext">Created By: </span>
+    </td>
+    <td valign="top">
+      <span class="bodytext"><%=h @character.creator.full_name %></span>
+    </td>
+    <td align="right" valign="top">
+      <span class="titletext">Last Updated By: </span>
+    </td>
+    <td valign="top">
+      <span class="bodytext"><%=h @character.updator.full_name %></span>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="right" valign="top">
+      <span class="titletext">Created At: </span>
+    </td>
+    <td valign="top">
+      <span class="bodytext"><%=h @character.created_at %></span>
+    </td>
+    <td align="right" valign="top">
+      <span class="titletext">Last Updated At: </span>
+    </td>
+    <td valign="top">
+      <span class="bodytext"><%=h @character.updated_at %></span>
+    </td>
+  </tr>
+</table>

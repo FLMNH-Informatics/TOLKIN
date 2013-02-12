@@ -1,0 +1,25 @@
+.windowtitle
+  Versions
+.timeline_versioning.versioning_action_list.widget.action_list{id: timeline_display_pane_id}
+  -unless @timeline.version_number == 0
+    %div
+      %table#version_navigation
+        %tr
+          %td.versioning_change.beginning= raw link_to_first
+          %td.versioning_change.previous= raw link_to_previous
+          %td
+            %div.bodytext.large
+              %table
+                %tr
+                  %td Version:
+                  %td.version_container
+                    %span#matrix_version_number
+                      %select#timeline_version_select
+                        = raw version_change_control_options # @timeline.version_number
+          %td.versioning_change.next= raw link_to_next
+          %td.versioning_change.end= raw link_to_last
+        %tr
+          %td{:colspan => 5, :align => "center"}
+            %ul#versioning_list
+              %li.View_history_by_date= raw link_to("View history by date", "#", {:id => "View_history_by_date", :class => "View_history_by_date" })
+              %li.Create_next_version= raw link_to("Create next version", "#", {:id => "Create_next_version", :class => "Create_next_version" }) if @timeline.is_last_version?

@@ -1,0 +1,7 @@
+- form_for @taxon, :url => optional_matrix_resource_url(:controller => 'otus', :action => 'add_taxon', :matrix_id => params[:matrix_id], :project_id => params[:project_id], :id => params[:id]) do |f|
+  = f.label :name
+  = raw f.auto_complete_field :name, parent: general_window #TODO: don't explicitly tie this to the general window object
+  /= text_field_with_auto_complete :taxon, :name, { :autocomplete => "off" }, { :method => :get }
+
+  /.submitbuttonrow
+  /  = submit_tag "Create", { :class => "simple-button" }

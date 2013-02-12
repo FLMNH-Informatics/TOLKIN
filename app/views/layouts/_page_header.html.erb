@@ -1,0 +1,48 @@
+<div id="pageheader">
+  <%if current_user.logged_in? %>
+    <div id="user_info_box">
+      <div id="current_project_and_login_info">
+        <div id="current_project_info">
+          <form action="<%= projects_path %>" id="project_select_form">
+            Project
+            <select id="project_select">
+              <option></option>
+              <%= options_for_select current_user.projects.order(:label).collect { |project| [project.name, project.id] }, session[:project_id].to_i %>
+            </select>
+          </form>
+        </div>
+        <div id="login_info">
+          Logged in as <%= current_user.login %> <%#= link_to current_user.login, edit_user_path(current_user)  %>
+          <%= link_to 'logout', '/logout' %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+  <div id="user_info_box">
+    <%= render partial: 'shared/login_info' %>
+  </div>
+    
+  <% end %>
+
+  <table id="logo_and_switch">
+    <tr>
+      <td >
+          <% if current_project.logo %>
+       <%= raw("<a title='#{current_project.label} home page' href='#{current_project.website}'>") if !current_project.website.blank? %>
+            <img src="/images/project/<%= current_project.logo %>" alt="<%= current_project.label %>" style="max-height: 50px" />
+       <%= raw("</a>") if !current_project.website.blank? %>
+          <% end %>
+      </td>
+      <td style="font-weight: bold; font-size: 16px; vertical-align: middle">
+          <%#*<a href="/">%>
+            <%#= image_tag("tolkin_logo.png", :size => "112x54", :alt => 'Tree of Life Knowledge and Information Network', :style => 'padding-bottom: 5px; padding-left: 5px') %>
+          <%#*</a>%>
+          <%#= image_tag("pin_icon.gif", :title => "tag url", :onclick=>"oBM('url=#{request.fullpath}')") %>
+        &nbsp;&nbsp;&nbsp;
+         <%= raw("<a style='color:#222;' title='#{current_project.label} home page' href='#{current_project.website}'>") if !current_project.website.blank? %>
+          <%= current_project.label %>
+         <%= raw("</a>") if !current_project.website.blank? %>
+      </td>
+    </tr>
+  </table>
+</div>

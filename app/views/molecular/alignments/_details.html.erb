@@ -1,0 +1,49 @@
+<div id="alignment_main" style="display: inline;">
+  <%= form_for :alignment do |f| %>
+  <table>
+    <tr>
+      <td>
+        <%= f.label :name %>:
+      </td>
+      <td>
+        <%= raw alignment_name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :description %>:
+      </td>
+      <td>
+        <%= raw alignment_description %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="text-align: right;">
+        <% if interact_mode == 'edit' %>
+          <input type="button" value="Save"/>
+        <% end %>
+      </td>
+    </tr>
+    <% unless @alignment.timeline_id.blank? %>
+      <tr>
+        <td>
+          Matrix:
+        </td>
+        <td><%= link_to @alignment.timeline.matrix.name, project_molecular_matrix_path(current_project.id, @alignment.timeline_id) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>
+        Sequences:
+      </td>
+      <td>
+        <table id="sequencelisttable">
+          <%= raw sequence_table_headers %>
+          <%= raw sequence_rows %>
+        </table>
+      </td>
+    </tr>
+  </table>
+    <% end %>
+</div>

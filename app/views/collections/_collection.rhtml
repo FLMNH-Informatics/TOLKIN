@@ -1,0 +1,57 @@
+
+
+<% deletable = @collection.candelete?(@current_user.id) %>
+
+<%if deletable%>
+  <%= link_to( image_tag("delete.gif", :size => "12x12" ),
+    project_collection_path(params[:project_id],@collection.id),
+    :method => 'delete',
+    :confirm => 'Are you sure you want to delete?'
+  )%>
+<% end %>
+<%#= link_to "Dna",  get_external_link("Dna", @collection),  :target => "blank"  %>
+<div>
+  <%if @collection.taxon%>
+    <%= link_to "Morphology", get_morphology_references_project_taxon_path(params[:project_id], @collection.taxon),  :target => "blank" %>
+  <%end%>
+</div>
+<table>
+  <%= render(:partial => "/shared/show_editable_attribute", :collection => @general_attributes, :locals => { :actual_object => @collection} ) %>
+</table>
+
+<a href="#" onClick='$("view_collapsed_collection").toggle(); return false'>Show / Hide Additional Info >></a><br/>
+<div id='view_collapsed_collection' style='display:none;'>
+  <div id="div_coll_annotations">
+    <%= render  :partial => 'annotations', :object => @collection.annotations %>
+  </div>
+  <table>
+    <%= render :partial => "/shared/show_editable_attribute", :collection => @extra_attributes, :locals => { :actual_object => @collection}  %>
+    <tr>
+      <td><div onclick="$('div_specimen_label').toggle();">specimen label:</div><div id="div_specimen_label" style="border-width:5px; border-color:black;background-color:white"><%= get_specimen_label  %> </div></td>
+    </tr>
+  </table>
+</div><br />
+<div>Last Updated By :<%=@collection.updater.login %></div>
+<div>Last Updated At : <%=@collection.updated_at %></div>
+<div>Created By : <%=@collection.creator.login %></div>
+<div>Created At : <%=@collection.created_at %></div>
+
+<div id="imagesdiv" class="imagesdiv">
+   <div id="coll_image_title"><span class="titletext">Images </span><br/>
+     <div style="margin: 0px 10px;">
+            <div>
+                  <form id="imageupload" action="/images">
+                  <input id='options_image_type' type='hidden' value='Collection' name='options[image_type]'/>
+                  <input id='options_id' type='hidden' value='<%=@collection.id %>'  name='options[id]'/>
+                  <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
+                        <span id="spanButtonPlaceholder"/>
+                  </div>
+                  </form>
+            </div>
+            <div id="divFileProgressContainer" style="height: 75px;"/>
+            <div id="thumbnails"/>
+        </div>
+    </div>
+
+     <%= render :partial => 'shared/image', :collection => @collection.image_links  %>
+</div>

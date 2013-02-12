@@ -1,0 +1,21 @@
+<h3>Create New Project</h3>
+<form action="/admin/projects" method="post">
+  <input type="hidden" name="_method" value="post" />
+  <table>
+    <tr>
+      <td>Project Name:</td>
+      <td><input type="text" name="label" /></td>
+    </tr>
+    <tr>
+      <td>Website URL:</td>
+      <td><input type="text" name="website" /></td>
+    </tr>
+    <tr>
+      <td>Logo Image:</td>
+      <td><input type="file" name="logo_file" /></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Create!" /></td>
+    </tr>
+  </table>
+</form>

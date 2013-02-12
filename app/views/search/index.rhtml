@@ -1,0 +1,35 @@
+
+<% if !@searchArr.nil? %>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<% end %>
+<br/>
+<br/>
+<br/>
+<center>
+<% form_tag request.path, :method => 'get' do %>
+  <% content_tag :label do %>
+    <%= text_field_tag :search, params[:search],:size=>50, :title=> "Text to search" %><br/>
+	<%= submit_tag 'search'%>
+  <% end %>
+<% end %>
+</center>
+
+<%  if @searchVar %>
+<div style="padding: 0px 0px 0px 50px;">
+You searched for '<%= @searchVar %>'.
+</div>
+<% end %>
+
+<% if (@results && @results.length>0) %>
+<%=   render(:partial=> "results", :object => @results, :layout => false) %>
+<%= will_paginate @results %>
+<% elsif !@results.nil?%>
+<div style="padding: 0px 0px 0px 50px;">
+Sorry, search yielded no results.
+</div>
+<% end %>

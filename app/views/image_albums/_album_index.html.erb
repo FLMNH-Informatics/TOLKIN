@@ -1,0 +1,101 @@
+<script language="javascript" type="text/javascript">
+<!--
+
+var NumOfRow=1;
+
+function Button1_onclick()
+{
+NumOfRow++;
+
+// get the reference of the main Div
+var mainDiv=document.getElementById('MainDiv');
+
+// create new div that will work as a container
+var newDiv=document.createElement('div');
+newDiv.setAttribute('id','innerDiv'+NumOfRow);
+
+//create span to contain the text
+var newSpan=document.createElement('span');
+newSpan.innerHTML="";
+
+// create new text box for email entry
+var newTextBox=document.createElement('input');
+newTextBox.type='text';
+newTextBox.setAttribute('id','txtAddr'+NumOfRow);
+newTextBox.setAttribute('name','txtAddr'+NumOfRow);
+
+// create new drop down for search parameter
+
+    var arrValues = new Array("taxon","caption","photographer","location");
+
+    var arrTexts = new Array("Taxon","Caption","Photographer","Location");
+
+var newDropDownBox=document.createElement('select');
+
+newDropDownBox.type='select';
+newDropDownBox.setAttribute('id','searchSelect'+NumOfRow);
+newDropDownBox.setAttribute('name','searchSelect'+NumOfRow);
+      for ( x = 0 ; x < arrValues.length  ; x++ ) {
+      var selectOption =document.createElement('option');
+      selectOption.value = arrValues[x];
+      selectOption.text = arrTexts[x];
+
+      newDropDownBox.appendChild(selectOption)
+  }
+
+// create remove button for each field
+var newButton=document.createElement('input');
+newButton.type='button';
+newButton.value='Remove';
+newButton.id='btn'+NumOfRow;
+
+// attach event for remove button click
+newButton.onclick=function RemoveEntry() { var mainDiv=document.getElementById('MainDiv');
+mainDiv.removeChild(this.parentNode);
+}
+
+//var space=document.createElement("&nbsp;");
+
+// append the span, textbox and the button
+newDiv.appendChild(newSpan);
+newDiv.appendChild(newDropDownBox);
+newDiv.appendChild( document.createTextNode( '\u00A0' ) );
+newDiv.appendChild(newTextBox);
+newDiv.appendChild( document.createTextNode( '\u00A0' ) );
+newDiv.appendChild(newButton);
+
+// finally append the new div to the main div
+mainDiv.appendChild(newDiv);
+
+}
+// -->
+</script>
+
+<span>
+  <div id="MainDiv" class="widget filter_set">
+    <form method="get" id="ImageSearchForm" class="image_gallery_search_filter" action="<%#= project_image_albums_path %>" style="margin-top: 10px;">
+      Select Search parameter and enter Search Term.<br/>
+      <p></p>
+      <select id="searchSelect" name="search">
+        <option value="taxon" <%= params[:search] == 'taxon' ? 'selected' : '' %> >Taxon</option>
+        <option value="caption" <%= params[:search] == 'name' ? 'selected' : '' %> >Caption</option>
+        <option value="photographer" <%= params[:search] == 'name' ? 'selected' : '' %> >Photographer</option>
+        <option value="location" <%= params[:search] == 'name' ? 'selected' : '' %> >Location</option>
+      </select>
+      <input id="searchText" type="text" name="term" />
+      <input id="Button1" type="button" value="Add More" onclick="Button1_onclick()" />
+      <div id="add_more_div">
+
+      </div>
+    </form>
+
+  </div>
+  <input type="button" name="submit" value="search" class="image_gallery_search_button" style="background-image: url(/images/small_search.png); background-repeat: no-repeat; background-position: 4px 50%; padding-left:15px" />
+  <div id='workingImg' style="display:none;"><img src="/images/ajax-loader.gif" /></div>
+  <form id="HiddenForm" method="get" action="<%#= project_image_albums_path %>">
+
+    </form>
+</span>
+
+<div id='album_index'>
+  <%= render partial: 'image_albums/image_album' %>

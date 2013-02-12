@@ -1,0 +1,138 @@
+#literature_section > table {
+  width: 100%
+}
+
+p.citation {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.taxa-show-page td {
+  padding: 3px
+}
+
+.citation .buttons {
+  padding-left: 5px;
+  padding-top: 12px;
+  float: right;
+  visibility: hidden;
+}
+
+.citation:hover .active.buttons {
+  visibility: visible;
+}
+
+
+.key {
+  font-size: 11px; }
+
+.taxon_details {
+  margin: 0 25px 25px 25px; }
+
+div#node_panel {
+  margin: 0 20px 10px 0;
+  line-height: 30px;
+  width: 100%; }
+
+div#node_panel * {
+  vertical-align: middle; }
+
+span.tagme_link {
+  float: right;
+  position: relative;
+  left: -25px;
+  top: -25px; }
+
+x {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  z-index: 10000; }
+
+pad {
+  padding: 0px 0px 0px 15px; }
+
+.padleft {
+  padding: 0px 0px 0px 15px;
+  border-left: thin dotted #000; }
+
+
+
+
+
+#newformdiv {
+  z-index: 15; }
+
+.hidden {
+  display: none; }
+
+#tree_browse_instructions {
+  position: absolute;
+  top: 8px;
+  right: 290px;
+  background-color: #faf9ef;
+  padding: 0.5%;
+  width: 12%;
+  border: 2px solid #cdcdcd; }
+  #tree_browse_instructions .instruction {
+    padding: 2px; }
+  #tree_browse_instructions h4 {
+    margin-top: 0px;
+    margin-bottom: 5px; }
+
+.tree_view_node_name span.selected {
+  background-color: #CCF; }
+.tree_view_node_name.accepted_name {
+  font-weight: bold; }
+
+td.blank {
+  height: 15px; }
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin-top: 0px; }
+
+#interaction_mode_switch .switch_base {
+  width: 100%; }
+  #interaction_mode_switch .switch_base td {
+    padding: 2%;
+    font-size: 100%;
+    font-weight: bold;
+    width: 50%;
+    text-align: left; }
+    #interaction_mode_switch .switch_base td:hover {
+      cursor: pointer; }
+#interaction_mode_switch .switch_top {
+  position: absolute;
+  background-color: #BBF;
+  width: 30%;
+  height: 7%;
+  opacity: 0.4;
+  border: 1px solid blue; }
+
+#geomap {
+  width: 675px;
+  height: 275px; }
+
+#taxon_general_attributes {
+  width: 100%; }
+
+#taxon_details_link_bar {
+  width: 100%; }
+
+.taxon_inner_contents {
+  margin-top: 3.7em;
+  margin-bottom: 1.5em; }
+
+/* input[name="taxon[name]"] {
+  font-size: 16px;
+  font-weight: bold;
+} */
+
+.protologue_publication_name {
+  font-style: italic
+}
+

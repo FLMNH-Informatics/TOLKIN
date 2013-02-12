@@ -1,0 +1,42 @@
+/* 
+    Document   : projects
+    Created on : Feb 26, 2009, 5:26:13 PM
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+table#projects {
+  border-style: solid;
+  border-color: black;
+  border-width: 0px 0px 1px 0px;
+  
+  border-collapse: collapse;
+  padding: 0;
+}
+
+table#projects th, table#projects td {
+  border-style: solid;
+  border-color: black;
+  
+}
+
+table#projects th {
+  border-width: 0 0 1px;
+  padding: 6px 0;
+}
+
+table#projects td {
+  border-width: 0 1px;
+  height: 50px;
+}
+
+table#projects td.text {
+  padding: 0 8px;
+
+}
+

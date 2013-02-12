@@ -1,0 +1,8 @@
+
+<%if !list_marked_records.nil? && list_marked_records.size>0%>
+	<%list_marked_records.each do |marked_record|%>
+		<%= render :partial=>"marked_record", :object=>marked_record%> <br/>
+	<%end%>
+<%else%>
+	Oops No marked record of type <%= @temp.class.to_s%>
+<%end%>

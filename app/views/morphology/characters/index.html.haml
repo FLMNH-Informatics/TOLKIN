@@ -1,0 +1,5 @@
+%h4 Characters Listing
+/ div{:id => "windowdiv", :class=>"window", :style=>"display: none;z-index:1;" }
+/ draggable_element :windowdiv
+/ render(:partial => "new_character" , :object => nil)
+= characters_catalog

@@ -1,0 +1,58 @@
+<!--
+<#%if !params[:pub].nil? && !params[:pub][:type].nil? %><#%=hidden_field :pub, :type, :value => params[:pub][:type] %>
+<#%=hidden_field :citation, :type, :value => params[:pub][:type] %>
+<#% obj = params[:pub][:type] %>
+<#%else %>
+<#% obj = "Citation" %>
+<#%end %>
+<div id="div_contributorships_authors" style="padding: 0px 0px 0px 30px;">
+</div>
+<#% Library::Citation.column_names.each do |column_name| %>
+<#% if "Library::#{obj}".constantize.attributes.include?(column_name.intern) %>
+<p>
+    <#%= f.label(column_name, get_pseudo_column_name(column_name)) %>
+    <#%if column_name.upcase == "PUBLICATION" %>
+    <#%= text_field "publication", "name" %>
+    <#%= link_to_remote("create publications",
+    :url => project_library_publications_path(params[:project_id]),
+    :with => "'publication[name]=' + $('publication_name').value"
+    ) %>
+    <#%= observe_field("publication_name",
+    :frequency => 1,
+    :update     => "div_publications",
+    :url        => publications_search_project_library_citations_path(params[:project_id]),
+    :with => "search",
+    :method => :get
+    ) %>
+    <div id="div_publications">
+    </div>
+    <#%elsif column_name.upcase == "PUBLISHER_ID" %>
+    <#%= text_field "publisher", "name" %>
+    <#%= link_to_remote("create publisher",
+    :url => project_library_publishers_path(params[:project_id]),
+    :with => "'publisher[name]=' + $('publisher_name').value"
+    ) %>
+    <#%= observe_field("publisher_name",
+    :frequency => 1,
+    :update     => "div_publisher",
+    :url        => publishers_search_project_library_publishers_path(params[:project_id]),
+    :with => "'object_type=#{"citation".downcase}&search=' + value",
+    :method => :get
+    ) %>
+    <div id="div_publisher">
+    </div>
+    <#%elsif column_name.upcase != "AUTHOR" %>
+    <#%= f.text_field column_name %>
+    <#%else %>
+    <#%end %>
+</p>
+<#% end %>
+<#% end %>
+<p>
+    <#%= label :pubfile, :attachment %>:<#%= file_field :pubfile, :attachment %>
+    <br>
+    <br>
+</p>
+<#%= f.submit "Create" %>
+</p>
+-->

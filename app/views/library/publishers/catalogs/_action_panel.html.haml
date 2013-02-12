@@ -1,0 +1,16 @@
+.widget.action_panel.bar{ id: id }
+  .button#create
+    %table
+      %tr
+        %td
+          %img{:src => "/images/addnew.gif", :style => "height: 14px; width: 14px;"}
+        %td
+          %span Create
+  .button#delete
+    %table
+      %tr
+        %td
+          %img{:src => "/images/16-em-cross.png"}
+        %td
+          %span Delete
+  .selected_count{style: 'float: right;'}= count_num

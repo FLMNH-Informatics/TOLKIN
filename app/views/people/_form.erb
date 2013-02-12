@@ -1,0 +1,67 @@
+<%= form.error_messages %>
+<table>
+  <tr>
+    <td><%= form.label 'first_name' %></td>
+    <td><%= form.text_field 'first_name' %></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'middle_name' %></td>
+    <td><span class="field"><%= form.text_field 'middle_name' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'last_name' %></td>
+    <td><span class="field"><%= form.text_field 'last_name' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'prefix' %></td>
+    <td><span class="field"><%= form.text_field 'prefix' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'suffix' %></td>
+    <td><span class="field"><%= form.text_field 'suffix' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'image_url' %></td>
+    <td><span class="field"><%= form.text_field 'image_url' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'phone' %></td>
+    <td><span class="field"><%= form.text_field 'phone' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'email' %></td>
+    <td><span class="field"><%= form.text_field 'email' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'im' %></td>
+    <td><span class="field"><%= form.text_field 'im' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'office_address_line_one' %></td>
+    <td><span class="field"><%= form.text_field 'office_address_line_one' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'office_address_line_two' %></td>
+    <td><span class="field"><%= form.text_field 'office_address_line_two' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'office_city' %></td>
+    <td><span class="field"><%= form.text_field 'office_city' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'research_focus' %></td>
+    <td><span class="field"><%= form.text_area 'research_focus' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'office_zip' %></td>
+    <td><span class="field"><%= form.text_field 'office_zip' %></span></td>
+  </tr>
+  <tr>
+    <td><%= form.label 'active' %></td>
+    <td><span class="field"><%= form.check_box 'active' %></span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= form.submit "Update" %></td>
+  </tr>
+</table>

@@ -1,0 +1,55 @@
+<div id="contentpane" xmlns="http://www.w3.org/1999/html">
+  <div class="clearer">
+    <div id="detailsdiv" class="detailsdiv">
+      <table>
+        <tr>
+          <td class="titletext">Name:</td>
+          <td class="bodytext"><%=h @otu_group.name %><%= render :partial=>"tags/tagme", :locals => { :tagme => @otu_group } %></td>
+        </tr>
+        <tr>
+          <td class="titletext">Last Updated By:</td>
+          <td class="bodytext"><%=h @otu_group.updator.label %></td>
+        </tr>
+        <tr>
+          <td class="titletext">Last Updated At:</td>
+          <td class="bodytext"><%=h @otu_group.updated_at %></td>
+        </tr>
+        <tr>
+          <td class="titletext">Created By:</td>
+          <td class="bodytext"><%=h @otu_group.creator.label %></td>
+        </tr>
+        <tr>
+          <td class="titletext">Created At:</td>
+          <td class="bodytext"><%=h @otu_group.created_at %></td>
+        </tr>
+
+        <tr>
+          <td align="right" colspan="4">
+            <span class="bodytext">
+              <% if session[:last_uri] %>
+                <%= link_to 'Back', session[:last_uri] %> |
+              <% end %>
+              <%= link_to 'Edit', edit_project_otu_group_path(params[:project_id], @otu_group) %> |
+              <%= link_to 'Delete', project_otu_group_path(params[:project_id], @otu_group), :confirm => 'Are you sure?', :method => :delete %>
+            </span>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div id="detailsdiv2" class="detailsdiv">
+    <h5>OTUs in group (<a class="add_otu_to_group" href="#">Add OTU to Group</a>)</h5>
+
+    <% form_tag remove_selected_project_otu_groups_path(params[:project_id]), { :method => :post, :name=>"otus_form", :id=>"otus_form" } do %>
+      <%= render :partial => 'otu_list' %>
+    <% end %>
+  </div>
+
+
+
+
+</div>
+
+

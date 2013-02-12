@@ -1,0 +1,8 @@
+#citation_container_id = get_citation_item_name(@taxon, params[:cit_id])
+#if(@taxon.citations.length == 0)
+#  page.replace_html citation_container_id, "No Citations"
+#else
+#  page.remove citation_container_id
+#end
+#page.replace_html 'notice', flash[:notice]
+#flash.discard

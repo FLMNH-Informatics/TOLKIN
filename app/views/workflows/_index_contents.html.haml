@@ -1,0 +1,31 @@
+%table#workflow_index_layout
+  %tr
+    %td
+      #list_workflows.details_outer
+        .details_box
+          .title Check on existing workflows
+          %br
+          My workflows:
+          %ul
+            /- @current_user.workflows.each do |workflow|
+            %li
+              = link_to 'Workflow 1',project_workflow_path(@current_project, 1)
+              \- finished
+            %li
+              = link_to 'Workflow 2',project_workflow_path(@current_project, 2)
+              \- finished
+            %li
+              = link_to 'Workflow 3',project_workflow_path(@current_project, 3)
+              \- running
+            /=link_to_remote workflow.name, :update => :workflow_section_contents, :url => project_workflow_path(@current_project, workflow), :method => :get, :html => { :href => project_workflow_path(@current_project, workflow) }
+            /== - #{workflow.status}
+    %td
+      / or or
+    %td
+      #list_templates.details_outer
+        .details_box
+          .title Create a new workflow
+          %br
+          Templates:
+          %ul
+            %li= link_to 'alignment-tree-building', new_project_workflow_path

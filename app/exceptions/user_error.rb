@@ -1,0 +1,1 @@
+UserError = Class.new(Exception)

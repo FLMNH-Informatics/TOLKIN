@@ -1,0 +1,12 @@
+<table id="matrix_otus_table">
+<tr>
+  <th class="h"></th>
+  <th class="h">OTUs</th>
+</tr>
+  <% @otus.each do |otu| %>
+    <tr id="o_<%= otu.id %>" data-otu-id="<%= otu.id %>" class="<%= cycle('body-odd', 'body-even') %>" >
+      <td class="b"><input type="checkbox" data-otu-id="<%= otu.id %>" /></td>
+      <td class="b"><%= otu.name %></td>
+    </tr>
+  <% end %>
+</table>

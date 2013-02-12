@@ -1,0 +1,18 @@
+
+<%if id == nil%>
+<img src="/images/ncbiLogo.GIF" onclick="ncbi('<%=name%>','<%=caller%>')"></img>
+<%elsif caller == "display"%>
+<% @name_split = name.split(' ') %>
+<% @append_name = "" %>
+   <% @name_split.each do |taxon_name|
+       @append_name = @append_name + taxon_name + '+'
+   end%>
+ <% @append_name = @append_name.chop %>
+
+<%  @link = 'http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id='+id.to_s %>
+<a href='<%=@link%>' target="_blank"><%= image_tag("ncbiLogo.GIF", :alt => 'NCBI') %></a>
+<%else%>
+<img src="/images/ncbiLogo.GIF" onclick="ncbi_id_desc('<%=id%>','ncbi_popup',' ',true)"></img>
+<%end%>
+<div id="ncbi_popup" style='position: absolute;  display: none;' class="popup">
+</div>

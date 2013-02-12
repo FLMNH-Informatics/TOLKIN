@@ -1,0 +1,20 @@
+<%= window_head 'Add Selected to OTU Group', 'windowdiv' %>
+<% form_remote_tag  :url =>add_to_matrix_update_project_otus_path(params[:project_id]) , :method => :put do -%>
+	<div class="formrow">
+	    <%=label 'matrix', 'matrix' %>
+	    <span class="smallfield"><%= select_tag("matrix_id", "<option value='-1'>Please Select A Matrix</option><option value='-1'></option>" + options_for_select(@matrices.collect {|o| [ o.name, o.id ]})) %>
+	    </span>
+        <input type="hidden" id="selected_otus" name="selected_otus" value=""/>
+	</div>
+    <div class="submitbuttonrow">
+      <span class="titletext"> OR </span>
+    </div>
+	<div class="formrow">
+	    <%=label 'Create New Matrix', 'Create New Matrix' %>
+	    <span class="smallfield"><%= text_field :matrix, :name, :size => 30 %>
+	    </span>
+	</div>
+	<div class="submitbuttonrow">
+	    <%= submit_tag "Add", {  :onclick => "setElementValue( 'selected_otus', getSelectedElementValues('otus[]') );", :class => "simple-button" } %>
+	</div>
+<% end %>

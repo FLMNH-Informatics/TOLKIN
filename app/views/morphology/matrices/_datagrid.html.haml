@@ -1,0 +1,21 @@
+#viewport_content_frame_matrices_datagrid.datagrid.widget
+  #table_head_container.table_head_container
+    .table_head_expander{ :style => "width: #{300 + @timeline.characters.count * 150}px;" }
+      %table.table_head{ :cellspacing => '1px' }
+        %thead
+          %tr
+            %th.link_buttons
+              #table_navigation
+                = render :partial => "datagrid_controls" unless @characters.empty? && @matrices_otus.empty?
+                = render :partial => "datagrid_navigation"
+                #sort_otus
+                  =raw order_link("otus")
+                #sort_characters
+                  =raw order_link("characters")
+                #sort_both
+                  =raw order_link("both")
+            = render :partial => "datagrid_headers"
+  #table_body_container.table_body_container
+    = render :partial => "datagrid_body_new"
+  %script{:type=>"text/javascript"}
+    = raw %(matrices_otus = #{@matrices_otus.to_json})

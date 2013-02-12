@@ -1,0 +1,29 @@
+%table.catalog.widget{ id: id }
+  = raw filters    
+  %tr
+    %td
+      = raw action_panel
+  %tr
+    %td
+      -# Firefox complains about missing span below in Create New Citation window
+      %span
+        .header
+          %table
+            %tr
+              %th
+                %div
+                  %input.check_all{ type: 'checkbox' }
+              = raw column_headings
+        .catalog-contents
+          = raw contents
+        .catalog-footer
+          %table.nav_elements.navigation{ style: 'width: 100%' }
+            %tr
+              %td
+                .border
+                  %table.bottom{ style: 'width:100%;border:none;'}
+                    %tr
+                      %td{style: 'width:33%'}= raw publifier_control
+                      %td.counter_nav{style: 'width:33%'}= raw counter_nav
+                      %td{style: 'width:33%'}
+

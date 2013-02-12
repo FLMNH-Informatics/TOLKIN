@@ -1,0 +1,18 @@
+
+<table>
+  <tr><td class="ubio_select">
+
+
+
+  <select name=3  size=6 >
+
+   <%  @doc.search("/results/scientificNames/value").each do |name|%>
+      <option value="<%=name.search('namebankID').inner_html%>"><%= Base64.decode64(name.search('nameString').inner_html)%></option>
+   <%end%>
+ </select>
+  </td></tr>
+  <tr><td><div id="window_taxon_description"></div></td>
+  </tr>
+</table>
+
+

@@ -1,0 +1,7 @@
+.add_new
+  %button#new_character_state New State
+.add_new_row#add_new_row{:style => 'visibility:hidden;'}
+  = render :partial => 'new_character_state.html.haml'
+.existing_states#existing_states
+  - @character.states.each do |state|
+    = render :partial => 'character_state.html.haml', :locals => {:state => state}

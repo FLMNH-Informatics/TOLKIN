@@ -1,0 +1,11 @@
+Select Dye:
+= select("hybridization", "dye_id", Chromosome::Dye.for_project(@project).map{ |dye| [dye.dye_value, dye.id] }, {:include_blank => true})
+= raw %{(<a class="add_new_dye" id="add_new_dye">add new dye</a>)}
+%span#add_dye_control{:style => "display:none;"}
+  Dye value:
+  %input#dye_dye_value{ :type => "text", :name => "dye[dye_value]" }
+  %input#add_dye{ :type=>"button", :value=>"Add dye" }
+%br
+- unless @probe
+  Select Probe:
+  = probe_catalog

@@ -1,0 +1,27 @@
+
+<div id="bar" style="overflow: auto; height: 300px; ">
+<table>
+
+
+   <%  @doc.search("//docsum") do |name|%>
+   <tr><td>Name:</td><td>
+        <%= (name/"/item[@name='ScientificName']").inner_html%></td>
+      </tr>
+      <% if (name/"/item[@name='Rank']").inner_html != "" %>
+      <tr><td>Rank:</td><td>
+        <%= (name/"/item[@name='Rank']").inner_html%></td>
+      </tr>
+      <%end%>
+      <% if (name/"/item[@name='Authority']").inner_html != "" %>
+       <tr><td>Author:</td><td>
+        <%= (name/"/item[@name='Authority']").inner_html%></td>
+      </tr>
+      <%end%>
+    
+   <%end%> 
+  
+         
+     
+   </table>
+      </div>
+   

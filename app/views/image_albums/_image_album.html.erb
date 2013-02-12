@@ -1,0 +1,28 @@
+<% if @images.empty? %>
+
+    <div style="margin-top: 10px;font-weight: bold;" >
+    <%#= "Total images: #{images.size}" if !params[:search] %> <br/>
+    <%#= raw "Matching #{params[:search].titleize} with Term <i>#{params[:term]}</i>" if params[:search] %> <br/>
+    <%= "#{@images.size} images returned" if params[:search] %>
+  </div>
+
+    <div class="image_album" >
+      <div class="imageSingle">
+        This search yields no results.
+      </div>
+    </div>
+
+<% else %>
+    
+<div style="margin-top: 10px;font-weight: bold;" >
+    <%#= "Total images: #{images.size}" if !params[:search] %> <br/>
+    <%#= raw "Matching #{params[:search].titleize} with Term <i>#{params[:term]}</i>" if params[:search] %> <br/>
+    <%= "#{@images.size} images returned" if params[:search] %>
+  </div>
+ <!-- <input id="add_image" type="button" value="Add Image" /><br/>-->
+
+<div class='image_album'>
+  <%= render partial: 'image_albums/image_singles', :collection => @images, :as => :image %>
+</div>
+
+<% end %>

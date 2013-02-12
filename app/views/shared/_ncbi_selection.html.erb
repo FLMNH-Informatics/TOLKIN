@@ -1,0 +1,13 @@
+
+<table>
+  <tr><td class="ncbi_select">
+    <select name=3  size=6 >
+     <%  @doc.search("//DocSum").each do |name|%>
+      <option value="<%=name.search("Item[@Name='TaxId']").inner_html%>"><%= name.search("Item[@Name='ScientificName']").inner_html%></option>
+   <%end%>
+ </select>
+  </td></tr>
+  <tr><td><div id="window_taxon_description"></div></td>
+  </tr>
+</table>
+

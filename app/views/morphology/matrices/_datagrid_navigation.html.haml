@@ -1,0 +1,7 @@
+%table
+  %tr
+    %td#table_empty_message
+      = raw matrix_empty_message
+    %td#table_pagination
+      %span.bodytext
+        = raw will_paginate(@characters, :container => false) if params[:action] == 'show' #|| params[:action] == 'view_by_date' TODO: fix view_by_date pagination

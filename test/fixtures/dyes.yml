@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ dye_1:
+   id    : 33
+   dye_value : Cy3
+   created_at : <%=Time.now - 1.hour%>
+   updated_at : <%=Time.now%>
+   project_id : 70
+
+
+
+
+
+
+

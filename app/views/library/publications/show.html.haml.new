@@ -1,0 +1,21 @@
+- form_for @publication, url: project_library_publication_path do |f|
+  -# {:id => "publication_update" , :action=> form_action , :method => "post" }
+  %input{ type: "hidden", value: "put", name: "_method"}
+  #save_button_publication_details.section{ style: save_button }
+    %input{ type: "submit", id: "save_publication_details" , value: "save"}
+    %span#save_status{ style: 'display: none'}Saving
+  #general_section.section
+    %table
+      %tr
+        %td.key_cell
+          %label.key{ for: 'publication[name]' } Name
+        %td.value= text_field_or_text('name')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'publication[code]' } Code
+        %td.value= text_field_or_text('code')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'publication[publisher]' } Publisher
+        %td.value= select_or_text('publisher')
+      

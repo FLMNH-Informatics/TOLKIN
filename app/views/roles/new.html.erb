@@ -1,0 +1,7 @@
+<% form_for [ current_project, @role ] do |f| %>
+  <div>
+    <%=raw f.label :label, "Name" %>
+    <%=raw f.text_field :label %>
+  </div>
+  <%= f.submit "Create" %>
+<% end %>

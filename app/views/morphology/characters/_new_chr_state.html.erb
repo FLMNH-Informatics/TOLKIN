@@ -1,0 +1,42 @@
+<div id="window" class="window">
+    <div id="windowtitle" class="windowtitle">
+        <span id="title" class="title">New Character State</span>
+        <span id="closebutton" class ="closebutton" onClick="$('newchrstatediv').hide();"><%= link_to "X", "javascript:void(0)" %>
+        </span>
+    </div>
+    <% form_tag(optional_matrix_resource_url(:controller => 'characters', :action => 'create_state', :matrix_id => params[:matrix_id], :project_id => params[:project_id], :id => params[:id]),
+      :update => 'actor_list', :position => 'bottom', :html => {:id => 'chr_state_form'} ) do %>
+    <%= hidden_field 'chr_state', 'character_id', 'value' => @character.id -%>
+    <div class="formrow">
+        <%= label 'chr_state', 'name' %>
+        <span class="field"><%= text_field 'chr_state', 'name' %>
+        </span>
+    </div>
+    <div class="formrow">
+        <%= label 'chr_state', 'description' %>
+        <span class="field"><%= text_area 'chr_state', 'description', :cols => 35, :rows => 4 %>
+        </span>
+    </div>
+    <!--<div class="formrow">-->
+        <!--<%#= label 'chr_state', 'state' %>-->
+        <!--<span class="field">--><%#= text_field 'chr_state', 'state' , :size => 40 %>
+        <!--</span>-->
+    <!--</div>-->
+    <div class="formrow">
+        <%= label 'chr_state', 'polarity' %>
+        <span class="field"><%= select 'chr_state', 'polarity', @polarities %>
+        </span>
+    </div>
+    <div class="formrow">
+        <%= label_tag :library_references, "Add Citation",:onClick=>"$('div_add_citations').toggle();", :style=>"text-decoration: underline;" %>
+        <span class="field" id="span_citation_list"></span>
+    </div>
+    <div class="submitbuttonrow">
+        <%= submit_tag "Create" %>
+    </div>
+    <% end %>
+    <div id="div_add_citations" style="width: 100%; display: none;" class="window">
+        <%=render :partial=>"shared/add_citations", :object=> @new_chr_state %>
+    </div>
+    <%= draggable_element :div_add_citations %>
+</div>

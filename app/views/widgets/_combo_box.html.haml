@@ -1,0 +1,8 @@
+.combo_box.widget{ id: id }
+  %input{ type: 'hidden', name: name, value: value_id }
+  %table.box{ style: box_style }
+    %tr
+      %td.label{ data_fulltext: value_fulltext, data_searchtext: value_searchtext }= value_label
+      %td.arrow-container
+        %img{ src: '/images/black_down_arrow.png' }
+

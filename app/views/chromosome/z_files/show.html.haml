@@ -1,0 +1,18 @@
+%h4 ZVI File Information
+%br
+= raw z_file_download_link
+%table.chrom
+  %tr
+    %td.b Caption
+    %td= @z_file.caption
+  %tr
+    %td.b Personnel
+    %td= @z_file.personnel.name
+%h3= raw %(Hybridizations/Probes #{%((<a id="assign_probe" href="#">assign probe</a>)) unless interact_mode == 'browse'})
+= render :partial => "z_file_probes_list.html.haml"
+%h3 Images
+- unless interact_mode == 'browse'
+  = form_for [current_project,@z_file], :url => {:action => 'attach_image'}, :html => {:multipart => true} do |f|
+    %span.chrom= f.file_field(:image) + f.submit({:class => "chrom", :value => "Upload"})
+.chrom
+  = raw display_images

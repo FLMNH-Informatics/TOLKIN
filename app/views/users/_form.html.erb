@@ -1,0 +1,93 @@
+<head>
+<% if FileTest.exists?("public/stylesheets/#{controller.controller_name}.css") %>
+      <%= stylesheet_link_tag controller.controller_name %>
+    <% end %>
+</head>
+<body>
+  <div style="float: left; width: 50%">
+<br/>
+<b>Sign in information :</b>
+<hr size="1" align="left" width="90%" color="grey   "></hr>
+<%if !show.nil? && !show%>
+<table width ="100%" border="0" cellspacing="10px" cellpadding="0">
+  <tr>
+    <td style="white-space: nowrap">
+      <label for="login">* Login :</label>
+      </td>
+    <td class="tblColWidth">
+     <%= user_form.text_field :login, :class=> 'txtSize'%>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap">
+      <label for="email">* Email :</label>
+      </td>
+    <td class="tblColWidth">
+      <%= user_form.text_field :email, :class=> 'txtSize'%>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap">
+      <label for="password">* Password :</label>
+      </td>
+    <td class="tblColWidth">
+      <%= user_form.password_field :password, :class=> 'txtSize'%>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap">
+      <label for="password_confirmation">* Confirm Password :</label>
+      </td>
+    <td class="tblColWidth">
+      <%= user_form.password_field :password_confirmation, :class=> 'txtSize'%>
+    </td>
+  </tr>
+</table>
+
+  <!--p><label for="email_alt">Alternate Email</label><br/>
+  <%#= user_form.text_field :email_alt %></p -->
+<%end%>
+
+  <br/>
+
+  <b>Account information :</b>
+<hr size="1" align="left" width="90%" color="grey   "></hr>
+
+<!-- p><label for="department">Department</label><br/>
+<%#= user_form.text_field :department %></p -->
+
+<table width ="100%" border="0" cellspacing="10px" cellpadding="0">
+  <%# user_form.fields_for :person do |person_fields|%>
+  <tr>
+    <td style="white-space: nowrap">
+      <label for="first_name">* First Name :</label>
+      </td>
+    <td class="tblColWidth">
+     <%= user_form.text_field :first_name, :class=> 'txtSize'%>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap">
+      <label for="last_name">* Last Name :</label>
+      </td>
+    <td class="tblColWidth">
+      <%= user_form.text_field :last_name, :class=> 'txtSize'%>
+    </td>
+  </tr>
+  <%#end%>
+  <tr>
+    <td style="white-space: nowrap">
+      <label for="institution">* Institution :</label>
+      </td>
+    <td class="tblColWidth">
+       <%= user_form.text_field :institution, :class=> 'txtSize'%>
+    </td>
+  </tr>
+  <%# user_form.fields_for :person do |person_fields|%>
+  
+  
+  <%#end%>
+</table>
+
+</div>
+</body>

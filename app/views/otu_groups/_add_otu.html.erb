@@ -1,0 +1,32 @@
+<div id="window" class="window">
+  
+  <div id="windowtitle" class="windowtitle" > 
+    <span id="title" class="title">
+      Add OTU
+    </span>
+    
+    <span id="closebutton" class ="closebutton" onClick="$('addotudiv').hide();">
+      <%= link_to "X", "javascript:void(0)" %>
+    </span>
+  </div>  
+  
+  <% form_remote_tag(:url => {:controller => 'otu_groups', :action => 'addotutogroup'}, :update => 'actor_list', :position => 'bottom', :html => {:id => 'add_otu_form'} ) do %>
+  
+
+    <div class="formrow">
+      <%= label  'otu_group', 'OTU Name' %>
+      <span class="field">
+        <%= text_field 'otu_group', 'name', :size => 30 %>
+      </span>      
+    </div>  
+    
+    <div class="submitbuttonrow">
+        <%= submit_tag "Add" %>
+    </div>         
+    
+
+    
+  <%  end %>
+    
+    
+</div>

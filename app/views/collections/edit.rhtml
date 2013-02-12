@@ -1,0 +1,8 @@
+<%= link_to 'Back', project_collections_url(params[:project_id],:page=>params[:page]) %>
+
+<h1>Editing collection</h1>
+<% form_tag project_collection_url(params[:project_id],@collection), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+

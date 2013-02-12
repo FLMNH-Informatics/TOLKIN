@@ -1,0 +1,71 @@
+<div id="node_panel">
+  <ul class="panel_options">
+
+    <li onclick="assignparentnodeid(<%= params[:id] %>); fnewtax();">
+      <%= image_tag 'addnew.gif', :size => '14x14' %> Add Child
+    </li>
+
+    <li onclick="window.location='<%=project_taxon_url(params[:project_id],nodepanel)%>'">
+      <%= image_tag '32-camera.png', :size => '18x18' %> Change View
+    </li>
+
+
+    <li onclick="document.getElementById('taxon_move_control').show()">
+      <form name="taxon_<%= params[:id] %>">
+        <%= image_tag '16-move-arrow.png' %>
+        Move
+        <span id="taxon_move_control" style="display: none">
+          to:
+          <%= text_field_with_auto_complete :taxon, :name, { :size => 25, :value => '' }, { :method => :get } %>
+          <%= submit_to_remote("save_move_to_#{nodepanel}",
+            :save,
+            :url => move_to_project_taxon_path(params[:project_id], nodepanel, :parameter=>"moveto"),
+            :method => :put,
+            :complete => visual_effect(:fade , 'results',:duration=>2)) %>
+        </span>
+      </form>
+    </li>
+
+    <% if can_delete%>
+      <li onclick="if(confirm('Are you sure you want to delete?')) {
+        new Ajax.Request(
+        '<%=project_taxon_url(params[:project_id], nodepanel) %>',
+        {
+          asynchronous: true, evalScripts: true, method: 'delete',
+          onComplete: function(request) {new Effect.Fade('results', {duration: 2});},
+          parameters: 'authenticity_token=<%=form_authenticity_token %>'
+        });
+      }">
+        <%= image_tag '16-em-cross.png' %> Delete
+      </li>
+    <% end %>
+    <li>
+      <!-- GBIF link-->
+      <%= link_to "GBIF",  get_external_link("GBIF", taxon),  :target => "blank"  %>
+    </li>
+    <li>
+      <%= link_to "Morphology",  get_morphology_references_project_taxon_path(params[:project_id], taxon),  :target => "blank"  %>
+    </li>
+    <li>
+      <%= link_to "Images",   get_all_project_images_project_taxon_path(params[:project_id], taxon),  :target => "blank" %>
+    </li>
+    <li>
+      <%= link_to "TROPICOS",   get_external_link( "TROPICOS", taxon) %>
+    </li>
+    <li>
+      <%= link_to "IPNI",  get_external_link( "IPNI", taxon) %>
+    </li>
+    <!--
+    <li>
+      <%#= link_to "Dna",  get_external_link("Dna", taxon),  :target => "blank"  %>
+    </li>
+    -->
+  </ul>
+
+  <!-- DELETE ME?
+  <%if false%>
+    <%= render :partial=>"shared/mark_record", :object => taxon %>
+  <% end %>
+  -->
+  <span class="tagme_link"><%= render :partial=>"tags/tagme", :locals => { :tagme => taxon } %></span>
+</div>

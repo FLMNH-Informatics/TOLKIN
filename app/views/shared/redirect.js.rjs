@@ -1,0 +1,2 @@
+destination = @destination if destination.nil?
+page.redirect_to destination

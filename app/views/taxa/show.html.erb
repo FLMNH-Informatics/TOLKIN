@@ -1,0 +1,144 @@
+<div class="taxa-show-page">
+  <form action="<%= form_action %>" method="post" class="species_page_form">
+    <div style="margin: 0pt; padding: 0pt; display: inline;">
+      <input type="hidden" value="put" name="_method"/>
+    </div>
+      <%= raw button %>
+      <%= header%>
+    <table><tr><td><b>Editor(s):</b></td><td><%= raw editors %></td></tr></table><br/><br/>
+      <b>&nbsp;&nbsp;Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b><%= raw name %>
+    <table>
+      <tr><td>Status:</td><td><%= raw status %></td></tr>
+      <!--tr><td>Parent Taxon:</td><td><#%= parent_combo_box %></td></tr-->
+      <tr><td>Accepted Name:</td><td><%= raw accepted_name_combo_box %></td></tr>
+      <tr><td>Basionym:</td><td><%= raw text_field_or_text('basionym',68) %></td></tr>
+      <tr><td>Common Names:</td><td><%= raw common_names %></td></tr>
+    </table>
+  </form>
+
+    <div id='<%= tabbed_box_id %>' class='tabbed_box widget '>
+      <ul>
+        <li id='nomenclature_tab' class= 'tab active <%= is_selected('nomenclature') %>' >
+          <a> Nomenclature </a>
+        </li>
+        <li id='description_tab' class='tab active <%= is_selected('description') %>'>
+          <a> Description </a>
+        </li>
+        <li id='images_tab' class='tab active <%= is_selected('images') %>'>
+          <a> Images </a>
+        </li>
+        <li id='distribution_tab' class= 'tab active <%= is_selected('distribution') %>' >
+          <a> Distribution </a>
+        </li>
+        <li id='collections_tab' class='tab active <%= is_selected('collections') %>'>
+          <a> Specimens </a>
+        </li>
+        <li id='molecular_tab' class= 'tab active <%= is_selected('molecular') %>' >
+          <a> Molecular </a>
+        </li>
+        <li id='literature_tab' class='tab active <%= is_selected('literature') %>'>
+          <a> Literature </a>
+        </li>
+        <li id='links_tab' class='tab active <%= is_selected('links') %>'>
+          <a> Outlinks </a>
+        </li>
+      </ul>
+
+      <div id='nomenclature_section' class='body <%= is_selected('nomenclature') %>'>
+        <form action="<%= form_action %>" method="post" class="species_page_form">
+        <b>Type Details:</b>
+        <table>
+          <tr><td>Species:</td>        <td><%= raw type_species %></td></tr>
+          <tr><td>Type Collection:</td><td><%= raw type_collection %></td></tr>
+          <tr><td>Type Date:</td>      <td><%= raw type_date %></td></tr>
+          <tr><td>Type Locality:</td>  <td><%= raw type_locality %></td></tr>
+          <tr><td>Type Herbaria:</td>  <td><%= raw type_herbaria %></td></tr>
+          <tr><td>Neo Type:</td>       <td><%= raw neotype %></td></tr>
+        </table>
+        <table>
+          <tr><td><b> Synonyms: </b>
+              <a href='#' onclick='Effect.toggle("toggle_appear", "slide"); return false;'>show/hide</a>
+              <div id='toggle_appear' style='background:#FFFDF3'>
+                <div>
+                  <%= synonyms_table %>
+                </div>
+              </div>
+            </td></tr>
+        </table>
+        </form>
+      </div>
+
+      <div id="description_section" class="body <%= is_selected('description') %>">
+        <form action="<%= form_action %>" method="post" class="species_page_form">
+        <table>
+          <tr><td><b>Subgenus: </b></td><td><%= raw text_field_or_text('sub_genus',15) %></td></tr>
+          <tr><td><b>Section: </b></td><td><%= raw text_field_or_text('section',15) %></td></tr>
+          <tr><td><b>Subsection: </b></td><td><%= raw text_field_or_text('subsection',15) %></td></tr>
+          <tr><td><b>Ingroup Clade: </b></td><td><%= raw text_field_or_text('ingroup_clade',10) %></td></tr>
+          <tr><td valign="top"><b>Description: </b></td><td><%= raw description %></td></tr>
+          <tr><td valign="top"><b>Habitat: </b></td><td><%= raw habitat %></td></tr>
+          <tr><td><b>Phylogenetic Relationships: </b></td><td><%= raw phylogenetic_relationship %></td></tr>
+          <tr><td valign="top"><b>Comments: </b></td><td><%= raw comments %></td></tr>
+          <tr><td><b>Chromosome Number: </b></td><td><%= raw chromosome_number  %></td></tr>
+          <tr><td><b>Uses: </b></td><td><%= raw uses %></td></tr>
+          <tr><td><b>Toxicity: </b></td><td><%= raw toxicity %></td></tr>
+          <tr><td><b>Conservation Status: </b></td><td><%= raw conservation_status %></td></tr>
+          <tr><td></td><td><%= raw defined?(con_stat_link) ? con_stat_link : '' %></td></tr>
+        </table>
+        </form>
+      </div>
+
+      <div id="images_section" class="body <%= is_selected('images') %>">
+        <%= raw images %>
+      </div>
+
+      <div id="distribution_section" class="body <%= is_selected('distribution') %>">
+        <table>
+          <tr><td>
+            <b>General Distribution:</b>
+            <form action="<%= form_action %>" method="post" class="species_page_form">
+              <%= raw general_distribution %>
+            </form>
+          </td></tr>
+          <tr><td></td></tr>
+          <tr><td> <div id="geomap" class="geographic_map default"></div> </td></tr>
+        </table>
+      </div>
+
+      <div id="collections_section" class="body <%= is_selected('collections') %>">
+        <table>
+          <tr><td><%= collections_catalog %></td></tr>
+        </table>
+      </div>
+
+      <div id="molecular_section" class="body <%= is_selected('molecular') %>">
+        <table width="100%">
+          <tr>
+            <th align="left">
+              DNA Sample(s)
+            </th>
+            <th align="left">
+              Sequences
+            </th>
+          </tr>
+            <%= raw molecular_data %>
+        </table>
+      </div>
+
+      <div id="literature_section" class="body <%= is_selected('literature') %>">
+        <b>References:</b>
+        <table>
+          <%= raw add_citation_button %>
+          <tr id="<%=taxon_id%>"><%= raw citations_data %></tr>
+        </table>
+      </div>
+
+      <div id='links_section' class='body <%= is_selected('links') %>'>
+        <form action="<%= form_action %>" method="post" class="species_page_form">
+          <%= raw outlinks %>
+        </form>
+      </div>
+    </div>
+  <br />
+  <%= raw notes_section %>
+</div>

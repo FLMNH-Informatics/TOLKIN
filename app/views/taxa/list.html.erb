@@ -1,0 +1,34 @@
+<p>
+<h3>Taxon By Alpha List</h3>
+</p>
+<ul style="display:inline;list-style-type:inline">
+ | <% ('A'..'Z').to_a.each do |c| %>
+   <li style="display:inline;list-style-type:inline">
+     <% if !params.has_key?(:starts_with) || params[:starts_with] != c  %>
+    <a href="<%= list_project_taxa_path(:starts_with => c) %>"><%= c %></a>
+     <% else %>
+        <%= c %>
+     <% end %>
+  </li>  |
+  <% end %>
+</ul>
+<p>
+<% if @taxon.empty? %>
+  <h3> No Taxa Listed </h3>
+<% else %>
+  <% @taxon.each do |t| %>
+     <a class="taxa-link" href="<%= project_taxon_path(:id => t.id) %>"><%= t.name %></a><br>
+  <% end %>
+<% end %>
+
+<ul style="display:inline;list-style-type:inline">
+ | <% ('A'..'Z').to_a.each do |c| %>
+   <li style="display:inline;list-style-type:inline">
+     <% if !params.has_key?(:starts_with) || params[:starts_with] != c  %>
+    <a href="<%= list_project_taxa_path(:starts_with => c) %>"><%= c %></a>
+     <% else %>
+        <%= c %>
+     <% end %>
+  </li>  |
+  <% end %>
+</ul>

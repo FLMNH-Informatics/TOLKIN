@@ -1,0 +1,24 @@
+<%if flash[:notice] || flash[:error]%>
+<%= flash[flash.keys[0]] %>
+<%end%>
+ <% form_tag url_for(:controller => :accounts, :action => :update), method: :put do %>
+   <!-- admin changing users password shouldn't have to know old password
+        admin changing their own password should know their password though -->
+   <% if !is_admin? || @user==current_user %>
+    <p><label for="old_password" class="block">Old Password</label><br />
+    <%= password_field_tag 'old_password', @old_password, :size => 45 %></p>
+   <% end %>
+
+   <p><label for="password" class="block">New Password</label><br />
+   <%= password_field_tag 'new_password', nil, :size => 40 %><br />
+   <small>Between 5 and 40 characters</small></p>
+
+   <p><label for="password_confirmation"  class="block">Confirm new password</label><br />
+   <%= password_field_tag 'password_confirmation', nil , :size => 40 %></p>
+
+   <input type="hidden" name="user_id" value="<%= @user.id %>" />
+
+   <%= submit_tag 'Change password' %>
+
+ <% end %>
+

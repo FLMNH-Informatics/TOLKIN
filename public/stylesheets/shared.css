@@ -1,0 +1,61 @@
+a {
+  text-decoration: none;
+}
+
+table.attributes_list td {
+    padding-left: 10px;
+}
+
+table.attributes_list th {
+    text-align: right;
+}
+
+div.top_navpane {
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
+
+div.left_btn {
+    clear: both;
+	padding-left: 85px;
+    padding-top: .45em;/*  5px;*/
+    padding-bottom: .45em;
+
+}
+
+.selected_row td {
+  background-color: #FFCCFF;
+}
+
+.highlighted_row td {
+  background-color: #FFFF99;
+}
+
+.chart_main {
+  border-spacing: 0px;
+
+}
+
+.chart_main th {
+  border-right: 1px solid #CCC;
+}
+
+.chart_main th:last-child {
+  border-right: none;
+}
+
+
+.chart_main td {
+  border-right: 1px solid #CCC;
+  padding: 2px 5px;
+}
+
+.chart_main td:last-child {
+  border-right: none;
+}
+
+.closebtncross {
+  cursor: pointer;
+  color: blue;
+}

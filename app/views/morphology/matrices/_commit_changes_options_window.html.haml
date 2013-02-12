@@ -1,0 +1,13 @@
+#commit_changes_options_window.window
+  .windowtitle
+    %span.title Commit Changes
+    %span.closebutton{ :onclick => "this.up('.window').hide();" } X
+  .window_contents
+    .notice_area
+    -form_remote_tag url: ((@matrix.branch.item_type == 'Molecular::Matrix') ? commit_changes_project_molecular_matrix_path : commit_changes_project_morphology_matrix_path ) do
+      Commit as
+      =select :commit, :branch, @branch_options
+      %input{ :type => 'hidden', :name => 'commit[changeset_id]', :value => @changeset_id }
+      %input{ :type => 'submit', :value => 'Submit', :onclick => "this.next('.busy_indicator').show()" }
+      =render :partial => 'shared/busy_indicator', :locals => { :display_text => "Please Wait. Large matrices could take several minutes to commit." }
+= draggable_element @window_name, :handle => "'windowtitle'"

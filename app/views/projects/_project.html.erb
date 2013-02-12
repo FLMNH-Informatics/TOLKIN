@@ -1,0 +1,16 @@
+<!-- this direct image link doesn't seem to be good -->
+<%
+  dispaly_check_box ||= false
+%>
+<tr class="<%= cycle('body-odd', 'body-even') %>">
+  <%if dispaly_check_box %>
+    <td width="50px"><input type="checkbox" id=<%="project_#{project.id}"%> value=<%="#{project.id}"%> name="project_ids[]"/></td>
+  <% end %>
+  <td width="50px">
+    <% if !project.logo.blank? %>
+      <%= link_to image_tag("/images/project/#{project.logo}", :border => 0, :size => '50x50'), project_path(project.id) %>
+    <%  end %>
+  </td>
+  <td class='text'><%= link_to project.name, project_path(project.id) %></td>
+  <td class='text'><%= link_to project.website, project.website if !project.website.nil? %></td>
+</tr>

@@ -1,0 +1,17 @@
+<div class="error_box" style="color: red"></div>
+<h2>Select File to Upload</h2>
+<% form_for :z_file, @z_file, :url => project_chromosome_z_files_path, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :zvi %> <!--<em>File upload disabled for demo</em>--> <br/>
+  <br/>
+  <table>
+    <tr>
+      <td>Caption</td>
+      <td><%= form.text_field :caption%></td>
+    </tr>
+  </table>
+
+  <% if params[:probe_id] %>
+    <%= hidden_field_tag 'probe_id', params[:probe_id] %>
+  <% end %>
+  <%= submit_tag 'Upload' %>
+<% end %>

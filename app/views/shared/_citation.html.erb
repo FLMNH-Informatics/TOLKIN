@@ -1,0 +1,6 @@
+<%# name of partial is misleading coz we recieve id here not the citation itself %>
+<% cit = Library::Citation.find(citation) %>
+<div id='<%= "character_citation_"+citation.to_s %>'>
+    <input type="checkbox" id="<%=citation%>" name="citation_ids[]" value=<%="#{citation}" %> checked="true">
+    <a href="javascript:void(0)" onClick=<%= "cit_det(#{citation},#{params[:project_id]})" %>><%= cit.display_name %></a>
+</div>

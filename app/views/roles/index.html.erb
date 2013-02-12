@@ -1,0 +1,6 @@
+<div><a href="<%= new_project_role_path %>">New</a></div>
+<table>
+  <% @roles.each do |role| %>
+    <tr><td><%= role.label %></td><td><%= link_to "Show", project_role_path(current_project, role) %></td></tr>
+  <% end %>
+</table>

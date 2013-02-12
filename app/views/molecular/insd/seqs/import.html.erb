@@ -1,0 +1,15 @@
+  <% form_for :seq,  :url => import_fasta_file_project_molecular_sequences_path, :html => { :method => :put, :multipart => :true} do |f| %>
+    <div id="dv_browse_fasta_form" class="notice_area">
+    </div>
+    <div class="field">
+      <%= f.label :"Select fasta file" %>
+      <span class="field"><%= f.file_field :uploaded_data  %></span>
+
+    </div>
+    <div class="field">
+      <%= f.label :"Marker" %>
+      <span class="field">
+        <%= f.text_field :marker, :size => "30"%>
+      </span>
+    </div>
+  <% end %>

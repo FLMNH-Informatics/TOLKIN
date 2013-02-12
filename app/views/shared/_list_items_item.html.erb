@@ -1,0 +1,8 @@
+<tr id="list_item_<%=object.to_param %>" class="<%= cycle('body-odd', 'body-even') %> list_item_row">
+  <td>
+    <input id="item_select_<%=object.to_param %>" class="item_select_checkbox"type="checkbox" value="<%=object.to_param %>" name="selected_items[]" />
+  </td>
+  <% attributes.each do |attribute| %>
+    <%= list_attribute_tag object, attribute, attribute_display_properties[attribute] %>
+  <% end %>
+</tr>

@@ -1,0 +1,1 @@
+page.remove "img_" + @image_link.image.id.to_s

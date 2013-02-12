@@ -1,0 +1,37 @@
+<div id="window" class="window">
+
+    <div id="windowtitle" class="windowtitle" >
+      <span id="title" class="title">
+        Send Email
+      </span>
+
+      <span id="closebutton" class ="closebutton" onClick="$('emaildiv').hide();">
+        <%= link_to "X", "#" %>
+      </span>
+    </div>
+
+    <% form_remote_tag(:url => {:controller => 'characters', :action => 'send_email'}, :update => 'actor_list', :position => 'bottom', :html => {:id => 'email_form'} ) do %>
+
+      <div class="formrow">
+        <%= label 'email', 'subject' %>
+        <span class="field">
+          <%= text_field 'email', 'subject' %>
+        </span>
+      </div>
+
+      <div class="formrow">
+        <%= label 'email', 'body' %>
+        <span class="field">
+          <%= text_area 'email', 'body', :cols => 46, :rows => 10 %>
+        </span>
+      </div>
+
+
+
+      <div class="submitbuttonrow">
+        <%= submit_tag "Send" %>
+      </div>
+
+    <% end %>
+
+</div>

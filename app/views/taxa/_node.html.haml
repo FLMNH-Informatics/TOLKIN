@@ -1,0 +1,8 @@
+%tr.tree_view_node{ :id => "taxon_#{node.taxon_id}_node" }
+  %td.tree_view_expander= expander_for(node)
+  %td
+    %input{ type: 'checkbox', value: node.taxon_id }
+  %td
+    = raw node_name_element(node)
+    %table.tree_view_node_children
+      

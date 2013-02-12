@@ -1,0 +1,33 @@
+<%= raw window_head 'Add Selected to Character Group', 'windowdiv' %>
+<form id="form_add_to_chr_grp" action='<%= raw "#{add_to_group_update_project_morphology_characters_path(params[:project_id])}"%>' >
+  <input name="authenticity_token" value="<%= raw form_authenticity_token%>" type="hidden"/>
+  <div class="formrow">
+    <%= raw label 'character_group_id', 'character group' %>
+    <span class="smallfield"><%= select_tag("chr_group_id", raw( "<option value='-1'>Please Select A Group</option><option value='-1'></option>" + options_for_select(@chr_groups.collect {|o| [ o.name, o.id ]}))) %>
+    </span>
+  </div>
+  <div class="submitbuttonrow">
+    <span class="titletext"> OR </span>
+  </div>
+  <div class="formrow">
+    <%= raw label 'Create New chr_group', 'Create New chr_group' %>
+    <span class="smallfield"><%= raw text_field :chr_group, :name, :size => 30 %>
+    </span>
+  </div>
+  <div class="submitbuttonrow">
+    <%= raw submit_tag "Add", { :class => "simple-button" } %>
+  </div>
+</form>
+
+<script>
+  $('form_add_to_chr_grp').observe('submit', function (event){
+    new Ajax.Request(this.action.toString(), {
+      method: 'put',
+      parameters: $H($H(this.serialize(true)).merge($('list_items_form').serialize(true))),
+      onSuccess: function(response) {
+
+      }
+    });
+    event.stop();
+  });
+</script>

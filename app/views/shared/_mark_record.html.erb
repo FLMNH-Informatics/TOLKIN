@@ -1,0 +1,4 @@
+<%=link_to_remote( image_tag("mark_record.jpeg", :size=>"10*10", :title=> "Mark Record"),
+						:url => project_marked_records_path(params[:project_id],:type_name=>mark_record.class,:type_id=> mark_record.id),
+						:method => :post
+				)%>

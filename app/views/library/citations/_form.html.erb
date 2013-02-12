@@ -1,0 +1,63 @@
+<% 
+html_options ||= {}
+%>
+<div id="div_notice" class="notice_area">
+  <%=if @citation.errors.empty?
+       flash[:notice]
+     else 
+       error_messages_for(:citation)
+     end %>
+</div>
+<% if params[:interact_mode] == 'edit' || self.interact_mode == 'edit' %>
+<%#=  render partial: "form_citation_author" %>
+<table>
+  <tr><td>Author Search</td></tr>
+  <tr><td><%= raw author_name_field %></td>
+    <td>
+      <div class="widget action_panel bar">
+       <div class="button active" value="Add Author">
+        <table id="table">
+          <tbody><tr id="row">
+            <td id="cell">
+              <img src="/images/addnew.gif" style="height: 14px; width: 14px;" />
+            </td>
+            <td>
+              <span>Add Author</span>
+            </td>
+          </tr>
+        </tbody></table>
+       </div>
+      </div>
+      <input type="hidden" name="author[add]" />
+    </td>
+  </tr>
+  
+</table>
+<% end  %>
+<%= form_for(:citation, @citation, :url => url_options, :html => {:class => 'new_citation' , :multipart => true, :target => 'upload_frame' }.merge(html_options)) do |f| %>
+ 
+  <%= raw hidden_field :citation, :type, :value => (@citation.type) %>
+  <!--ul id=<%="ul_contributorships_authors#{@citation.to_param}"%> style="padding: 0px 0px 0px 100px;"-->
+  <%= raw authors_catalog %>
+       <!--%= render :partial => "author", :collection => @citation.try(:contributors) %-->
+  <!--/ul-->
+  <table>
+    <tbody>
+      <%=render :partial=>"fields_form", :locals=>{:f => f, :citation_type => @citation.type.constantize }%>
+      <tr>
+        <td><%= label :citation, :file %></td>
+        <td>
+          <%if @citation.citation_file %>
+                    <%= raw link_to @citation.citation_file.original_name, getfile_project_library_citations_path(params[:project_id], :id=>@citation) %>
+          <%else%>
+                    <%= raw f.label "No file attached" %>
+          <%end %>
+        </td>
+      </tr>
+      <tr><td colspan="2">
+         <%#= f.submit "Save" %>
+        </td></tr>
+    </tbody>
+  </table>
+  <%= f.submit unless request.xhr? %>
+<% end %>

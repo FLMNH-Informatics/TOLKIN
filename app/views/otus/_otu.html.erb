@@ -1,0 +1,5 @@
+<tr class="<%= cycle('body-odd', 'body-even') %>">
+  <td><input id="otu_<%=otu.id%>" type="checkbox" value="<%=otu.id%>" class="item_select_checkbox" name="otus[]"/></td>
+  <td class="b"><%=link_to otu.name, (otu.id ? project_otu_path(params[:project_id],otu) : new_project_otu_path(params[:project_id])) %></td>
+  <td class="b"><%=h otu.creator ? otu.creator.username : "None" %></td>
+</tr>

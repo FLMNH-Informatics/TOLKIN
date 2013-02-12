@@ -1,0 +1,9 @@
+.table_body_expander{ :style => "width: #{300 + @timeline.characters.count * 150}px;" }
+  %table#table_body.table_body{ :cellspacing => '1px' }
+    %tbody
+      = raw row_display
+      %script{ :type => "text/javascript" }
+        function setTableCellWidth(otu_id, chr_id) { $("c_" + otu_id + "_" + chr_id).setStyle({ width: ($('ch_' + chr_id).getWidth()) + 'px' }); }
+        - @characters.each do |char|
+          - if !@timeline.otus.empty?
+            == setTableCellWidth(#{@otus.first.id}, #{char.id});

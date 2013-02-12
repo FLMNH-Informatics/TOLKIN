@@ -1,0 +1,1 @@
+require 'custom_model_attributes'

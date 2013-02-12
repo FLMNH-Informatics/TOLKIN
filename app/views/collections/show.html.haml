@@ -1,0 +1,175 @@
+%form{:id => "collection_update" , :action=> form_action , :method => "post" }
+  %input{ type: "hidden", value: "put", name: "_method"}
+  #general_section.section
+    %table#collection_table
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[collector]' } Collector(s)
+        %td.value= raw big_text_field_or_text('collector')
+        %td.key_cell
+          %label.key{ for: 'collection[collection_number]' } Collection #
+        %td.value= raw text_field_or_text('collection_number')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[associate_collectors]' } Associate Collectors
+        %td.value= raw big_text_field_or_text('associate_collectors')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[prefix]' } Prefix
+        %td.value= raw text_field_or_text('prefix')
+        %td.key_cell
+          %label.key{ for: 'collection[suffix]' } Suffix
+        %td.value= raw text_field_or_text('suffix')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[coll_start_date]' } Collection Start Date
+        %td.value= raw coll_start_date_field
+        %td.key_cell
+          %label.key{ for: 'collection[coll_end_date]' } Collection End Date
+        %td.value= raw coll_end_date_field
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[verbatim_coll_date]' } Verbatim Collection Date
+        %td.value= raw verbatim_coll_date_field
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[taxon]' } Taxon
+        %td.value{ colspan: 3 }= raw taxon_name_combo_box
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[identification_qualifier]' } Id. Qualifier
+        %td.value= raw id_qualifier
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[type_name]' } Type Name
+        %td.value{ colspan: 3 }= raw type_name
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[type_status]' } Type Status
+        %td.value{ colspan: 3 }= raw type_status
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[accession_num]' } Accession Number
+        %td.value= raw text_field_or_text('accession_num')
+        %td.key_cell
+          %label.key{ for: 'collection[barcode]' } Barcode
+        %td.value= raw text_field_or_text('barcode')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[institution_code]' } Institution Code
+        %td.value= raw text_field_or_text('institution_code')
+        %td.key_cell
+          %label.key{ for: 'collection[country]' } Country
+        %td.value= raw text_field_or_text('country')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[iso_country_code]' } ISO Country Code
+        %td.value{ colspan: 3 }= raw iso_country_select
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[state_province]' } State/Province
+        %td.value= raw text_field_or_text('state_province')
+        %td.key_cell
+          %label.key{ for: 'collection[county]' } County
+        %td.value= raw text_field_or_text('county')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[island]' } Island
+        %td.value= raw text_field_or_text('island')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[locality]' } Locality
+        %td.value{ colspan: 3 }= raw large_text_field_or_text('locality')
+      %tr
+        %td.key_cell
+          %label.key Locality Format
+        %td.value
+          = raw locality_format
+      %tr
+        %td.key_cell
+          %label.key Latitude
+        %td{ colspan: 3 }
+          = raw locality_fields('lat')
+      %tr
+        %td.key_cell
+          %label.key Longitude
+        %td{ colspan: 3 }
+          = raw locality_fields('long')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[elevation_start]' } Elevation Start
+        %td.value= raw text_field_or_text('elevation_start')
+        %td.key_cell
+          %label.key{ for: 'collection[elevation_end]' } Elevation End
+        %td.value= raw text_field_or_text('elevation_end')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[elevation_unit]' } Elevation Unit
+        %td.value= raw elevation_unit_combo_box
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[accuracy_other]' } Accuracy
+        %td.value= raw text_field_or_text('accuracy_other')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[annotations]' } Annotations
+        %td.value{ colspan: 4 }= raw annotations_catalog
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[source_url]' } Source URL
+        %td.value{ colspan: 3 }= raw large_text_field_or_text('source_url')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[label_text]' } Label Text
+        %td.value{ colspan: 3 }= raw large_text_area_or_text('label_text')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[plant_description]' } Description
+        %td.value{ colspan: 3 }= raw large_text_area_or_text('plant_description')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[fruiting]' } Fruiting
+        %td.value= raw checkbox_or_text('fruiting')
+        %td.key_cell
+          %label.key{ for: 'collection[flowering]' } Flowering
+        %td.value= raw checkbox_or_text('flowering')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[vegetation]' } Vegetation
+        %td.value{ colspan: 3 }= raw large_text_area_or_text('vegetation')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[geology]' } Geology
+        %td.value{ colspan: 3 }= raw large_text_area_or_text('geology')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[date_trans]' } Date Transcribed
+        %td.value= raw date_trans_field
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[notes]' } Notes
+        %td.value{ colspan: 3 }= raw large_text_area_or_text('notes')
+      %tr
+        %td.key_cell
+          %label.key{ for: 'collection[silica_sample]' } Silica Sample
+        %td.value= raw checkbox_or_text('silica_sample')
+%table
+  %tr
+    %td.key_cell
+      Images
+    %td.value{ colspan: 3 }= raw image_gallery
+  %br
+  %tr
+    %td.key_cell
+      %label.key{ for: 'collection[creator]' } Created By
+    %td.value= raw not_editable('creator')
+    %td.key_cell
+      %label.key{ for: 'collection[created_at]' } At
+    %td.value= raw not_editable('created_at')
+  %tr
+    %td.key_cell
+      %label.key{ for: 'collection[updater]' } Last Updated By&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    %td.value= raw not_editable('updater')
+    %td.key_cell
+      %label.key{ for: 'collection[updated_at]' } At
+    %td.value= raw not_editable('updated_at')

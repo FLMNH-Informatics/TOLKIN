@@ -1,0 +1,4 @@
+%tr
+  %td.b= change_item.parent_position
+  %td.b= change_item.to_s
+          %td.b= link_to "revert", revert_change_project_matrix_path(:change_item_id => change_item.id), :method => :post, :confirm => "Are you sure you would like to remove this change and all subsequent changes?"

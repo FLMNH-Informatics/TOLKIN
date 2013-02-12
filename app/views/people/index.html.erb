@@ -1,0 +1,18 @@
+<div id="navpane">
+    <%= render :partial => "leftnav" %>
+</div>
+<div id="contentpane">
+<h5 class="reducedpadding">Listing People</h5>
+<table>
+   <tr class="h">
+        <th class="h">
+            Name
+        </th>
+        <th class="h">
+        </th>
+  </tr>
+    <%= render :partial => 'person', :collection => @people %>
+</table>
+ <%= will_paginate @people %>
+<br/>
+</div>

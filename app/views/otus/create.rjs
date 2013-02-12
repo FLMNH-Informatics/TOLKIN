@@ -1,0 +1,25 @@
+#page << <<JS
+#  $('windowdiv').hide();
+#  var catalog = init.viewport().widgets().get('contentFrame').widgets().get('viewport_content_frame_otus_catalog');
+#  catalog.collection().load({
+#    onSuccess: catalog.render.bind(catalog)
+#  });
+#JS
+#
+##page << "if($('tbody_items_table')) {"
+##page.insert_html :bottom, :tbody_items_table, :partial => 'shared/list_items_item',  :locals => { :title => "Otus Listing",
+##      :object => @otu,
+##      :attributes => @attributes_to_show,
+##      :attribute_display_properties => @attribute_display_properties,
+##      :options => { :id => 'otus_listing', :ajax_pagination => true } }
+##page << "} else {"
+##page.replace_html :otus_listing, :partial => "shared/list_items", :locals => { :title => "Otus Listing",
+##      :items_to_list => @otus,
+##      :attributes => @attributes_to_show,
+##      :attribute_display_properties => @attribute_display_properties,
+##      :options => { :id => 'otus_listing', :ajax_pagination => true }
+##    }
+##page << "}"
+##page.replace_html :notice, flash[:notice]
+##page["windowdiv"].hide
+##flash.discard

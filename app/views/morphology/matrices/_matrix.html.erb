@@ -1,0 +1,12 @@
+<tr class="<%= cycle('body-odd', 'body-even') %>" id="matrix_row_<%= matrix.id %>" >
+  <td class="b"><%=h matrix.name %></td>
+  <% if matrix.backup == true %>
+    <td class="b"><%=h matrix.created_at %></td>
+  <% else %>
+    <td class="b"> <%=h matrix.description %></td>
+  <% end %>
+  <td class="b"><%=h matrix.creator.login  %></td>
+  <td class="b"><%= link_to "Show", project_morphology_matrix_path(@project, matrix) %></td>
+  <td class="b"><%= matrix_edit_link(@project, matrix) %></td>
+  <td class="b"><%= link_to_remote 'Delete', :url => project_matrix_path(@project.id, matrix), :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

@@ -1,0 +1,83 @@
+.notice_area
+%form{:id => "new_primer" , :action=> form_action , :method => "post"}
+  %table
+    %tr
+      %td
+        %label Name
+      %td
+        %input{type: 'text', name: 'primer[name]'}
+    %tr
+      %td
+        %label Sequence
+      %td
+        %textarea{name: 'primer[sequence]', rows: '8', cols: '50'}
+    %tr
+      %td
+        %label Target Organism
+      %td
+        %select{name: 'primer[primer_target_organisms_id]', id: 'primer_target_organism', class: 'select'}
+          %option{ value: 'new'} new
+        %img{src: '/images/ajax-loader.gif', class: 'loader'}
+        %input{type: 'text', name: 'primer_target_organism_new', id: 'primer_target_organism_new', size: 12, disabled: true}
+    %tr
+      %td
+        %label Gene
+      %td
+        %select{name: 'primer[primer_genes_id]', id: 'primer_gene', class: 'select'}
+          %option{ value: 'new'} new
+        %img{src: '/images/ajax-loader.gif', class: 'loader'}
+        %input{type: 'text', name: 'primer_gene_new', id: 'primer_gene_new', size: 12, disabled: true }
+    %tr
+      %td
+        %label Molecular Weight
+      %td
+        %input{type: 'text', name: 'primer[molecular_weight]' , :size => 5}
+    %tr
+      %td
+        %label Purification Method
+      %td
+        %select{name: 'primer[primer_purification_methods_id]', id: 'primer_purification_method', class: 'select'}
+          %option{ value: 'new'} new
+        %img{src: '/images/ajax-loader.gif', class: 'loader'}
+        %input{type: 'text', name: 'primer_purification_method_new', id: 'primer_purification_method_new', :size => 12, disabled: true}
+    %tr
+      %td
+        %label TM
+      %td
+        %input{type: 'text', name: 'primer[tm]', :size => 8}
+    %tr
+      %td
+        %label PMOL
+      %td
+        %input{type: 'text', name: 'primer[pmol]', :size => 8}
+    %tr
+      %td
+        %label e260
+      %td
+        %input{type: 'text', name: 'primer[e260]', :size => 8}
+    %tr
+      %td
+        %label In Stock
+      %td
+        %input{type: 'checkbox', name: 'primer[in_stock]'}
+    %tr
+      %td
+        %label Storage Location
+      %td
+        Box:
+          %input{type: 'text', name: 'primer[storage_box]', :size => 3}
+        Row:
+          %input{type: 'text', name: 'primer[storage_row]', :size => 3}
+        Col:
+          %input{type: 'text', name: 'primer[storage_col]', :size => 3}
+    %tr
+      %td
+        %label Notes
+      %td{:colspan => 3}
+        %textarea{name: 'primer[notes]', rows: '4', cols: '30'}
+    %tr
+      %td
+      %td
+        %input{type: 'submit', value: 'Submit'}
+
+    

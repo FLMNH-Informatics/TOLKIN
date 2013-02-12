@@ -1,0 +1,2 @@
+page.replace_html :notice, flash[:error] || flash[:notice]
+flash.discard

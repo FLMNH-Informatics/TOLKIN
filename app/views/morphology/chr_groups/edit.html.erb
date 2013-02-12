@@ -1,0 +1,74 @@
+<div id="navpane">
+  <%= render :partial => "right_nav" %>
+</div>
+
+<div id="detailsdiv" class="detailsdiv">
+
+  <table border="0" cellpadding="3px" cellspacing="2px">
+    <tr>
+      <td>
+        <h5>Edit - <%= @chr_group.name %> </h5>
+      </td>
+      <td>
+        <span class="bodytext">
+          <%= link_to 'Show', project_morphology_chr_group_path(params[:project_id], @chr_group) %> |
+          <%= link_to 'Back', project_morphology_chr_groups_path(params[:project_id]) %>
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <% form_for [@project,@chr_group], :url => project_morphology_chr_group_path do |f| %>
+    <%= f.error_messages %>
+
+    <table border="0" cellpadding="3px" cellspacing="2px">
+      <tr>
+        <td colspan="1" align="right">
+          <span class="titletext"><%= f.label :name %><br /></span>
+        </td>
+        <td>
+          <%= raw f.text_area :name, :height => 35 %><%= render :partial=>"tags/tagme", :locals => { :tagme => @chr_group } %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" align="right">
+          <span class="titletext"><%= f.label :description %><br /></span>
+        </td>
+        <td>
+          <%= raw f.text_area :description %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" align="right">
+          <span class="titletext"><%= f.label :perspective %><br /></span>
+        </td>
+        <td>
+          <%= raw f.text_field :perspective, :size => 35 %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" align="right">
+          <span class="titletext"><%= f.label :sensor %><br /></span>
+        </td>
+        <td>
+          <%= raw f.text_field :sensor, :size => 35 %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" align="right">
+          <span class="titletext"><%= f.label :type %><br /></span>
+        </td>
+        <td>
+          <%= raw f.text_field :chr_group_type, :size => 35 %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <%= f.submit "Update" %>
+        </td>
+      </tr>
+    </table>
+
+  <% end %>
+
+</div>

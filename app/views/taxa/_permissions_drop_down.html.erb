@@ -1,0 +1,11 @@
+<select name="permissions[permission_set_rtid]">
+  <% @all_permission_sets.each do |permission_set| %>
+    <option value="<%= permission_set.rtid %>" <%=
+      @permission_set_rtid == permission_set.rtid ?
+        "selected='selected'" :
+        ''
+    %> >
+      <%= permission_set.label %>
+    </option>
+  <% end %>
+</select>

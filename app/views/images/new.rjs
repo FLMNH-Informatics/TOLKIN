@@ -1,0 +1,5 @@
+page.replace_html :windowdiv, :partial => "add_image"
+page.call :setWindowSize, :windowdiv, 445, 170
+page.call :positionWindow, :windowdiv
+page.visual_effect :appear, :windowdiv, { :duration => 0.3 }
+#page["newimagediv"].show

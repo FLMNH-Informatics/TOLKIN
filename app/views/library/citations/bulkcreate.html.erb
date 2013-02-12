@@ -1,0 +1,12 @@
+The following entries(or some of their fields) were not imported.
+<br>
+<% @bad_entries.each_pair do |key, value| %>
+<%= key %>: <% value.each do |val| %>
+<%= val %>,
+<br>
+<% end %>
+<br>
+<% end %>
+Number of input entries : <%= @raw_bib.size %>
+<br>
+Number of imported(partial or full) entries : <%= @saved_publications.size %>

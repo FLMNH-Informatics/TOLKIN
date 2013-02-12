@@ -1,0 +1,160 @@
+#taxon_inner_contents{ class: 'taxon_inner_contents'}
+  %form{:id => "taxon_update"}
+    #general_section.section{ style: 'display: none' }
+      %input{type: "submit", value: "save" style: save_button_display }
+      %table#taxon_general_attributes.attributes
+        %tr
+          %td.key_cell{ colspan: 1 }
+            %label.key{ for: 'taxon[name]' } Name
+          %td.key_cell{ colspan: 1 }
+            %label.key{ for: 'taxon[author]' } Author
+          %td.key_cell
+            %label.key{ for: 'taxon[infra_name]' } Infra Name
+          %td.key_cell
+            %label.key{ for: 'taxon[infra_author]' } Infra Author
+        %tr
+          %td.value{ colspan: 1 }= text_field_or_text('name')
+          %td.value{ colspan: 1 }= text_field_or_text('author')
+          %td.value= text_field_or_text('infra_name')
+          %td.value= text_field_or_text('infra_author')
+        %tr
+          %td.key_cell{ colspan: 3 }
+            %label.key{ for: 'taxon[publication_info]' } Publication Info
+          %td.key_cell{ colspan: 1 }
+            %label.key{ for: 'taxon[year]' } Publication Date
+        %tr
+          %td.value{ colspan: 3, style:  publication_info_display }= text_field_or_text('publication_info')
+          %td.value{ colspan: 1, style:  publication_display }= text_field_or_text('publication')
+          %td.value{ colspan: 1, style:  publication_vol_display }= text_field_or_text('volume_num')
+          %td.value{ colspan: 1, style:  publication_pages_display }= text_field_or_text('pages')
+          %td.value{ colspan: 1 }= text_field_or_text('year')
+        %tr
+          %td.empty{ colspan: 3, style:  publication_info_display }
+          %td.empty{ colspan: 1, style:  publication_display }
+            %label.key Publication
+          %td.empty{ colspan: 1, style:  publication_vol_display }
+            %label.key Volume
+          %td.empty{ colspan: 1, style:  publication_pages_display }
+            %label.key Pages
+          %td.empty{ colspan: 1 }
+        %tr.divide_row
+          %td.key_cell
+            %label.key{ for: 'taxon[namestatus]' }
+              Name Status
+              %br
+              %br
+          %td.value{ colspan: 3 }= namestatus_select
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[general_distribution]' } Common Name
+          %td.value{ colspan: 3 }= text_field_or_text('common_name')
+        %tr{ style: accepted_name_display }
+          %td.key_cell
+            %label.key{ for: 'taxon[accepted_name]' } Accepted Name
+          %td.value{ colspan: 3 }= accepted_name_combo_box
+          = accepted_name_attribute
+        %tr#taxon_details_synonyms_attribute{ style: synonyms_display }
+          %td.key_cell
+            %label.key Synonyms
+          %td.value{ colspan: 3 }= synonyms_list
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[general_distribution]' } General Distribution
+          %td.value{ colspan: 3 }= text_field_or_text('general_distribution')
+        %tr.divide_row
+          %td{ :class => 'key key_cell'}
+            Citations
+            %br
+            %br
+          %td.value{ colspan: 3 }
+            %span.empty None
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[notes]' } Notes
+          %td.value{ colspan: 3 }= text_area_or_text('notes')
+        %tr.divide_row
+          %td{ :class => 'key key_cell'} Last updated at
+          %td= taxon.updated_at
+          %td{ :class => 'key key_cell'} by
+          %td= taxon.updater.label
+        %tr
+          %td{ :class => 'key key_cell'} Created at
+          %td= taxon.created_at
+          %td{ :class => 'key key_cell'} by
+          %td= taxon.creator.label
+    #description_section.section{ style: 'display: none' }
+      %input{type: "submit", value: "save", style: save_button_display }
+      %table#taxon_description_attributes.attributes
+        %tr
+          %td.value{ colspan: 3 }= text_area_or_text('description')
+        %tr
+          %td.key_cell{ width: 30% }
+            %label.key{ for: 'taxon[chromosome_number]' } Chromosome Number
+          %td.value{ width: 70% }= text_field_or_text('chromosome_number')
+        %tr
+          %td.key_cell{ width: 30% }
+            %label.key{ for: 'taxon[uses]' } Uses
+          %td.value{ width: 70% }= text_field_or_text('uses')
+        %tr
+          %td.key_cell{ width: 30% }
+            %label.key{ for: 'taxon[toxicity]' } Toxicity
+          %td.value{ width: 70% }= text_field_or_text('toxicity')
+        %tr
+          %td.key_cell{ width: 30% }
+            %label.key{ for: 'taxon[neo_type]' } Neo Type
+          %td.value{ colspan: 3 }= text_field_or_text('neo_type')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[sub_genus]' } Sub Genus
+          %td.value{ colspan: 3 }= text_field_or_text('sub_genus')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[ingroup_clade]' } Ingroup Clade
+          %td.value{ colspan: 3 }= text_field_or_text('ingroup_clade')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[type_collection]' } Type Collection
+          %td.value{ colspan: 3 }= text_field_or_text('type_collection')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[type_species]' } Type Species
+          %td.value{ colspan: 3 }= text_field_or_text('type_species')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[type_locality]' } Type Locality
+          %td.value{ colspan: 3 }= text_field_or_text('type_locality')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[basionym]' } Basionym of
+          %td.value{ colspan: 3 }= text_field_or_text('basionym')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[type_herbaria]' } Type Herbaria
+          %td.value{ colspan: 3 }= text_field_or_text('type_herbaria')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[volume]' } Volume
+          %td.value{ colspan: 3 }= text_field_or_text('volume')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[pages]' } Pages
+          %td.value{ colspan: 3 }= text_field_or_text('pages')
+        %tr
+          %td.key_cell
+            %label.key{ for: 'taxon[phylogenic_relationship]' } Phylogenetic Relationships
+          %td.value{ width: 70% }= text_field_or_text('phylogenic_relationship')
+  #images_section.section{ style: 'display: none' }= images_display
+  #collections_maps_section.section{ style: 'display: none' }
+    %table
+      %tr
+        %td
+          #map{:class => "geographic_map default"}
+        %td
+          %h4 Collections
+          = collections_list
+  #morphology_section.section{ style: 'display: none' }
+    = morphology_display
+  #molecular_section.section{ style: 'display: none' }
+    = molecular_display
+  #links_section.section{ style: 'display: none' }
+    = links_display

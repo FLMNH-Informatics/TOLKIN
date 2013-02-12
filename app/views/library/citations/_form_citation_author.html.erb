@@ -1,0 +1,41 @@
+<% author_search_field = "contributorships_person#{@citation.to_param}" 
+author_search_result_field = "contributorships_author_results#{@citation.to_param}"
+%>
+<% remote_form_for :person, Person.new, :url => project_people_path(params[:project_id]), :complete => "new Ajax.Updater('#{ author_search_result_field}', '#{contributorships_author_search_project_library_citations_path(params[:project_id])}', {asynchronous:true, evalScripts:true, method:'get', parameters: { search : $F('#{author_search_field}')} })",
+  #remote_function(:update => author_search_result_field, :url => contributorships_author_search_project_library_citations_path(params[:project_id]), :with => "'search=' + $('author_search_field').value", :method => :get ),
+  :html => { :method => :post } do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <td><%= label "authors","author_search" %></td>
+        <td><input type="text" id=<%=author_search_field%> name="person[last_name]"/><%= observe_field(author_search_field,
+                     :frequency => 1,
+                     :update     => author_search_result_field,
+                     :url        => contributorships_author_search_project_library_citations_path(params[:project_id]),
+                     :with => "search",
+                     :method => :get
+  ) %>  </td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><%= submit_tag "Create New Author Entry" %>
+      </td></tr>
+    </tbody>
+  </table>
+<% end %>
+<table>
+  <tbody>
+    <tr>
+      <td><%= label "select","select_author" %></td>
+      <td>
+        <% form_tag add_new_authors_project_library_citations_path(params[:project_id]), method: :get, class: 'add_new_authors' do -%>
+          <table>
+            <tbody><tr><td id=<%=author_search_result_field%> class="formrow"><select/></td></tr>
+              <tr><td><%= submit_tag 'Add As Contributor' %></td></tr>
+            </tbody>
+          </table>
+        <%end -%>
+      </td>
+    </tr>
+  </tbody>
+</table>

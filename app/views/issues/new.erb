@@ -1,0 +1,44 @@
+<form id="fb_form" class="fb_form">
+    <input name="authenticity_token" type="hidden" value="<%=form_authenticity_token%>"/>
+    <div>
+        <%= error_messages_for 'issue' if defined?(@issue) %>
+    </div>
+    <div>
+		<%= text_area(:issue, :description, :rows => 6, :id=>"fb_desc") %>
+    </div>
+    <div>
+        <%if @current_user.email == CURRENT_IN_VALID_EMAIL %>
+        <div>
+            Email
+        </div>
+        <input type="text" name="issue[email]" value="<%=@issue.email%>" id="fb_email" class="title"/>
+		<%end %>
+    </div>
+    <div>
+      <input id="fb_btn" class="buttonsubmit" type="submit" />
+    </div>
+</form>
+<script>
+    $('fb_form').observe('submit', function(event){
+        if (CheckField("fb_desc", "description")) {
+            new Ajax.Updater('fb_form', '/issues/create', {
+                method: 'post',
+                asynchronous: true,
+                evalScripts: true,
+                parameters: Form.serialize($('fb_form'))
+            });
+            $('fb_btn').remove();
+        };
+        event.stop();
+    });
+    
+    function CheckField(field_id, value){
+        if ($(field_id).value.strip() == "") {
+            alert("Please enter " + value);
+            return false;
+        }
+        else 
+            return true;
+    }
+    
+</script>

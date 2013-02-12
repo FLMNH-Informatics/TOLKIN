@@ -1,0 +1,72 @@
+<div id="newchrgroupdiv" class="window" style='display: none;'>
+
+  <div id="windowtitle" class="windowtitle" >
+    <span id="title" class="title">
+      New Character Group
+    </span>
+
+    <span id="closebutton" class ="closebutton" onClick="$('newchrgroupdiv').hide();">
+      <%= link_to "X", "javascript:void(0)" %>
+    </span>
+  </div>
+
+  <% form_remote_for :chr_group, :url => project_morphology_chr_groups_path(params[:project_id]), :html => { :id => 'new_chr_group_form' } do |f| %>
+
+    <div class="formrow">
+      <%= f.label :name %>
+      <font face="Verdana" size="1" color="red">*</font>
+      <span class="field">
+        <%= f.text_field :name %>
+      </span>
+    </div>
+
+    <div class="formrow">
+      <%= f.label :description %>
+      <span class="field">
+        <%= f.text_area :description, :cols => 46, :rows => 4 %>
+      </span>
+    </div>
+
+    <div class="formrow">
+      <%= f.label :perspective %>
+      <span class="field">
+        <%= f.text_field :perspective, :size => 40 %>
+      </span>
+    </div>
+
+
+    <div class="formrow">
+      <%= f.label :sensor %>
+      <span class="field">
+        <%= f.text_field :sensor, :size => 40 %>
+      </span>
+    </div>
+
+
+    <div class="formrow">
+      <%= f.label :type %>
+      <span class="field">
+        <%= f.text_field :chr_group_type, :size => 40 %>
+      </span>
+    </div>
+
+
+    <div class="formrow">
+      <%= f.label :is_public%>
+      <span class="field">
+        <%= f.check_box :is_public, :size => 40 %>
+      </span>
+    </div>
+
+  <div class="submitbuttonrow">
+    <%= submit_tag "Create" %>
+
+  </div>
+
+  <% end %>
+
+
+
+
+</div>
+<%= draggable_element :newchrgroupdiv %>

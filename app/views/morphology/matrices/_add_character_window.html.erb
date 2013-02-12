@@ -1,0 +1,24 @@
+<%= raw window_head 'Add Character / Character Group', 'windowdiv' %>
+
+  <% form_remote_tag(:url => update_character_project_morphology_matrix_path(params[:project_id], params[:id]), :update => 'actor_list', :position => 'bottom', :html => {:id => 'add_chr_form'} ) do %>
+
+    <%= hidden_field 'chr_matrix', 'matrix_id', 'value' => params[:id] -%>
+    <div class="formrow">
+      <%= label  'chr_matrix', 'Character Name' %>
+      <span class="field">
+        <%#= text_field_with_auto_complete :character, :name, {:size => 40}, {:url => {:action => "auto_complete_for_character_name", :project_id => params[:project_id], :id => params[:id]},  :method => :get}%>
+      </span>
+    </div>
+
+    <div class="formrow">
+      <%= label  'chr_matrix', 'Character Group' %>
+      <span class="field">
+        <%= select_tag( "chr_group_id", raw("<option value=\"\"></option>" + options_for_select(@chr_groups.collect {|o| [ o.name, o.id ]})), { :style=> 'width:300px;' }) %>
+      </span>
+    </div>
+
+    <div class="submitbuttonrow">
+      <%= submit_tag "Add" %>
+    </div>
+
+  <%  end %>

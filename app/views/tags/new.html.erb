@@ -1,0 +1,29 @@
+<%= javascript_include_tag "protoaculous.1.8.3" %>
+<%#= javascript_include_tag "effects" %>
+<%#= javascript_include_tag "controls" %>
+<%= stylesheet_link_tag 'tabs' %>
+<p align="center" id="notice" class="status-msg">
+</p>
+<div style="background:#FFFDF3;width:100%;height:100%">
+    <% form_remote_tag  :url=>tags_path, :html=>{ :method => 'post'} do %>
+   <input type="hidden" id="tags_url" name="url" value=<%="#{params[:url]}"%> />
+   <input type="hidden" id="tags_url" name="model" value=<%="#{params[:model]}"%> />
+   <%params[:ids].try(:each) do |id|%>
+   <input type="hidden" id="tags_url" name="ids[]" value=<%="#{id}"%> />
+   <%end%>
+    <% content_tag :label do %>
+    <%if params[:url]!= "model" %>
+    BookMark Url: <%= label_tag :url, params[:url] %>
+    <br/>
+    <%else %>
+    BookMark <%= label_tag :model, params[:model] %>
+    with id(s): <%= label_tag :id, params[:ids].join(', ') %>
+    <br/>
+    <%end %>
+    Tag: <%#= text_field_tag :tag, params[:tag],:size=>50 %>
+    <br/>
+    <%= text_field_with_auto_complete :tag, :name ,{}, { :method=>:get, :url => { :action => "auto_complete_for_tag_name", :list=>true } } %>
+    <%= submit_tag 'Save' %>
+    <% end %>
+    <% end %>
+</div>

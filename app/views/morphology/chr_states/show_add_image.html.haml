@@ -1,0 +1,8 @@
+#new_chr_state_image{:data => {:state_id => @chr_state.id}}
+  = form_for attach_image_project_morphology_chr_state_path do |f|
+    Add Image:
+    %br
+    = f.file_field :uploaded_data, :id => 'chr_state_image_file', :name => "chr_state_image_file"
+    %button#attach_chr_state_image Attach
+    #upload
+    %iframe{:id => 'upload_frame', :name => 'upload_frame', :style => 'width:1px;height:1px;border:0px', :src => 'about:blank'}

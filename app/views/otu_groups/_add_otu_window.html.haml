@@ -1,0 +1,13 @@
+#addOtuWindow{ :class => "window" }
+  .windowtitle
+    %span{ :class => "title" } Add Otu to Group
+    %span{ :class => "closebutton", :onclick => "$('addOtuWindow').hide();"} X
+
+  - remote_form_for :otu, :url => add_otu_project_otu_group_path do |f|
+    = f.label :name
+    = text_field_with_auto_complete 'Otu', :name, { }, { :method => :get }
+
+    .submitbuttonrow
+      = submit_tag "Create", { :class => "simple-button" }
+    
+= draggable_element :addOtuWindow

@@ -1,0 +1,39 @@
+<%= window_head 'Import Matrix', 'windowdiv' %>
+
+<% form_for(:nexus_dataset, :url => project_nexus_datasets_path(:project_id => params[:project_id]), :html => { :multipart => true }) do |f| %>
+
+  <table>
+    <tr>
+      <td width="90px"><label for="image">Nexus File</label></td>
+      <td colspan="2"><span class="field"><%= f.file_field :uploaded_data  %></span></td>
+    </tr>
+    <tr>
+      <td><label for="image">Matrix Name</label></td>
+      <td colspan="2"><%= text_field :matrix, :name, :size => 31, :class => 'simple-textbox' %></td>
+    </tr>
+    <tr>
+      <td><label for="import_as">Import as</label></td>
+      <td>
+        <select id="import_as" name="import_as" onchange="toggleSubmatrixOptions()">
+          <option value="matrix">Matrix</option>
+          <option value="submatrix">Submatrix</option>
+        </select>
+      </td>
+      <td>
+        <span id="submatrix_options" style="display: none">
+        of matrix
+        <input type="text" id="parent_name_field" name="parent_name" />
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <div class="submitbuttonrow">
+    <%= submit_tag "Create", :onclick => "document.getElementById('busy').style.display='block';" %>
+  </div>
+<% end %>
+
+<%= render :partial => 'shared/busy_indicator', :locals => { :display_text => "Please Wait.." } %>
+
+<%#*<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>%>
+

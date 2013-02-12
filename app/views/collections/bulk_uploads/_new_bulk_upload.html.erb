@@ -1,0 +1,346 @@
+<script type="text/javascript" src="/javascripts/prototype.js">
+</script>
+<script language="javascript" type="text/javascript">
+
+    //    var image = new LiveValidation( 'z_file_image', {onlyOnSubmit: true } );
+    //    image.add( Validate.Presence );
+    //    var mappingSaveName = new LiveValidation( 'mappingSaveName', {onlyOnSubmit: true } );
+    //    mappingSaveName.add( Validate.Presence );
+
+    function moduleColumnOptions(select_index) {
+
+        var select_index = select_index;
+        var column_module_type = document.getElementById('uploadModuleSelect' + select_index).value;
+        var me = this;
+        new Ajax.Request('bulk_uploads/column_module_type',{
+            method: 'get',
+            requestHeaders: {Accept: 'text/html'},
+            parameters: {
+                column_module_type: column_module_type,
+                index: select_index
+            },
+            onSuccess: function (transport) {
+                document.getElementById('columnMappingSelect' + select_index).innerHTML = transport.responseText;
+            }
+        })
+    };
+
+    function disableSelectedOptions(index, col_hash) {
+//        var index = event.target.readAttribute('index')
+        var selectFieldsCount = $$('.columnMappingSelect').size() - 1;
+        var selectedColumn = $('columnMappingSelect' + index).firstElementChild.value;
+        var selectedModule = $('uploadModuleSelect' + index).firstElementChild.value;
+
+        var selectedOptionsArray = [];
+
+        $R(0, selectFieldsCount).each(function(s) {
+            selectedOptionsArray.push($('columnMappingSelect' + s).firstElementChild.value)
+            selectedOptionsArray.uniq();
+        })
+
+        $R(0, selectFieldsCount).each(function(n) {
+            $R(0, $('columnMappingSelect' + n).firstElementChild.options.length - 1).each( function(i) {
+                var valueToBeChecked = [];
+                valueToBeChecked.push($('columnMappingSelect' + n).firstElementChild.options[i].value);
+                var moduleToBeChecked = $('uploadModuleSelect' + n).firstElementChild.value;
+
+                if ( selectedOptionsArray.uniq().intersect(valueToBeChecked).size() == 0 ){
+                    $('columnMappingSelect' + n).firstElementChild.options[i].disabled = false;
+                }
+                else { $('columnMappingSelect' + n).firstElementChild.options[i].disabled = true; }
+            })
+        })
+    };
+
+    document.observe("dom:loaded",function(){
+        var ar = 'javascript_variables';
+        var col_hash = {};
+        new Ajax.Request('bulk_uploads/column_module_type',
+                {method: 'get',
+                    requestHeaders: {Accept: 'application/json'},
+                    parameters: {
+                        'ar': ar
+                    },
+                    onSuccess: function (transport) {
+                        col_hash = transport.responseJSON;
+                    }
+                }
+        )
+        $('autoMappingButton').observe('click', function(event){
+            event.stop();
+            var index_count = $$('.column_map_row').size() - 1;
+            var selectedOptionsArray = [];
+
+            if($('mappingTypeSelect').value == 'autoMapping'){
+                $R(0, index_count).each(function(s) {
+                    var custom_column_value = $('customColumn' + s).readAttribute('data')
+                    if($H(col_hash[$('uploadModuleSelect' + s).value]).index(custom_column_value)){
+                        $('columnMappingSelect' + s).
+                                firstElementChild.setValue($H(col_hash[$('uploadModuleSelect' + s).value]).
+                                index(custom_column_value))
+                        $('columnMappingSelect' + s).
+                                firstElementChild.setStyle({
+                            borderWidth: '2px',
+                            borderColor: '#00CC00'
+                        })
+                    }
+                })
+            }
+            else{
+                var map_name = $('mappingTypeSelect').value
+                var mappings_count = col_hash['created_custom_mappings'].size();
+//                $('ajaxLoaderGif').update("<img src='/images/ajax-loader.gif' /> Working...")
+                $('ajaxLoaderGif').toggle();
+
+                new Ajax.Request('bulk_uploads/get_custom_mapping',{
+                    method: 'get',
+                    requestHeaders: {Accept: 'application/json'},
+                    parameters: {
+                        'map_name': map_name
+                    },
+                    onSuccess: function (transport) {
+                        var loaded_map = transport.responseJSON;
+
+                        $R(0, index_count).each(function(n) {
+                            var column = $H(loaded_map.loaded_map).get($('customColumn' + n).readAttribute('data'))
+                            var module = $H(column).values().first();
+
+                            $('uploadModuleSelect' + n).setValue(module);
+                            optionsChange(module, n, col_hash);
+                            $('columnMappingSelect' + n).firstElementChild.setValue($H(column).keys().first());
+                            $('columnMappingSelect' + n).
+                                    firstElementChild.setStyle({
+                                borderWidth: '2px',
+                                borderColor: '#00CC00'
+                            });
+                        });
+//                        $('ajaxLoaderGif').update("")
+                        $('ajaxLoaderGif').toggle();
+                    }
+                })
+            }
+        })
+
+        $('mappingSaveName').observe('click', function(event){
+//            event.stop();
+//            $('mappingSaveName').toggle($('mappingSaveName').disabled);
+
+            if($('mappingSaveName').value == 'Enter Custom Mapping Name...' && $('mappingSaveName').disabled == false){
+                $('mappingSaveName').value = ""
+            }
+        })
+        $('saveTemplateOption').observe('click', function(event){
+//            event.stop();
+//            $('mappingSaveName').toggle($('mappingSaveName').disabled);
+            if($('saveTemplateOption').checked == true){
+                $('mappingSaveName').toggle();
+//                $('mappingSaveName').disabled = false;
+//                $('mappingSaveName').value = "";
+            }
+            else if($('saveTemplateOption').checked != true){
+                $('mappingSaveName').value = "Enter Custom Mapping Name...";
+//                $('mappingSaveName').disabled = true;
+                $('mappingSaveName').toggle();
+            }
+        })
+
+//        $$('.saveTemplateDiv input[type="checkbox"]').invoke('observe', 'click', function(event){
+//        })
+        $('mappingSubmitButton').observe('click', function(event){
+            $('ajaxLoaderSubmit').toggle();
+            event.stop();
+            var index_count = $$('.column_map_row').size() - 1;
+            mappingSubmit(index_count, col_hash);
+
+        })
+        $('select_elements_for_template').on('change', 'select.moduleSelect', function(event){
+            var index = event.target.readAttribute('index')
+            var module = event.target.value;
+            optionsChange(module, index, col_hash);
+        })
+
+        $('select_elements_for_template').on('change', 'select.columnMappingOption', function(event){
+            var index = event.target.readAttribute('index')
+            disableSelectedOptions(index, col_hash);
+        })
+
+    });
+
+    function optionsChange(module, index, col_hash){
+        var out = '\n <select id="columnMappingSelect'+ index +'" class="columnMappingOption" index="'+ index +'" style="font-size: 12px;">';
+        out += '\n <option>Please Select</option>'
+        $H(col_hash[module]).each(function(pair){
+            out += '\n <option value="'+ pair.key +'">'+pair.value+'</option>'
+        })
+        out += "\n </select>"
+
+        $('columnMappingSelect' + index).innerHTML = out
+
+        disableSelectedOptions(index);
+    }
+
+    function mappingSubmit(index_count, col_hash){
+        var taxonomy_column_value = [];
+        var taxonomy_column_value2 = [];
+        var taxonomy_column_value_hashes = [];
+        var collection_column_value = [];
+        var collection_column_value2 = [];
+        var collection_column_value_hashes = [];
+        var mapped_column_value = [];
+        var custom_template_mapping = [];
+
+        $R(0, index_count).each(function(s) {
+            var mapping_key = document.getElementById('customColumn' + s).readAttribute('data');
+            var mapping_value = document.getElementById('columnMappingSelect' + s).down().value;
+            var mapping_module = document.getElementById('uploadModuleSelect' + s).value;
+
+            custom_template_mapping.push(mapping_key);
+            custom_template_mapping.push(mapping_value);
+            custom_template_mapping.push(mapping_module);
+        })
+
+//        debugger
+
+        $R(0,index_count).each(function(n) {
+//                    mapped_column_value = [document.getElementById('customColumn' + n).readAttribute('data') + ', ' + document.getElementById('columnMappingSelect' + n).down().value];
+                    var column_value = document.getElementById('columnMappingSelect' + n).down().value;
+                    var column_key = document.getElementById('customColumn' + n).readAttribute('data');
+//                    var column_key = $H(col_hash[$('uploadModuleSelect' + n).value]).index(custom_column_key)
+
+//                    var mapped_column_hash = $H();
+//                    mapped_column_hash.set(column_key, document.getElementById('columnMappingSelect' + n).down().value)
+                    if(document.getElementById('uploadModuleSelect' + n).value == 'taxonomy'){
+//                        taxonomy_column_value.push(mapped_column_value);
+                        taxonomy_column_value2.push(column_key);
+                        taxonomy_column_value2.push(column_value);
+//                        taxonomy_column_value_hashes.push(mapped_column_hash.toQueryString());
+                    }
+                    else if(document.getElementById('uploadModuleSelect' + n).value == 'collection'){
+//                        collection_column_value.push(mapped_column_value);
+                        collection_column_value2.push(column_key);
+                        collection_column_value2.push(column_value);
+//                        collection_column_value_hashes.push(mapped_column_hash.toQueryString());
+                    }
+                }
+        )
+
+        new Ajax.Request('bulk_uploads/after_column_mapping',{
+            method: 'post',
+            requestHeaders: {Accept: 'text/html'},
+            parameters: {
+//                'taxonomy_column_value[]': taxonomy_column_value,
+                'taxonomy_column_value2[]': taxonomy_column_value2,
+//                'collection_column_value[]': collection_column_value,
+                'collection_column_value2[]': collection_column_value2,
+                'index_count': index_count,
+                'csv_file_path': $('csv_file_path').value,
+                'bulk_upload_file': $('bulk_upload_file').value,
+                'original_filename': $('original_filename').value,
+                'create_taxa': $('create_taxa').checked,
+                'save_template_option': $('saveTemplateOption').checked,
+                'mapping_save_name': $('mappingSaveName').value,
+                'custom_template_mapping[]': custom_template_mapping
+//                'taxonomy_column_value_hashes[]': taxonomy_column_value_hashes,
+//                'collection_column_value_hashes[]': collection_column_value_hashes
+            },
+            onSuccess: function (transport) {
+                $('notice').innerHTML = "";
+                document.getElementById('new_bulk_upload_iframe_body').innerHTML = transport.responseText;
+                //$('notice').innerHTML = transport.responseText
+            },
+            onFailure: function (transport) {
+                $('notice').innerHTML = transport.responseText;
+                $('ajaxLoaderSubmit').toggle();
+            }
+        })
+    }
+</script>
+
+
+<div id="notice" style="color: red; font-weight: bold; font-size: 12px"></div>
+
+<span id='new_bulk_upload_iframe_body'>
+
+<h2>Column Mapping</h2>
+Please provide the mapping for the columns in the uploaded file.<br/>
+Select the module and attribute to submit the Bulk Upload.
+<br/>
+  <% form_for :new_template, :html => {:id => 'select_elements_for_template'} do |form| %>
+    <%= hidden_field_tag 'csv_file_path', @csv_file_path %>
+      <%= hidden_field_tag 'bulk_upload_file', params[:bulk_upload][:bulk_upload_file]%>
+      <%= hidden_field_tag 'original_filename', params[:bulk_upload][:bulk_upload_file].original_filename %>
+      <%#= hidden_field_tag 'create_taxa', params[:create_taxa] %>
+      <br/>
+      <%= check_box_tag :create_taxa %>Check if Taxonomies non existent in Tolkin should be created.
+      <br/>
+    <br/>
+    <table style="font-size: 12px;">
+      <tr>
+        <th align="center">
+          <b>Column <=> Attribute Mapping</b>
+          <select id="mappingTypeSelect" style="font-size: 12px;" />
+          <%= render :partial => 'template_mapping_options', :layout => false, :id => 'mappingCustomOptions' %>
+          <%= button_to_function "Apply Mapping", :id => 'autoMappingButton' %>
+          <span id="ajaxLoaderGif" style="display: none">
+            <img src="/images/ajax-loader.gif"/> Working...
+          </span>
+        </th>
+      </tr>
+      <tr>
+        <table style="font-size: 12px;">
+          <tr>
+            <td align="left">
+              Module
+            </td>
+            <% @custom_file_columns.each_with_index do |col, index| %>
+                <td>
+                  <select id="uploadModuleSelect<%= index.to_s %>" index="<%= index.to_s %>" name="upload_type" class="moduleSelect"  style="font-size: 12px;">
+                    <option value="taxonomy">Taxonomy</option>
+                    <option value="collection" selected="selected">Collection</option>
+                  </select>
+                </td>
+            <% end %>
+          </tr>
+          <tr>
+            <td align="left">
+              File Columns
+            </td>
+            <% @custom_file_columns.each_with_index do |col, index| %>
+                <td class="column_map_row" id="customColumn<%= index.to_s %>" data="<%= col.to_s %>">
+                  <%= col.to_s %>
+                </td>
+            <% end %>
+          </tr>
+          <tr>
+            <td align="left">
+              Object Attributes
+            </td>
+            <% @custom_file_columns.each_with_index do |col, index| %>
+
+                <td id="columnMappingSelect<%= index.to_s %>" index="<%= index.to_s %>" class="columnMappingSelect">
+                  <%= render :partial => 'column_module_options', :layout => false, :locals => { :index => index.to_s} %>
+                </td>
+                <% @index_count = index %>
+            <% end %>
+          </tr>
+        </table>
+      </tr>
+    </table>
+      <br/>
+      <span id="saveTemplateDiv" class="saveTeplateDiv">
+        <%= check_box_tag 'saveTemplateOption', :class => 'saveTemplateOption' %>Save Mapping
+        <%#= text_field_tag 'mappingSaveName','Enter Custom Mapping Name...', :html => {:style => {:display => 'none'}} %>
+        <input type="text" value="Enter Custom Mapping Name..." id="mappingSaveName" style="display: none;" />
+        <!--<input disabled="true" id="mappingSaveName" type="text" />-->
+        <%#= button_to_function "Save Custom Mapping", :id => 'submitCustomMappingButton' %>
+        <br/>
+      </span>
+    <br/>
+    <button id="mappingSubmitButton" name="mappingSubmitButton">Submit Mapping</button>
+      <span id="ajaxLoaderSubmit" style="display: none">
+            <img src="/images/ajax-loader.gif"/> Working...
+          </span>
+    <br/>
+<% end %>
+
+</span>

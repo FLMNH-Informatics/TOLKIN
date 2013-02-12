@@ -1,0 +1,60 @@
+<%= form_for @probe, :url => project_chromosome_probes_path, :method => :post do |f| %>
+  <table>
+    <tr>
+      <td class="key_cell">Name</td>
+      <td><%= f.text_field :value, :size => "20" %></td>
+    </tr>
+    <tr>
+      <td class="key_cell">Type</td>
+      <td><%= f.select :probe_type, [['BAC','BAC'],['Oligo','Oligo'],['PCR','PCR']] %></td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="center" >Sequence Description</td>
+      <td><%= f.text_area :sequence_desc, :size => '40x5' %></td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="center" >Southern Signal</td>
+      <td><%= f.text_field :southern_signal, :size => "20" %></td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="center" >FISH Signal</td>
+      <td><%= f.text_field :fish_signal, :size => "20" %></td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="center" >Centromere Repeat</td>
+      <td><%= f.text_field :centromere_repeat, :size => "15" %></td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="center" >BES Start</td>
+      <td><%= f.text_field :bes_start, :size => "15" %></td>
+    </tr>
+    <tr>
+      <td class="key_cell" align="center" >BES End</td>
+      <td><%= f.text_field :bes_end, :size => "15" %></td>
+    </tr>
+    <tr>
+      <td class="key_cell"  align="center" >AmTr v10 Scaffold ID</td>
+      <td><%= f.text_field :scaffold_id, :size => "15" %></td>
+    </tr>
+      <tr>
+        <td class="key_cell"  align="center" >AmTr v10 Scaffold Length</td>
+        <td><%= f.text_field :scaffold_length, :size => "15" %></td>
+      </tr>
+      <tr>
+        <td class="key_cell" align="center" >Chromosome</td>
+        <td><%= f.text_field :chromosome, :size => "15" %></td>
+        
+      </tr>
+      <tr>
+        <td class="key_cell" align="center" >Genome Builder Super Scaffold</td>
+        <td><%= f.text_field :genome_builder_super_scaffold, :size => "15" %></td>
+      </tr>
+  </table>
+
+  <div class="actions">
+    <%= f.submit 'Save' %>
+
+  </div>
+<% end %>
+
+<%#= link_to 'Back', project_chromosome_probes_path %>

@@ -1,0 +1,15 @@
+<tr id="tr_chr_<%= character.id %>" class="<%= cycle('body-odd', 'body-even') %>" >
+  <td class="b"><input type="checkbox" name="chr_ids[]" value="<%= character.id %>"/></td>
+  <td class="b"><%=h character.name %></td>
+  <td class="b"><%=h character.creator.label  %></td>
+  <td class="b"><%= link_to image_tag("f.png", :border=>0), change_position_project_morphology_matrix_path(:project_id => params[:project_id], :id=>@matrix, :type => 'chr', :move => 'move_to_top', :chr_id => character.id) %></td>
+  <td class="b"><%= link_to image_tag("u.png", :border=>0), change_position_project_morphology_matrix_path(:project_id => params[:project_id], :id=>@matrix, :type => 'chr', :move => 'move_higher', :chr_id => character.id) %></td>
+  <td class="b"><%= link_to image_tag("d.png", :border=>0), change_position_project_morphology_matrix_path(:project_id => params[:project_id], :id=>@matrix, :type => 'chr', :move => 'move_lower', :chr_id => character.id) %></td>
+  <td class="b"><%= link_to image_tag("la.png", :border=>0), change_position_project_morphology_matrix_path(:project_id => params[:project_id], :id=>@matrix, :type => 'chr', :move => 'move_to_bottom', :chr_id => character.id) %></td>
+  <td class="b">
+    <%= link_to image_tag("x.png", :border=>0),
+          remove_character_project_morphology_matrix_path(:project_id => params[:project_id], :id=>@matrix, :chr_id => character.id),
+          :method => :put, :confirm => "Are you sure you would like to remove '#{character.name}' from the matrix?" %>
+  </td>
+
+</tr>

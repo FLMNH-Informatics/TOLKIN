@@ -1,0 +1,48 @@
+<div class='image_show' >
+  <div data-id="<%= @image.id%>" align="center">
+    <%= image_tag @image.attachment.url(:original), :width => "525" %>
+
+    <% if interact_mode == 'edit' %>
+
+        <% form_for @image, :url => update_image_project_image_albums_path, :html =>{:class => 'update_image_form'} do |f| %>
+            <input type="hidden" value="put" name="_method"/>
+            <div align="center">Caption: <%= f.text_field :caption %></div>
+            <br/>
+            <div align="center">Photographer: <%= f.text_field :photographers_credits %></div>
+            <br/>
+            </div>
+        <% end %>
+
+    <% else %>
+        <br/>
+        <div align="center"><br/>Caption: <%= raw @image.caption %></div>
+        <br/>
+        <div align="center">Photographer: <%= raw @image.photographers_credits %></div>
+    <% end %>
+
+
+    <br/>
+    <div class="#" align="center" margin-bottom=20px><% begin %>
+        Location: <% @image.image_joins.first
+                                       taxon_id = @image.image_joins.first[:object_id]
+                                       taxon_location = Taxon.find(taxon_id).general_distribution %>
+          <%= taxon_location %>
+    <% rescue %>
+        No Location found
+    <% end %>
+    </div>
+    <br/>
+    <div class="#" align="center" margin-bottom=20px>
+      <% begin %>
+          Taxon: <% @image.image_joins.first
+                    taxon_id = @image.image_joins.first[:object_id]
+                    taxon_name = Taxon.find(taxon_id).name %>
+          <%= taxon_name %>
+      <% rescue %>
+          No Taxon found
+      <% end %>
+    </div>
+    <br/>
+
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<% form_tag export_records_project_marked_records_path(params[:project_id]) do %>
+	
+	<%#= MarkedRecord.find(:all).size%>
+	<%= label_tag "Select a Type to Export:"%>
+	<%#= collection_select(:marked_record, :type, MarkedRecord.class_names, :className, :className) %> 
+	<%= select("marked_record", "type", MarkedRecord.class_names, {:include_blank => true}, :onchange => remote_function(:url=> list_columns_project_marked_records_path(params[:project_id]), :method=> :get,  :with => "'marked_record_type=' + $('marked_record_type').value") ) %> 
+	<br/>
+	<span onclick="$('div_columns').toggle();">Hide/Show Columns</span>
+	<div id="div_columns" height="10" width="20">
+	
+	</div>
+	<%#= render :partial=> "list_columns", :object=> "Taxon" %>
+	<div id="div_marked_records">
+		
+	</div>
+
+<%= submit_tag 'Export' %>
+<% end %>

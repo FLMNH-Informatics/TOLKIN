@@ -1,0 +1,3 @@
+%tr{ :id => "list_item_#{list_taxa.id}", :class => cycle('body-odd', 'body-even') }
+  %td{ :class => "b" }= link_to h(list_taxa.name), project_taxon_path(current_project.id, list_taxa.id)
+  %td{ :class => "b" }= link_to image_tag("x.png", :border=>0), { :action => :remove_taxon, :taxon_id => list_taxa.id }, :method => :post, :confirm => "Are you sure you would like to remove this taxon?"

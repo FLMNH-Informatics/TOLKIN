@@ -1,0 +1,12 @@
+<div class="citation" data-taxon-id="<%=taxon_id%>" data-citation-id="<%= citation.id %>" >
+  <div class="buttons<%= buttons_classes %>">
+    <input type="button" class="citation_edit" value ="Edit" />
+    <input type="button" class="delete_citation" value="Remove" />
+  </div>
+  <p class='citation'>
+    <!-- a  data-id="<#%= citation.id %>_<#%= project_id %>" class="citation_edit"-->
+      <%= raw citation_display_name(citation) %>
+    <!--/a-->
+    <!--a href="<#%= delete_citation_path %>"><#%=citation_delete%></a-->
+  </p>
+</div>

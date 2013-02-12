@@ -1,0 +1,15 @@
+#commit_changes_notice_window.window
+  .windowtitle
+    %span{ :class => "title" } Notice
+  .window_contents
+    %form#commit_changes_notice_form{ :action => request.request_uri, :method => "post" }
+      %input{ :type => 'hidden', :name => '_method', :value => 'put' }
+      Commit all changes before proceeding with this action?
+      .submitbuttonrow
+        %input#commit_changes_notice_form_yes.simple-button{ :type => 'submit', :value => 'Yes' }
+        %input#commit_changes_notice_form_no.simple-button{ :type => 'submit', :value => 'No' }
+        %input#commit_changes_notice_form_cancel.simple-button{ :type => 'submit', :value => 'Cancel' }
+      %input{ :type => 'hidden', :name => 'notice_response', :value => '' }
+      %input{ :type => 'hidden', :name => 'authenticity_token', :value => form_authenticity_token }
+
+= draggable_element :commit_changes_notice_window

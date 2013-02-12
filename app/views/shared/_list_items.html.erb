@@ -1,0 +1,122 @@
+<% options ||= {} %>
+<div id=<%= options[:id] || "items_listing" %>>
+  <h5><%= title %></h5>
+  <% if items_to_list.empty? -%>
+    No items found.
+  <% else -%>
+
+    <input type="hidden" id="authenticity_token" name="authenticity_token" value=<%="#{form_authenticity_token}"%> />
+    <table id=<%= options[:id_prefix] ? "#{options[:id_prefix]}_item_table" : 'items_table' %> >
+      <tr>
+        <script type="text/javascript">
+          function selectAllCheckboxAction(mainCheckbox, table_id) {
+            if(mainCheckbox.checked == true) {
+             $(table_id).select('.item_select_checkbox').each(function(checkbox) { if(checkbox.checked == false) { checkbox.click(); } });
+            } else {
+              $(table_id).select('.item_select_checkbox').each(function(checkbox) {  if(checkbox.checked == true) { checkbox.click(); }});
+            }
+          }
+        </script>
+        <th class="h"><input type="checkbox" onclick="selectAllCheckboxAction(this, <%= options[:id_prefix] ? "'#{options[:id_prefix]}_item_table'" : "'items_table'" %>);" />
+
+        </th>
+        <% attributes.each do |attribute| %>
+          <% content_tag :th, {:class => 'h'}.merge!(attribute_display_properties[attribute][:width] ? { :width => attribute_display_properties[attribute][:width] } : { } ) do %>
+            <%= attribute_display_properties[attribute][:label] || attribute.to_s.titleize %>
+          <% end %>
+        <% end %>
+      </tr>
+      <tbody id= <%= options[:id_prefix] ? "#{options[:id_prefix]}_tbody_items_table" : "tbody_items_table" %>>
+        <%= render :partial => 'shared/list_items_item',
+          :collection => items_to_list,
+          :locals => { :attributes => attributes, :attribute_display_properties => attribute_display_properties } %>
+      </tbody>
+    </table>
+    <%# end -%>
+  <% end -%>
+  <br />
+  <%if options[:ajax_pagination] == true %>
+    <%= will_paginate items_to_list, :renderer => 'RemoteLinkRenderer' , :remote => {  :update => options && options[:id] || "items_listing" } %>
+  <%else%>
+    <%= will_paginate items_to_list if items_to_list.kind_of? WillPaginate::Collection %>
+  <%end%>
+  <%#= javascript_include_tag 'shared/list_items' %>
+  <script>
+    if($(<%= options[:id_prefix] ? "'#{options[:id_prefix]}_tbody_items_table'" : "'tbody_items_table'" %>)) {
+      $('tbody_items_table').observe('DOMNodeInserted',function(event){
+        add_click_events_and_style_to_element($(event.target.id).select("td > input[type='checkbox']").first());
+        add_mouse_over_behaviour($(event.target.id));
+      });
+    }
+
+    function itemSelectCheckboxes() {
+      var elements = $$('.item_select_checkbox')
+      elements.each (add_click_events_and_style_to_element);
+    }
+
+    function add_click_events_and_style_to_element(e) {
+      if(e.checked) {
+        e.parentNode.parentNode.addClassName('selected_row');
+      }
+
+      e.observe('click', function() {
+        this.parentNode.parentNode.toggleClassName('selected_row');
+        if($('div_sel_list')) {
+          if(this.checked == true){
+
+            buildElement(this.parentNode.nextSibling.nextSibling.childElements()[0].text, this.value);
+
+          }
+          else{
+            if($('sel_list_li_'+this.value)!=null){
+              $('sel_list_li_'+this.value).remove();
+            }
+          }
+        }
+      });
+    };
+
+    function add_selected_class(ele){
+      ele.addClassName('selected_row');
+    }
+    function remove_selected_class(ele){
+      ele.removeClassName('selected_row');
+    }
+    function add_highlight_class(ele){
+      ele.addClassName('highlighted_row');
+    }
+    function remove_highlight_class(ele){
+      ele.removeClassName('highlighted_row');
+    }
+    function remove_sel_item(ele_id){
+      $("sel_list_li_" + ele_id).remove();
+      tab_row_ele = $('list_item_'+ele_id);
+      if(tab_row_ele != null){
+        $('item_select_'+ele_id).checked = false;
+        remove_selected_class(tab_row_ele);
+      }
+    };
+    function add_mouse_over_behaviour(e) {
+      e.observe('mouseover', function() {
+        add_highlight_class(this);
+      });
+      e.observe('mouseout', function() {
+        remove_highlight_class(this);
+      });
+    };
+    function listItemRows() {
+      var elements = $$('.list_item_row')
+      elements.each (add_mouse_over_behaviour);
+    };
+    //window.onload = function() {
+    itemSelectCheckboxes();
+    listItemRows();
+    //};
+  </script>
+</div>
+<%if !options[:javascript].nil? %>
+  <% js = generate_javacript_for_list_items(options[:javascript]) %>
+  <script>
+  <%= js %>
+  </script>
+<%end%>

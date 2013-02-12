@@ -1,0 +1,20 @@
+%tr{ :id => "list_item_#{object.id}", :class => cycle('body-odd', 'body-even') }
+  %td
+    %input{ :id => "otu_#{object.id}", :type => "checkbox", :value => object.id, :name => "otus[]" }
+  %td.b= h object.name
+
+  -unless object == @first_otu
+    %td.b= change_position_link('move_to_top', @otu_group.id, object.id, @project)
+    %td.b= change_position_link('move_higher', @otu_group.id, object.id, @project)
+  -else
+    %td.b= image_tag('move_to_top_inactive.png', :id => "list_item_#{object.id}_move_to_top")
+    %td.b= image_tag('move_higher_inactive.png', :id => "list_item_#{object.id}_move_higher")
+
+  -unless object == @last_otu
+    %td.b= change_position_link('move_lower', @otu_group.id, object.id, @project)
+    %td.b= change_position_link('move_to_bottom', @otu_group.id, object.id, @project)
+  -else
+    %td.b= image_tag('move_lower_inactive.png', :id => "list_item_#{object.id}_move_lower")
+    %td.b= image_tag('move_to_bottom_inactive.png', :id => "list_item_#{object.id}_move_to_bottom")
+
+  %td.b=link_to_remote image_tag("x.png", :border=>0), :url => remove_otu_project_otu_group_url, :with => "'otu=#{object.id}'"

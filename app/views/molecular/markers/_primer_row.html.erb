@@ -1,0 +1,14 @@
+<tr class="<%= raw cycle("body-even","body-odd") %>" data-primer-id="<%= raw primer.id %>">
+  <td>
+    <%= raw link_to(primer.name, project_molecular_primer_path(current_project,primer)) %>
+  </td>
+  <td>
+    <%= raw primer.taxon %>
+  </td>
+  <td>
+    <%= raw primer.sequence %>
+  </td>
+  <td>
+    <%= raw primer.purification_method %>
+  </td>
+</tr>

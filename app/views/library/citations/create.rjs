@@ -1,0 +1,14 @@
+page << <<JS
+$('div_new_citation') && $('div_new_citation').hide();
+init.viewport().notifier().success('Citation created.');
+if($('viewport_content_frame_library_citations_catalog')) {
+  var catalog = init.viewport().widgets().get('viewport_content_frame').widgets().get('viewport_content_frame_library_citations_catalog');
+  if (catalog){
+    catalog.collection().load();
+  }
+}
+JS
+
+
+#page.visual_effect :highlight, "div_new_citation"
+flash.discard

@@ -1,0 +1,6 @@
+%table.display_none
+  %tr.link_buttons
+    - unless @timeline.markers.empty? || @timeline.otus.empty? || params["action"] != 'show'
+      %td#export_mode
+        %a#toggle_export_mode_link
+          Enter export mode

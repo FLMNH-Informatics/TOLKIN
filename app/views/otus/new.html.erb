@@ -1,0 +1,35 @@
+<%#= raw window_head 'New OTU', 'windowdiv' %>
+<% form_for :otu, :url => project_otus_path(params[:project_id]), :html => { :id => 'new_otu_form' } do |f| %>
+<table>
+<tr class="formrow">
+    <td><%= f.label :name %></td>
+    <td><span class="field"><%= f.text_field :name, :size => 46 %></span></td>
+</tr>
+<tr class="formrow">
+  <td><%= f.label :tax_name %></td>
+  <%#TODO: add autocomplete for taxon name%>
+  <td><span class="field"><%= text_field :taxon, :name, { :size => 46 } %></span></td>
+</tr>
+<tr class="formrow">
+    <td><%= f.label :original_position, 'OTU Number' %></td>
+    <td><span class="field"><%= f.text_field :original_position, :size => 5 %></span></td>
+</tr>
+<tr class="formrow">
+    <td><%= f.label :description %></td>
+    <td><span class="field"><%= f.text_area :description, :cols => 46, :rows => 4 %></span></td>
+</tr>
+<tr class="formrow">
+    <td><%= f.label :otu_group %></td>
+    <td><span class="field"><%= select_tag("otu_group_id", raw("<option value=\"\"></option>" + options_for_select(@current_project.otu_groups.collect {|o| [ o.name, o.id ]}))) %></span></td>
+</tr>
+<tr class="submitbuttonrow">
+    <td colspan='2' align="center"><%= submit_tag "Create" %></td>
+</tr>
+</table>
+<% end %>
+
+
+<%#= render :partial => @otu, :locals => { :button_name => "Create" }%>
+
+<%#= link_to 'Back', project_otus_path %>
+

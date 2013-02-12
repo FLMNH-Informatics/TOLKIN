@@ -1,0 +1,16 @@
+<% form_remote_tag(:url => update_otu_project_morphology_matrix_path(params[:project_id], params[:id]), :update => 'actor_list', :position => 'bottom', :html => {:id => 'add_otu_form'} ) do %>
+
+  <%= hidden_field 'otu_matrix', 'matrix_id', 'value' => params[:id] -%>
+<table><tr><td style="vertical-align: middle;">
+      <%= label  'otu_matrix', 'OTU Name', 'OTU Name' %>
+    </td><td><span id="otu_name" class="field">
+      <%= raw otu_name_field %>
+    </span>
+</td></tr><tr><td style="vertical-align: middle;">
+      <%= label  'otu_matrix', 'OTU Group', 'OTU Group' %>
+    </td><td>
+    <span id="otu_group_name" class="field">
+      <%= select_tag( "otu_group_id", raw("<option value=\"\"></option>" + options_for_select(@current_project.otu_groups.collect {|o| [ o.name, o.id ]})), { :style=> 'width:300px;' } ) %>
+    </span>
+    </td></tr></table>
+<%  end %>

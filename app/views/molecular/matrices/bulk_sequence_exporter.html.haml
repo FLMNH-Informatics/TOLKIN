@@ -1,0 +1,15 @@
+%h4.matrix_title= render :partial => "matrix_title"
+%ul.horizontal_list
+  %li Export type: &nbsp;&nbsp;
+  %li
+    %label Intersection
+    %input#export_intersection.leveled{:type => "radio", :name => "export_type"}
+  %li
+    %label Union
+    %input#export_union.leveled{:type => "radio", :name => "export_type", :checked => true}
+%table{:width => "770px", :border => "0", :cellspacing => "5px", :cellpadding => "2px"}
+  %tbody
+    %tr
+      %td{:valign=>"top"}= render :partial => "bulk_export_otus_table"
+      %td{:valign=>"top"}= render :partial => "bulk_export_markers_table"
+      %td{:valign=>"top"}= render :partial => "bulk_export_actions"

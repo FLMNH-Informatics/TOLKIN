@@ -1,0 +1,9 @@
+<li id ="coll_<%=object.id%>" onClick=<%="c(#{params[:project_id]},#{object.id})" %>>
+  <span class="linkText">
+  <% unless object.collection_number.blank? and object.collector.blank? -%>
+    <%=object.collector %> <%=object.collection_number %>
+  <% else %>
+    <i>No collector or number given</i>
+  <% end %>
+  </span>
+</li>

@@ -1,0 +1,30 @@
+<div id="navpane">
+    <%= render :partial => "right_nav" %>
+</div>
+<div id="contentpane">
+    <h3>OTU Groups</h3>
+    <%= render :partial => "shared/filter_form", :locals => { :submit_path => project_otu_groups_path(params[:project_id]) } %>
+
+  <% form_tag delete_selected_project_otu_groups_path(params[:project_id]), { :method => :post, :name=>"otu_groups_form", :id=>"otu_groups_form" } do %>
+      <table id="otugrouptable">
+        <tr>
+            <th class="h" >
+            </th>
+            <th class="h">
+                Name
+            </th>
+            <th class="h">
+                Owner
+            </th>
+        </tr>
+
+        <%= render :partial => 'otu_group', :collection => @otu_groups_list %>
+      </table>
+    <% end %>
+    <span class="bodytext"><%= will_paginate @otu_groups_list %></span>
+    <br/>
+
+    <div id="windowdiv" class="window" style="display: none;">
+    </div>
+    <%= draggable_element :windowdiv %>
+</div>

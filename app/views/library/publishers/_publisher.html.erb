@@ -1,0 +1,4 @@
+  <tr class="<%= cycle('body-odd', 'body-even') %>">
+  	<td class="b"><%= link_to h(publisher.name), edit_project_library_publisher_path(params[:project_id], publisher) %></td>
+    <td class="b"><%= link_to 'Delete', project_library_publisher_path(params[:project_id], publisher), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>

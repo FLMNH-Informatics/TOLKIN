@@ -1,0 +1,14 @@
+.window{ :id => 'dialog_box' }
+  .windowtitle
+    %span{ :class => "title" } Notice
+  .window_contents
+    %form{ :id => "dialog_box_form", :action => request.request_uri, :method => "post" }
+      = message
+      .submitbuttonrow
+        %input.simple-button{ :id => "dialog_box_form_yes", :type => 'submit', :value => 'Yes' }
+        %input.simple-button{ :id => "dialog_box_form_no", :type => 'submit', :value => 'No' }
+        %input.simple-button{ :id => "dialog_box_form_cancel" , :type => 'submit', :value => 'Cancel' }
+      %input{ :type => 'hidden', :name => 'notice_response', :value => '' }
+      %input{ :type => 'hidden', :name => 'authenticity_token', :value => form_authenticity_token }
+
+= draggable_element 'dialog_box'

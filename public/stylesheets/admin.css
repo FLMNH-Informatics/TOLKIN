@@ -1,0 +1,12 @@
+#admin-projects-table tbody tr:hover{
+  cursor:pointer;
+  background-color:#add8e6;
+}
+#user-projects-table td{
+  padding:3px 20px 2px 2px;
+}
+.title{
+  font-weight:bold;
+  text-size:19px;
+  margin: 20px 20px 10px 0px;
+}

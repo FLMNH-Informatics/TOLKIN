@@ -1,0 +1,68 @@
+<h3>Create New User</h3>
+<form action="/admin/users" method="post">
+  <input type="hidden" name="_method" value="post" />
+  <table style="float:left">
+    <tr>
+      <td>First Name:</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="first_name" /></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="last_name" /></td>
+    </tr>
+    <tr>
+      <td>Username:</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="username" /></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="email" /></td>
+    </tr>
+    <tr>
+      <td>Institution:</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="institution" /></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+    </tr>
+    <tr>
+      <td><input type="password" name="password" /></td>
+    </tr>
+    <tr>
+      <td>Confirm Password:</td>
+    </tr>
+    <tr>
+      <td><input type="password" name="password_confirmation" /></td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+    <tr><td></td></tr>
+  </table>
+  <table style="float:left;clear:right;margin-left:15px;border:2px solid #777;">
+    <tr><td style="font-weight:bold">Select User's projects</td></tr>
+    <tr style="text-align:center;"><td>Project</td><td>Role</td></tr>
+    <% @projects.each do |p| %>
+
+       <tr><td><input type="checkbox" name="projects[<%= p.project_id %>][member]" value="true" />&nbsp;&nbsp;<%= p.label %></td>
+         <td>&nbsp;&nbsp;
+         <select name="projects[<%= p.project_id %>][role]">
+           <% @roles.each do |role| %>
+              <option value="<%= role.rank%>"><%= role.name %></option>
+           <% end %>
+         </select>
+       </td></tr>
+    <% end %>
+  </table>
+  <input type="submit" value="Create!" style="display:inline-block;float:left;clear:both" />
+</form>

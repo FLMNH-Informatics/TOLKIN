@@ -1,0 +1,5 @@
+%span.title_text Name:
+%span.body_text= link_to((h truncate @timeline.name, :length => 50), project_morphology_matrix_path(current_project.id, @timeline.id))
+%span.title_text Description:
+%span.body_text{:title => @timeline.description}= h truncate @timeline.description, :length => 50
+%span.body_text= link_to('Edit name/description', '#', {:id => 'edit_matrix'})

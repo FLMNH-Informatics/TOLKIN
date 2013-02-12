@@ -1,0 +1,11 @@
+<table id="otus_list" style="margin-left: 10px;">
+  <tr>
+    <!--<th class="h"><input type="hidden"  id="otu_group_id" value="<%#= @otu_group.id%>" name="otu_group_id"></th>-->
+    <th class="h">Name</th>
+    <th class="h" colspan="5">Action</th>
+
+  </tr>
+  <% @otu_group.otu_groups_otus.map{|ogo|ogo.otu}.each do |otu| %>
+    <%= render :partial => "otu_list_row.html.erb", :locals => {:otu => otu } %>
+  <% end %>
+</table>

@@ -1,0 +1,30 @@
+<div id="current_project_and_login_info">
+  <div id="current_project_info">
+      <form action="<%= projects_path %>" id="project_select_form">
+        Project
+        <select id="project_select" name="project_select">
+          <option></option>
+          <%= options_from_collection_for_select( Project.all, 'id', 'name' , session[:project_id]) %>
+        </select>
+      </form>
+  </div>
+  <div id="login_info">
+    <form method="post" action="<%= session_path %> ">
+      <input type="hidden" name="redirect_to" value="back" />
+      <table>
+        <tr>
+          <td><label>Username or Email</label></td>
+          <td colspan="2">
+            <div style="float: right">or <a href="<%= signup_path%>">Register</a></div>
+            <label>Password</label>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" name="username_or_email" /></td>
+          <td><input type="password" name="password" /></td>
+          <td><input type="submit" value="Login" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>

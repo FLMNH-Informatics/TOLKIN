@@ -1,0 +1,80 @@
+<table>
+      <tr>
+        <td class="titletext">Otu: </td>
+        <td class="bodytext">
+          <%= @cell.otu.original_position.to_s + "." if @cell.otu.original_position  %>
+          <%= @cell.otu.name %>
+        </td>
+      </tr>
+      <tr>
+        <td class="titletext">Character: </td>
+        <td class="bodytext">
+          <%= @cell.character.original_position.to_s + "." if @cell.character.original_position  %>
+          <%= @cell.character.name %>
+        </td>
+      </tr>
+    </table>
+
+    <div id="detailsdiv" class="detailsdiv">
+      <div class="sectiontitle"><span class="titletext">States</span>
+      </div>
+
+      <% form_tag(@path, :method => @method) do %>
+
+        <input type="hidden" name="coding[character_id]" value="<%= @cell.character_id %>" />
+        <input type="hidden" name="coding[otu_id]" value="<%= @cell.otu_id %>" />
+        <% if @cell.character.chr_states.count == 0 %>
+          <span class="bodytext">NO STATES</span><br />
+        <% end %>
+
+        <% @cell.character.chr_states.each do |s| -%>
+          <% unless @cell.try(:codings).try(:index, s.state).nil? %>
+            <span class="bodytext"><input type="checkbox" id="state_<%= s.state %>" class="coding_state_checkbox" name="state[<%= s.id %>]" value="1" onchange="$('coding_status').selectedIndex=2;$('state_dash').setValue(null);$('state_question_mark').setValue(null)" checked="checked"/> <%= s.name %> : <%= s.state %></span><br/>
+          <% else %>
+            <span class="bodytext"><input type="checkbox" id="state_<%= s.state %>" class="coding_state_checkbox" name="state[<%= s.id -%>]" value="1" onchange="$('coding_status').selectedIndex=2;$('state_dash').setValue(null);$('state_question_mark').setValue(null)"  /> <%= s.name %> : <%= s.state %> </span> <br/>
+          <% end %>
+        <% end %>
+            <span class="bodytext"><input type="checkbox" id="state_dash" class="coding_state_checkbox" value="1"  <%= @cell.try(:codings).try(:[], 0).nil? ? "checked='checked'" : '' %>/> - : -</span><br/>
+            <span class="bodytext"><input type="checkbox" id="state_question_mark" class="coding_state_checkbox" name="state[question_mark]" value="1"  <%= @cell.try(:codings).try(:[], 0) == '?' ? "checked='checked'" : '' %>/> ? : ?</span><br/>
+
+        <h5>Status</h5>
+
+
+        <%
+        sel  = ""
+        sel = @cell.status unless @cell.nil?
+      %>
+        <%= select 'coding', 'status', Morphology::Matrix::Checkpoint.status, :include_blank => true, :selected => sel %>
+
+        <br/><br/>
+
+        <%= submit_tag "Update"  %>
+
+      <% end %>
+      <br/>
+    </div>
+
+    <% if @cell -%>
+      <div id="coding_create_update">
+        Last updated <%= @cell.created_at %> by <%= @cell.creator.try(:label) || 'unknown' %>
+      </div>
+    <% end -%>
+
+    <div id="imagesdiv" class="imagesdiv">
+      <div class="sectiontitle"><span class="titletext">Images for this Cell</span>
+        &nbsp; &nbsp;
+        <span class="bodytext"><%= link_to 'Add Image', "javascript:void(0)", :onclick => "document.getElementById(\"newimagediv\").style.display = \"block\";"%></span>
+      </div>
+
+      <% unless @cell.nil? %>
+        <% @cell.state_coding_images.each {|image_link| %>
+          <%= render :partial => 'shared/image', :object => image_link %>
+        <% } %>
+      <% end %>
+
+    </div>
+
+    <div id="newimagediv" style='position: absolute; width: 500px; height: 100px; display: none;z-index:3' class="window">
+      <%= render(:partial => "add_image" , :object => nil) %>
+    </div>
+    <%= draggable_element :newimagediv %>

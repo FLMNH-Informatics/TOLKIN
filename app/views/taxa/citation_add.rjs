@@ -1,0 +1,4 @@
+#page.replace_html 'notice', flash[:notice]
+#page.visual_effect :highlight, "notice"
+#page.replace_html "div_taxon_#{@taxon.id}_citations", :partial => "/shared/list_citations_taxa" , :collection => @taxon.citations, :as => :citation, :locals => {:obj => @taxon, :url_options => { :controller => :taxa, :project => @project, :id => @taxon }}
+#flash.discard

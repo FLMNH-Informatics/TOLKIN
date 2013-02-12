@@ -1,0 +1,62 @@
+<script type="text/javascript" src="/javascripts/prototype.js">
+</script>
+<script language="javascript" type="text/javascript">
+    document.observe("dom:loaded",function(){
+        $('generateTemplateLink').observe('click', function(event){
+            event.stop();
+            var template_type = $('uploadTypeSelect').value
+            window.location.href = "/projects/" + params['project_id'] + "/collections/bulk_uploads/download_template?template_type=" + template_type
+        })
+    });
+</script>
+<div id="notice"><%= flash[:notice] %></div>
+
+<h1>Bulk Uploads</h1>
+<% form_for :bulk_upload, @bulk_uploads, :action => 'create_bulk_upload', :controller => 'collection/bulk_uploads', :html => { :id => 'bulk_upload_form', :multipart => true } do |form| %>
+    <form id="bulk_upload_form" method="post" class="create_bulk_upload_form" action="bulk_uploads/create_bulk_upload" enctype="MULTIPART/FORM-DATA" style="margin-top: 10px;">
+
+    Select the type of Bulk Upload intended:
+    <p></p>
+    <div id="uploadTypeSelectDiv" >
+      <select id="uploadTypeSelect" name="upload_type" >
+        <option value="select" disabled>::Select::</option>
+        <option value="collections" <%= params[:upload_type] == 'collections' ? 'selected' : '' %> >Collections</option>
+        <option value="taxa" <%= params[:upload_type] == 'taxa' ? 'selected' : '' %> >Taxonomies</option>
+        <option value="citations" <%= params[:upload_type] == 'citations' ? 'selected' : '' %> >Citations</option>
+        <!--<option value="photographer" <%#= params[:search] == 'name' ? 'selected' : '' %> >Photographer</option>-->
+        <!--<option value="location" <%#= params[:search] == 'name' ? 'selected' : '' %> >Location</option>-->
+      </select>
+    </div>
+
+    <div id="generate_template_div" class="generate_template_div">
+      <br/>
+      <a id="generateTemplateLink">Generate Template</a> (Select module/upload type first.)
+      <%#= link_to "Generate Template", '#', :html => { :id => "generate_template_link", :class => "generate_template_link"} %><br/>
+      <%#= link_to 'Download Template', :method => :get, :action => 'download_template', :controller => 'collections/bulk_uploads' %>
+      <%#= link_to_function "Generate Template", :html => { :id => "generate_template_link", :class => "generate_template_link"} %>
+    </div>
+
+    <div id="upload_div" >
+      <%#= link_to 'Download Template', :method => :get, :action => 'download_bulk_upload_templates', :controller => 'collection/bulk_uploads' %>
+      <br/>
+      <h2>Select File to Upload</h2>
+      <br/>
+
+      <!--<input type="file" name="bulk_upload_file_browse"  />  -->
+      <%= file_field :bulk_upload, :bulk_upload_file %>
+      <br/>
+      <br/>
+      <!--<input type="button" name="submit" value="Upload" class="upload_submit_button" style="background-image: url(/images/small_addnew.gif); background-repeat: no-repeat; background-position: 4px 50%; padding-left:15px" />-->
+      <%= submit_tag 'Upload', :style => "background-image: url(/images/small_addnew.gif); background-repeat: no-repeat; background-position: 4px 50%; padding-left:15px;" %>
+      <!--<button  style="background-image: url(/images/small_addnew.gif); background-repeat: no-repeat; background-position: 4px 50%; padding-left:15px;">Upload2</button>-->
+      <div id='workingImg' style="display:none;"><img src="/images/ajax-loader.gif" /></div>
+      <br/>
+      <br/>
+      <iframe id="new_bulk_upload_iframe"  name='new_bulk_upload_iframe' src="" style='width:100%;height:425px; border:none;font-size: 8px;'>
+      </iframe>
+
+
+
+    </div>
+    </form>
+<% end %>

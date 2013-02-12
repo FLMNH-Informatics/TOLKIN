@@ -1,0 +1,18 @@
+<div class="windowtitle">
+    Options
+</div>
+<ul class="listmain">
+    <li>
+        <%= link_to 'New publications', new_project_library_publication_path(params[:project_id]) %>
+    </li>
+    <li>
+      <%= link_to 'Delete Selected', "javascript:void(0)",
+        :onclick => "var hasConfirmed = confirm('Are you sure you would like to delete the selected OTU groups?');
+      if(hasConfirmed) {
+          form = $('list_items_form')
+          form.writeAttribute('action', '/projects/"+params[:project_id]+"/publications/delete_selected');
+          form.writeAttribute('method', 'post');
+          document.getElementById('list_items_form').submit();
+        }" %>
+    </li>
+</ul>

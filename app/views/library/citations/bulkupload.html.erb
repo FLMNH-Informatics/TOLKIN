@@ -1,0 +1,8 @@
+<%= link_to "Back", project_library_citations_path(params[:project_id])%>
+<% form_tag("#{cpbulkcreate_project_library_citations_path}", :multipart => true, :method=> :post) do %>
+<p>
+    <%= label :attachment,:file %>:<%= file_field :attachment,:bibfile %>
+    <br>
+</p>
+<%= submit_tag 'Save' %>
+<% end %>

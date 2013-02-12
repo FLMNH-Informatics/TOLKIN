@@ -1,0 +1,17 @@
+<div id="windowtitle" class="windowtitle">
+    <table  width="100%"><tr><td><span id="title1" class="title">Search results from Tree Base</span>
+            </td><td valign="top" align="right">&nbsp;&nbsp;&nbsp; </td></tr></table>
+  </div>
+<table>
+  <tr><td class="treeBase_select">
+      
+  <select name=3  size=6 >
+   <%  @doc.search("item") do |name|%>
+      <option value="<%=(name/"tb:identifier-taxon-tb1").inner_html%>"><%= (name/"/title").inner_html.gsub('<![CDATA[','').gsub(']]>','')%></option>
+   <%end%>
+ </select>
+  </td></tr>
+  <tr><td><div id="treebase_namebank_desc"></div></td>
+  </tr>
+</table>
+

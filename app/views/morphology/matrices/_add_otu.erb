@@ -1,0 +1,28 @@
+<%= raw window_head 'Add OTU / OTU Group', 'windowdiv' %>
+
+<% form_remote_tag(:url => update_otu_project_morphology_matrix_path(params[:project_id], params[:id]), :update => 'actor_list', :position => 'bottom', :html => {:id => 'add_otu_form'} ) do %>
+
+  <%= hidden_field 'otu_matrix', 'matrix_id', 'value' => params[:id] -%>
+  <div class="formrow">
+    <%= label  'otu_matrix', 'OTU Name' %>
+    <span class="field">
+      <%= #text_field 'otu_matrix', 'name', :size => 30
+      text_field_with_auto_complete :otu, :name, {:size => 40}, {:url => {:action => "auto_complete_for_otu_name", :project_id => params[:project_id], :id => params[:id]},  :method => :get}
+    %>
+    </span>
+  </div>
+
+  <div class="formrow">
+    <%= label  'otu_matrix', 'OTU Group' %>
+    <span class="field">
+
+      <%= select_tag( "otu_group_id", raw("<option value=\"\"></option>" + options_for_select(@otu_groups.collect {|o| [ o.name, o.id ]})), { :style=> 'width:300px;' } ) %>
+    </span>
+  </div>
+
+  <div class="submitbuttonrow">
+
+    <%= submit_tag "Add" %>
+  </div>
+
+<%  end %>

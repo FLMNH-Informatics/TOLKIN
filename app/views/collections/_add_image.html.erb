@@ -1,0 +1,39 @@
+<!--div id="windowtitle" class="windowtitle" >
+  <span id="title" class="title">
+    Add Image
+  </span>
+
+  <span id="closebutton" class ="closebutton" onClick="$('newimagediv').hide();">
+    <#%= link_to "X", "javascript:void(0)" %>
+  </span>
+</div>
+
+
+<#% form_for(:image, :url => formatted_images_path(:format => 'js'), :html => { :multipart => true, :target => 'upload_frame'}) do |f| %>
+
+  <#%= hidden_field 'options', 'image_type', 'value' => @collection.class -%>
+  <#%= hidden_field 'options', 'id', 'value' => @collection.id -%>
+
+  <div class="formrow">
+    <label for="image">Upload Image</label>
+    <span class="field">
+      <#%= f.file_field :uploaded_data %>
+    </span>
+  </div>
+
+  <!--div class="formrow">
+    <#%= f.label :date_taken %>
+    <span class="field">
+      <#%= f.date_select :date_taken %>
+    </span>
+  </div-->
+
+  <!--div class="submitbuttonrow">
+    <#%= submit_tag "Create" %>
+
+  </div>
+<#% end %>
+
+
+<%#*<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>%>
+

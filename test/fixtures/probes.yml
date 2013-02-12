@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ probe_1:
+   id    : 3
+   value : AT_SBa0003B01
+   created_at :
+   updated_at :
+   project_id : 70
+   probe_type : BAC
+   sequence_desc :
+   southern_signal : strong
+   fish_signal : centrome
+   centromere_repeat :
+   scaffold_id :
+   scaffold_length :
+   bes_start :
+   bes_end :
+   chromosome :
+   genome_builder_super_scaffold :
+
+
+
+
+
+

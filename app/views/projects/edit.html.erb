@@ -1,0 +1,59 @@
+<h1>Editing project</h1>
+
+<% form_for(@project, :method => 'post', :url => project_path(params[:id])) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= raw f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :logo %><br />
+    <%= raw f.text_field :logo %>
+  </p>
+  <p>
+    <%= f.label :website %><br />
+    <%= raw f.text_field :website %>
+  </p>
+  <p>
+    <%=  f.label 'Default permission for new records.' %> <br />
+    Make Public <input name="project[public]" id="project_public" type="checkbox" <%= @project.public ? 'checked': '' %> >
+  </p>
+
+    <div id="public_license_div" style="display:block">
+    <p>
+    <%=  f.label 'Public Use License Type' %> (if you choose to make your data public) <br />
+    <%- if session['projects'][params[:id].to_i][:interact_mode] == 'browse'%>
+      <p><em><%= @license.label || 'none' %></em></p>
+    <%- else %>
+      <%=  select("project", "public_license_id", PublicLicense.where("project_id IS NULL OR project_id = #{params[:id]}").collect{|l| [l.label, l.id] }.push(['Other', 0]), {:select => @license.id.nilstring}) %>
+    <%- end %>
+    <br />
+    *A reference to this license will be provided with any data you share through Tolkin or export to EOL.
+     </p>
+      <div id="public_license_other" style="display:<%= current_project.public_license_id == 0 || current_project.public_license_id > 4 ? 'block' : 'none' %>">
+      <p>
+       <%= f.label 'License Name' %><br />
+       <%=  input_field 'public_license','name', 'text', @license.name.nilstring, {:size => '20'} %>
+       <%#= @license.text_field :name %>
+      </p>
+      <p>
+       <%= f.label 'Label' %><br />
+        <%=  input_field 'public_license','label', 'text', @license.label.nilstring, {:size => '25'} %>
+      </p>
+      <p>
+        <%= f.label 'Link' %>&nbsp;(only use if you're referencing a license on another website)<br />
+        <%=  input_field 'public_license', 'url', 'text', @license.url.nilstring, {:size => '30'} %>
+    </p>
+      <p>
+         <%= f.label 'License Description' %>&nbsp;(only use if you're defining your own license)<br />
+        <%=  input_field 'public_license','description', 'textarea', @license.description.nilstring , {:rows => '10', :cols => '50'} %>
+
+      </p>
+      </div>
+    </div>
+
+
+<% end %>
+
+

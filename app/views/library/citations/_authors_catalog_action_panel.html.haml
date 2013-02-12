@@ -1,0 +1,11 @@
+- if params[:interact_mode] == 'edit'
+  .widget.action_panel.bar{ id: id }
+    .button.active{ value: 'Remove' }
+      %table
+        %tr
+          %td
+            %img{:src => "/images/16-em-cross.png"}
+          %td
+            %span Remove
+
+    .selected_count{style: 'float: right;'}= count_num

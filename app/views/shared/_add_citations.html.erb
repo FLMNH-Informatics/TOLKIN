@@ -1,0 +1,18 @@
+<% search_url_options ||= {} %>
+<% ajax_submit = true if ajax_submit.nil? %>
+<div id="windowtitle" class="windowtitle">
+    <span id="title" class="title">Library Reference Search | <span onClick="show_div_new_citation()" style='text-decoration: underline;cursor: pointer'>Create Citation</span></span>
+    <span id="closebutton" class ="closebutton" onClick=<%="$('div_add_citations#{add_citations.id}').hide();"%>><%= link_to "X", "javascript:void(0)" %>
+    </span>
+</div>
+<div>
+    <%= render :partial=>"/library/citations/search_filters", :locals => { :search_filters => Library::Citation.new, :id => add_citations.id, :search_url_options => search_url_options}%>
+</div>
+<% form_for :search_filters,  :remote => true, :url => { :id => params[:id], :action => "citation_add" }.merge(search_url_options), :html => (ajax_submit == false) ? {:onsubmit => "return true"} : {} do |f| %>
+<h5>Listing citations</h5>
+<%#*hotfix to send :otu object to form%>
+<%= raw otus_params if params[:controller] == 'otus' %>
+<div id=<%="div_citation_list#{add_citations.id}"%>>
+</div>
+<%= submit_tag 'Add Library Refs' %>
+<%  end %>

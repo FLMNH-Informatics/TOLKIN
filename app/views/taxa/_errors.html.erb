@@ -1,0 +1,6 @@
+<%#= generates the template for the erros input is the list of objects where errors happened and i am going to just render the error messages of each object%>
+<ul>
+<%errors.each do |key, val|%>
+	<li type=circle><FONT COLOR='#FF0000'> <%=key + " " +val%> </FONT></li>
+<%end %>
+</ul>

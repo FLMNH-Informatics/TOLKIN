@@ -1,0 +1,70 @@
+<%= link_to 'Back', project_collections_path(params[:project_id],nil,:page=>params[:page]) %>
+
+<% for column in Collection.content_columns %>
+<%if column.human_name!="Annotations"%>
+	<% if column.human_name=="Elevation unit" %>
+			<b><%= column.human_name %>:</b> <%if !@collection.elevation_unit.nil? %><%=@collection.elevation_unit.name%> <%end%><br>
+	<% elsif column.human_name=="Herbarium" %>
+		<b>Herbariorum:</b>
+		<% if !@collection.nil? && !@collection.id.nil? && !@collection.herbarium.nil? && @collection.herbarium.strip!=""%>
+			<%= @collection.herbarium %> <a href="http://sweetgum.nybg.org/ih/herbarium_list.php?+Search+=+Search+&QueryName=DetailedQuery&QueryPage=/ih/index.php&Restriction=NamPartyType+%3D+%27IH+Herbarium%27&StartAt=1&col_NamOrganisationAcronym=<%=@collection.herbarium%>" target="_blank">Index Herbariorum</a>
+		<% end %>
+	<% elsif column.human_name.upcase =="FRUITING" || column.human_name.upcase =="FLOWERING" || column.human_name.upcase == "SILICA SAMPLE"%>
+	<b><%= column.human_name %>:</b> <%=@collection.send(column.name+"?")%>
+	<% elsif column.human_name.upcase =="LAST UPDATED BY" %>
+	<b><%= column.human_name %>:</b> <%=@collection.updated_by.login%>
+	<% else %>
+		<p>
+		  <b><%= column.human_name %>:</b> <%= @collection.send(column.name) %>
+		  <% if column.human_name=="Collector" %>
+		  	<td><%= render :partial=>"tags/tagme", :locals => { :tagme => @collection } %>
+				<%= render :partial=>"shared/mark_record", :object => @collection %>
+			</td>
+		  <%end %>
+		  <% if column.human_name=="Verbatim coll date" %>
+		  		</p>
+				<p><b>Taxon:</b>
+					<% if !@collection.nil? && !@collection.id.nil? && !@collection.taxon.nil? %>
+						<%=link_to @collection.taxon.name,project_taxon_path(@collection.taxon.project_id,@collection.taxon.id) %>
+					<% end %>
+				</p>
+			<%end%>
+		</p>
+	<% end %>
+<% end %>
+<% end %>
+
+
+<b>Annotaions</b>
+<table border="1" id="collection_tblSample" width="70%" >
+  <tr>
+    	<td>
+    taxon
+    </td>
+	<td>
+    name
+    </td>
+<td>
+    date
+    </td>
+    <td>
+      institution
+    </td>
+  </tr>
+<% for element in @collection.annotations %>
+<%debugger%>
+  <tr>
+	<td> <%=element.taxon %>
+    </td>
+	<td> <%=element.name %>
+    </td>
+<td> <%=element.date %>
+    </td>
+<td> <%=element.inst %>
+    </td>
+  </tr>
+<% end %>
+
+</table>
+
+

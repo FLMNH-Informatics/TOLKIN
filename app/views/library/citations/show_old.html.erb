@@ -1,0 +1,21 @@
+<!--
+<b>Authors:<#%@citation.people.each do |author| %>
+    <#%= link_to full_author_name(author), project_person_path(params[:project_id],author.id ) %>,<#%end %>
+</b>
+<#% Library::Citation.content_columns.each do |column| %>
+<#% if @citation[:type].constantize.attr_accessible.include?(column.name) %>
+<p>
+    <b><#%= h column.name.camelize %>:</b>
+    <b><#%= h @citation.send(column.name) %></b>
+</p>
+<#% end %>
+<#% end %>
+<#%debugger %>
+<b>Citation File:</b>
+<#%if !@citation.citation_files_id.nil? %>
+<#%= link_to @citation.citation_file.original_name,
+getfile_project_library_citations_path(params[:project_id], :id=>@citation.id) %>
+<#% end %>
+<br/>
+<#%= link_to 'Edit', edit_project_library_citation_path(params[:project_id], @citation) %> |<#%= link_to 'Back', project_library_citations_path(params[:project_id]) %>
+-->

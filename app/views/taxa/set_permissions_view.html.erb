@@ -1,0 +1,55 @@
+<% form_tag set_permissions_project_taxa_path do %>
+
+<input type="hidden" name="json_finder_params" value="<%= @json_finder_params %>" />
+
+Select named permissions: <br />
+<%= render partial: 'permissions_drop_down'  %>
+<br /><br />
+
+
+<table>
+  <tr>
+    <td>
+      <table>
+      <% @roles.each do |role| %>
+        <tr>
+          <td><%= role.label %></td>
+          <td style="background-color: <%= (color = set_perm_view_color(role.permissions, 'view')) %>">
+            <input  type="checkbox" name="permissions[role][<%= role.rtid %>][visible]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.visible) ? "checked='true'" : '' %> /> View
+          </td>
+          <td style="background-color: <%= (color = set_perm_view_color(role.permissions, 'edit')) %>">
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][editable]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.editable) ? "checked='true'" : '' %> /> Edit
+          </td>
+          <td style="background-color: <%= (color = set_perm_view_color(role.permissions, 'delete')) %>">
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][deletable]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.deletable) ? "checked='true'" : '' %> /> Delete
+          </td>
+          <td style="background-color: <%= (color = set_perm_view_color(role.permissions, 'permit')) %>">
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][permissible]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.permissible) ? "checked='true'" : '' %> /> Permit
+          </td>
+        </tr>
+      <% end %>
+      </table>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td style="background-color: green"></td>
+          <td>Permitted</td>
+        </tr>
+        <tr>
+          <td style="background-color: yellow"></td>
+          <td>Mixed</td>
+        </tr>
+        <tr>
+          <td style="background-color: red"></td>
+          <td>Not Permitted</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+Name this set of permissions:
+<input type="text" name="permissions[permission_set_label]"/>
+
+<% end %>

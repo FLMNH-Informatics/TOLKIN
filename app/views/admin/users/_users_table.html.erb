@@ -1,0 +1,15 @@
+<table id="project_users_table" class="chart_main">
+  <tr>
+    <th class="h">Name</th>
+    <th class="h">Username</th>
+    <th class="h">Email</th>
+    <th class="h">Enabled?</th>
+    <th class="h"></th>
+    <% if current_user.is_admin? -%>
+      <th class="h"></th>
+      <% end -%>
+  </tr>
+  <%= render :partial => 'admin/user', :collection => @users %>
+</table>
+
+<span class="bodytext"><%= will_paginate @users %></span>

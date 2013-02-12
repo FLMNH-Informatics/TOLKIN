@@ -1,0 +1,16 @@
+<div id="windowtitle" class="windowtitle">
+    <span id="title" class="title">Create New Citation</span>
+    <span id="closebutton" class ="closebutton" onClick="$('div_new_citation').toggle();"><%= link_to "X", "javascript:void(0)" %>
+    </span>
+</div>
+<%= collection_select("citation", :type, Library::CitationType.find(:all), :name, :name, {} ,:id=> 'select_new_citation_type') %>
+<%=
+#FIXME link_to_remote
+link_to 'New Citation',
+ new_project_library_citation_path(params[:project_id], :format => "js")
+#:method => :get,
+#:update => { :success =>"div_create_new_citation", :failure => "div_create_new_citation"},
+#:with=> "'citation[type]='+$('select_new_citation_type').value"
+%>
+<div id="div_create_new_citation">
+</div>

@@ -1,0 +1,32 @@
+.cell_headings
+  Otu:
+  %br
+  %a{:href => project_otu_path(@project, @otu, {:matrix_id => @timeline.id}), :target => '_blank'}
+    = @otu.name
+  %br
+  Character:
+  %br
+  %a{:href => project_morphology_matrix_character_path(@project, @timeline, @character), :target => '_blank'}
+    = @character.name
+= form_for :cell, @cell, :id => 'morphology_cell_form' do |f|
+  = hidden_field(:character, :id, {:name => "cell[character_id]"})
+  = hidden_field(:otu, :id, {:name => "cell[otu_id]"})
+  .states_container
+    = f.label :states, 'States:'
+    %br
+    = raw states_checkbox_list
+  .status_container
+    = f.label :status, 'Status:'
+    %br
+    = interact_mode == 'browse' || params["action"] == "show_cell_info" ?  raw(%(<input disabled="true" value="#{@cell.status}" />)) : (f.select :status, ['incomplete','problem','complete'])
+  .notes_container
+    = f.label :notes, 'Notes:'
+    %br
+    = f.text_area :notes, :style => 'height:100px', :disabled => interact_mode == 'browse' || params["action"] == "show_cell_info" ? true : false
+  - unless params["action"] == "show_cell_info" || interact_mode == "browse"
+    .image_upload
+      Add Image:
+      %br
+      = f.file_field :uploaded_data
+      #upload
+      %iframe{:id => 'upload_frame', :name => 'upload_frame', :style => 'width:1px;height:1px;border:0px', :src => 'about:blank'}

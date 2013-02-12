@@ -1,0 +1,8 @@
+<tr class="<%= cycle('body-odd', 'body-even') %>">
+    <td class="b">
+        <%= link_to h(person.display_name), edit_project_person_path(params[:project_id],person) %>
+    </td>
+    <td class="b">
+        <%= link_to 'Delete', project_person_path(params[:project_id],person), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+</tr>

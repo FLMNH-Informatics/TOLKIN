@@ -1,0 +1,7 @@
+- if @shared_history
+  %tr
+    %td{:colspan => 2}
+      These matrices are related historically.  Can perform history-based or overriding merge
+- else
+  %tr
+    %td{:colspan => 2} These matrices are not related historically.  Need to perform overriding merge.  <br/> Conflicting data on the to-matrix will be overwritten with data from the from-matrix.

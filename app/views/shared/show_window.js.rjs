@@ -1,0 +1,16 @@
+# reload js params hash
+page << "params = #{params.to_json};"
+
+window_name = @window_name if @window_name
+page << "if($('#{window_name.to_s}')) {"
+  page.replace window_name.to_s, :top, 'viewport', :'z-index' => 20, :width => '150px', :partial => window_name.to_s
+page << "} else {"
+  page.insert_html :bottom, :contents, :partial => window_name.to_s
+page << "}"
+
+# include js file for partial if it exists
+js_include_filepath = "public/javascripts/#{controller.controller_path}/_#{window_name}.js"
+page << File.open(js_include_filepath, "r") { |io| io.read } if FileTest.exists?(js_include_filepath)
+
+page.call :positionWindow, window_name
+page.visual_effect :appear, window_name, { :duration => 0.3 }

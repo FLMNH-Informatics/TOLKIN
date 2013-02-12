@@ -1,0 +1,21 @@
+<form method="post" action="<%=add_to_group_project_otus_path %>" id="form_add_to_otu_grp">
+  <input type="hidden" name="conditions" value="<%= params[:conditions] %>" />
+  <div class="formrow">
+    <%=label 'otu_group', 'otu_group' %>
+    <span class="smallfield">
+      <%= select_tag("otu_group_id", raw("<option value='-1'>Please Select A Group</option><option value='-1'></option>" + options_for_select(@otu_groups.collect {|o| [ o.name, o.id ]}))) %>
+    </span>
+  </div>
+  <div class="submitbuttonrow">
+    <span class="titletext"> OR </span>
+  </div>
+  <div class="formrow">
+    <%=label 'Create New otu_group', 'Create New otu_group' %>
+    <span class="smallfield">
+      <%= text_field :otu_group, :name, :size => 30 %>
+    </span>
+  </div>
+  <div class="submitbuttonrow">
+    <%= submit_tag "Add", :class => "simple-button"  %>
+  </div>
+</form>

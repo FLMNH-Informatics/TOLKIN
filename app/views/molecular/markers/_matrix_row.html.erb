@@ -1,0 +1,14 @@
+<tr class="<%= raw cycle("body-even","body-odd") %>" data-timeline-id="<%= raw timeline.id %>">
+  <td>
+    <%= raw link_to(timeline.matrix.name, project_molecular_matrix_path(current_project,timeline), :target => "_blank") %>
+  </td>
+  <td>
+    <%= raw timeline.version_number %>
+  </td>
+  <td>
+    <%= raw truncate(timeline.description, :length => 50) %>
+  </td>
+  <td>
+    <%= raw timeline.deleted? ? 'Yes' : 'No' %>
+  </td>
+</tr>

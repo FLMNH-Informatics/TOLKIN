@@ -1,0 +1,13 @@
+.widget.filters{ id: id }
+  .filters-inner
+    Filter by:
+    %select{ name: 'filter_select' }
+      = raw select_options
+    %form{ method: 'get' }
+      .search_button_row
+        %input{ type: 'submit', value: 'Search'}
+      <div class='visibility-toggle hide-control'><span class='hide-control'>Hide</span><span class='show-control'>Show</span></div>
+      %table.container
+        %tbody
+          = filter_rows
+      

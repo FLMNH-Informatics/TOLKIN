@@ -1,0 +1,35 @@
+<div id="detailsdiv" class="detailsdiv">
+
+  <table>
+    <tr>
+      <td><span class="titletext">Legend: </span></td>
+      <td height="5px" width="10px" class="swatch a"></td>
+      <td class="b" width="50px">(I)ncomplete</td>
+      <td height="5px" width="10px" class="swatch b"></td>
+      <td class="b" width="50px">(C)omplete</td>
+      <td height="5px" width="10px" class="swatch c"></td>
+      <td class="b" width="50px">(P)roblem</td>
+      <td></td>
+
+      <td>
+        <span class="titletext">Name: </span>
+        <span class="bodytext"><%=h truncate @matrix.name, :length => 50 %></span>
+        <span class="titletext">Description:</span>
+        <span class="bodytext"><%=h truncate @matrix.description, :length => 50 %></span>
+      </td>
+      <td>
+        <span id="details_div_more">
+          <%= link_to_remote 'view/edit details', :url => show_matrix_details_project_morphology_matrix_path, :method => :get %>
+        </span>
+      </td>
+      <% if @matrix.parent %>
+        <td>
+          <span class="titletext">Sub matrix of:</span>
+          <span>
+            <%= link_to @matrix.parent.name,project_morphology_matrix_path(@project.id, @matrix.parent.max_branch_item.item.to_param) %>
+          </span>
+        </td>
+      <%  end %>
+    </tr>
+  </table>
+</div>

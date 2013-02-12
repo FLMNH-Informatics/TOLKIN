@@ -1,0 +1,19 @@
+.windowtitle Workflows
+%br
+#user_workflows_dropdown.toggle_dropdown
+  %span.toggle_icon +
+  %span.toggle_text
+    = @current_user.login
+    /==(#{@current_user.workflows.size})
+    (3)
+  %ul.dropdown
+    /- @current_user.workflows.each do |workflow|
+    /%li= workflow.name
+    %li Workflow 1
+    %li Workflow 2
+    %li Workflow 3
+#template_workflows_dropdown.toggle_dropdown
+  %span.toggle_icon +
+  %span.toggle_text templates (1)
+  %ul.dropdown
+    %li alignment-tree-building

@@ -1,0 +1,13 @@
+#viewport
+  = render_user_panel_if_present
+  %table
+    %tr
+      %td
+        = page_header
+    %tr.lastTR
+      %td#page_1
+        = main_content_frame
+  #viewport_user_notification_toast.widget.toast{ style: "display: none"}
+    %span.close_button X
+    .contents Testing ...
+  = render(:partial=>"issues/feedback", :layout=>false) if logged_in?

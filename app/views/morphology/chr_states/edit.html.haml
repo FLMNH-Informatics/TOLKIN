@@ -1,0 +1,18 @@
+= form_for(@chr_state, :url => optional_matrix_resource_url(:controller => :chr_states, :action => :update, :project_id => params[:project_id], :matrix_id => params[:matrix_id], :character_id => @chr_state.character.id, :id => @chr_state.id)) do |f|
+  %table
+    %tr
+      %td.td_right.td_top
+        %span.titletext Name
+      %td.td_right.td_top
+        = f.text_area :name, {:style => 'height: 35px; width: 242px;', :disabled => interact_mode == 'browse' ? true : false}
+    %tr
+      %td.td_right.td_top
+        %span.titletext Polarity:
+      %td.td_right.td_top
+        %span.bodytext
+          = f.select :polarity, Morphology::ChrState.polarities, :disabled => interact_mode == 'browse' ? true : false
+    %tr
+      %td.td_right.td_top
+        %span.titletext Description:
+      %td.td_top{:colspan => 3}
+        = f.text_area :description, {:style => 'height: 100px;width: 242px;', :disabled => interact_mode == 'browse' ? true : false}

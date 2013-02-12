@@ -1,0 +1,7 @@
+Name: <%= object.first_name %> <%= object.last_name %><br />
+Login: <%= object.login %><br />
+Email: <%= object.email %><br />
+Institution: <%= object.institution %><br />
+Location: <%= object.city %>, <%= object.state %>, <%= object.country %><br />
+Enabled: <%= object.enabled %>
+<%= render :partial => 'granted_roles/add_role_form', :locals => { :roles => @roles, :projects => @projects, :user_id => object.id }  %>

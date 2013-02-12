@@ -1,0 +1,11 @@
+%span.selected.head
+  %a.cell_images{:href => "#"}Images
+%span.unselected.head
+  %a.cell_citations{:href => "#"}Citations
+%br
+.morphology_cell_info
+  .morphology_cell_images.morphology_selected
+    = render :partial => 'cell_images.html.haml'
+  .morphology_cell_citations.morphology_unselected
+    - unless params["action"] == 'new'
+      = render :partial => 'cell_citations.html.haml'

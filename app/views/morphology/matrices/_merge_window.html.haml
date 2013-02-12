@@ -1,0 +1,28 @@
+#mergeWindow.window
+  = raw window_head 'Merge Matrices', 'mergeWindow'
+  - form_tag merge_project_morphology_matrices_path(@project) do
+    #note_box{:style => 'padding: 5px; font-weight: bold;'} Note : cells in from-matrix will always overwrite cells in with-matrix when overlapping
+    %table
+      %tr.form_row
+        %td.form_heading{:colspan => 4} From Matrix:
+      %tr.form_row
+        %td= label_tag :from_name, "name"
+        %td= text_field_with_auto_complete :branch, :name, { :id => :from_matrix_name_field, :name => 'merge[from_name]'}, { :method => :get }
+        %td= label_tag :from_version, "version"
+        %td= select :merge, :from_version, [ ], { }, { :id => :from_matrix_version_select }
+      %tr.form_row
+        %td.form_heading{:colspan => 4} With Matrix:
+      %tr.form_row
+        %td= label_tag :to_name, "name"
+        %td= text_field_with_auto_complete :branch, :name, { :id => :to_matrix_name_field, :name => 'merge[to_name]' }, { :method => :get }
+        %td= label_tag :to_version, "version"
+        %td= select :merge, :to_version, [ ], { }, { :id => :to_matrix_version_select }
+      %tr.form_row
+        %td= label_tag :merge_as
+        %td= select :merge, :merge_as, [ "new matrix", "next version of from matrix", "next version of with matrix" ]
+    .submitbuttonrow
+      %input.simple-button{:type => 'submit', :value => 'submit', :onclick => "document.getElementById('busy').style.display='block';" }
+
+  = render :partial => 'shared/busy_indicator', :locals => { :display_text => "Please Wait.." }
+
+= draggable_element :mergeWindow

@@ -1,0 +1,4 @@
+page.insert_html :bottom, :chrstatesdiv, :partial => 'chr_state', :object => @chr_state
+page.replace_html :notice, flash[:notice]
+page["newchrstatediv"].hide
+flash.discard

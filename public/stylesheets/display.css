@@ -1,0 +1,609 @@
+#nsf_funding_information {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  font-family: verdana;
+  font-size: x-small;
+  color: gray;
+}
+
+#notice_window {
+  z-index: 20;
+}
+
+.window_title .closebutton {
+  float: right;
+  cursor: pointer
+}
+
+#login_box {
+  width: 200px;
+  height: 175px;
+  background-color:#FAF9EF;
+  border:2px solid #CDCDCD;
+  padding: 20px 30px;
+}
+
+#login_outer {
+  width: 264px;
+  height: 219px;
+  margin: 10px;
+  margin-top: 5px;
+  border: 2px solid #A8A8A3;
+}
+
+#project_list {
+  margin-bottom: 20px;
+}
+
+div.hidden{
+  display:none;
+}
+input.hidden{
+  display:none;
+}
+div#tolkin_fb{
+  display:none;
+}
+#fb_img{
+  width:25px;
+  height:60px;
+  cursor:pointer;
+}
+
+#fb_btn {
+  float: right;
+  width: 30%;
+  margin: 10px;
+}
+
+.fb_form div textarea {
+  width: 98%;
+}
+
+.fb_form div input {
+  float: left;
+  width: 98%;
+}
+
+#overlay_preamble h2 {
+  background-color: #FFF3B3;
+}
+
+.fb_main #fb_pad {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+div#overlay_header span {
+  color: white;
+  float: right;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+div#overlay_header {
+  background-color: #000000;
+  height: 34px;
+}
+
+div.fb_main {
+  background-color: #FFFDF3;
+  width: 37%;
+  border-style: solid;
+  z-index: 1000;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+}
+
+#tolkin_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 0.42;
+  z-index: 999;
+}
+/* END FOR FEEDBACK */
+
+td.subitem {
+  padding-left: 15px;
+}
+
+td.submit_button_cell {
+  text-align: right;
+}
+
+.search_results_box {
+  height: 300px;
+  width: 600px;
+  background-color: white;
+  border: 1px solid gray;
+  overflow: auto;
+}
+
+.notice_area {
+  text-align: center;
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 85%;
+  color: green;
+  font-weight: bold;
+}
+
+#app_logo_and_title {
+  position: relative;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#current_project_and_login_info {
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 12px;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #ABABAB;
+  background-color: #FAF9EF;
+}
+
+#logo_and_switch {
+  border-collapse: collapse;
+}
+
+#logo_and_switch > tbody > tr > td {
+  vertical-align: top;
+  padding: 0px;
+}
+
+#user_info_box * {
+  font-size: 10px;
+}
+
+#user_info_box {
+
+  padding: 0px;
+  float: right;
+  position: relative;
+  z-index: 3;
+  background-color: white;
+}
+
+#feedback_button_cell {
+  border: 1px solid black;
+  background-color: black;
+}
+
+#user_info_box table {
+  border-collapse: collapse;
+}
+
+
+#login_info {
+  margin-top: 5px;
+}
+
+.table-header {
+  background-color:   #8c8c8c;
+  color: #ffffff;
+}
+.h {
+  background-color:   #8c8c8c;
+  color: #ffffff;
+}
+.body-odd {
+  background-color:   #eeeeee;
+  color: #000000;
+}
+.body-even {
+  background-color:   #ffffff;
+  color: #000000;
+}
+
+.my
+{
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 80%;
+  background-color: #FFEC8B;
+}
+
+.mr
+{
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 80%;
+  background-color: #FF0000;
+}
+
+.mg
+{
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 80%;
+  background-color: #DCD9D8;
+}
+
+.mb
+{
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 80%;
+  background-color: #B0E2FF;
+}
+
+.mp
+{
+  font-family: tahoma, verdana, sans-serif;
+  font-weight: bolder;
+  font-size: 80%;
+  background-color: #FFB5C5;
+}
+
+th.h {
+  font-family: tahoma, verdana, sans-serif;
+  font-weight: bolder;
+  font-size: 80%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+th.nb {
+  font-family: tahoma, verdana, sans-serif;
+  font-weight: bolder;
+  font-size: 80%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-left-style: hidden;
+  border-right-style: hidden;
+
+}
+
+th.nb a {
+  text-decoration: none;
+}
+
+th.nrb {
+  font-family: tahoma, verdana, sans-serif;
+  font-weight: bolder;
+  font-size: 80%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-right-style: hidden;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #fefefe;
+
+}
+
+th.nlb {
+  font-family: tahoma, verdana, sans-serif;
+  font-weight: bolder;
+  font-size: 80%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-left-style: hidden;
+
+}
+
+td.h {
+  font-family: tahoma, verdana, sans-serif;
+  font-weight: bolder;
+  font-size: 80%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+th.h a {
+  text-decoration: none;
+}
+
+td.h a {
+  text-decoration: none;
+}
+
+td.b, .check_list td {
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 80%;
+}
+
+td.b a {
+  text-decoration: none;
+}
+/*
+
+td.btp, td#problem_swatch {
+  font-family: tahoma, verdana, sans-serif;
+  padding: 3px;
+  background-color: #fe4f4f;
+  height: inherit;
+}
+
+td.bti, td#incomplete_swatch {
+  font-family: tahoma, verdana, sans-serif;
+  padding: 3px;
+  background-color: #fde981;
+  height: inherit;
+}
+
+td.btc, td#complete_swatch {
+  font-family: tahoma, verdana, sans-serif;
+  padding: 3px;
+  background-color: #9be6fd;
+  height: inherit;
+}
+
+td.btn, td#nostatus_swatch {
+  font-family: tahoma, verdana, sans-serif;
+  padding: 3px;
+  background-color: #EBE;
+  height: inherit;
+}
+
+.bti, .btc, .btn, .btp {
+  text-align: center;
+  font-size: 9px;
+}
+
+td.btp a {
+  text-decoration: none;
+}
+
+td.bti a {
+  text-decoration: none;
+
+}
+
+td.btc a {
+  text-decoration: none;
+}
+*/
+
+#contentpane  {
+  width: 84%;
+  position: relative;
+
+  margin-top: 2px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+h5.reducedpadding {
+
+  padding-top: 3px;
+  padding-bottom: 8px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+h4.reducedpadding {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#navpane, #right_nav {
+  float: right;
+  width: 13%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #cdcdcd;
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  z-index:10;
+}
+
+.listmain {
+  list-style: none;
+  font-family: tahoma, verdana, sans-serif;
+  text-decoration: none;
+  font-size: 85%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+  line-height: 20px;
+  text-indent: 10px;
+}
+
+div.sectiontitle {
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+
+.titletext, .title_text {
+  padding-bottom: 3px;
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 85%;
+  font-weight: bold;
+}
+
+.bodytext, .bodytext *, .body_text {
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 11px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+
+}
+
+.bodytext.large, .bodytext.large * {
+  font-size: 15px;
+}
+
+.bodytext a {
+  text-decoration: none;
+  font-family: tahoma, verdana, sans-serif;
+
+}
+.bodytext.inactive {
+  color: gray;
+}
+
+.double_arrow {
+  font-size: 20px;
+}
+
+span.pagetitletext {
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 85%;
+}
+
+div.detailsdiv {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+div.statecodings {
+  width:84%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 0px;
+  margin-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 2px;
+}
+
+div.leftcolumn {
+  width: 5%;
+  float: left;
+}
+div.rightcolumn {
+  position:relative;
+  margin:0 auto;
+  border:0px;
+  overflow:auto;
+  overflow-y:hidden;
+
+}
+
+div.imagesdiv {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+img.noborderimage {
+
+
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-top-width: 3px;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+  border-right-width: 3px;
+  border-top-color: #c7c7c7;
+  border-bottom-color: #c7c7c7;
+  border-left-color: #c7c7c7;
+  border-right-color: #c7c7c7;
+}
+
+div.thumbnail
+{
+  float: left;
+  width: 110px;
+  height: 85px;
+
+  padding: 5px;
+}
+
+div.clearer {
+  display: block;
+
+}
+
+div.tooltip
+{
+  padding: 5px;
+  background-color: #FFF8DC;
+  border: 1px solid #DEB887;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #6b6b6b;
+  display:none;
+  position:absolute;
+  left:0px;
+  top:0px;
+  z-index: 5000;
+}
+
+
+
+
+
+.tableFooter{
+  height:20px;
+  position:relative;/*Making footer static for ie */
+  top:expression(this.offsetParent.clientHeight - this.offsetParent.scrollHeight + this.offsetParent.scrollTop);/*Making footer static for ie*/
+  Z-Index:2;/*Keeps text under header  */
+  text-wrap:suppress;
+  text-align:left;
+  color:white;
+  background-color:purple;
+}
+
+
+.tableSpacer{/*Keeps the body the same height */
+             height:100%;
+}
+.fixed {
+  position: relative;/*Making left column static for ie  */
+  left: expression(parentNode.parentNode.parentNode.parentNode.scrollLeft-2); /*Making left column static for ie  */
+  color:white;
+  background-color:purple;
+}
+
+
+
+
+table.coding {
+  border-color: #fefefe;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
+
+#projects_body {
+  padding: 0px 20px 0px 20px
+}

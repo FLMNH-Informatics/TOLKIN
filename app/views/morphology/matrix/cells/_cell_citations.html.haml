@@ -1,0 +1,5 @@
+.cell_citations{:style => "width:450px"}
+  - unless params["action"] == "show_cell_info" || interact_mode == "browse"
+    %input{:type => 'button', :value => 'Add Citation', :class => 'add_citation', :data => {:cell_id => @cell.id.to_s}}
+  %br
+  = raw display_cell_citations

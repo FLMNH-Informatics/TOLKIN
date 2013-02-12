@@ -1,0 +1,17 @@
+<% form_tag remove_marker_project_molecular_matrix_path(params[:project_id]), { :method => :put, :name => "form_marker_list", :id=>"form_marker_list"} do %>
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" />
+  <table id="markers_list">
+    <tr>
+      <th class="h"></th>
+      <th class="h">Pos</th>
+      <th class="h">Name</th>
+      <th class="h" width="100px">Type</th>
+      <th class="h" colspan="5">Action</th>
+    </tr>
+    <tbody>
+      <% @matrices_markers.each do |mmarker| %>
+        <%= render :partial => "modify_matrix_markers_row.html.erb", :locals => {:mmarker => mmarker} %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,382 @@
+#NEXUS
+[written Sun Apr 13 13:59:23 EDT 2008 by Mesquite  version 2.01+ (build j52) at NMNHN-CODDINGT/172.17.227.145 (Jonathan Coddington)]
+
+BEGIN TAXA;
+	TITLE 'Scharff&Coddington_1997_Araneidae';
+	DIMENSIONS NTAX=70;
+	TAXLABELS
+		Dictyna Uloborus Deinopis Nephila Nephilengys Meta Leucauge Pachygnatha Tetragnatha Theridiosoma Linyphia Pimoa Theridion Chorizopes Gasteracantha Aetrocantha Togacantha Gastroxya Augusta Isoxya Austracantha Macracantha Aspidolasius Caerostris Hypognatha Arkys Archemorus Encyosaccus Xylethrus Chaetacis Micrathena Mastophora Cyrtarachne Pasilobus Arachnura Witica Mecynogea Cyrtophora Neogea Argiope Gea Scoloderus Acanthepeira Anepsion Dolophone Hypsosinga Zygiella Kaira Metepeira Singa Larinia Neoscona Mangora Cercidia Pronous Aculepeira Araneus Bertrana Alpaida Enacrosoma Wixia Acacesia Metazygia Eustala Cyclosa Nuctenea Colphepeira Araniella Eriophora Verrucosa 
+	;
+	IDS JC1191fcddc2b128 JC1191fcddc2b129 JC1191fcddc2b130 JC1191fcddc2b131 JC1191fcddc2b132 JC1191fcddc2b133 JC1191fcddc2b134 JC1191fcddc2b135 JC1191fcddc2b136 JC1191fcddc2b137 JC1191fcddc2b138 JC1191fcddc2b139 JC1191fcddc2b140 JC1191fcddc2b141 JC1191fcddc2b142 JC1191fcddc2b143 JC1191fcddc2b144 JC1191fcddc2b145 JC1191fcddc2b146 JC1191fcddc2b147 JC1191fcddc2b148 JC1191fcddc2b149 JC1191fcddc2b150 JC1191fcddc2b151 JC1191fcddc2b152 JC1191fcddc2b153 JC1191fcddc2b154 JC1191fcddc2b155 JC1191fcddc2b156 JC1191fcddc2b157 JC1191fcddc2b158 JC1191fcddc2b159 JC1191fcddc2b160 JC1191fcddc2b161 JC1191fcddc2b162 JC1191fcddc2b163 JC1191fcddc2b164 JC1191fcddc2b165 JC1191fcddc2b166 JC1191fcddc2b167 JC1191fcddc2b168 JC1191fcddc2b169 JC1191fcddc2b170 JC1191fcddc2b171 JC1191fcddc2b172 JC1191fcddc2b173 JC1191fcddc2b174 JC1191fcddc2b175 JC1191fcddc2b176 JC1191fcddc2b177 JC1191fcddc2b178 JC1191fcddc2b179 JC1191fcddc2b180 JC1191fcddc2b181 JC1191fcddc2b182 JC1191fcddc2b183 JC1191fcddc2b184 JC1191fcddc2b185 JC1191fcddc2b186 JC1191fcddc2b187 JC1191fcddc2b188 JC1191fcddc2b189 JC1191fcddc2b190 JC1191fcddc2b191 JC1191fcddc2b192 JC1191fcddc2b193 JC1191fcddc2b194 JC1191fcddc2b195 JC1191fcddc2b196 JC1191fcddc2b197 ;
+	BLOCKID JC1191fcddc0c4;
+
+END;
+
+
+BEGIN CHARACTERS;
+	TITLE  'Scharff&Coddington_1997_Araneidae';
+	DIMENSIONS  NCHAR=82;
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2 3 4 5 6";
+	CHARSTATELABELS 
+		1 Tibia_II /  norm modified, 2 TII_macrosetae /  '= TI' stronger, 3 Femoral_tuber /  abs pres 'm-setae', 4 'Palp patellar m-setae' /  abs pres, 5 Cymbium /  dorsal mesal lateral, 6 Paracymbium /  abs pres, 7 Globular_tegulum /  abs pres, 8 Conductor_shape /  entire w_lobe, 9 Conductor_wraps_embolus /  abs pres, 10 Median_apophysis /  pres abs, 11 MA_bifid_prong /  abs pres, 12 MA_threadlike_spur /  abs pres, 13 MA_w_transparent_flap /  abs pres, 14 MA_large_w_fork /  abs pres, 15 MA_ant_margin /  smooth toothed, 16 Radix /  abs pres, 17 Distal_hematodocha /  abs pres, 18 Paramedian_apophysis /  abs pres, 19 Stipes /  abs pres, 20 Subterminal_apophysis /  abs pres, 21 Subterm_apophysis /  norm bubble, 22 Terminal_apophysis /  abs pres, 23 Embolus_tip /  simple w_cap, 24 Embolus /  clockwise anticlockwise, 25 F_genitalia /  entelogyne haplogyne, 26 Epigynum /  pres abs, 27 Genital_tubercle /  abs pres, 28 Scape /  abs pres, 29 Scape /  normal elongate, 30 Scape_w_pocket_tip /  abs pres, 31 Scape /  smooth wrinkled, 32 'M Coxa + TrIV setae' /  normal stout, 33 Coxa_I_hook /  abs pres, 34 Femur_II_w_groove /  abs pres, 35 Femur_IV_trichobothria /  abs pres, 36 'Pat-tibial autospasy' /  abs pres, 37 MtIV_trichobothria /  0_or_1 many, 38 'Tibia-Metatarsus' /  norm flattened, 39 Serrate_accessory_claw_setae /  a p, 40 Sustentaculum /  abs pres, 41 Carapace /  hirsute glabrous, 42 F_carapace_shape /  'L>W' 'W(L', 43 M_carapace_shape /  oval Gast wide, 44 Cheliceral_margin /  smooth strid, 45 Endite_tooth /  abs pres, 46 Clypeal_tooth /  abs pres, 47 F_Cephalon /  norm enlarged, 48 Cephalon_height /  normal high, 49 'Anterior:Posterior MOA (m72)' /  '<1' '>1', 50 'Lat.-median eye separation' /  '<1' '>1', 51 PME_canoe_tapetum /  abs pres, 52 PME_narrow_tapetum /  abs pres, 53 PLE_canoe_tapetum /  norm red abs, 54 PE_row /  str_to_recurved procurved, 55 Feathery_hairs /  abs pres, 56 Abdominal_sigillae /  abs pres, 57 Abd._sigillae /  scatt 1_row 2_rows, 58 F_abd_w_ventral_condyles /  abs pres, 59 M_abd._shape /  norm Gast U 3 4 5 6, 60 Abdominal_shape /  'L>W' 'W>L', 61 'F-M size' /  '<2x' '>2x', 62 Gast_abdominal_spines /  abs pres, 63 Booklung_cover /  smooth strid, 64 Booklung_cover /  norm grooved, 65 Sclerotized_ring /  abs scl solid, 66 Spiracle /  normal sclerotized, 67 'Cp + abd setal bases' /  normal gast, 68 Cribellum /  pres abs, 69 ALS_PY_bases /  normal reduced, 70 Narrowed_PY_fields /  abs pres, 71 PMS_paracrib /  strob deinopoid abs, 72 PMS_mAP_nubbins /  abs pres, 73 PMS_AC_brush /  pres 'reduced-absent', 74 Orb /  abs pres lost, 75 Orb /  w_SS no_SS, 76 Radius_behaviour /  Ar Ul Cy Ne, 77 'Non-sticky spiral' /  temporary perm, 78 SS_localization /  oL1 iL1 L4, 79 'Low-shear SS lines' /  abs pres, 80 Very_sticky_SS /  abs pres, 81 Extreme_L4_combing /  abs pres, 82 Rest_posture /  L12_flexed L12_extend ; 
+	MATRIX
+	Dictyna        0000200001-----0-000-0000000---0000000000000000000100000-00000000000000000-------0
+	Uloborus       0011000000000000-000-0000000---00010001000000000000-2010-0000000000000100101000001
+	Deinopis       0000000???-----0-000-0000000---00000001000000000000-2010-0000001000000100100000001
+	Nephila        0001010011-----0-000-0000000---0000000101000000000100000-0001001000100211103120000
+	Nephilengys    0001010011-----0-000-0000000---0000000100000000100100000-0001001000100211103120000
+	Meta           0001010011-----0-000-0000000---0000000101000000000100000-0000001000100210100010001
+	Leucauge       0001010011-----0-000-00000010000001000101000000000100000-0000000000100211100010001
+	Pachygnatha    0001011011-----0-000-0001100---00010001010000000000-0000-000000000010020110?-?000?
+	Tetragnatha    0001011011-----0-000-0001100---00010001010000000000-2000-0000000000100211100010001
+	Theridiosoma   0001010000000000-000-0010000---0000000101000000100100000-0000000000110211100010000
+	Linyphia       0001010--1-----0-000-00000010100000100101001000000100000-00000000001102012----0000
+	Pimoa          0001010000000000-000-0000000---0000100101001000000100000-00000000001102012----0000
+	Theridion      0000000000000000-000-0000000----000000101000000000100000-00000000001102012----0000
+	Chorizopes     0001110000000001111101000000---0000000101000000001110000-00000000011002102-------?
+	Gasteracantha  00001100000000010100-0000011000000001010011000110111000111211101211100210100000000
+	Aetrocantha    00001100000000010100-0000010---0000010100110001101110001112111011111002?01???000??
+	Togacantha     00001100000000010100-0000000---0000010110110001101110001111111011111002?01????00??
+	Gastroxya      00201100000010010100-0000000---0000000100010001101110001211111010111002?01????00??
+	Augusta        00201100000010010100-0000000---0000000100100001101110001203111010111002?01??0?00?0
+	Isoxya         00001100000000010100-0000000---0110010110120001101110001114101010111002?010?0?00?0
+	Austracantha   01101100000000010100-0000000---0110010100020101101110001111101010111002101????????
+	Macracantha    00001100000000010100-0000000---0000010110110001101110001101111012111002?0100??00?0
+	Aspidolasius   0001110000000000-000-0000000---00000001101200011011100011051100100?10021010?0?000?
+	Caerostris     0001100000000000-000-0000000---00000111101000111011100010001100100110021010?000000
+	Hypognatha     00011100000000010000-0000000---01100001010200011111100011051000101?100211100000000
+	Arkys          0001110000000000-000-000000101000000001010200011011?0101206000010011002112????????
+	Archemorus     0001110000000000-000-0000000---00000011010000011011?0101206100010011002012????????
+	Encyosaccus    00011101000000010000-00000010000000000101000001111110001100110010011002?010?0?00??
+	Xylethrus      00011101000000010000-00000010000000000101000000001110001100110011111002?010?0?00?0
+	Chaetacis      00011101000000010000-00000010000000000101000000001110001000000112111002?010??00000
+	Micrathena     00011101000000010000-0000001000011000011100000000111000100000011211100210100000000
+	Mastophora     00001100000000010000-0000000---0000010111000000001110000?00110010001002?02-----11-
+	Cyrtarachne    00011100000000010000-0000000---0000000101000000000110001000110010001002?01000?111?
+	Pasilobus      0001110000000001?0?0-0000000---0000000101000000001110001100110010001002?010??-111?
+	Arachnura      00001100000000010000-0000000---0000000110000000011110000-00010010001002?0100000000
+	Witica         0000110001-----10000-0010000---0000010110000000001110000-00010010001002?0100000000
+	Mecynogea      0001110001-----10000-1010000---0000000110000000000110000-000000100010121011?1----0
+	Cyrtophora     000?1100000000010000-0010000---0000000110000000010110000-00010010001012101121----0
+	Neogea         0001110000010000-000-0000000---0000000110000000000111100-000100100010021010???00??
+	Argiope        00011100000100010010-0100000---0000000110000000000111100-0001001000100210100000000
+	Gea            00011100000100010010-0000000---0000000110000000000111100-0000001000100210100000000
+	Scoloderus     01111100000000010000-00000010000110000111000000001110000-0000001000100210100000000
+	Acanthepeira   00111100000000010100-00000010000000000110000100101110000-0000001000100210100000000
+	Anepsion       0011110000000001?100-10000010000110000111000100000110000-000000100?100210?????000?
+	Dolophone      0011110001000--11100-100000100100000111100001100001100011001000100?10021010?0?????
+	Hypsosinga     00111100000000011010-10?00010000000000110000100100110000-000000100010021010???00??
+	Zygiella       00011100000000011010-1010000---0000000110000000010110000-000000100010021010???00??
+	Kaira          00001100001000111000-10000010000000000110000000010110000-00010010001002101-------?
+	Metepeira      00011100001000111000-11000010010000000110000100010110000-0000001000100210100000000
+	Singa          00111100000000011011010000010100000000110000000010110000-000000100010021010???00?0
+	Larinia        00111100000000011011011000010110000000110000100010110000-000000100010021010?000001
+	Neoscona       01111100000000011011010000010100110000111000100010110000-0000001000100210100000000
+	Mangora        01111100000000011001010000010110110000110000100010110000-0000001000100210100000000
+	Cercidia       01011100000000011001010000010110110000110000100010110000-000000100010021110???00??
+	Pronous        0101110000000001000???000000---01100001?0000100000??0000-000000100010021110??0000?
+	Aculepeira     11111100001000111011011000010010110000110000100010110000-000000100010021010???00?0
+	Araneus        11111100001000011011011000010110110000110000100010110000-0000001000100210100000000
+	Bertrana       01111101000000010001010000010100110000100000100010110000-0010001000100210100000000
+	Alpaida        00111101000000010001010000010000110010110000100011110000-000000100010021010000000?
+	Enacrosoma     00111101000000010000-10000010100110000110000100110110000-001000100010021010??0000?
+	Wixia          01111101000001011001010000010001110000110000100000110000-000000100010021010000000?
+	Acacesia       01111100000001011001010000010001110000110000100000110000-0000001000100210100000000
+	Metazygia      01111100000000011001110000010000110000110000100010110000-0000001000100210100000000
+	Eustala        01111101000000011011110000010010110000110000100000110000-0000001000100210100000000
+	Cyclosa        01111101000000011000-10000010010110010110000100010110000-0000001000100210100000000
+	Nuctenea       00011100000000011000-10000010010110000110000100010110000-0000001000100210100000000
+	Colphepeira    00111100000000011000-100000100101100001?0000100000110000-00000010001??2??10???00??
+	Araniella      10111101000000010000-10000010110110000110000100011110000-000000100010021010?0?00?0
+	Eriophora      11111100000000011110-10000011010110010110000100011110000-0000001000100210100000000
+	Verrucosa      11111101000000011000-10000011010110000110000100111110000-001000100010021010?000000
+
+;
+	IDS JC1191fcddc3b425 JC1191fcddc3b426 JC1191fcddc3b427 JC1191fcddc3b428 JC1191fcddc3b429 JC1191fcddc3b430 JC1191fcddc3b431 JC1191fcddc3b432 JC1191fcddc3b433 JC1191fcddc3b434 JC1191fcddc3b435 JC1191fcddc3b436 JC1191fcddc3b437 JC1191fcddc3b438 JC1191fcddc3b439 JC1191fcddc3b440 JC1191fcddc3b441 JC1191fcddc3b442 JC1191fcddc3b443 JC1191fcddc3b444 JC1191fcddc3b445 JC1191fcddc3b446 JC1191fcddc3b447 JC1191fcddc3b448 JC1191fcddc3b449 JC1191fcddc3b450 JC1191fcddc3b451 JC1191fcddc3b452 JC1191fcddc3b453 JC1191fcddc3b454 JC1191fcddc3b455 JC1191fcddc3b456 JC1191fcddc3b457 JC1191fcddc3b458 JC1191fcddc3b459 JC1191fcddc3b460 JC1191fcddc3b461 JC1191fcddc3b462 JC1191fcddc3b463 JC1191fcddc3b464 JC1191fcddc3b465 JC1191fcddc3b466 JC1191fcddc3b467 JC1191fcddc3b468 JC1191fcddc3b469 JC1191fcddc3b470 JC1191fcddc3b471 JC1191fcddc3b472 JC1191fcddc3b473 JC1191fcddc3b474 JC1191fcddc3b475 JC1191fcddc3b476 JC1191fcddc3b477 JC1191fcddc3b478 JC1191fcddc3b479 JC1191fcddc3b480 JC1191fcddc3b481 JC1191fcddc3b482 JC1191fcddc3b483 JC1191fcddc3b484 JC1191fcddc3b485 JC1191fcddc3b486 JC1191fcddc3b487 JC1191fcddc3b488 JC1191fcddc3b489 JC1191fcddc3b490 JC1191fcddc3b491 JC1191fcddc3b492 JC1191fcddc3b493 JC1191fcddc3b494 JC1191fcddc3b495 JC1191fcddc3b496 JC1191fcddc3b497 JC1191fcddc3b498 JC1191fcddc3b499 JC1191fcddc3b500 JC1191fcddc3b501 JC1191fcddc3b502 JC1191fcddc3b503 JC1191fcddc3b504 JC1191fcddc3b505 JC1191fcddc3b506 ;
+	BLOCKID JC1191fcddc0c0;
+
+
+END;
+BEGIN TREES;
+	Title Imported_trees;
+	LINK Taxa = 'Scharff&Coddington_1997_Araneidae';
+	TRANSLATE
+		1 Dictyna,
+		2 Uloborus,
+		3 Deinopis,
+		4 Nephila,
+		5 Nephilengys,
+		6 Meta,
+		7 Leucauge,
+		8 Pachygnatha,
+		9 Tetragnatha,
+		10 Theridiosoma,
+		11 Linyphia,
+		12 Pimoa,
+		13 Theridion,
+		14 Chorizopes,
+		15 Gasteracantha,
+		16 Aetrocantha,
+		17 Togacantha,
+		18 Gastroxya,
+		19 Augusta,
+		20 Isoxya,
+		21 Austracantha,
+		22 Macracantha,
+		23 Aspidolasius,
+		24 Caerostris,
+		25 Hypognatha,
+		26 Arkys,
+		27 Archemorus,
+		28 Encyosaccus,
+		29 Xylethrus,
+		30 Chaetacis,
+		31 Micrathena,
+		32 Mastophora,
+		33 Cyrtarachne,
+		34 Pasilobus,
+		35 Arachnura,
+		36 Witica,
+		37 Mecynogea,
+		38 Cyrtophora,
+		39 Neogea,
+		40 Argiope,
+		41 Gea,
+		42 Scoloderus,
+		43 Acanthepeira,
+		44 Anepsion,
+		45 Dolophone,
+		46 Hypsosinga,
+		47 Zygiella,
+		48 Kaira,
+		49 Metepeira,
+		50 Singa,
+		51 Larinia,
+		52 Neoscona,
+		53 Mangora,
+		54 Cercidia,
+		55 Pronous,
+		56 Aculepeira,
+		57 Araneus,
+		58 Bertrana,
+		59 Alpaida,
+		60 Enacrosoma,
+		61 Wixia,
+		62 Acacesia,
+		63 Metazygia,
+		64 Eustala,
+		65 Cyclosa,
+		66 Nuctenea,
+		67 Colphepeira,
+		68 Araniella,
+		69 Eriophora,
+		70 Verrucosa;
+	TREE Imported_tree_1 = (1,((2,3),((((4,5),(6,(7,(8,9)))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((46,((47,(48,49)),(50,51))),(45,((66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(56,57)),(53,(54,55)))))),(44,67)))))))))));
+	TREE Imported_tree_2 = (1,((2,3),((((4,5),(6,(7,(8,9)))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((46,(50,(47,(48,49)))),(45,((66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(51,(56,57))),(53,(54,55)))))),(44,67)))))))))));
+	TREE Imported_tree_3 = (1,((2,3),((((6,(4,5)),(7,(8,9))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((46,((47,(48,49)),(50,51))),(45,((66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(56,57)),(53,(54,55)))))),(44,67)))))))))));
+	TREE Imported_tree_4 = (1,((2,3),((((4,5),(6,(7,(8,9)))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((44,(67,(66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(56,57)),(53,(54,55)))))))),(45,(46,((47,(48,49)),(50,51))))))))))));
+	TREE Imported_tree_5 = (1,((2,3),((((6,(4,5)),(7,(8,9))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((46,(50,(47,(48,49)))),(45,((66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(51,(56,57))),(53,(54,55)))))),(44,67)))))))))));
+	TREE Imported_tree_6 = (1,((2,3),((((4,5),(6,(7,(8,9)))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((44,(67,(66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(51,(56,57))),(53,(54,55)))))))),(45,(46,(50,(47,(48,49)))))))))))));
+	TREE Imported_tree_7 = (1,((2,3),((((6,(4,5)),(7,(8,9))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((44,(67,(66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(56,57)),(53,(54,55)))))))),(45,(46,((47,(48,49)),(50,51))))))))))));
+	TREE Imported_tree_8 = (1,((2,3),((((6,(4,5)),(7,(8,9))),(10,(13,(11,12)))),(14,(((((((18,19),(22,((17,(15,16)),(20,21)))),(23,24)),((25,(26,27)),(28,(29,(30,31))))),(32,(33,34))),((35,36),((37,38),(39,(40,41))))),(42,(43,((44,(67,(66,((65,(68,(69,70))),((63,((59,(58,60)),(64,(61,62)))),((52,(51,(56,57))),(53,(54,55)))))))),(45,(46,(50,(47,(48,49)))))))))))));
+
+END;
+
+
+BEGIN LABELS;
+	CHARGROUPLABEL MM_Genitalia COLOR = (RGB 1.0 0.4 0.4) ;
+	CHARGROUPLABEL Somatic COLOR = (RGB 0.6 1.0 0.33333333) ;
+	CHARGROUPLABEL Spinnerets COLOR = (RGB 0.46666667 0.57254902 1.0) ;
+	CHARGROUPLABEL Behavior COLOR = (RGB 1.0 0.46666667 1.0) ;
+
+
+END;
+
+BEGIN SETS;
+	CHARPARTITION * UNTITLED  =  Somatic :  1 -  4 32 -  67, MM_Genitalia :  5 -  31, Spinnerets :  68 -  73, Behavior :  74 -  82;
+
+END;
+
+BEGIN ASSUMPTIONS;
+	TYPESET * UNTITLED   =  unord:  1 -  82;
+
+	EXSET * UNTITLED  = ;
+
+	WTSET * UNTITLED  =  1: 1 -  82 ;
+
+END;
+
+BEGIN CODONS;
+	CODESET * UNTITLED   =  universal:  1 -  82;
+
+
+END;
+
+BEGIN MESQUITECHARMODELS;
+	ProbModelSet * UNTITLED   =  'Mk1 (est.)':  1 -  82;
+END;
+
+BEGIN NOTES;
+
+	TEXT  FILE TEXT = 'Scharff, N. and J. A. Coddington. 1997. A phylogenetic analysis of the orb-weaving spider family Araneidae (Arachnida, Araneae). Zool. J. Linn. Soc. 120(4): 355?434';
+
+END;
+
+Begin MESQUITE;
+		MESQUITESCRIPTVERSION 2;
+		TITLE AUTO;
+		tell ProjectCoordinator;
+		getEmployee #mesquite.minimal.ManageTaxa.ManageTaxa;
+		tell It;
+			setID 0 6498976404544962919 JC1191fcddc0c4;
+		endTell;
+		getEmployee #mesquite.charMatrices.ManageCharacters.ManageCharacters;
+		tell It;
+			setID 0 2280451364422511229 JC1191fcddc0c0;
+			checksum 0 114188958 JC1191fcddc0c0;
+		endTell;
+		getEmployee  #mesquite.charMatrices.BasicDataWindowCoord.BasicDataWindowCoord;
+		tell It;
+			showDataWindow #2280451364422511229 #mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindowMaker;
+			tell It;
+				getWindow;
+				tell It;
+					setExplanationSize 30;
+					setAnnotationSize 20;
+					setFontIncAnnot 0;
+					setFontIncExp 0;
+					setSize 707 998;
+					setLocation 734 14;
+					setFont SanSerif;
+					setFontSize 10;
+					getToolPalette;
+					tell It;
+					endTell;
+					setTool mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindow.arrow;
+					colorCells  #mesquite.charMatrices.NoColor.NoColor;
+					setBackground White;
+					toggleShowNames off;
+					toggleShowTaxonNames on;
+					toggleTight off;
+					toggleShowChanges on;
+					toggleSeparateLines off;
+					toggleShowStates on;
+					toggleAutoWCharNames off;
+					toggleShowDefaultCharNames off;
+					toggleConstrainCW on;
+					toggleBirdsEye off;
+					toggleAllowAutosize on;
+					toggleColorsPanel off;
+					toggleDiagonal off;
+					toggleLinkedScrolling on;
+					toggleScrollLinkedTables off;
+				endTell;
+				showWindow;
+				getWindow;
+				tell It;
+					forceAutosize;
+				endTell;
+				getEmployee #mesquite.categ.StateNamesStrip.StateNamesStrip;
+				tell It;
+					showStrip off;
+				endTell;
+				getEmployee #mesquite.charMatrices.AnnotPanel.AnnotPanel;
+				tell It;
+					togglePanel off;
+				endTell;
+				getEmployee #mesquite.charMatrices.CharReferenceStrip.CharReferenceStrip;
+				tell It;
+					showStrip off;
+				endTell;
+				getEmployee #mesquite.charMatrices.ColorCells.ColorCells;
+				tell It;
+					setColor Red;
+					removeColor off;
+				endTell;
+				getEmployee #mesquite.charMatrices.QuickKeySelector.QuickKeySelector;
+				tell It;
+					autotabOff;
+				endTell;
+				getEmployee #mesquite.collab.ChgHistoryInfo.ChgHistoryInfo;
+				tell It;
+					togglePanel off;
+				endTell;
+				getEmployee #mesquite.silk.AnnotSummary.AnnotSummary;
+				tell It;
+					togglePanel off;
+				endTell;
+				getEmployee #mesquite.silk.CellImages.CellImages;
+				tell It;
+					showColors off;
+					togglePanel off;
+					toggleAnnotations off;
+					toggleSums off;
+					toggleHistory off;
+					toggleLocations off;
+				endTell;
+				getEmployee #mesquite.silk.StateImages.StateImages;
+				tell It;
+					showColors off;
+					togglePanel off;
+					toggleStateAnnotations off;
+					toggleCharAnnotations off;
+					toggleLocations off;
+				endTell;
+				getEmployee #mesquite.silk.aaManageImageIndices.aaManageImageIndices;
+				tell It;
+					setLocal;
+					setPrevIndexBase 'http://salticus.zoology.ubc.ca/ATOLSpiders/ATOLImages';
+					reset;
+				endTell;
+			endTell;
+		endTell;
+		getEmployee  #mesquite.charMatrices.ManageCharacters.ManageCharacters;
+		tell It;
+			showCharacters #2280451364422511229 #mesquite.lists.CharacterList.CharacterList;
+			tell It;
+				setData 0;
+				getWindow;
+				tell It;
+					newAssistant  #mesquite.lists.DefaultCharOrder.DefaultCharOrder;
+					newAssistant  #mesquite.lists.CharListInclusion.CharListInclusion;
+					newAssistant  #mesquite.lists.CharListPartition.CharListPartition;
+					newAssistant  #mesquite.stochchar.CharListProbModels.CharListProbModels;
+					setExplanationSize 30;
+					setAnnotationSize 20;
+					setFontIncAnnot 0;
+					setFontIncExp 0;
+					setSize 707 998;
+					setLocation 734 14;
+					setFont SanSerif;
+					setFontSize 10;
+					getToolPalette;
+					tell It;
+					endTell;
+				endTell;
+				showWindow;
+				getEmployee #mesquite.lists.CharListAnnotPanel.CharListAnnotPanel;
+				tell It;
+					togglePanel off;
+				endTell;
+			endTell;
+		endTell;
+		getEmployee  #mesquite.basic.ManageFileComments.ManageFileComments;
+		tell It;
+			editFileComment 0;
+			tell It;
+				setExplanationSize 0;
+				setAnnotationSize 0;
+				setFontIncAnnot 0;
+				setFontIncExp 0;
+				setSize 707 1048;
+				setLocation 734 14;
+				setFont SanSerif;
+				setFontSize 10;
+				setActive;
+			showWindow;
+			endTell;
+		endTell;
+		endTell;
+end;
+
+

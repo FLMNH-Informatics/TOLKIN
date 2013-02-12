@@ -1,0 +1,71 @@
+= link_to_remote '« Back', :update => :workflow_section_contents, :url => project_workflows_path, :method => :get, :html => { :href => project_workflows_path }
+%br
+%br
+#left_views
+  #graphical_view.details_outer
+    #graphical_view_contents.details_box
+      .title_box
+        Graphical Representation:
+      #graphic_workflow
+        .actor_box
+          Data conversion
+        .arrow
+          \------>
+        .actor_box
+          Muscle
+          .below_box Alignment
+        .arrow
+          \------>
+        .actor_box
+          RAxXML
+          .below_box Tree-building
+  #status_view.details_outer
+    #status_view_contents.details_box
+      .title_box
+        Workflow Status:
+      %table
+        %tr
+          %td Current status:
+          %td running
+        %tr
+          %td Total elapsed time:
+          %td 3hrs 2min
+        %tr
+          %td Estimated time remaining:
+          %td 2hrs 32min
+        %tr
+          %td Start time:
+          %td Jul 23 4:51 PM
+        %tr
+          %td Estimated completion time:
+          %td Jul 23 10:25 PM
+  #intermediate_results_view.details_outer
+    #intermediate_results_view_contents.details_box
+      .title_box
+        Actor Status and Results:
+      %table
+        %tr
+          %td Actor 1
+          %td Data conversion
+          %td Status: Complete
+          %td
+        %tr
+          %td.indent{:colspan => 4} Intermediate results: data-con-out-7231657.fasta
+        %tr
+          %td Actor 2
+          %td Muscle
+          %td Status: Complete
+          %td
+        %tr
+          %td.indent{:colspan => 4} Intermediate results: muscle-out-723172003.xml
+        %tr
+          %td Actor 3
+          %td RAxXML
+          %td Status: Running
+          %td
+        %tr
+          %td.indent{:colspan => 4} Intermediate results: pending
+  #archive_file_view.details_outer
+    #archive_file_view_contents.details_box
+      .title_box
+        Archive file:

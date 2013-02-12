@@ -1,0 +1,22 @@
+#markers_container
+  #title_and_controls.sticky_container
+    %h4 Manage existing molecular markers
+    #markers_controls
+      %input.button_img.first_marker_control{:type => 'button', :style => 'background-image:url(/images/small_merge.png);', :value => 'Merge'}
+      -#NOT USED BECAUSE DELETEING SHOULD NOT BE DONE BY USER%input.button_img.marker_control{:type => 'button', :style => 'background-image:url(/images/small_cross.png);', :value => 'Delete Selected'}
+    %table
+      %thead
+        %tr
+          %td.h.check_head
+          %td.h Name
+          %td.h Type
+          %td.h.td_divider Seqs
+          %td.h.td_divider Matrices
+          %td.h.td_divider Primers
+          %td.h Options
+  #markers_table
+    %table
+      %tbody
+        - @markers.each do |marker|
+          = render(:partial => 'marker_row', :locals => {:marker => marker})
+#hidden_control{:style=>'display:none;'}= raw marker_type_select

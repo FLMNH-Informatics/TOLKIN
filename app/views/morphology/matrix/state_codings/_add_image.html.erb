@@ -1,0 +1,38 @@
+<div id="windowtitle" class="window_title" > 
+  <span id="title" class="title">
+    Add Image
+  </span>
+
+  <span id="closebutton" class ="closebutton" onClick="$('newimagediv').hide();">
+    <%= link_to "X", "javascript:void(0)" %>
+  </span>
+</div>  
+
+<% form_for(:image, :url => formatted_project_images_path(:format => 'js'), :html => { :multipart => true, :target => 'upload_frame'}) do |f| %>
+
+  <%= hidden_field 'options', 'image_type', 'value' => 'Morphology::StateCoding' -%>
+  <%#= hidden_field 'options', 'changeset_id', 'value' => @matrix.changeset.id -%>
+  <!-- TODO: Very ugly fix. OK for now. But change it later !-->
+  <% if @cell.nil? %>
+    <%= hidden_field 'options', 'otu_id', 'value' => @cell.otu.id -%>
+    <%= hidden_field 'options', 'chr_id', 'value' => @cell.character.id -%>
+  <% else %>
+    <%= hidden_field 'options', 'id', 'value' => @cell.id -%>
+  <% end %>
+
+  <div class="formrow">
+    <label for="image">Upload Image</label>
+    <span class="field">
+      <%= f.file_field :uploaded_data %>
+    </span>
+  </div>
+
+  <div class="submitbuttonrow">
+    <%= submit_tag "Create" %>
+
+  </div>
+<% end %>
+
+
+<%#*<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>%>
+

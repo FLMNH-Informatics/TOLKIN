@@ -1,0 +1,54 @@
+<% form_remote_tag(:url => update_marker_project_molecular_matrix_path(params[:project_id], params[:id]), :update => 'actor_list', :position => 'bottom', :html => {:id => 'add_marker_form'} ) do %>
+  <%= hidden_field 'marker_matrix', 'matrix_id', 'value' => params[:id] -%>
+  <style type="text/css">
+    .checkboxes {
+      -moz-column-width: 11em; !important
+	    -webkit-column-width: 11em; !important
+      /*-moz-column-count: 1;*/
+	    /*-moz-column-gap: 2px;*/
+	    /*-webkit-column-count: 1;*/
+	    /*-webkit-column-gap: 2px;*/
+	    /*column-count: 1;*/
+	    /*column-gap: 2px;*/
+      height: 350px; !important
+      column-width: 11em; !important
+      padding-left: 20px;
+      /*width: 150px;*/
+    }
+    .checkboxes input{
+      vertical-align: middle;
+    }
+    .checkboxes label span{
+      vertical-align: middle;
+    }
+    .checkboxes label{
+      width: 190px;
+    }
+  </style>
+  <table>
+    <tr>
+      <td style="vertical-align: middle;">
+        <%= label  'marker_matrix', 'Create new marker to add' %>
+      </td>
+      <td>
+        <span id="marker_name" class="field">
+          <input type="text" id="new_marker" name="new_marker"/>
+        </span>
+      </td>
+    </tr>
+  </table>
+  <table style="width:100%;">
+    <tr>
+      <td>
+        <%= label 'marker_matrix', 'Select existing markers to add:' %> (<a id="mrk_sel_all" href="#">select all</a>)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="marker_checkbox_list" class="checkboxes">
+          <%= raw marker_checkbox_list %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<%  end %>

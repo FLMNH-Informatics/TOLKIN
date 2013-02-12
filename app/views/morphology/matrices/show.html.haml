@@ -1,0 +1,10 @@
+%table
+  %tr
+    %td
+      %h4.matrix_title
+        = render :partial => "matrix_title", :object => @timeline
+      = render :partial => "matrix_details_bar", :object => @timeline
+    %td#states_display.states_display
+= render :partial => "datagrid"
+= render :partial => "chr_state_tooltips"
+

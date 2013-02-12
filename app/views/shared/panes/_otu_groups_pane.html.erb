@@ -1,0 +1,27 @@
+<div id="<%=id_for_otu_groups_pane%>" class="otu_groups widget">
+  <div class="windowtitle" >Otu Groups</div>
+  <table>
+    <%if request[:controller].index('/molecular') == 0 %>
+    <%@path_string = matrix_by_otu_group_project_molecular_matrix_path(params[:project_id],params[:id]) %>
+    <%elsif request[:controller].index('/morphology') == 0  %>
+    <%@path_string = matrix_by_otu_group_project_morphology_matrix_path(params[:project_id],params[:id]) %>
+    <%end%>
+    <% @otu_groups_list.each do |record| %>
+          <tr>
+          <td  style="background-color:<%=record.color%>"><%=link_to_remote( record.otu_group.name, :update => "contents",    :url => @path_string ,
+            :with => "'otu_group_id=' + "+record.otu_group_id.to_s ,
+            :method => :get)%>
+          </td>
+
+          </tr>
+     <%end%>
+         <tr>
+          <td  ><%=link_to_remote( "All", :update => "contents",    :url => @path_string ,
+            :method => :get)%>
+          </td>
+
+          </tr>
+
+ </table>
+</div>
+

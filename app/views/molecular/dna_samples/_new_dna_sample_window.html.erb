@@ -1,0 +1,34 @@
+<div id="new_dna_sample_window" class="window">
+  <div id="windowtitle" class="windowtitle" >
+    <span id="title" class="title">
+      New <%=controller.controller_name.singularize.titleize %>
+    </span>
+
+    <span id="closebutton" class ="closebutton" onClick="$('new_dna_sample_window').remove();">
+      <%= link_to "X", "javascript:void(0)" %>
+    </span>
+  </div>
+  <% form_remote_for :dna_sample, @dna_sample, :url => project_molecular_dna_samples_path, :html => { :id => 'new_item_form' } do |f| %>
+    <table>
+          <% @attributes.each do |attribute| %>
+            <tr>
+              <td><%= f.label attribute[:name], attribute[:label] %></td>
+              <td>
+              <% if attribute[:edit_type] == :collection %>
+                <%= collection_select(:dna_sample, :recpermission_id, Recpermission.find(:all), :id, :name, {:include_blank => false}) %>
+              <% else %>
+                <%= f.text_field attribute[:name] %>
+              <% end %>
+              </td>
+             </tr>
+          <% end %>
+    </table>
+
+
+    <div class="submitbuttonrow">
+      <%= submit_tag "Create" %>
+    </div>
+
+  <% end %>
+</div>
+<%= draggable_element :new_dna_sample_window %>

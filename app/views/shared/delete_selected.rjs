@@ -1,0 +1,19 @@
+#unless flash[:error]
+#  page.replace 'items_listing', :partial => "shared/list_items", :locals => { :title => "Listing Collections",
+#    :items_to_list => @items,
+#    :attributes => @attributes_to_show,
+#    :attribute_display_properties => @attribute_display_properties,
+#    :options => {}}
+#
+#  page.call :itemSelectCheckboxes
+#  page.call :listItemRows
+#end
+if flash[:error]
+  page << "Notifier.error('#{flash[:error]}');"
+elsif flash[:notice]
+  page << "Notifier.success('#{flash[:notice]}');"
+elsif flash[:warning]
+  page << "Notifier.warning('#{flash[:warning]}');"
+end
+
+flash.discard

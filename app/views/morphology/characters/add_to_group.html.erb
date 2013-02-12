@@ -1,0 +1,23 @@
+
+<form id="form_add_to_chr_grp" action="<%= add_to_group_update_project_morphology_characters_path %>" >
+  <input type="hidden" name="conditions" value="<%= params[:conditions] %>" />
+  <input name="authenticity_token" value="<%= raw form_authenticity_token%>" type="hidden"/>
+  <input type="hidden" name="_method" value="put" />
+  <div class="formrow">
+    <%= raw label 'character_group_id', 'character group' %>
+    <span class="smallfield"><%= select_tag("chr_group_id", raw( "<option value='-1'>Please Select A Group</option><option value='-1'></option>" + options_for_select(@chr_groups.collect {|o| [ o.name, o.id ]}))) %>
+    </span>
+    <input type="hidden" id="selected_characters" name="selected_characters" value=""/>
+  </div>
+  <div class="submitbuttonrow">
+    <span class="titletext"> OR </span>
+  </div>
+  <div class="formrow">
+    <%= raw label 'Create New chr_group', 'Create New chr_group' %>
+    <span class="smallfield"><%= raw text_field :chr_group, :name, :size => 30 %>
+    </span>
+  </div>
+  <div class="submitbuttonrow">
+    <%= raw submit_tag "Add", :class => "simple-button" %>
+  </div>
+</form>

@@ -1,0 +1,83 @@
+<div id="add_sequence" class="window">
+  <div id="windowtitle" class="windowtitle" >
+    <span id="title" class="title">
+      New <%=controller.controller_name.singularize.titleize %>
+    </span>
+
+    <span id="closebutton" class ="closebutton" onClick="$('div_add_sequence').toggle();">
+      <%= link_to "X", "javascript:void(0)" %>
+    </span>
+  </div>
+  <% form_remote_for :dnasequence, :complete => "$('div_add_sequence').remove();", :url => save_dna_seq_info_project_molecular_sequences_path, :html => { :method => :put} do |f| %>
+    <div class="formrow">
+      <%= f.label :"DNA Sequence" %>
+        <%= f.text_area :DNAseq, :rows => 18, :cols => 70 %>
+    </div>
+
+    <%#*<div class="formrow">%>
+      <%#= f.label :"Sequence ID" %>
+      <%#*<span class="field">%>
+        <%#= f.text_field :DNAseqID %>
+      <%#*</span>%>
+    <%#*</div>%>
+
+    <div class="formrow">
+      <%= f.label :"Sequence Title" %>
+      <span class="field">
+        <%= f.text_field :DNAseqTitle %>
+      </span>
+    </div>
+
+    <div class="formrow">
+      <%= f.label :"Sequence strain" %>
+      <span class="field">
+        <%= f.text_field :DNAseqStrain %>
+      </span>
+    </div>
+
+    <div class="formrow">
+      <%= f.label :"Organism name" %>
+      <font face="Verdana" size="1" color="red">*</font>
+      <span class="field">
+        <%= f.text_field :DNAOrg_name %>
+      </span>
+    </div>
+
+    <div class="formrow">
+      <%= f.hidden_field :"hdnWindowInfo", :value => "AddSeq" %>
+    </div>
+
+
+    <table id="SeqFeaturestable" style="width: 100%">
+          <tr>
+              <th class="h" style="width: 10%">
+                  Location start
+              </th>
+              <th class="h" style="width: 10%">
+                  Location end
+              </th>
+              <th class="h" style="width: 22%">
+                  Feature Key
+              </th>
+              <th class="h" style="width: 22%">
+                  Feature Qualifier
+              </th>
+              <th class="h" style="width: 26%">
+                  Value
+              </th>
+              <th class="h" style="width: 10%">
+                  Delete
+              </th>
+          </tr>
+          <tr  class="<%= cycle('body-odd', 'body-even') %>" id="seq_feature_row_">
+          </tr>
+      </table>
+    <div>
+      <%= f.label :seq_features, "Add Features", :style=>"text-decoration: underline; font-size: small;", :onClick=> "addFeaturesRow();"%>
+    </div>
+    <div class="submitbuttonrow">
+      <%= submit_tag "submit"%>
+    </div>
+
+  <% end %>
+</div>

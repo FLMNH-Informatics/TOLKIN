@@ -1,0 +1,8 @@
+if params[:citation_ids]
+  page[:notice].update("Citation Successfully Deleted")
+else
+  page[:notice].update("Please select atleast a citation.")
+end
+params[:citation_ids].try(:each) do |cit_id|
+  page.remove  'cit_'+cit_id.to_s
+end

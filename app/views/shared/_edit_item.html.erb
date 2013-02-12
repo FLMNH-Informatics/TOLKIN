@@ -1,0 +1,36 @@
+<div id="detailsdiv" class="detailsdiv">
+  <table border="0" cellpadding="3px" cellspacing="2px">
+    <tr>
+      <td>
+        <h5>Edit - </h5>
+      </td>
+      <td>
+        <span class="bodytext">
+          <%= link_to 'Show', project_molecular_dna_sample_path(@project, @dna_sample) %> |
+          <%= link_to 'Back', project_molecular_dna_samples_path(@project) %>
+        </span>
+      </td>
+    </tr>
+  </table>
+
+
+
+  <% form_for([@project, @dna_sample]) do |f| %>
+    <%= f.error_messages %>
+
+    <div id="contentpane">
+      <table class="attributes_list">
+        <% attributes.each do |attribute| %>
+          <tr>
+            <th><%= f.label attribute[:name], attribute[:label] %></th>
+            <td><%= f.text_field attribute[:name] %></td>
+          </tr>
+        <% end %>
+
+        <tr><td><%= f.submit "Update" %></td></tr>
+      </table>
+
+    <% end %>
+
+  </div>
+</div>

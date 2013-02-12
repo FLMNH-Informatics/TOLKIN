@@ -1,0 +1,6 @@
+%tr{:id => "hybridization_row_" + hybridization.id.to_s, :class => cycle('body-odd','body-even'), :"data-hybridization-id" => hybridization.id, :"data-probe-id" => hybridization.probe.id}
+  %td.b= link_to(hybridization.probe.value, [current_project, hybridization.probe])
+  %td.b= hybridization.probe.probe_type
+  %td.b= hybridization.dye.dye_value
+  %td.b.hovhand
+    = image_tag('x.png', {:border => 0, :alt => 'remove probe', :class => 'remove_probe'}) unless interact_mode == 'browse'

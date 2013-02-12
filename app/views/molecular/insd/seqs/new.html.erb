@@ -1,0 +1,26 @@
+<%= form_for(@seq, :url => project_molecular_sequences_path) do |f| %>
+  <div class="field">
+    <%= f.label :taxon %><br/>
+    <%= taxon_name_field %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sequence %><br/>
+    <%= f.text_area :sequence, { :rows => 5, :cols => 80 }%>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :markers %>
+    <%= render 'molecular/insd/seqs/seq_markers_display' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :locus %><br/>
+    <%= f.text_field :locus %>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :definition %><br/>
+    <%= f.text_area :definition, { :rows => 2, :cols => 80 } %>
+  </div>
+<% end %>

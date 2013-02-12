@@ -1,0 +1,14 @@
+#sequences_container
+  %h4= raw "Sequences for " + @marker.name
+  %table
+    %thead
+      %tr
+        %td.h GB
+        %td.h Sequence
+        %td.h Organism
+        %td.h Length
+        %td.h
+        %td.h
+    %tbody
+      - @sequences.each do |seq|
+        = render(:partial => 'sequence_row', :locals => {:seq => seq})

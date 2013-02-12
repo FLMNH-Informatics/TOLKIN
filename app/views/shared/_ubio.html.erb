@@ -1,0 +1,25 @@
+
+<%if id == nil%> 
+<img src="/images/ubioLogo.png" onclick="ubio('<%=name%>','<%=caller%>')"></img>
+<%elsif caller == "display"%>
+<% @name_split = name.split(' ') %>
+<% @append_name = "" %>
+   <% @name_split.each do |taxon_name|
+       @append_name = @append_name + taxon_name + '+'
+   end%>
+ <% @append_name = @append_name.chop %>
+
+<%  @link = 'http://www.ubio.org/browser/details.php?namebankID='+id.to_s %>
+<a href='<%=@link%>' target="_blank"><%= image_tag("ubioLogo.png", :alt => 'UBIO') %></a>
+<%else%>
+<img src="/images/ubioLogo.png" onclick="ubio_id_desc('<%=id%>','ubio_popup',' ',true)"></img>
+<%end%>
+
+
+
+<div id="ubio_popup" style='position: absolute;  display: none;' class="popup">
+</div>
+<script type="text/javascript">
+  alert('dfsdf');
+    new Draggable('ubio_popup',{});
+</script>

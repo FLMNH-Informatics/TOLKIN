@@ -1,0 +1,39 @@
+<% form_for :otu, @otu, :url => optional_matrix_resource_url(:controller => 'otus', :action => 'update', :matrix_id => params[:matrix_id], :project_id => params[:project_id], :id => @otu.id), :html => { :method => :put } do |f| %>
+
+  <div class="formrow">
+    <%= f.label :name %>
+    <span class="field"><%= raw f.text_area :name, :rows => 1, :cols => 30 %>
+    </span>
+  </div>
+  <div class="formrow">
+    <%= f.label :original_position, 'OTU Number' %>
+    <span class="field"><%= raw f.text_field :original_position, :size => 5 %>
+    </span>
+  </div>
+  <div class="formrow">
+    <%= f.label :description %>
+    <span class="field"><%= f.text_area :description, :cols => 35, :rows => 4 %>
+    </span>
+  </div>
+  <%#*<div class="formrow">%>
+    <%#= f.label :taxon %>
+    <%#*<span class="field">%>
+      <%#= f.text_field :taxon_id, :size => 35 %>
+      <%# text_field_with_auto_complete :taxon, :name, { :size => 15 }, {:method => :get} %>
+    <%#*</span>%>
+  <%#*</div>%>
+  <div class="formrow">
+    <%= f.label :library_references, "Add Citation",:onClick=>"$('div_add_citations#{@otu.id}').toggle();", :style=>"text-decoration: underline;" %>
+    <span class="field"><%= render :partial=>"citation", :collection => @otu.citations.collect { |citation| citation.id} %>
+    </span>
+  </div>
+  <br />
+  <div>
+    <%= submit_tag "Update" %>
+  </div>
+<% end %>
+<div id="div_add_citations<%=@otu.id %>" style="width: 100%; display: none;" class="window">
+  <%=render :partial=>"shared/add_citations", :locals => { :add_citations => @otu, :ajax_submit => false, :search_url_options => params[:matrix_id] ? { :matrix_id => params[:matrix_id] } : {} }%>
+</div>
+<%#= draggable_element "div_add_citations#{@otu.id}" %>
+<%#= draggable_element "editOtuWindow" %>

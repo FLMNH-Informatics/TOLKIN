@@ -1,0 +1,12 @@
+#matrices_container
+  %h4= raw "Matrices for " + @marker.name
+  %table
+    %thead
+      %tr
+        %td.h Name
+        %td.h Version
+        %td.h Description
+        %td.h Deleted?
+    %tbody
+      -@timelines.each do |timeline|
+        = render(:partial => 'matrix_row', :locals => {:timeline => timeline})

@@ -1,0 +1,56 @@
+= NexusParser Rails Plugin
+
+NexusParser is a tool for extracting data from {NEXUS formatted files}[http://www.jstor.org/stable/2413497].
+
+<b>Latest version:</b> 0.3.0
+
+* API documentation (coming soon)
+* Source code (coming soon)
+* Bug tracker (coming soon)
+
+Tested on Ruby 1.9.1
+
+=== Installing and loading NexusParser
+
+NexusParser is currently distributed as a Rails plugin.
+
+Simply move the main NexusParser directory into the vendor/plugins directory of your Rails application.
+
+=== Using NexusParser
+
+From the Rails console or application, call the NexusParser.parse_file method and a NexusFile object will
+be returned upon completion of the task.
+
+==== Example: Simple parsing
+  NexusParser.parse_file('foo.nexus')
+  # => ## what does this return ?? ##
+
+== Licenses
+
+==== haml2erb code and documentation (MIT license)
+################ THIS SHOULDNT BE RELEASED YET - PLEASE RETURN UPON DISCOVERY ###################
+  version 0.3 by Chris Goddard and Ramachandren Srinivasa Rao
+  based on java NexusParser version 0.2 by Matt Yoder
+  based on the PhyloTree parser/lexer engine by Krishna Dole
+  based on Thomas Mailund's <mailund@birc.dk> 'newick-1.0.5' Python library
+
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+

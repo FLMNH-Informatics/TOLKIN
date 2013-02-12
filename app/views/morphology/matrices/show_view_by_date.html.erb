@@ -1,0 +1,20 @@
+<table>
+  <% unless @timeline.next_version.nil?  %>
+  <tr><td><%= link_to('Next Version &rarr;'.html_safe, project_morphology_matrix_path(current_project, @timeline.next_version)) %></td></tr>
+  <% end %>
+  <% dates_list.each do |date| %>
+    <tr>
+      <td>
+        <a class="expand_date" data-date="<%= date.to_s(:number) %>" href="#">[+]</a>&nbsp;<%= link_to(date.to_s(:long), view_by_date_project_morphology_matrix_path(:date => date.to_s(:number)) + "235959" ) %><br />
+      </td>
+    </tr>
+    <tr style="display:none;">
+      <td class="date_expander" ></td>
+    </tr>
+  <% end %>
+  <tr class="prev_version">
+    <td>
+      <%= link_to('&larr; Previous Version'.html_safe, project_morphology_matrix_path(current_project, @timeline.previous_version)) unless @timeline.is_first_version? %>
+    </td>
+  </tr>
+</table>

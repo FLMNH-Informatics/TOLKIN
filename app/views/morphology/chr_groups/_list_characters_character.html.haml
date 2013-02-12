@@ -1,0 +1,9 @@
+%tr{ :id => "list_item_#{object.id}", :class => cycle('body-odd', 'body-even') }
+  %td
+    %input{ :id => "otu_#{object.id}", :type => "checkbox", :value => object.id, :name => "chrs[]" }
+  %td.b= h object.name
+  %td.b= link_to image_tag("f.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => object.id, :move_type => 'move_to_top' }, :method => :post
+  %td.b= link_to image_tag("u.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => object.id, :move_type => 'move_higher' }, :method => :post
+  %td.b= link_to image_tag("d.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => object.id, :move_type => 'move_lower' }, :method => :post
+  %td.b= link_to image_tag("la.png", :border=>0), { :action => :change_position, :project_id => @project.id, :id => @chr_group.id, :character_id => object.id, :move_type => 'move_to_bottom' }, :method => :post
+  %td.b= link_to_remote image_tag("x.png", :border=>0), :url => remove_character_project_chr_group_path, :with => "'character=#{object.id}'"

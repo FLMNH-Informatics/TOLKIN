@@ -1,0 +1,48 @@
+<form id="form_collection_annotation"colspan="2">
+  <b>Annotations</b><br/> Number of Annotations :<%= @annotations.size %>
+  <div id="collections_annotations">
+  <input type="button" value="Add" onclick="addRowToTable();" />
+  <input type="button" value="Remove" onclick="removeRowFromTable();" />
+  <table border="1" id="collection_tblSample" >
+    <tr>
+      <td>
+        taxon
+      </td>
+      <td>
+        name
+      </td>
+      <td>
+        date
+      </td>
+      <td>
+        institution
+      </td>
+    </tr>
+    <% if !@annotations.nil? %>
+      <%i=1%>
+      <% for element in @annotations %>
+        <tr>
+          <td>
+            <input type="text" name="annotation<%=i%>[taxon]"
+                   id="collection_txtRow<%=i%>_taxon" size="10" value= "<%=element.taxon %>" > </input>
+          </td>
+          <td>
+            <input type="text" name="annotation<%=i%>[name]"
+                   id="collection_txtRow<%=i%>_name" size="10" value= "<%=element.name %>"  ></input>
+          </td>
+          <td>
+            <input type="text" name="annotation<%=i%>[date]"
+                   id="collection_txtRow<%=i%>_date" size="10" value= "<%=element.date %>"  ></input>
+          </td>
+          <td>
+            <input type="text" name="annotation<%=i%>[inst]"
+                   id="collection_txtRow<%=i%>_inst" size="10" value= "<%=element.inst %>"  ></input>
+          </td>
+        </tr>
+      <% end %>
+      <%i=i+1%>
+    <% end %>
+  </table>
+  <%= submit_to_remote 'save', 'save', :url => update_others_project_collection_path(params[:project_id],@collection, :parameter=> :collection_annotation), :update => { :success => "div_coll_annotations", :failure => "div_coll_annotations" }, :method => :put	%>
+  </div>
+</form>		

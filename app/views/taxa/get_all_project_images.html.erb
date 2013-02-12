@@ -1,0 +1,33 @@
+<h3>Scored Image References in Morphology for <%= @taxon.name %>:</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>Matrix</th>
+      <th>Images</th>
+    </tr>
+    <%  @codings.each do |matrix_coding_array| %>
+      <%if matrix_coding_array.size > 1 %>
+        <tr>
+          <td>
+            <%=  image_tag("r.png", :onclick => "$('mat_chr_#{matrix_coding_array[0].id}').toggle(); ($('mat_chr_#{matrix_coding_array[0].id}').visible()) ? this.src = '/images/d.png' : this.src = '/images/r.png'")  %>
+            <%= link_to matrix_coding_array[0].branch.name, project_matrix_path(@project, matrix_coding_array[0]) %>
+          </td>
+          <td>
+            <table id="mat_chr_<%=matrix_coding_array[0].id%>" style="display:none">
+              <%matrix_coding_array[1..-1].each do |coding|%>
+                <tr>
+                  <td>
+                    <% coding.images.each do |image| %>
+                      <%= image_tag image.public_filename(:thumb) %>
+                    <%  end %>
+                  </td>
+                </tr>
+              <%end%>
+            </table>
+          </td>
+        </tr>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>
+

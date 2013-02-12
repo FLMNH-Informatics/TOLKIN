@@ -1,0 +1,23 @@
+<tr id="tr_otu_<%=otu.id%>" class="<%= cycle('body-odd', 'body-even') %> " data-otu-id="<%=otu.id%>" data-otu-name="<%=otu.name%>">
+  <!--<td>-->
+    <!--<input type="checkbox" id="otu_#<%#=otu.id %>" value="<%#= otu.id %>" name="otu_ids[]" />-->
+  <!--</td>-->
+  <td class="b">
+    <%= raw link_to otu.name, [current_project, otu] %>
+  </td>
+  <td class="b">
+    <%= link_to_table_link("f.png", otu, "move_to_top") %>
+  </td>
+  <td class="b">
+    <%= link_to_table_link("u.png", otu, "move_higher") %>
+  </td>
+  <td class="b">
+    <%= link_to_table_link("d.png", otu, "move_lower") %>
+  </td>
+  <td class="b">
+    <%= link_to_table_link("la.png", otu, "move_to_bottom") %>
+  </td>
+  <td class="b">
+    <%= link_to_table_link("x.png", otu, "remove_from_list") %>
+  </td>
+</tr>

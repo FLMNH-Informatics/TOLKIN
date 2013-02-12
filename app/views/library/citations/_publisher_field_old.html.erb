@@ -1,0 +1,12 @@
+<%=  text_field "publisher", "name"%>
+<input class="button active" type="button" value="Create Publisher" />
+<%= observe_field("publisher_name",
+  :frequency => 1,
+  :update     => "div_publisher",
+  :url        => publishers_search_project_library_publishers_path(params[:project_id]),
+  :with => "'object_type=#{"citation".downcase}&search=' + value",
+  :method => :get
+) %>
+<div id="div_publisher">
+  <%= select "citation", "publisher_id", [[@citation.try(:publisher).try(:name), @citation.try(:publisher_id)]] , {:include_blank => true}%>
+</div>

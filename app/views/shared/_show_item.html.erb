@@ -1,0 +1,23 @@
+<div id="navpane">
+  <%#= render :partial => "/shared/leftnav" %>
+</div>
+
+<div class="top_navpane">
+    <%= link_to 'Back', project_molecular_dna_samples_path(@current_project) %> |
+    <%#= link_to 'Edit', project_molecular_dna_sample_path(@project, @dna_sample) %>
+    <%= link_to 'Delete', project_molecular_dna_sample_path(@current_project, @dna_sample), :confirm => 'Are you sure?', :method => :delete %>
+</div>
+
+<div id="contentpane">
+  <table class="attributes_list">
+    <% attributes.each do |attribute| %>
+      <tr>
+        <th><%= attribute[:label] %></th>
+        <td><%= @dna_sample[attribute[:name]] %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  
+</div>
+

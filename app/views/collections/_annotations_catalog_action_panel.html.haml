@@ -1,0 +1,45 @@
+%table.widget{ id: id }
+  %tr
+    %td
+      .rounded_gradient_box.box_padding
+        %table.box.button.action_bar{ }
+          %tr
+            %td
+              Taxon
+            %td
+              Determiner
+            %td
+              Date
+            %td
+              Institution
+          %tr
+            %td.label{ id: "full_text" }
+              %input{ type: "text", id: taxon_input_id, name: 'annotations_inputs[taxon]' , size: "11" }
+            %td.label{ id: "full_text2" }
+              %input{ type: "text", id: deter_input_id, name: 'annotations_inputs[determiner]' , size: "11" }
+            %td.label{ id: "full_text3" }
+              %input{ type: "text", id: date_input_id, name: 'annotations_inputs[date]' , size: "8" }
+            %td.label{ id: "full_text4" }
+              %input{ type: "text", id: inst_input_id, name: 'annotations_inputs[institution]' , size: "10" }
+            %td
+              .annotation_panel.bar
+                .button.active{ value: 'Add' }
+                  %table{ style: "width:80px" }
+                    %tr
+                      %td
+                        %img{ :style => "width:14px; height:14px", :src => "/images/addnew.gif" }
+                      %td
+                        %span Add
+  %tr
+    %td.annotation_panel.bar{ style: 'margin-top:10px'}
+      .button.active{ value: 'Remove' }
+        %table
+          %tr
+            %td
+              %img{:src => "/images/16-em-cross.png"}
+            %td
+              %span Remove
+
+      .selected_count{style: 'float: right;'}= count_num
+
+

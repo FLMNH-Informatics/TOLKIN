@@ -1,0 +1,8 @@
+page << "if($('dna_details')) {"
+  page.replace 'dna_details', :partial => 'dna_details', :locals => { :item => @dna_sample, :attributes => @attributes }
+page << "} else {"
+   #page.replace 'show_item_window', :partial => 'shared/show_item_window', :locals => { :item => @dna_sample, :attributes => @attributes }
+  page.insert_html :bottom, 'contents', :partial => 'dna_details', :locals => { :item => @dna_sample, :attributes => @attributes }
+page << "}"
+page.call :showWindow, :dna_details
+

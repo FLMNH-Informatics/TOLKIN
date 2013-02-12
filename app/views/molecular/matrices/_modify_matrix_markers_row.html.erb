@@ -1,0 +1,7 @@
+<tr id="marker_row_<%= mmarker.marker.id%>" class="<%= cycle('body-odd', 'body-even') %>" >
+  <td class="b"><input type="checkbox" name="marker_id[]" value="<%= mmarker.marker.id %>"/></td>
+  <td class="b"><%=h mmarker.position%></td>
+  <td class="b"><%=h mmarker.marker.name %></td>
+  <td class="b"><%=h mmarker.marker.type.blank? ? 'unlisted' : mmarker.marker.type %></td>
+  <%= raw modify_matrix_controls(mmarker) %>
+</tr>

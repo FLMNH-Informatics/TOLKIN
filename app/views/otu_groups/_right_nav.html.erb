@@ -1,0 +1,42 @@
+<div class="windowtitle">
+  Options
+</div>
+<ul class="listmain">
+  <% if controller.action_name == "index" %>
+    <li>
+      <%= link_to_remote 'New OTU Group', :url => new_project_otu_group_path(:project_id => params[:project_id]), :method => :get %>
+    </li>
+    <!--li>
+      <#%= link_to_remote 'Add Selected To Matrix', :url => add_to_matrix_project_otu_groups_path(params[:project_id]), :method => :get %>
+    </li-->
+    <li>
+      <%= link_to 'Delete Selected', "javascript:void(0)",
+        :onclick => "var hasConfirmed = confirm('Are you sure you would like to delete the selected OTU groups?');
+      if(hasConfirmed) {
+          form = $('list_items_form')
+          form.writeAttribute('action', '/projects/"+params[:project_id]+"/otu_groups/delete_selected');
+          form.writeAttribute('method', 'post');
+          document.getElementById('list_items_form').submit();
+        }" %>
+    </li>
+  <% elsif controller.action_name == "show" %>
+    <li>
+      <%= link_to_remote 'Add Otu to Group', :url => show_add_otu_project_otu_group_path, :method => :get %>
+    </li>
+    <!--li>
+      <#%= link_to_remote 'Add Selected To Matrix', :url => add_to_matrix_project_otus_path(params[:project_id]), :method => :get %>
+    </li-->
+    <li>
+      <%= link_to 'Remove Selected From Group', "javascript:void(0)", :onclick => "document.getElementById('otus_form').submit();" %>
+    </li>
+  <% end %>
+</ul>
+<!--<div class="windowtitle">
+  Search
+</div>
+<ul class="listmain">
+  <li>
+    <%#= text_field_with_auto_complete :otu_group, :name, { :size => 15, :value => ''}, {:method => :get} %>
+    <%#= link_to 'GO', '#' %>
+  </li>
+</ul> -->

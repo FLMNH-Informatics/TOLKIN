@@ -1,0 +1,14 @@
+<%
+  cell_style = "bt"
+  if @matrix.codings.fetch(chr_id, otu_id).nil?
+      cell_style = cell_style + "i"
+  else
+    cell_style = cell_style + @matrix.codings.fetch(chr_id, otu_id).status[0,1]
+  end
+  link_text=""
+  link_text = @matrix.codings.fetch(chr_id, otu_id).codings unless @matrix.codings.fetch(chr_id, otu_id).nil?
+  if link_text.nil? or link_text.blank?
+    link_text = "----"
+  end
+%>
+<td class="<%= cell_style %>" id="c_<%= otu_id.to_s + "_" + chr_id.to_s %>"><%= link_text %></td>

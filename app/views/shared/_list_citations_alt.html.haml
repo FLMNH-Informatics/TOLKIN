@@ -1,0 +1,10 @@
+.citation{:data => { :citation_id => citation.id }, :id => "citation_" + citation.id.to_s}
+  %p.citation
+    = raw citation.display_name
+    %br
+    %span.cit_buttons{:class => buttons_classes }
+      %a{:class => "state_citation_edit", :href => "/projects/" + citation.project_id.to_s + "/library/citations/" + citation.id.to_s, :target => "_blank"}
+        edit&#8599;
+      |
+      %a{:class => "state_citation_remove", :href => "#"}
+        remove

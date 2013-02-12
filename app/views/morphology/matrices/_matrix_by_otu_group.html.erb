@@ -1,0 +1,31 @@
+<% debugger %>
+<script language="javascript">
+  window.onload = function() {
+    <%#*hideWindow('windowdiv');%>
+    <%#*debugger%>
+    <%#*if($('table_body').getHeight() <= $('table_body_container').getHeight()){%>
+      <%#*$('table_body_container').setStyle({%>
+        <%#*height: $('table_body').getHeight()+'px'%>
+      <%#*});%>
+    <%#*};%>
+  }
+  var chrStateDefs = <%= @tooltips %>;
+</script>
+
+<%#= javascript_include_tag "tooltip.js" %>
+
+<%#= render :partial => "leftnav" %>
+
+<div id="contentpane">
+  <div id="clearer">
+    <%= render :partial => "matrix_detail", :object => @matrix_detail %>
+  </div>
+</div>
+
+<%= render :partial => "coding_matrix"%>
+
+<% session[:prev_page] = request.request_uri %>
+
+<div id="windowdiv" class="windowdiv" style="z-index: 5; display: none;" >
+</div>
+<%= draggable_element :windowdiv %>

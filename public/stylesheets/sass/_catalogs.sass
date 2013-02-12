@@ -1,0 +1,179 @@
+.widget.catalog
+  /* padding: 5px */
+
+  table
+    border-collapse: collapse
+
+  div
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+
+  &.draghover
+    border: 5px solid black
+    padding: 0px
+
+  > tbody > tr:last-child > td table
+    border-collapse: collapse
+
+  .header
+    border-style: solid
+    border-width: 2px 1px
+    border-color: #555
+
+  .entry
+    height: 20px
+
+  .filler
+    background-color: white
+    border-left: 1px solid #aaa
+    border-right: 1px solid #aaa
+    text-align: center
+
+  .finder_fields
+    display: table
+    margin: 10px
+  .finder_field
+    display: table-row
+    >*
+      display: table-cell
+      padding-bottom: 10px
+
+  th.attribute_name
+    border-left: 1px solid #aaa
+
+  th
+    background-color: #8c8c8c
+    border-top: 1px solid #aaa
+    border-bottom: 1px solid #aaa
+    height: 20px
+    color: white
+    font-weight: bolder
+    font-size: 80%
+    padding: 0
+    cursor: pointer
+
+    &:first-child
+      width: 20px
+
+  .catalog-contents
+    table
+      cursor: col-resize
+      width: 100%
+    div
+      width: 100%
+      line-height: 20px
+      margin: 0 4px 0 4px
+    tr
+      &.odd
+        background-color: #EAEAEA
+      &.even
+        background-color: #ffffff
+      &:hover
+        cursor: pointer
+
+        td.filler
+          cursor: default
+
+      td
+        font-size: 80%
+        vertical-align: middle
+        border: 1px solid #CCC
+        color: #0066CC
+        padding: 2px 0 0 0
+        text-align: left
+
+        div.move_controls
+          cursor: default
+          img
+            padding: 0 2px
+            &.active
+              cursor: pointer
+
+        &:first-child
+          padding: 2px 0 0 0
+          width: 20px
+          div
+            margin: 0
+
+  .catalog-footer
+    cursor: default
+    font-weight: bolder
+
+    table
+      border: 1px solid #aaa
+      background-color: #8c8c8c
+
+      td
+        border-style: solid
+        border-width: 2px 1px
+        border-color: #555
+        color: white
+        text-align: center
+        font-size: 0.85em
+
+        .border
+          border-top: 1px solid #aaa
+          border-bottom: 1px solid #aaa
+          padding: 5px
+
+        .public_actions
+          position: absolute
+          left:  0
+
+          a
+            margin-right: 5px
+            margin-left: 25px
+
+        .private_actions
+          position: absolute
+          right:  0
+
+          a
+            margin-left: 5px
+            margin-right: 25px
+
+        .cat_actions
+          a
+            padding: 5px
+            color: white
+            text-decoration: underline
+
+            &:hover
+              background-color: #AAAAAA
+
+  tr[data-id].highlighted
+    td
+      background-color: #FF9
+
+  .filters
+    position: relative
+    background-color: #EAEAEA
+    border: 1px solid #CCC
+  .filters-inner
+    padding: 5px
+
+  .search_button_row
+    padding: 5px
+    position: absolute
+    right: 0px
+    top: 0px
+
+  .visibility-toggle
+    font-size: 12px
+    position: absolute
+    padding: 8px
+    right: 60px
+    top: 0px
+    cursor: pointer
+    color: #06C
+
+    &:hover
+      color: #333
+
+    &.hide-control > .show-control
+      display: none
+
+    &.show-control > .hide-control
+      display: none
+

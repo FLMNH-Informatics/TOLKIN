@@ -1,0 +1,22 @@
+<h1>Listing nexus_datasets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Project</th>
+  </tr>
+
+<% for nexus_dataset in @nexus_datasets %>
+  <tr>
+    <td><%=h nexus_dataset.name %></td>
+    <td><%=h nexus_dataset.project %></td>
+    <td><%= link_to 'Show', nexus_dataset %></td>
+    <td><%= link_to 'Edit', edit_nexus_dataset_path(nexus_dataset) %></td>
+    <td><%= link_to 'Destroy', nexus_dataset, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New nexus_dataset', new_nexus_dataset_path %>

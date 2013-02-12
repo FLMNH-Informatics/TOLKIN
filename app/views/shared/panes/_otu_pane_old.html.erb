@@ -1,0 +1,52 @@
+<div class="windowtitle">
+  Options
+</div>
+<ul class="listmain">
+  <% if controller.action_name == "index" %>
+    <li>
+      <%= link_to_remote 'New OTU', :url => new_project_otu_path(:project_id => params[:project_id]), :method => :get %>
+    </li>
+    <li>
+      <%= link_to_remote 'Add Selected To OTU Group', :url => show_add_to_group_project_otus_path(:project_id => params[:project_id]), :method => :get %>
+    </li>
+    <!--li>
+      <#%= link_to_remote 'Add Selected To Matrix', :url => add_to_matrix_project_otus_path(params[:project_id]), :method => :get %>
+    </li-->
+    <li>
+      <%#= link_to 'Delete Selected', "javascript:void(0)",
+        :onclick => "var hasConfirmed = confirm('Are you sure you would like to delete the selected OTUs?');
+      if(hasConfirmed) {document.getElementById('otus_form').submit(); }" %>
+      <%= link_to 'Delete Selected', "javascript:void(0)",
+        :onclick => "var hasConfirmed = confirm('Are you sure you would like to delete the selected otus?');
+      if(hasConfirmed) {
+        $('form_sel_list').writeAttribute('action','#{delete_selected_project_otus_path(params[:project_id])}');
+        $('form_sel_list').writeAttribute('method','post');
+        $('form_sel_list').submit();
+        $('form_sel_list').writeAttribute('action','');
+      }"
+    %>
+    </li>
+  <% end %>
+  <% if controller.action_name == "show" %>
+    <li>
+      <a href="#">Add Taxon to Otu</a>
+      <%#= link_to 'Add Taxon to Otu', optional_matrix_resource_url(:controller => 'otus', :action => 'show_add_taxon', :matrix_id => params[:matrix_id], :project_id => params[:project_id], :id => params[:id]) %>
+    </li>
+    <%if !params[:matrix_id]%>
+      <li>
+        <%= link_to_remote 'Add Image', :url => add_image_window_project_otu_path, :method => :get %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+<!--
+<div class="windowtitle">
+  Search
+</div>
+<ul class="listmain">
+  <li>
+    <#%= text_field_with_auto_complete :otu, :name, { :id => 'otu_search', :size => 15 }, {:method => :get} %>
+    <#%= link_to 'GO', '#' %>
+  </li>
+</ul>-->
+<%#= render :partial => "shared/selected_list" %>

@@ -1,0 +1,11 @@
+<%# here node_panel is the object itself so pass the object!%>
+<%= link_to_remote( image_tag("delete.gif", :size => "12x12" ),
+:id=>  "delete",
+:update => "node_"+ node_panel.to_s,
+:url=>eval("project_#{node_panel.class.to_s.demodulize.tableize}_url(#{params[:project_id]},#{node_panel.id})"),
+:method => 'delete',
+:complete => visual_effect(:fade , 'results',:duration=>2),
+:confirm => 'Are you sure you want to delete?'
+) %>
+<%= render :partial=>"tags/tagme", :locals => { :tagme => node_panel } %>
+<%= render :partial=>"shared/mark_record", :object => node_panel %> 

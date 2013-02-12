@@ -1,0 +1,25 @@
+<%= raw window_head 'Export Matrix', 'windowdiv' %>
+<% form_remote_tag(:url => do_export_project_morphology_matrix_path(params[:project_id], params[:id]), :method => :put, :html => {:id => 'export_matrix_form'} ) do %>
+
+<div class="formrow">
+	<span class="field">
+	<%= label  'export', 'Type' %>
+      Nexus File
+      <%#*not needed, neXML logic not in place%>
+	  <%#= select 'export', 'type', Morphology::Matrix::Checkpoint.export_types, :include_blank => false%>
+	</span>
+</div>
+
+<div class="formrow">
+    <%= label  'export', 'File Name' %>
+    <span class="field"><%= text_field 'export', 'name', :value => @matrix.name %>
+    </span>
+</div>
+
+<div class="submitbuttonrow">
+    <input type="submit" value="Create File" onclick="document.getElementById('busy').style.display='block';" />
+
+</div>
+<% end %>
+
+<%= render :partial => 'shared/busy_indicator', :locals => { :display_text => "Please Wait.." } %>

@@ -1,0 +1,22 @@
+<div id="div_sel_list" class="windowtitle"> Selected Items <a href="#" >Empty list</a> </div>
+<form id="form_sel_list">
+  <input name="authenticity_token" type="hidden" value="<%=form_authenticity_token%>"/>
+  <ul id="sel_list" class="listmain">
+  </ul>
+</form>
+<script>
+  $('div_sel_list').select('a').first().observe('click', function(){$('sel_list').select('li[id^=sel_list_li] > a').each(function(a){a.onclick();});});
+  function buildElement(name, id){
+    //alert("name:" + name + "\nid:" + id)
+    var new_ele = "<li id='sel_list_li_"+ id +"'><input type='hidden' name='sel_items[]' value='" + id +"'/><a onclick='remove_sel_item("+id+");' href='javascript:void(0)'>X</a></span> <span>"+name+"</span></li>";
+    if($('sel_list')!= null && $('sel_list_li'+id) == null){
+      $('sel_list_li'+id)
+      $('sel_list').insert(new_ele);
+    }
+    else{
+      //$('notice').replace("Oops! selected items list missing!.");
+      //send ajax call to admin
+    }
+  };
+</script>
+

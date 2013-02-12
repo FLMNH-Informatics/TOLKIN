@@ -1,0 +1,7 @@
+Hello <%=h @user.login %>,
+    A new user(<%= @new_user.full_name %>) request for your project: <%= @project_name %> has been placed.
+    Please follow the url to tolkin to allow access to your project for this user.
+    <%=h @url %>
+Thanks,
+Tolkin Team.
+p.s: The same email has been sent to other managers too. So it might happen they would have allowed the user access before you try to.

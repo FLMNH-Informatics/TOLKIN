@@ -1,0 +1,20 @@
+-#= form_for :character, :url => params[:action] == "new" ? project_morphology_characters_path(params[:project_id]) : project_morphology_character_path(params[:project_id], params[:id]), :method => params[:action] == "new" ? :post : :put, :html => {:id => 'morphology_character_form'} do |f|
+-#= form_for @character, :as => :character, :url => project_morphology_character_path(@project,@character), :method => :put, :html => {:id => 'morphology_character_form', :class => 'morphology_character_form'} do |f|
+= form_for [current_project, @character] do |f|
+  %table
+    %tr
+      %td.td_right.td_top
+        %span.titletext Name
+      %td.td_right.td_top
+        = f.text_area :name, {:style => 'height: 35px; width: 242px;', :disabled => interact_mode == 'browse' ? true : false}
+    %tr
+      %td.td_right.td_top
+        %span.titletext Short Name:
+      %td.td_right.td_top
+        %span.bodytext
+          = f.text_field :short_name, :disabled => interact_mode == 'browse' ? true : false
+    %tr
+      %td.td_right.td_top
+        %span.titletext Description:
+      %td.td_top{:colspan => 3}
+        = f.text_area :description, {:style => 'height: 100px;width: 242px;', :disabled => interact_mode == 'browse' ? true : false}

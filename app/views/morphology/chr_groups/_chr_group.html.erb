@@ -1,0 +1,8 @@
+<tr class="<%= cycle('body-odd', 'body-even') %>">
+  <td><input id="otu_group_<%=chr_group.id%>" type="checkbox" value="<%=chr_group.id%>" name="chr_groups[]"/></td>
+  <td class="b"><%= link_to chr_group.name, project_chr_group_path(params[:project_id],chr_group) %></td>
+  <td class="b"><%=h chr_group.perspective %></td>
+  <td class="b"><%=h chr_group.sensor %></td>
+  <td class="b"><%=h chr_group.chr_group_type %></td>
+  <td class="b"><%=h chr_group.creator.label %></td>
+</tr>

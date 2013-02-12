@@ -1,0 +1,55 @@
+<%= form.error_messages %>
+<div class="formrow">
+    <label for="publication_name">
+        Name: 
+    </label>
+    <span class="field"><%= form.text_field 'name' %>
+    </span>
+</div>
+<div class="formrow">
+    <label for="publication_code">
+        Code: 
+    </label>
+    <span class="field"><%= form.text_field 'code' %>
+    </span>
+</div>
+<div class="formrow">
+    <label for="publication_publisher_id">
+        Publisher  : 
+    </label>
+    <span class="field"><%= form.collection_select( :publisher_id, @publishers, :id, :name, :include_blank => true) %>
+    </span>
+</div>
+<%if !@publication.nil? && !@publication.new_record? %>
+<div class="formrow">
+    <label for="publication_created_at">
+        Created At:
+    </label>
+    <span class="field"><%= @publication.created_at %>
+    </span>
+</div>
+<div class="formrow">
+    <label for="publication_updated_at">
+        Updated At:
+    </label>
+    <span class="field"><%= @publication.updated_at %>
+    </span>
+</div>
+<div class="formrow">
+    <label for="publication_updated_by">
+        Last Updated By:
+    </label>
+    <span class="field"><%= @publication.updator %>
+    </span>
+</div>
+<!--<div class="formrow">
+    <label for="publication_owner">
+        Owner:
+    </label>
+    <span class="field"><%= @publication.user %>
+    </span>
+</div> -->
+<%end%>
+<div class="left_btn">
+    <%= form.submit "Update" %>
+</div>

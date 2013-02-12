@@ -1,0 +1,5 @@
+<%= link_to 'Back', project_people_path(params[:project_id]) %>
+<h5>Editing people</h5>
+<% form_for :person, @person, :url=>project_person_path(params[:project_id],@person.id), :html=> { :method => :put, :class => 'person_form' } do |person_form| %>
+<%=  render :partial => "form", :object=> person_form %>
+<% end %>

@@ -1,0 +1,19 @@
+<%  form_remote_tag :url => user_granted_role_path(:id) do -%>
+  <p>
+    For project:
+    <%= collection_select(:granted_roles, :project_id, projects, :id, :name) %>
+  </p>
+  <p>
+    Role type:
+    <%= collection_select(:granted_roles, :role_type_id, roles, :id, :name) %>
+  </p>
+
+  <p>
+    <%= hidden_field(:granted_roles, :user_id, :value => user_id) %>
+    <input type="submit" value="Add Role for User" />
+  </p>
+<% end -%>
+<br />
+
+
+

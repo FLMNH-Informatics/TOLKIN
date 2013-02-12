@@ -1,0 +1,54 @@
+.person_form td {
+font-size: 85%;
+}
+
+/*label {
+  font-weight: bold;
+  padding-right: 10px;
+}*/
+
+.editable_attributes_listing {
+  margin-bottom: 15px;
+}
+
+.editable_attribute {
+  height: 25px;
+}
+
+.editable_attribute > * {
+  padding-right: 15px;
+  vertical-align: middle;
+}
+
+img {
+  border-width: 0
+}
+
+div.auto_complete {
+  width: 350px;
+  background: #fff;
+}
+div.auto_complete ul {
+  border:1px solid #888;
+  margin:0;
+  padding:0;
+  width:100%;
+  list-style-type:none;
+}
+div.auto_complete ul li {
+  margin:0;
+  padding:3px;
+}
+div.auto_complete ul li.selected {
+  background-color: #ffb;
+}
+div.auto_complete ul strong.highlight {
+  color: #800;
+  margin:0;
+  padding:0;
+}
+
+.inplaceeditor-empty {
+  font-style: italic;
+  color: #999;
+}

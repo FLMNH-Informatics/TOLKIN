@@ -1,0 +1,86 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title> Tolkin - <%= controller.controller_name%> : <%= controller.action_name %></title>
+    <% stylesheets = [
+        'tabs', 'basic', 'shared', 'display', 'forms', 'main', 'datepicker', 'admin',
+        "/assets/windows_js/themes/default.css", "/assets/windows_js/themes/lighting.css"
+      ]
+      stylesheets.push({cache: true})
+    %>
+    <%= stylesheet_link_tag *stylesheets %>
+    
+    <%  if FileTest.exists?("public/stylesheets/#{controller.controller_name}.css") %>
+      <%=stylesheet_link_tag controller.controller_name %>
+    <%  end %>
+
+    <%  if FileTest.exists?("public/stylesheets/#{controller.controller_path.gsub(/\//, '_')}.css") %>
+      <%=stylesheet_link_tag controller.controller_path.gsub(/\//, '_') %>
+    <%  end %>
+    <%#= stylesheet_link_tag "/extjs/resources/css/ext-all"  %>
+    <%#= stylesheet_link_tag "/extjs/resources/css/xtheme-gray" %>
+
+    <!-- include customized style sheets for each controller if they exist -->
+    <%= csrf_meta_tag %>
+
+    <!-- JAVASCRIPT INCLUDES -->
+    <%= raw google_maps_key %>
+    <script type="text/javascript">
+    Routes = {}
+    eval('Routes.PATHS_TO_ROUTES = <%= raw Routes::JSON::PATHS_TO_ROUTES %>')
+    eval('Routes.CONTROLLERS_ACTIONS_TO_ROUTES = <%= raw Routes::JSON::CONTROLLERS_ACTIONS_TO_ROUTES %>')
+    eval('Routes.PATHNAMES_TO_ROUTES = <%= raw Routes::JSON::PATHNAMES_TO_ROUTES %>')
+    </script>
+    <%= javascript_tag "var AUTH_TOKEN = '#{URI.escape(form_authenticity_token, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))}'" %>
+    <%= javascript_tag "var ID = '#{params[:id]}';" if params[:id]  %>
+    <%= javascript_tag "var PROJECT_ID = '#{params[:project_id]}';" if params[:project_id] %>
+    <%= javascript_tag "var params = #{params.to_json};" %>
+
+
+    <% javascripts =  [:defaults, 'ckeditor', 'extensions' ,
+      'window', 'application', 'events_cache', "swfupload", "handlers", 'livevalidation'
+      ]
+      if FileTest.exists?("public/javascripts/#{controller.controller_name}.js")
+        javascripts.push(controller.controller_name)
+      end
+      #javascripts.push('layout')
+      #javascripts.push("/sprockets.js")
+      javascripts.push({ cache: true })
+    %>
+    <%  if @javascript_includes %>
+    <% @javascript_includes.each do |include_file| %>
+      <%= javascript_include_tag include_file %>
+    <% end %>
+      <% end %>
+    <% if FileTest.exists?("public/javascripts/#{controller.controller_name}/#{controller.action_name}.js") %>
+      <%= javascript_include_tag controller.controller_name + '/' + controller.action_name %>
+    <% end %>
+
+    <%= javascript_include_tag(*javascripts) %>
+    <!-- include javascript for defining behavior of page elements - unobtrusive javascript -->
+
+    <!-- include javascript requested by page elements -->
+
+    <%#= javascript_include_tag "/extjs/adapter/ext/ext-base-debug" %>
+    <%#= javascript_include_tag "/extjs/ext-all-debug" %>
+  </head>
+  <body>
+    <!--<%#= yield %>-->
+    <%= viewport %>
+    <%# FIXME: move javascript includes here later once all inline javascript calls are removed and test suite is robust enough to catch possible errors caused by this %>
+    <div id="windowdiv" class="window" style="display: none;z-index:1;">
+      <div id="windowtitle"></div>
+    </div>
+    <%=  draggable_element :windowdiv %>
+    <%= javascript_include_tag "/sprockets.js" %>
+    <%= javascript_include_tag "/javascripts/layout.js" %>
+    <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+
+  </body>
+</html>

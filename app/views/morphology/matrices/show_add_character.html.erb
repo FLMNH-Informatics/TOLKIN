@@ -1,0 +1,17 @@
+<%= form_remote_tag(:url => update_character_project_morphology_matrix_path(params[:project_id], params[:id]), :update => 'actor_list', :position => 'bottom', :html => {:id => 'add_chr_form'} ) do %>
+
+    <%= hidden_field 'chr_matrix', 'matrix_id', 'value' => params[:id] -%>
+<table><tr><td style="vertical-align: middle;">
+      <%= label  'chr_matrix', 'Character Name' %>
+    </td><td>
+      <span class="field">
+        <%= raw character_name_field %>
+      </span>
+ </td></tr><tr><td style="vertical-align: middle;">
+      <%= label  'chr_matrix', 'Character Group' %>
+    </td><td >
+      <span class="field">
+        <%= select_tag( "chr_group_id", raw("<option value=\"\"></option>" + options_for_select(@current_project.chr_groups.collect {|o| [ o.name, o.id ]})), { :style=> 'width:300px;' }) %>
+      </span>
+    </td></tr></table>
+  <%  end %>

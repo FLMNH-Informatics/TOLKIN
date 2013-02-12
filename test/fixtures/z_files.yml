@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ z_file_1:
+   id    : 2
+   created_at : <%= Time.now - 1.hour%>
+   updated_at : <%= Time.now%>
+   zvi_file_name : Scf085_G02-Fitc_K20-Cy3.zvi
+   content_type :  application/octet-stream
+   file_size :    8806912
+   project_id : 44
+   caption :     G02
+   uploaded_at_date :  <%=Time.now.strftime('%m-%d-%Y')%>
+   user_id : 133
+
+
+ z_file_2:
+    id    : 3
+    created_at : <%= Time.now - 1.hour%>
+    updated_at : <%= Time.now%>
+    zvi_file_name : Scf085_G02-Fitc_K20-Cy3.zvi
+    content_type :  application/octet-stream
+    file_size :    8806943
+    project_id : 43
+    caption :     G03
+    uploaded_at_date :  <%=Time.now.strftime('%m-%d-%Y')%>
+    user_id : 131
+
+
+

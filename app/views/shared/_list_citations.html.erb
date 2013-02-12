@@ -1,0 +1,11 @@
+<div id=<%=get_citation_item_name(obj,list_citations.id)%>>
+  <a href="javascript:void(0)" onclick="cit_det(<%=list_citations.id %>, <%=params[:project_id] %>);">
+    <%=list_citations.display_name %>
+  </a>
+  <%= link_to_remote( image_tag("delete.gif", :size => "12x12" ),
+    :url=> {:action => :delete_citation}.merge(url_options),
+    :method => :delete,
+    :with => "'cit_id=#{list_citations.id}'",
+    :confirm => 'Are you sure you want to delete?'
+  ) %>
+</div>

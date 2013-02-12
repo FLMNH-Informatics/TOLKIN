@@ -1,0 +1,19 @@
+use Bio::Perl;
+use Bio::DB::BioDB;
+
+my $genbank_id = $ARGV[0];
+
+my $genDB = new Bio::DB::GenBank;
+my $bioDB = Bio::DB::BioDB->new(-database => 'biosql',
+                             -user => 'tolkin2',
+                             -pass => 'd28xCvJlie28op2769dMnxli87379aAQweq788kj27',
+                             -dbname => 'tolkin_rails',
+                             -host => 'localhost',
+                             -port => 5432,
+                             -driver => 'Pg');
+
+my $sequence = $genDB->get_Seq_by_id($genbank_id);
+$sequence->namespace('bioperl');
+my $pobj = $bioDB->create_persistent($sequence);
+$pobj->create() or die "create failed";
+$pobj->commit();

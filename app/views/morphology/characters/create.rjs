@@ -1,0 +1,26 @@
+##page << "if($('tbody_items_table')) {"
+##page.insert_html :bottom, :tbody_items_table, :partial => 'shared/list_items_item',  :locals => { :title => "Characters Listing",
+##  :object => @character,
+##  :attributes => @attributes_to_show,
+##  :attribute_display_properties => @attribute_display_properties,
+##  :options => { :id => 'characters_listing', :ajax_pagination => true } }
+##page << "} else {"
+##page.replace_html :characters_listing, :partial => "shared/list_items", :locals => { :title => "Characters Listing",
+##  :items_to_list => @characters,
+##  :attributes => @attributes_to_show,
+##  :attribute_display_properties => @attribute_display_properties,
+##  :options => { :id => 'characters_listing', :ajax_pagination => true }
+##}
+##page << "}"
+#
+#page << <<JS
+#  $('newchardiv').hide();
+#  var catalog = init.viewport().widgets().get('viewport_content_frame').widgets().get('viewport_content_frame_morphology_characters_catalog');
+#  catalog.collection().load({
+#    onSuccess: catalog.render.bind(catalog)
+#  });
+#JS
+#
+#page.replace_html :notice, flash[:notice]
+#page["newchardiv"].hide
+#flash.discard

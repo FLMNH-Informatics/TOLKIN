@@ -1,0 +1,3 @@
+page.remove "tr_chr_#{@character.id}" if !flash[:error]
+page.replace_html :notice, flash[:error] || flash[:notice]
+flash.discard

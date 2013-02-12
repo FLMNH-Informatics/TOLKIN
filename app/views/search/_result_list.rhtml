@@ -1,0 +1,7 @@
+<%if(!property.nil? && !is_new_taxon)%>
+	<%=  collection_select("taxon_#{id}", property, taxi, :id, :name,{:include_blank => false}) %>
+<%elsif !property.nil? && is_new_taxon %>
+	<%=  collection_select("taxon", property, taxi, :id, :name,{:include_blank => false}) %>
+<%else%>
+	<%= collection_select(:taxon, :id, taxi, :id, :name) %>
+<%end%>

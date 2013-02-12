@@ -1,0 +1,20 @@
+<tr class="editable_attribute">
+  <% if object[:name] %>
+    <td>
+    <label for="name">
+      <% if object[:label] %>
+        <%=object[:label] %>
+        <% else %>
+        <%=object[:name].to_s.titleize %>
+        <% end %>
+    </label>
+    </td>
+  <% end %>
+  <td class="editable_field">
+  <!--FIXME the below is a hack to try and get controller named instance variable - had trouble setting an item local for a collection partial -->
+    <%= appropriate_editable_field_tag instance_variable_get("@#{controller.controller_name.singularize}"), object, @update_url %>
+    </td>
+    <%if object[:external_link]%>
+      <%=  link_to object[:external_link], get_external_link( object[:external_link], actual_object), :target => "blank" %>
+    <%end%>
+</tr>

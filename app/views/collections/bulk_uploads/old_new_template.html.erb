@@ -1,0 +1,61 @@
+<h1>Prepare a New Template - Old Template production</h1>
+<br/>
+Select the elements to build template.
+<% form_for :new_template, :html => {:id => 'select_elements_for_template'} do |form| %>
+
+    <table>
+      <td valign="top">
+
+        <table style="border: 50, #000000; background-color: #ffebcd;font-family: verdana,sans-serif; font-size: 12px">
+          <tr>
+            <th>
+              Taxonomy<br/>
+              <%= form.check_box :taxonomy_objects %>
+            </th>
+
+          </tr>
+          <% @taxon_template_columns.each do |col| %>
+              <tr>
+                <td id="taxon_attributes" data-id="<%= col%>">
+                  <% if col == "name" || col == "author" || col == "infra_name" || col == "infra_author" %>
+                      <%= form.check_box "#{col.to_s}", :checked => true, :disabled => true, :html => {:id => "taxon_#{ form.label col}_checkbox" } %>
+                      <text><%= form.label col %></text>
+                  <% else %>
+                      <%= form.check_box "#{col.to_s}", :html => {:id => "taxon_#{ form.label col}_checkbox"} %><text data_id="<% form.label col%>"><%= form.label col %></text>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+
+        </table>
+      </td>
+      <td valign="top">
+        <table style="border: 50, #000000; background-color: #ffebcd;font-family: verdana,sans-serif; font-size: 12px">
+          <tr>
+            <th>
+              Collection<br/>
+              <%= form.check_box :collection_objects %>
+            </th>
+          </tr>
+          <% @collection_template_columns.each do |col| %>
+              <tr>
+                <td id="collection_attributes" data-id="<%= col%>">
+                  <% if col == "collector" || col == "type_status" %>
+                      <%= form.check_box "#{col.to_s}", :checked => true, :disabled => true, :html => {:id => "collection_#{ form.label col}_checkbox"} %>
+                      <text data_id="<% form.label col%>"><%= form.label col %></text>
+                  <% else %>
+                      <%= form.check_box "#{col.to_s}", :html => {:id => "collection_#{ form.label col}_checkbox"} %><text data_id="<% form.label col%>"><%= form.label col %></text>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+        </table>
+      </td>
+    </table>
+
+    <button id="generate_template_submit_button">Generate Template</button>
+    <br/>
+
+    <%#= button_to "Generate Template", generate_template_project_bulk_uploads_path %>
+    <%#= submit_tag "Create Template", :action => :generate_template %>
+<% end %>

@@ -1,0 +1,12 @@
+def_each
+========
+
+Allows easy declaration of multiple methods at once.  See
+http://blog.jayfields.com/2008/02/ruby-dynamically-define-method.html
+for more information.
+
+Monkey-patched into Class
+
+Note: define_method call from within def_each is slower than just declaring
+methods individually.  There may be issues with memory leaks, but it is likely
+all significant issues have been resolved at this point in time.

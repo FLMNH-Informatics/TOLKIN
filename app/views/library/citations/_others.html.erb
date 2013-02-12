@@ -1,0 +1,66 @@
+<tr>
+  <td>
+    <table>
+      <tr>
+        <td><%= raw f.label(:year) %></td>
+        <td><%= raw f.text_field :year %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:title) %></td>
+        <td><%= raw f.text_field :title %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:journal) %></td>
+        <td><%= raw journal_title_field %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:volume) %></td>
+        <td><%= raw f.text_field :volume %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:number) %></td>
+        <td><%= raw f.text_field :number %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:pages) %></td>
+        <td><%= raw f.text_field :pages %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:edition) %></td>
+        <td><%= raw f.text_field :edition %></td>
+      </tr>
+    </table>
+  </td>
+  <td>
+    <table>
+      <tr>
+        <td><%= raw f.label(:key) %></td>
+        <td><%= raw f.text_field :key %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:keywords) %></td>
+        <td><%= raw f.text_field :keywords %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:abstract) %></td>
+        <td><%= raw f.text_field :abstract %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:isbn_or_issn, 'ISBN/ISSN') %></td>
+        <td><%= raw f.text_field :isbn_or_issn %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:url, 'URL') %></td>
+        <td><%= raw f.text_field :url %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label(:notes) %></td>
+        <td><%= raw f.text_field :notes %></td>
+      </tr>
+      <tr>
+        <td><%= raw f.label :attachment %></td>
+        <td><%= raw f.file_field :attachment %><!--<em>Disabled for demo.</em>--></td>
+      </tr>
+    </table>
+  </td>
+</tr>

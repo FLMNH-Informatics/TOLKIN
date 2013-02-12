@@ -1,0 +1,53 @@
+<!--
+<#% if @citation[:type].constantize.attributes.include?(citation_column.intern) %>
+<div class="formrow">
+    <#%= f.label citation_column, get_pseudo_column_name(citation_column) %>
+    <span class="tinyfield">
+    <#%if citation_column.upcase == "PUBLICATION" %>
+    <#%= text_field "publication", "name" %>
+    <#%= link_to_remote("create publications",
+    :url => project_library_publications_path(params[:project_id]),
+    :with => "'publication[name]=' + $('publication_name').value"
+    ) %>
+    <#%= observe_field("publication_name",
+    :frequency => 1,
+    :update     => "div_publications",
+    :url        => publications_search_project_library_publications_path(params[:project_id]),
+    :with => "search",
+    :method => :get
+    ) %>
+    </span>
+    <div id="div_publications">
+    </div>
+    <#%elsif citation_column.upcase == "PUBLISHER_ID" %>
+    <#%if !@citation.publisher.nil? %>
+    <#%= link_to(h(@citation.publisher.name),
+    project_library_publisher_path(params[:project_id],
+    @citation.publisher)
+    ) %>
+    <#%end %>
+</div>
+<div class="formrow">
+<span class="tinyfield"><#%= text_field "publisher", "name" %>
+    <#%= link_to_remote("create publisher",
+    :url => project_library_publications_path(params[:project_id]),
+    :with => "'publisher[name]=' + $('publisher_name').value"
+    ) %>
+    <#%= observe_field("publisher_name",
+    :frequency => 1,
+    :update     => "div_publishers",
+    :url        => publishers_search_project_library_publishers_path(params[:project_id]),
+    :with => "'object_type=#{@citation.class.base_class.to_s.demodulize.downcase}&search=' + value",
+    :method => :get
+    ) %>
+</span>
+<div id="div_publishers">
+</div>
+<#%elsif citation_column.upcase == "URL"%>
+<#%= link_to u(@citation.url),u(@citation.url) %>
+<#%elsif citation_column.upcase != "AUTHOR" %>
+<#%= f.text_field h(citation_column) %>
+<#%end %>
+</div>
+<#% end %>
+-->

@@ -1,0 +1,5 @@
+<%= link_to 'Back', project_library_publishers_path(params[:project_id]) %>
+<h5>New Publisher</h5>
+<% form_for :publisher, @publisher, :url=> project_library_publishers_path(params[:project_id]) do |form_publisher| %>
+ <%= render :partial=> "form", :object=>form_publisher %>
+<% end %>

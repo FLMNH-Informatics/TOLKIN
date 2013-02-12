@@ -1,0 +1,28 @@
+#login_outer
+  #login_box
+    %h2 TOLKIN Sign in
+    
+    - form_tag session_path do
+      %p
+        %label{ :for => "login" } Login
+        %br
+        = text_field_tag 'login'
+      %p
+        %label{ :for => "password" } Password
+        %br
+        = password_field_tag 'password'
+      - if @present_captcha && @present_captcha == true
+        = raw get_captcha(:options => {:theme => 'white'})
+      - if false
+        %p
+          %label{ :for => "remember_me" }
+            Remember me:
+          = check_box_tag 'remember_me'
+        %p
+      = submit_tag 'Log in'
+      Or
+      = link_to 'Register', signup_path
+
+%div
+  - if current_user.username == 'public'
+    - #%p Enter login <em><b>demo</b></em> and password <em><b>demo</b></em> to log in.

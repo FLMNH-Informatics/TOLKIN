@@ -1,0 +1,23 @@
+
+
+    <span  id="img_<%= object.image.id %>">
+    <% if object.image.image? %>
+    <%= link_to(image_tag(object.image.public_filename(:thumb), :width => "100", :height => "100", :class=> "noborderimage"), object.image.public_filename, :target => "_blank") %>
+    <% end %>
+    </span>
+    <%#*<br/>%>
+    <%#*<span class="bodytext">%>
+      <%# if interact_mode=="edit" %>
+    <%#= link_to_remote "Delete", :url => image_link_path(object), :confirm => 'Are you sure you would like to remove this image?', :method => :delete %>
+      <%#  end %>
+  <%#*</span>%>
+
+  <%#*<tr>%>
+    <%#*<td align="center">%>
+       <%#*<span class="bodytext">%>
+        <%#= object.image.caption %>
+        <%#*<br/>%>
+        <%#= object.image.photographers_credits %>
+       <%#*</span>%>
+    <%#*</td>%>
+  <%#*</tr>%>

@@ -1,0 +1,12 @@
+<% search_url_options ||= {} %>
+<% ajax_submit = true if ajax_submit.nil? %>
+<input type="button" class="create_citation" value="Create Citation" id="<%=params[:id]%>" />
+<div>
+  <%= render :partial=>"/library/citations/search_filters", :locals => { :search_filters => Library::Citation.new, :id => add_citations.id, :search_url_options => search_url_options}%>
+</div>
+<form class="citation_add">
+  <h5>Listing citations</h5>
+  <div id="div_citation_list<%= add_citations.id %>" class='div_citation_list'>
+  </div>
+  <%= submit_tag 'Add Library Refs' %>
+</form>

@@ -1,0 +1,6 @@
+<tr id="role_<%= role.id %>">
+  <td><%= role.role_type.name %></td>
+  <td><%= print_role_project_name(role) %></td>
+  <td><%= link_to_remote 'remove role', :url => user_granted_role_path(:id => role.id, :user_id => @user.id), :method => :delete %></td>
+</tr>
+

@@ -1,0 +1,25 @@
+<h3>Edit Project</h3>
+<form action="/admin/projects/<%= @project.id %>" method="post">
+  <input type="hidden" name="_method" value="put" />
+  <table>
+    <tr>
+      <td>Project Name:</td>
+      <td><input type="text" name="label" value="<%= @project.label %>"/></td>
+    </tr>
+    <tr>
+      <td>Website URL:</td>
+      <td><input type="text" name="website" value="<%= @project.website %>"/></td>
+    </tr>
+    <tr>
+      <td>Logo Image:</td>
+      <td><input type="file" name="logo_file" /></td>
+    </tr>
+    <tr>
+      <td>Public?:</td>
+      <td><input type="checkbox" name="public" <%= @project.public ? 'checked' : '' %> /></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Save!" /></td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,34 @@
+<div id="detailsdiv" class="detailsdiv">
+    <table border="0" cellpadding="3px" cellspacing="2px">
+        <tr>
+            <td>
+                <h5>Edit - <%= @otu_group.name %></h5>
+            </td>
+            <td>
+                <span class="bodytext">
+                	<%= link_to 'Show', project_otu_group_path(params[:project_id],@otu_group) %>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <% form_for([@project,@otu_group]) do |f| %>
+    <%= f.error_messages %>
+    <table border="0" cellpadding="3px" cellspacing="2px">
+        <tr>
+            <td colspan="1" align="right">
+                <span class="titletext"><%= f.label :name %>
+                    <br/>
+                </span>
+            </td>
+            <td>
+                <%= raw f.text_area :name, :cols => 35, :rows => 1 %>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <%= f.submit "Update" %>
+            </td>
+        </tr>
+    </table>
+    <% end %>
+</div>

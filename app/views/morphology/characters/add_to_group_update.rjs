@@ -1,0 +1,4 @@
+page.visual_effect :fade, :windowdiv, { :duration => 0.3 }
+page.replace_html :notice, flash[:notice]
+flash.discard
+

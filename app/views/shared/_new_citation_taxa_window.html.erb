@@ -1,0 +1,3 @@
+<%= collection_select("citation", :type, Library::CitationType.find(:all), :name, :name, {} ,:id=> 'select_new_citation_type') %>
+<input type="button" value="Select" onclick="new Ajax.Request('/projects/' + params['project_id'] + '/citations/new', { parameters: {  citation_type : $('select_new_citation_type').value ,taxa_id:  <%=params[:id]%> }, method: 'get',  onSuccess: function(transport) {Element.update($('div_create_new_citation'), transport.responseText);  } });"/>
+<div id="div_create_new_citation"></div>

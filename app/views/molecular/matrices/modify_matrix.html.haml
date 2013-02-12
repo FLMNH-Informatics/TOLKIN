@@ -1,0 +1,15 @@
+#edit_page
+  #windowdiv.windowdiv{:style => "z-index: 5; display:none;"}
+  %span#edit_page_top_nav.top_nav
+  %h4 Edit Markers / Otus
+  %h4.matrix_title= render :partial => "matrix_title"
+  #mrkrs_otus_edit
+    = render :partial => 'shared/legend_arrows'
+    %div
+      %table.modify_matrix_table{:valign=>"top"}
+        %tr= render :partial => 'modify_matrix_controls'
+        %tbody
+          %tr
+            %td.align_top{:valign=>"top"}= render :partial => 'modify_matrix_otus'
+            %td.align_top{:valign=>"top"}= render :partial => 'modify_matrix_markers'
+      %input#hack_field{:type=>"hidden",:value=>"modify_matrix"}

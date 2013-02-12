@@ -1,0 +1,8 @@
+#if !@taxon.errors.empty?
+#  page.replace_html "lblresult", :partial=> "errors", :object => @taxon.errors, :layout => false
+#else
+#  page.insert_html :bottom, @taxon.parent ? "node_#{@taxon.parent.id}_children" :"viewport_content_frame_taxa_tree_view", :partial=> "node", :object => @taxon , :layout => false
+#  page.replace "expander"+@taxon.parent.id.to_s, "-" if @taxon.parent
+#  page.replace_html :notice, flash[:notice]
+#  page["viewport_taxa_new_window"].hide
+#end

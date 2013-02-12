@@ -1,0 +1,16 @@
+<%= link_to "<< Back", :back   %>
+<br /><br />
+<h2>Roles for <%=h @user.login.capitalize %></h2>
+
+<h3>Roles assigned:</h3>
+<table id="assigned_roles_table">
+  <%= assigned_roles_heading %>
+  <%= render :partial => 'role', :collection => @user_roles %>
+</table>
+<h3>Pending Project Requests: </h3>
+<table id="pending_projects">
+  <%= render :partial => 'projects/project', :collection => @pending_project_requests.try(:collect){|project_req| project_req.project} %>
+</table>
+
+<h3>Grant additional roles:</h3>
+<%= render(:partial => "add_role_form", :locals => { :roles => @roles, :projects => @projects, :user_id => params[:user_id] }) %>

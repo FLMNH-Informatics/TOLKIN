@@ -1,0 +1,8 @@
+<% if @created_custom_mappings.empty? %>
+    <option value="autoMapping">Auto Mapping</option>
+<% else %>
+    <option value="autoMapping">Auto Mapping</option>
+    <% @created_custom_mappings.each do |map| %>
+        <option value="<%= map.name %>"><%= map.name %></option>
+    <% end %>
+<% end %>

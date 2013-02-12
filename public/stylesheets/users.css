@@ -1,0 +1,28 @@
+/* 
+    Document   : users
+    Created on : Jan 6, 2010, 11:40:17 PM
+    Author     : pbhattacharya
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+label{
+    float: left; width:100%; text-align: right; padding: .2em .5em 0 0;
+}
+
+.txtNoWrap{
+     white-space: nowrap;
+}
+
+.tblColWidth{
+    width: 85%;
+}
+
+.txtSize{
+    width: 250px;
+}

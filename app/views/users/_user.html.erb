@@ -1,0 +1,35 @@
+<tr id="user_<%=user.id %>" class="<%= cycle('body-odd', 'body-even') %>">
+  <td><%=h user.first_name %> <%=h user.last_name %></td>
+  <td><%=h user.login %></td>
+  <td>
+    <% if user.email=='changeme@flmnh.ufl.edu' %>
+      None
+    <% else %>
+      <%=h user.email %>
+    <% end %>
+  </td>
+
+  <% if current_user.is_admin? %>
+    <td>
+      <% unless user == current_user %>
+        <% if user.enabled? %>
+          <%= link_to('disable', user_path(user.id), :method => :delete, :title=> "Disable the user") %>
+        <% else %>
+          <%= link_to('enable', enable_user_path(user.id), :method => :put, :title=> "Enable the user") %>
+        <% end %>
+      <% end %>
+    </td>
+    <td><%= link_to 'change password', change_password_for_user_path(user) %></td>
+  <% else %>
+  <td>
+  <% if user.enabled? %>
+    Enabled
+    <% else %>
+    Disabled
+    <% end %>
+  </td>
+  <% end %>
+  <td><%= link_to 'edit roles', user_granted_roles_path(user) %></td>
+
+
+</tr>

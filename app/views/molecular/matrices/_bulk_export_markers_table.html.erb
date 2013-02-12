@@ -1,0 +1,12 @@
+<table id="matrix_markers_table">
+  <tr>
+    <th class="h"></th>
+    <th class="h">Markers</th>
+  </tr>
+  <% @markers.each do |marker| %>
+    <tr id="o_<%= marker.id %>" data-otu-id="<%= marker.id %>" class="<%= cycle('body-odd', 'body-even') %>" >
+      <td class="b"><input type="checkbox" data-marker-id="<%= marker.id %>" /></td>
+      <td class="b"><%= marker.name %></td>
+    </tr>
+  <% end %>
+</table>

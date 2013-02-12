@@ -1,0 +1,8 @@
+= form_for(@chr_state, :url => optional_matrix_resource_url(:controller => :characters, :action => :create_state, :project_id => params[:project_id], :matrix_id => params[:matrix_id], :id => @character.id)) do |f|
+  Name:
+  = f.text_field(:name, :id => 'new_state_name', :style=>'width:130px')
+  Polarity:
+  = f.select :polarity, Morphology::ChrState.polarities
+  Description:
+  = f.text_area(:description, :style => 'width:270px;height:34px;')
+  = f.submit(:id => 'create_new_state', :value => 'Create')

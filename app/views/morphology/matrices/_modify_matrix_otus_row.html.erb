@@ -1,0 +1,13 @@
+<tr id="otu_row_<%= motu.otu.id%>" class="<%= cycle('body-odd', 'body-even') %>">
+  <td class="b"><input type="checkbox" name="otu_id[]" value="<%= motu.otu.id%>"/></td>
+  <td class="b"><%=h motu.position %></td>
+  <td class="b"><%=h motu.otu.name %></td>
+  <td class="b"><%=h motu.otu.creator_name || motu.otu.creator || motu.otu.updater %></td>
+  <%= raw modify_matrix_controls(motu) %>
+  <!--<td class="b">-->
+    <%#= link_to image_tag("x.png",  :border=>0),
+                   remove_otu_project_morphology_matrix_path(:project_id => params[:project_id], :id=>@timeline, :otu_id => motu.otu.id),
+                   :method => :put,
+                   :confirm => "Are you sure you would like to remove '#{motu.otu.name}' from the matrix?" %>
+  <!--</td>-->
+</tr>

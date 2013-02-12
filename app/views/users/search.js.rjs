@@ -1,0 +1,9 @@
+# TODO Operate on the page object
+if(!@users.empty?)
+  page.replace_html 'user_search_results', :partial => 'user_info_short', :collection => @users
+  page.replace_html 'create_new_user_control', "or " + link_to("Create New User", new_user_path(:user => params[:user]) )
+else
+  page.replace_html 'user_search_results', "No results found for user name like '#{@first_name} #{@last_name}'."
+  page.replace_html 'create_new_user_control',  link_to("Create New User", new_user_path(:user => params[:user]) )
+end
+

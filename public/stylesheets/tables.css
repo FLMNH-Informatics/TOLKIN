@@ -1,0 +1,142 @@
+.table_head > thead > tr > td, .table_body > tbody > tr > td {
+  width: 60px;
+  vertical-align: top;
+}
+
+.table_body_container {/*Table body style */
+  height: 600px;
+  overflow:auto;
+  border:0px;
+  width: 84%;
+}
+
+.table_body td:hover {
+  cursor: pointer;
+}
+
+.table_head_container {
+  width: 84%;
+  overflow-x: hidden;
+}
+
+
+.table_head > thead > tr {
+  position:relative;/*Making header static for ie */
+  top:expression(this.offsetParent.scrollTop-2);/*Making header static for ie */
+  Z-Index:2;/*Keeps text under header  */
+  text-align: center;
+  background-color:   #bababa;
+  color: #ffffff;
+}
+
+.table_body tr td:first-child {
+  width: 300px;
+}
+
+.mh, .table_head th
+{
+  font-family: tahoma, verdana, sans-serif;
+  /* font-weight: bolder;*/
+  font-size: 70%;
+  background-color: #4e4e4e;
+  color: #fefefe;
+  padding: 3px;
+}
+
+.mh a,  .table_head th a {
+  text-decoration: none;
+  color: #fefefe;
+  cursor:pointer;
+}
+.mh a:hover,  .table_head th a:hover {
+  text-decoration: underline;
+}
+
+#table_history_changeset_title {
+  padding-top: 10px;
+}
+
+#table_history_window .window_contents {
+  height: 400px;
+  width: 300px;
+  overflow: auto;
+}
+
+#edit_page h5 {
+  padding: 0px 20px;
+}
+
+#edit_page .top_nav {
+  padding: 0px;
+}
+
+#edit_page table.layout > tbody > tr > td {
+  vertical-align: top;
+  padding: 0px 10px
+
+}
+
+#table_navigation {
+  position: relative;
+  height: 60px;
+  width: 300px;
+}
+
+#table_back {
+  vertical-align: top;
+  text-align: left;
+}
+
+#chrs_pagination, #table_pagination {
+  vertical-align: bottom;
+  text-align: center;
+}
+
+#chrs_pagination *, #table_pagination * {
+  font-size: 9px;
+  color: gray;
+}
+
+#chrs_pagination a, #table_pagination a {
+  color: white;
+}
+
+#goto_version_control:hover {
+  background-color: #FF8;
+  cursor: pointer;
+}
+
+#table_details_table {
+  border-spacing: 8px;
+}
+
+#version_navigation {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#table_empty_message {
+  position: absolute;
+  top: 20px;
+  left: 60px;
+  color: #AAA;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#table_description_scroll_box {
+  width: 200px;
+  height: 100px;
+  overflow: auto;
+}
+
+#cell_saved_message {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: green;
+  text-align: center;
+}
+
+#cell_saved_container {
+  height: 28px;
+}

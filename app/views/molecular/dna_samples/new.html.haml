@@ -1,0 +1,56 @@
+- form_for  @dna_sample,  :url => project_molecular_dna_samples_path,  :html => { :method => 'post', :ajax => 'true' } do |f|
+  %table
+    %tr
+      %td= f.label :taxon, 'Taxon'
+      %td{ :colspan => 3 }= raw taxon_combo_box
+      %td= f.label :collection
+      %td{ :colspan => 2 }= raw collection_combo_box
+    %tr
+      %td= f.label :sample_nr, 'Sample #'
+      %td{ :colspan => 2 }= raw f.text_field :sample_nr, :size => 20
+      %td
+      %td= f.label :sample_type, 'Sample type'
+      %td{ :colspan => 2 }= raw f.text_field :sample_type, :size => 20
+    %tr
+      %td= f.label :amount
+      %td{ :colspan => 2 }= raw f.text_field :amount, :size => 20
+      %td
+      %td= f.label :deposited
+      %td{ :colspan => 2 }= raw f.text_field :deposited, :size => 20
+    %tr
+      %td Location:
+      %td= raw f.label :loc_freezer, 'Freezer'
+      %td= raw f.label :loc_shelf_bin, 'Shelf/Bin'
+      %td= raw f.label :loc_rack_bag, 'Rack/Bag'
+      %td= raw f.label :loc_box, 'Box'
+      %td= raw f.label :loc_column, 'Column'
+      %td= raw f.label :loc_row, 'Row'
+    %tr
+      %td
+      %td= raw f.text_field :loc_freezer, :size => 10
+      %td= raw f.text_field :loc_shelf_bin, :size => 10
+      %td= raw f.text_field :loc_rack_bag, :size => 10
+      %td= raw f.text_field :loc_box, :size => 10
+      %td= raw f.text_field :loc_column, :size => 10
+      %td= raw f.text_field :loc_row, :size => 10
+    %tr
+      %td Date received
+      %td{ :colspan => 2 }= raw f.date_field("date_received")
+      %td
+      %td Date extracted
+      %td{ :colspan => 2 }= raw f.date_field("date_extracted")
+    %tr
+      %td= f.label :extraction_protocol
+      %td{ :colspan => 6 }= raw f.text_field :extraction_protocol, :size => 90
+    %tr
+      %td= f.label :source
+      %td{ :colspan => 2 }= raw f.select :source, [ [ 'Living Material', 'living_material' ],[ 'Herbarium Specimen', 'herbarium_specimen' ] ], { :include_blank => true }
+      %td
+      %td= f.label :private_source
+      %td{ :colspan => 2 }= raw f.text_field :private_source, :size => 20
+    %tr
+      %td= f.label :team
+      %td{ :colspan => 6 }= raw f.text_field :team, :size => 90
+    %tr
+      %td= f.label :notes
+      %td{ :colspan => 6 }= raw f.text_area :notes, :cols => 85, :rows => 6

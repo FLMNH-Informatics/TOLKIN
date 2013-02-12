@@ -1,0 +1,51 @@
+
+<div class="windowtitle">Options</div>
+
+<ul class="listmain">
+
+  <% if controller.action_name == "index" %>
+
+    <li>
+      <%= link_to_remote 'New Character Group', :url => new_project_chr_group_path, :method => :get %>
+    </li>
+
+    <!-- li>
+      <#%= link_to_remote 'Add Selected To Matrix', :url => add_to_matrix_project_morphology_chr_groups_path(params[:project_id]), :method => :get %>
+    </li -->
+
+    <li>
+      <%= link_to 'Delete Selected', "javascript:void(0)",
+        :onclick => "var hasConfirmed = confirm('Are you sure you would like to delete the selected character groups?');
+        if(hasConfirmed) {
+          formId = 'list_items_form'
+          form = $(formId)
+          form.writeAttribute('action', '/projects/"+params[:project_id]+"/chr_groups/delete_selected');
+          form.writeAttribute('method', 'post');
+          document.getElementById(formId).submit();
+        }"%>
+    </li>
+  <% elsif controller.action_name == "show" %>
+    <!--li>
+      <#%= link_to_remote 'Add Character to Group', :url => show_add_character_project_chr_group_path, :method => :get %>
+    </li-->
+    <!-- li>
+        <#%= link_to_remote 'Add Selected To Matrix', :url => add_to_matrix_project_morphology_characters_path(params[:project_id]), :method => :get %>
+    </li -->
+    <li>
+        <%= link_to 'Remove Selected From Group', "javascript:void(0)", :onclick => "document.getElementById('chrs_form').submit();" %>
+    </li>
+  <% end %>
+
+</ul>
+
+
+<%#*<div class="windowtitle"> Search%>
+<%#*</div>%>
+
+<%#*<ul class="listmain">%>
+  <%#*<li>%>
+    <%#= text_field_with_auto_complete :chr_group, :name, { :size => 15 }, {:method => :get} %>
+    <%#= link_to 'GO', '#' %>
+  <%#*</li>%>
+<%#*</ul>%>
+

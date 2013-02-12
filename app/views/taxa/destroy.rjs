@@ -1,0 +1,3 @@
+(page.remove "node_"+params[:id].to_s) if !flash[:error]
+page.replace_html :notice, flash[:error] || flash[:notice]
+flash.discard

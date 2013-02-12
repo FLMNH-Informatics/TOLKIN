@@ -1,0 +1,45 @@
+<%if params[:header] == "true"%>
+      <div id="windowtitle" class="windowtitle">
+    <table  width="100%"><tr><td><span id="title1" class="title">View Details from Ubio</span>
+            </td><td valign="top" align="right">&nbsp;&nbsp;&nbsp;</td></tr></table>
+  </div>
+<%end%>
+<div id="bar" >
+<table>  
+   <%  @doc.search("/results") do |name|%>
+<tr><td>Name:</td><td>
+       <%= @name_decode_val = Base64.decode64((name/"/namestring").inner_html)%></td>
+      </tr>
+      <input type="hidden" id="name_string" value="<%=@name_decode_val%>"/>
+      <input type="hidden" id="name_bank_id" value="<%=params[:id]%>"/>
+      <tr><td>Full Name:</td><td>  <%= @full_name_decode_val = Base64.decode64((name/"/fullnamestring").inner_html)%></td>
+      <input type="hidden" id="full_name_string" value="<%=@full_name_decode_val%>"/>
+      </tr>
+      <tr><td>Package Name:</td><td> <%=(name/"/packagename").inner_html%></td>
+
+      </tr>
+      
+   <%end%>
+   <%  @doc.search("/results/citations/value") do |citation|%>
+     <tr><td>Author:</td><td>
+       <%= @author =  Base64.decode64((citation/"/Author").inner_html)%></td>
+      </tr>
+      
+      <tr><td>PublicationYear:</td><td>
+       <%= @year =  (citation/"/PublicationYear").inner_html%></td>
+      </tr>
+      
+      <tr><td>ArticleTitle:</td><td>
+       <%= @article_title =  Base64.decode64((citation/"/ArticleTitle").inner_html)%></td>
+      </tr>
+      
+<tr><td>PublicationTitle:</td><td>
+       <%= @publication_title = Base64.decode64((citation/"/PublicationTitle").inner_html)%></td>
+      </tr>      
+
+   <%end%>
+   <input type="hidden"  id="citation_xml" value="<%=@doc.search("/results/citations").inner_html%>"        
+     
+   </table>
+      </div>
+   

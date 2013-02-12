@@ -1,0 +1,87 @@
+.widget.auto_text_field
+  position: relative
+
+
+  .box
+    outline: none
+    cursor: pointer
+    font-size: 12px
+    padding-top: 0
+    padding-bottom: 0
+    padding-left: 0
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
+    border-radius: 4px
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2)
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2)
+    box-shadow: 0 1px 2px rgba(0,0,0,.2)
+    color: black
+    border: solid 1px gray
+
+    background: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#ddd))
+    background: -moz-linear-gradient(top,  #fdfdfd,  #ddd)
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#ddd')
+    height: 27px
+
+  table
+    width: 220px
+
+    td
+      vertical-align: middle
+
+      &:first-child
+        padding-top: 0
+        padding-bottom: 0
+        padding-left: 0
+
+  .box td:last-child
+    width: 20px
+    text-align: left
+
+  .dropdown
+    position: absolute
+    background-color: #F5F5F5
+    border: 1px solid black
+    z-index: 20
+
+    table
+      border: 2px solid #AAA
+
+    td
+      padding: 0px
+
+      &:first-child
+        text-align: left
+
+    img
+      margin: 2px 4px
+
+  .results_TD
+    text-align: left
+
+  .loader_image_TD
+    width: 25px
+
+  input
+    border: 1px solid gray
+
+  ul.results
+    margin: 0
+    max-height: 275px
+    padding: 0
+    overflow: auto
+    list-style-type: none
+
+    li
+      padding: 5px
+      padding-left: 10px
+
+      &.option
+        cursor: pointer
+        border: 1px solid #CCC
+
+        &.even
+          background-color: white
+
+        &:hover
+          background-color: #FF9

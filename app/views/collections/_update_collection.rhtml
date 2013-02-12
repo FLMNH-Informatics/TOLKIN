@@ -1,0 +1,1 @@
+<%if(@parameter=="acceptedname" || @parameter=="basionym")%><%=h(Taxon.find(update_taxon).name)%><%elsif(@parameter=="namestatus_id")%><%if(!Namestatus.find(update_taxon).nil?)%><%=Namestatus.find(update_taxon).status%><%end%><%else%><%=h(update_collection)%><%end%>

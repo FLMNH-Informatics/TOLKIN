@@ -1,0 +1,29 @@
+= link_to_remote '« Back', :update => :workflow_section_contents, :url => project_workflows_path, :method => :get, :html => { :href => project_workflows_path }
+%br
+%br
+#left_views
+  #graphical_view.details_outer
+    #graphical_view_contents.details_box
+      .title
+        Create a new workflow from template:
+      alignment-tree-building
+      #editable_workflow_graphic
+        .actor_box.editable
+          %select
+            %option MAFFT
+            %option Muscle
+          .below_box Alignment
+        .arrow
+          \------>
+        .actor_box.editable
+          %select
+            %option RAxXML
+          .below_box Tree-building
+      #file_selector_box
+        Please provide the file(s) you wish to use for initial input:
+        %br
+        %br
+        %input{ :type => 'file' }
+      %br
+      %br
+      %input{ :type => 'submit', :value => 'Run this workflow' }

@@ -1,0 +1,23 @@
+<div id="add_user_to_project_window" class="window">
+  <div id="windowtitle" class="windowtitle" >
+    <span id="title" class="title">
+      New <%=controller.controller_name.singularize.titleize %>
+    </span>
+
+    <span id="closebutton" class ="closebutton" onClick="$('add_user_to_project_window').remove();">
+      <%= link_to "X", "javascript:void(0)" %>
+    </span>
+  </div>
+<% remote_form_for @user, :url => { :action => :search } do |f| -%>
+Enter the name of the user you would like to add.  First and last name required.<br/><br />
+First name: <%= f.text_field :first_name, :size => 20 %>
+Last name: <%= f.text_field :last_name, :size => 20 %>
+<%= submit_tag 'Submit' %>
+<% end -%>
+<br />
+<div id="user_search_results" ></div>
+<div id="create_new_user_control" align="right" style="font-size: 15px"></div>
+<br />
+</div>
+</div>
+<%#= draggable_element :add_user_to_project_window %>

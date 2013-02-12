@@ -1,0 +1,22 @@
+<%if(success)%>
+	<%if((parameter=="acceptedname" || parameter=="basionym") && !update_taxon.nil?)%>
+		<a href="<%=project_taxon_path(params[:project_id],update_taxon)%>"><%=h(Taxon.find(update_taxon).name)%></a>
+	<%elsif(parameter=="namestatus_id")%>
+	
+		<%if(!(update_taxon).nil? && !Namestatus.find(update_taxon).nil?)%>
+			<%=Namestatus.find(update_taxon).status%>
+		<%end%>
+		<%elsif(parameter=="recpermission_id")%>
+			<%if(!Recpermission.find(update_taxon).nil?)%>
+				<%=Recpermission.find(update_taxon).name%>
+			<%end%>
+	<%elsif(parameter.upcase=="CITATION_ID")%>
+		<%if(!Taxon.find(@id).citation_id.nil?)%>
+			<%=link_to Taxon.find(@id).citation.title, project_library_citation_path(params[:project_id],Taxon.find(@id).citation.title) %>
+		<%end%>
+		<%else%>
+			<%=h(update_taxon)%>
+		<%end%>
+	<%else%>
+		<%=h(update_taxon)%>
+	<%end%>

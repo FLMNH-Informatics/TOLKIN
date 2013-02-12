@@ -1,0 +1,168 @@
+html {
+  min-width: 600px;
+  height: 100%;
+}
+
+textarea { 
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+textarea.short {
+  width: 350px;
+  height: 40px;
+}
+
+body { /* redundant rules for bad browsers  */
+       font-family: verdana,sans-serif;
+       voice-family: "\"}\"";
+       voice-family: inherit;
+       font-size: 12px;
+}
+.clearhack { display: inline; } /*Clears Box Model Hack in IE5*/
+
+
+body {
+  background: #EDEBE3;
+  color: #333;
+  padding: 0 20px 0 20px;
+  margin: 0;
+  height: 100%;
+}
+
+a, .linkText { color: #06C; cursor: pointer }
+a:hover, .linkText:hover { color: #333 }
+a:active, .linkText:active { color: #000; cursor: wait }
+
+p { line-height: 140%; }
+
+h1,h2 {
+  font-family: trebuchet ms;
+  font-weight: bold;
+  color: #333;
+}
+
+h1 {
+  font-size: 1.6em;
+  margin: 0;
+}
+
+h1 a { text-decoration: none; color: #333; }
+h1 a:hover { border-bottom: 1px dotted #666; color: #000; }
+
+h2 {
+  font-size: 140%;
+  padding-bottom: 2px;
+  margin: 0;
+}
+
+p.note {
+  background: #EEE;
+  padding: 4px;
+  font-family: tahoma;
+  font-size: 85%;
+  line-height: 130%;
+  margin-top: 0;
+}
+
+input[type="submit"], input[type="button"] {
+  border: 2px outset #999;
+  background-color: #EAEAEA;
+  padding: 2px 5px;
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 80%;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: #F5F5F5
+}
+
+input[type="submit"]:active, input[type="button"]:active {
+  border: 2px inset #999;
+  background-color: #DDD;
+}
+
+input[type="submit"][disabled], input[type="button"][disabled] {
+  border: 2px outset #999;
+  background-color: #E5E5E5;
+  padding: 2px 5px;
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 80%;
+}
+
+.link.small {
+  font-size: 85%;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.empty {
+  font-style: italic;
+  color: #999;
+}
+
+.control:hover {
+  cursor: pointer;
+}
+
+.control.inactive {
+  color: #AAA;
+}
+
+.control.inactive:hover {
+  cursor: default;
+}
+
+ol {
+  padding-left: 0px;
+  list-style-type: none;
+  font-size: 10px;
+  padding-left: 15px;
+}
+
+ol.numbered {
+  list-style-type: decimal;
+  padding-left: 30px;
+}
+
+.b {
+  font-weight: bold
+}
+.LV_validation_message{
+    font-weight:bold;
+    margin:0 0 0 5px;
+}
+
+.LV_valid {
+    color:#00CC00;
+}
+
+.LV_valid {
+    color:#00CC00;
+}
+
+.LV_invalid {
+    color:#CC0000;
+}
+
+.LV_valid_field,
+input.LV_valid_field:hover,
+input.LV_valid_field:active,
+textarea.LV_valid_field:hover,
+textarea.LV_valid_field:active {
+    border: 1px solid #00CC00;
+}
+
+.LV_invalid_field,
+input.LV_invalid_field:hover,
+input.LV_invalid_field:active,
+textarea.LV_invalid_field:hover,
+textarea.LV_invalid_field:active {
+    border: 1px solid #CC0000;
+}

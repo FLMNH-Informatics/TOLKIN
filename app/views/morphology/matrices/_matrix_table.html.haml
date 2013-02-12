@@ -1,0 +1,51 @@
+#viewport_content_frame_matrices_datagrid.table.widget.datagrid
+  .head
+    #table_head_container.table_head_container
+      %div
+        =link_to_function('Enter Quick Edit Mode', :id => 'toggle_quick_edit_mode_link')
+        /|
+        /=link_to_function('Modify Characters and OTUs', :id => 'modify_matrix_morphology_link')
+      %br
+      .expander{ :style => "width: #{300 + @matrix.characters.size * 150}px;" }
+        %table.table_head{ :cellspacing => "1px" }
+          %thead
+            %tr
+              %th
+                #table_navigation.navigation
+                  %table
+                    %tr
+                      %td.back_link
+                        = raw link_to '« Back', @referrer
+                    %tr
+                      %td
+                        - if @matrix.characters.empty? && @matrix.otus.empty?
+                          .message.table_empty
+                            This matrix is currently empty
+                            %br
+                            = raw link_to "Edit this matrix", modify_matrix_project_morphology_matrix_path
+                    %tr
+                      %td#chrs_pagination.pagination
+                        %span.bodytext
+                          = raw will_paginate @matrix.characters, :container => false
+              - @matrix.characters.each_with_index do |chr, index|
+                %td.mh{ :width => "60px", :id => "ch_#{chr.id}", :valign => "top", :col => index + 1 }
+                  %a{ :href => project_morphology_matrix_character_path(params[:project_id], @matrix, chr) }
+                    = chr.original_position.to_s + "." if chr.original_position
+                    = get_formatted_name(chr.name, true)
+  %script{ :src => "/javascripts/matrices.js", :type => "text/javascript" }
+  / %script{ :src => "/javascripts/prototype.js", :type => "text/javascript" }
+  #table_body_container.table_body_container
+    %script{ :type => "text/javascript" } setTableScrollObserver();
+    .table_body_expander{ :style => "width: #{300 + @matrix.characters.size * 150}px;" }
+      %table#table_body.table_body{ :cellspacing => '1px' }
+        %tbody
+          = raw row_display
+          %script{ :type => "text/javascript" }
+            - unless @matrix.otus.empty?
+              - @matrix.characters.each do |chr|
+                == setTableCellWidth(#{@matrix.otus.first.id}, #{chr.id});
+            /setTableBodyContainerWidth();
+            setTableBodyExpanderWidth();
+%script{ :type => "text/javascript" }
+  var notice = $('notice');
+  var toolTips = #{raw @tooltips};

@@ -1,0 +1,6 @@
+.windowtitle Search
+- form_tag search_path, { :method => :get, :id => 'search_form' } do
+  %ul.listmain
+    %li
+      %input{ type: 'text', name: 'search', size: '15px' }
+      %input{ type: 'submit', value: 'Search' }

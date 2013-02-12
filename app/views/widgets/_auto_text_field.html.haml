@@ -1,0 +1,9 @@
+.auto_text_field.widget{ id: id }
+  %input{ type: 'hidden', name: name, value: value_id }
+  %table.box{ style: box_style }
+    %tr
+      %td.label{ data_fulltext: value_fulltext, data_searchtext: value_searchtext }
+        %input{ type: "text", id: text_field_input_id, name: text_field_name, class: "text_field", style: text_field_style, value: text_field_value, autocomplete: "off" }
+      %td.arrow-container
+        %img{ src: '/images/black_down_arrow.png' }
+

@@ -1,0 +1,3 @@
+page[:windowdiv].hide
+page.replace_html :notice, flash[:notice]
+flash.discard

@@ -1,0 +1,3 @@
+page.replace_html :notice, flash[:notice]
+page[:emaildiv].hide
+flash.discard

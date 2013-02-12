@@ -1,0 +1,27 @@
+if flash[:error]
+  page.replace_html :notice, flash[:error]
+else
+  page << "
+if($('assigned_roles_table')) {
+  if($('role_#{@granted_role.id}')) {"
+  page.replace "role_#{@granted_role.id}", :partial => 'role', :object => @granted_role
+  page << "
+  } else {"
+  page.insert_html :bottom, 'assigned_roles_table', :partial => 'role', :object => @granted_role
+  page << "
+  }
+} else if($('project_users_table')) {
+  if($('user_#{@user.id}')) {"
+  page.replace "user_#{@user.id}", :partial => 'users/user', :object => @user
+  page << "
+  } else {"
+  page.insert_html :bottom, 'project_users_table', :partial => 'users/user', :object => @user
+  page << "
+  }"
+  page.remove 'add_user_to_project_window'
+  page << "
+}"
+  page.replace_html :notice, flash[:notice]
+end
+
+flash.discard

@@ -1,0 +1,28 @@
+%table.frame.widget{ id: "#{parent_widget_id}_content_frame" }
+  %tbody
+    %tr
+      %td
+        #header
+          #tolkin_credit Powered by <a href="//tolkin.org">Tolkin</a> | <a href="mailto:tolkin@flmnh.ufl.edu">Contact Us</a>
+          = raw generate_tabs
+    %tr
+      %td
+        #main
+          = raw interaction_mode_switch
+          = raw generate_subtabs
+    %tr.lastTR
+      %td
+        #contents.page_contents
+          #notice.notice_area{ align: 'center' }
+            - if flash[:error] || flash[:warning] || flash[:notice]
+              %span{ class: "status-msg" }= flash[:error] || flash[:warning] || flash[:notice]
+          .elastic_contents
+            = yield
+            - if current_user.username == 'public' && !current_project.public_license_id.nil?
+              = project_license
+          - if controller.controller_name == 'sessions'
+            #nsf_funding_information
+              %hr
+              = image_tag("nsf_logo.gif")
+              %br
+              Funded by the National Science Foundation

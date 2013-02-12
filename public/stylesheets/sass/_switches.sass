@@ -1,0 +1,26 @@
+.switch
+  float: right
+  height: 100%
+  border-width: 0 0 0 1px
+  border-style: solid
+  border-color: #ABABAB
+  background-color: #FAF9EF
+  border-collapse: collapse
+
+  td
+    width: 65px
+    height: 10px
+    padding: 5px
+    text-align: center
+    cursor: pointer
+
+    &:first-child
+      border-right: 1px dotted gray
+
+    &.selected
+      font-weight: bold
+      background-color: #FEFDD3
+
+      &:hover
+        cursor: default
+      

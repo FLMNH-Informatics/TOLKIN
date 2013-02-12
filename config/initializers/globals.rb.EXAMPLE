@@ -1,0 +1,19 @@
+#TODO is this something that can be set in routes.rb or elsewhere? 
+#Move these into a namespace(module name to represent it)
+LIBRARY_PUBLICATION_ATTACHMENT_STORAGE_PATH = "#{RAILS_ROOT}/private/storage/library"
+CURRENT_IN_VALID_EMAIL = "your_email@email.com"
+ADMIN_RECIPIENTS = %w(another_email@email.com)
+SITE_NAME = "localhost:3000"
+ADMINEMAIL = "admin_email@email.com"
+ADMIN_EMAIL_FROM = "another_admin_email@email.com"
+
+#Gmaps keys for use in application helper
+GMAPS_LOCAL="INSERT_KEY_HERE"
+GMAPS_TOLK3="INSERT_KEY_HERE"
+GMAPS_PROD="INSERT_KEY_HERE"
+GMAPS_DEV="INSERT_KEY_HERE"
+
+#ncbi esearch information
+#To register tool and email values, simply send an e-mail to eutilities@ncbi.nlm.nih.gov including the desired values along with the name of either a developer or the organization creating the software.  http://www.ncbi.nlm.nih.gov/books/NBK25497/
+NCBI_TOOL = 'your_tool_name_here' 
+NCBI_EMAIL = "your_email_for_ncbi@email.com"

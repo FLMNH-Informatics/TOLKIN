@@ -1,0 +1,9 @@
+<h1>Listing photos</h1>
+<% @images.each do |image| %>
+  <p>
+    <%= link_to image_tag(image.public_filename(:thumb)), project_image_path(current_project,image) %>
+    <%= link_to 'Delete' %>
+  </p>
+<% end %>
+
+<%= link_to 'New photo', new_project_image_path %>

@@ -1,0 +1,52 @@
+<div id="show_cell_container">
+  <table>
+    <tr>
+      <td>
+        <%= form_remote_tag :url => update_cell_data_project_molecular_matrix_cell_path(params[:project_id], params[:matrix_id], params[:id]), :method => :post, :html => {:id => 'update_cell_form'}  do %>
+          <%= hidden_field 'cell', 'matrix_id', 'value' => params[:matrix_id] -%>
+          <%= hidden_field 'cell', 'otu_id', 'value' => params[:otu_id] -%>
+          <%= hidden_field 'cell', 'marker_id', 'value' => params[:marker_id] -%>
+          <%= hidden_field 'cell', 'id', 'value' => params[:id] -%>
+          <%= hidden_field 'seq', 'removed' -%>
+          <%= hidden_field 'seq', 'primary' -%>
+          <div id="cell_top">
+            <table id="cell_owners">
+              <tr style="border-bottom-style: inset; border-bottom: inherit;">
+                <td class="cell_info owners">
+                  OTU Name:  <span class="owner"><%= raw otu_name %></span><br/>
+                  Marker Name:  <span class="owner"><%= raw marker_name %></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="cell_info">
+                  <label>Status:</label><%= raw current_status  %><br/>
+                  <label>Responsible User:</label><%= raw responsible_user_name %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="pagetitletext">Sequences present </span>
+                    <%= raw sequence_controls %>
+                    <table id="sequencelisttable">
+                      <%= raw sequence_table_headers %>
+                      <%= raw sequence_rows %>
+                    </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Notes:</label><br/><%=	raw notes %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Primary sequence:</label><%=	raw sequence_field %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

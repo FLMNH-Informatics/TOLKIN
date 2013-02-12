@@ -1,0 +1,9 @@
+page.replace_html :notice, flash[:error] || flash[:notice]
+flash.discard
+
+if !flash[:error]
+  page["addCharacterWindow"].remove
+  page.insert_html :bottom, "chr_group_#{@chr_group.id}_character_list", :partial => 'list_characters_character', :object => @character
+end
+
+

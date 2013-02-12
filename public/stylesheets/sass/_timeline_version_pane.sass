@@ -1,0 +1,31 @@
+.versioning_change
+  a, span
+    font-size: 90%
+    font-weight: bold
+.beginning
+  padding-right: 7px
+.end
+  padding-left: 7px
+.version_container
+  overflow: hidden
+  width: 30px
+#timeline_version_select
+  -moz-appearance: none
+  -webkit-appearance: none
+  appearance: none
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+  border: transparent
+  background: transparent
+  padding-left: 0px !Important
+  padding-right: 0px !important
+  //-moz-width: 150%
+  color: #0066CC
+  &:hover
+    background: #C1F4FF
+    color: black
+@-moz-document url-prefix()
+  #timeline_version_select
+    width: 150%
+    margin-top: 23px !important

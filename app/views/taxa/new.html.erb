@@ -1,0 +1,51 @@
+<div id="newnodepanel">
+<span id="lblresult" colspan=2></span>
+  <%= form_tag project_taxa_path do %>
+  <div style="margin: 0pt; padding: 0pt;"><input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/></div>
+    <table>
+      <tr><td>Ingroup Clade</td><td><%= text_field "taxon", "ingroup_clade", "size" => 25 %></td></tr>
+      <tr><td>Subgenus</td><td><%= text_field "taxon", "sub_genus", "size" => 25 %></td></tr>
+      <tr><td>Section</td><td><%= text_field "taxon", "section", "size" => 25 %></td></tr>
+      <tr><td>Subsection</td><td><%= text_field "taxon", "subsection", "size" => 25 %></td></tr>
+      <tr><td>Name</td><td><%= text_field "taxon", "name", "size" => 25 %><span style="size:1;color:red">*</span></td></tr>
+      <tr><td>Author</td><td><%= text_field "taxon", "author", "size" => 25 %></td></tr>
+      <tr><td>Infra Name</td><td><%= text_field "taxon", "infra_name", "size" => 25 %></td></tr>
+      <tr><td>Infra Author</td><td><%= text_field "taxon", "infra_author", "size" => 25 %></td></tr>
+      <tr><td>Publication Info</td><td><%= text_field "taxon", "publication", "size" => 70 %></td></tr>
+      <tr><td>Volume</td><td><%= text_field "taxon", "volume_num", "size" => 25 %></td></tr>
+      <tr><td>Pages</td><td><%= text_field "taxon", "pages", "size" => 25 %></td></tr>
+      <tr><td>Publication Date</td><td><%= text_field "taxon", "publication_date", "size" => 25 %></td></tr>
+      <tr><td>Name Status</td><td><%= collection_select("taxon", "namestatus_id" , Namestatus.find(:all), "id", "status") %></td></tr>
+      <tr><td>Parent Taxon</td><td><%= raw parent_combo_box %></td></tr>
+      <tr><td>Accepted Name</td><td><%= raw accepted_name_combo_box %></td></tr>
+      <tr><td>Basionym</td><td><%= text_field "taxon", "basionym", "size" => 25 %></td></tr>
+      <tr><td>Type Collection</td><td><%= text_field "taxon", "type_collection", "size" => 35 %></td></tr>
+      <tr><td>Type Date</td><td><%= text_field "taxon", "type_date", "size" => 25 %></td></tr>
+      <tr><td>Type Locality</td><td><%= text_field "taxon", "type_locality", "size" => 70 %></td></tr>
+      <tr><td>Type Herbaria</td><td><%= text_field "taxon", "type_herbaria", "size" => 70 %></td></tr>
+      <tr><td>Type Species</td><td><%= text_field "taxon", "type_species", "size" => 25 %></td></tr>
+      <tr><td>Neo Type</td><td><%= text_field "taxon", "neotype", "size" => 25 %></td></tr>
+
+      <tr><td>Common Name</td><td><%= text_field "taxon", "commonname", "size" => 25 %></td></tr>
+      <tr><td>General Distribution</td><td><%= text_area "taxon", "general_distribution", cols: 60, rows: 3 %></td></tr>
+      <tr><td>Description</td><td><%= text_area "taxon", "description", cols: 60, rows: 5 %></td></tr>
+      <tr><td>Comments</td><td><%= text_area "taxon", "comments", cols: 60, rows: 5 %></td></tr>
+      <tr><td>Chromosome Number</td><td><%= text_field "taxon", "chromosome_number", "size" => 20 %></td></tr>
+      <tr><td>Uses</td><td><%= text_field "taxon", "uses", "size" => 70 %></td></tr>
+      <tr><td>Toxicity</td><td><%= text_field "taxon", "toxicity", "size" => 70 %></td></tr>
+
+      <tr><td>Notes</td><td><%= text_area "taxon", "notes", cols: 60, rows: 5 %></td></tr>
+      <tr><td>Record Permissions</td><td>
+           <%=render :partial => "permissions_drop_down"%>
+<%#= collection_select(:taxon, :recpermission_id, Recpermission.find(:all), :id, :name,{:include_blank => false}) %></td></tr>
+      <!-- <tr><td><%= label_tag :library_references, "Add Citation",:onClick=>"$('div_add_citations').toggle();", :style=>"text-decoration: underline;" %><span class="field" id="span_citation_list"></span></td></tr> -->
+      
+      <tr><td><%= hidden_field "sop", "parentTaxon"%></td></tr>
+      <tr><td><%#= submit_tag 'Save' %> </td></tr>
+    </table>
+  <% end %>
+  <div id="div_add_citations" style="width: 100%; display: none;" class="window">
+    <%=render :partial=>"shared/add_citations", :object=> Morphology::Character.new %>
+  </div>
+  <%= draggable_element :div_add_citations %>
+</div>

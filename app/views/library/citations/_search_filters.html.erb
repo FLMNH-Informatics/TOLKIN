@@ -1,0 +1,15 @@
+<% search_url_options ||= {} %>
+<% form_for :search_filters, :remote => true, :url => citation_custom_search_project_library_citations_path(params[:project_id], :id => id), :html => {:method => :get} do |f| %>
+  <table>
+    <%= render :partial => "/library/citations/filter", :collection => Library::Citation.search_columns, :locals => { :model_type => Library::Citation.to_s, :size => 20} %>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <%= select("Library::Citation", "binop",  [["and", "and"], ["or", "or"]] ) %>
+      </td>
+    </tr>
+  </table>
+  <div id=<%="search_filter_controls#{id}"%>></div>
+  <%= submit_tag 'Search' %>
+<%end%>

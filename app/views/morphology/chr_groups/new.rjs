@@ -1,0 +1,6 @@
+page << "if($('newchrgroupdiv')) {"
+  page.replace 'newchrgroupdiv', :partial => 'new_chr_group'
+page << "} else {"
+  page.insert_html :bottom, 'viewport', :partial => 'new_chr_group'
+page << "}"
+page.call :showWindow, :newchrgroupdiv

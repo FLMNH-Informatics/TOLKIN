@@ -1,0 +1,20 @@
+<h1>Editing nexus_dataset</h1>
+
+<% form_for(@nexus_dataset) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :project %><br />
+    <%= f.text_field :project %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @nexus_dataset %> |
+<%= link_to 'Back', nexus_datasets_path %>

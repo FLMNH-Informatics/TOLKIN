@@ -1,0 +1,5 @@
+<% debugger %>
+<%= check_box list_model_columns.to_s.classify, "id", {:checked=>true, :enabled=>false} %> <%= label_tag "id", "id" %>  	<br/>
+<%  list_model_columns.content_columns.each do |column| %>
+	<%= check_box list_model_columns.to_s.classify, column.name.to_s %> <%= label_tag column.name, column.name %>  	<br/>
+<% end %>

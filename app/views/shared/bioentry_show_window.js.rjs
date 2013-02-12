@@ -1,0 +1,21 @@
+# reload js params hash
+if(controller.action_name == 'show_genbank_form')
+  locals = {:fname => @user.first_name, :lname => @user.last_name, :mname => @user.middle_name, :email => @user.email, :add_line1 => @user.address_line1, :add_line2 => @user.address_line2, :city => @user.city, :state => @user.state, :country => @user.country, :zipcode => @user.zipcode, :phone => @user.phone, :fax => @user.fax, :insti => @user.institution}
+else
+  locals = {} # put locals in here
+end
+
+page << "params = #{params.to_json};"
+window_name = @window_name if @window_name
+  page << "if($('#{window_name.to_s}')) {"
+      page.replace window_name.to_s, :top => 'viewport', :'z-index' => 20, :width => '150px', :partial => window_name.to_s, :locals => locals
+  page << "} else {"
+    page.insert_html :top, :viewport, :partial => window_name.to_s, :locals => locals
+  page << "}"
+
+# include js file for partial if it exists
+js_include_filepath = "public/javascripts/#{controller.controller_path}/_#{window_name}.js"
+page << File.open(js_include_filepath, "r") { |io| io.read } if FileTest.exists?(js_include_filepath)
+
+page.call :positionWindow, window_name
+page.visual_effect :appear, window_name, { :duration => 0.3 }

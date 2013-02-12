@@ -1,0 +1,81 @@
+<div id="fasta_filename_controls" style="display:none;">
+  <%= render 'molecular/insd/seqs/fasta_seq_display_controls' %>
+</div>
+<div id="show_seq_container">
+  <%= form_for(@seq, :molecular_insd_seq, :html => {:id => 'show_seq_form'}, :url => project_molecular_sequence_path) do |f| %>
+    <div id="cell_top">
+      <table id="cell_owners" class="table_width">
+        <tr>
+          <td class="cell_info_owners"><label class="seq_bold">Taxon:</label><span><%= raw taxon_name_field %></span></td>
+          <td class="cell_info_owners" <%= raw col_marg %>><div class="posrel">
+            <label class="seq_bold">Markers:</label>
+            <div id="seq_markers_holder">
+              <%= render 'molecular/insd/seqs/seq_markers_display' %>
+            </div>
+          </div>
+          </td>
+        </tr>
+      </table>
+      <%= raw horizontal_divider %>
+      <table class="table_width">
+        <tr id="unsorted_ncbi" style="display: none;"><td colspan="2">Unsorted NCBI Data: <br /><%= raw unfiltered_ncbi %></td></tr>
+        <tr>
+          <td colspan="2"><label>Sequence:</label><%= raw fetch_gb_seq %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= raw sequence_control %></td>
+        </tr>
+      </table>
+      <%= raw horizontal_divider %>
+      <table class="table_width">
+        <tr>
+          <td><label >Definition:</label></td>
+          <td <%= raw col_marg %>><label >Taxonomy:</label></td></tr>
+        <tr>
+          <td><%= raw definition %></td>
+          <td <%= raw col_marg %>><%= raw taxonomy %></td>
+        </tr>
+        </table><%= raw horizontal_divider %><table class="table_width">
+        <tr>
+          <td colspan="2"><label >Comment:</label></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%=	raw comment %></td>
+        </tr>
+      </table>
+      <%= raw horizontal_divider %>
+      <table class="show_seq">
+        <tr>
+          <td class="td_width" <%= raw txt_align %>><label >Source: </label><%= raw source %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Locus: </label><%= raw locus %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Length: </label><%= raw length %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Strandedness: </label><%= raw strandedness %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Moltype: </label><%= raw moltype %></td>
+        </tr>
+        <tr>
+          <td class="td_width" <%= raw txt_align %>><label >Primary accession: </label><%= raw primary_accession %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Accession ver: </label><%= raw accession_version %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Entry ver: </label><%= entry_version %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Topology: </label><%= topology %></td><%= raw imode_spacing %>
+          <td class="td_width" <%= raw txt_align %>><label >Division:  </label><%= division %></td>
+        </tr>
+      </table>
+      <%= raw horizontal_divider %>
+      <table class="nopad">
+        <tr>
+          <td>Dates:</td>
+        </tr>
+        <tr>
+          <td class="td_indent">&nbsp;&nbsp;&nbsp;</td>
+          <td class="td_label" ><label >Create:</label></td><td><%= raw seq_dates('create_date', f)%></td><td class="td_indent">&nbsp;&nbsp;&nbsp;</td>
+          <td class="td_label" ><label >Update:</label></td><td><%= raw seq_dates('update_date', f) %></td>
+        </tr>
+        <tr>
+          <td class="td_indent">&nbsp;&nbsp;&nbsp;</td>
+          <td class="td_label" ><label >Create release:</label></td><td><%= raw seq_dates('create_release', f)%></td><td class="td_indent">&nbsp;&nbsp;&nbsp;</td>
+          <td class="td_label" ><label >Update release:</label></td><td><%= raw seq_dates('update_release', f) %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>

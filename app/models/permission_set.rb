@@ -1,0 +1,2 @@
+class PermissionSet < Record
+end

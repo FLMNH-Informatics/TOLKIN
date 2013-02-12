@@ -1,0 +1,27 @@
+#shopping_cart.shopping_cart
+  .windowtitle My Cart
+  #shopping_cart_current_selection{ :style => display_shopping_cart_current_selection }
+    %h4 Current Selection
+    #current_selection_row
+      %span#shopping_cart_current_selection_name= shopping_cart_current_selection_name
+      %span#cart_deselect_control.link.small deselect
+    %br
+    #current_selection_action_panel.action_panel.grid
+      .title.black Actions
+      %table
+        %tr
+          %td
+            %img{:src => '/images/addnew.gif', :style => 'height: 14px; width: 14px'}
+            Add Child
+          %td
+            %img{:src => '/images/16-move-arrow.png'}
+            Move
+        %tr
+          %td#delete_taxon_button
+            %img{:src => '/images/16-em-cross.png'}
+            Delete
+          %td
+            %img{:src => '/images/addnew.gif', :style => 'height: 14px; width: 14px'}
+            Add to OTU
+  %br
+  = shopping_cart_lists

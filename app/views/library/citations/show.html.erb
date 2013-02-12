@@ -1,0 +1,32 @@
+<!--div id="window">
+  <div id="windowtitle" class="windowtitle">
+    <span id="title" class="title">Edit <#%= get_pseudo_citation_type_name(@citation[:type].demodulize) %></span>
+    <span id="closebutton" class ="close_button" onClick="$('div_citation').hide();"><#%= link_to "X", "javascript:void(0)" %>
+    </span>
+  </div-->
+  <div id="detailsdiv">
+    <%= render :partial => "form", :locals => { :url_options => { :action => "update"},:html_options => {:method=> :put } }%>
+    <h5><%#= link_to image_tag("delete.gif", :size => "12x12", :title=> "delete" ), project_citation_path(params[:project_id], @citation), :confirm => 'Are you sure?', :method => :delete -%>
+        <%#= render :partial=>"tags/tagme", :locals => { :tagme => @citation } %>
+
+      <%# if params[:interact_mode] == 'edit' %>
+        <%#= link_to 'Add Image', "javascript:void(0)", :onclick => "document.getElementById(\"newimagediv\").style.display = \"block\";" %>
+    </h5>
+      <%# end %>
+      </div>
+      
+  <!-- FIXME: put an image gallery in place instead of this old style images stuff -->
+  <!--div id="imagesdiv">
+    <div class="sectiontitle">
+      <span class="titletext">Images</span>
+    </div>
+    <%#= render :partial => 'shared/image', :collection => @citation.citations_images %>
+    <div id="newimagediv" style='position: absolute; width: 450px; height: 150px; display: none; z-index: 1; top: 290.5px; left: 615px;' class="window">
+      <%# if params[:interact_mode] == 'edit' %>
+       <%#= render :partial => "add_image" %>
+      <#% end %>
+    </div>
+    <%#= draggable_element :newimagediv %>
+  </div-->
+<!--/div-->
+

@@ -1,0 +1,2 @@
+	page.replace_html 'div_columns', :partial => "list_model_columns", :object => @temp
+	page.replace_html 'div_marked_records', :partial => "list_marked_records", :object => @marked_records

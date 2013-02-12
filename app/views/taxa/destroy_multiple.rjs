@@ -1,0 +1,7 @@
+page.replace_html :notice, 'Taxon delete successfully'
+@deleted_list.each do |id|
+  page <<  "temp = $('node_#{id.to_s}_children').childElements();"
+  page <<  "temp.each(function(ele){ $('node_#{id.to_s}').parentNode.insert(ele);});"
+  page <<  "$('node_#{id.to_s}').remove();"
+  page <<  "Try.these(function(){remove_sel_item(#{id.to_s})});"
+end

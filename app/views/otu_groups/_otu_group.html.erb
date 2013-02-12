@@ -1,0 +1,5 @@
+  <tr class="<%= cycle('body-odd', 'body-even') %>" >
+    <td><input id="otu_group_<%=otu_group.id%>" type="checkbox" value="<%=otu_group.id%>" name="otu_groups[]"/></td>
+    <td class="b"><%= link_to otu_group.name, project_otu_group_path(params[:project_id],otu_group) %></td>
+    <td class="b"><%=h otu_group.creator.try(:label)  %></td>
+  </tr>

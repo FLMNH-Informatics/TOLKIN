@@ -1,0 +1,41 @@
+<div id="window" class="window">
+<div id="windowtitle" class="windowtitle">
+  <span id="title" class="title">Edit Character</span>
+  <span id="closebutton" class ="closebutton" onClick="$('editchardiv').hide();"><%= link_to "X", "javascript:void(0)" %>
+  </span>
+</div>
+<% form_for :character, @character, :url => optional_matrix_resource_url(:action => :update, :project_id => @project, :matrix_id => params[:matrix_id], :id => @character), :html => { :method => :put } do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <td><%= f.label :name %></td>
+        <td><%= f.text_field :name, :size => 30 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :original_position, 'Character Number' %></td>
+        <td><%= f.text_field :original_position, :size => 5 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :description %></td>
+        <td><%= f.text_area :description, :cols => 35, :rows => 4 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :short_name %></td>
+        <td><%= f.text_field :short_name, :size => 20 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :library_references, "Add Citation",:onClick=>"$('div_add_citations#{@character.id}').toggle();", :style=>"text-decoration: underline;" %></td>
+        <td><%= render :partial=>"citation", :collection => @character.citations.collect { |citation| citation.id} %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= submit_tag "Update" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<div id="div_add_citations<%=@character.id %>" style="width: 100%; display: none;" class="window">
+     <%=render :partial=>"shared/add_citations", :locals => { :add_citations => @character, :ajax_submit => false, :search_url_options => params[:matrix_id] ? { :matrix_id => params[:matrix_id] } : {} }  %>
+     </div>
+  <%= draggable_element "div_add_citations#{@character.id}" %>
+</div>

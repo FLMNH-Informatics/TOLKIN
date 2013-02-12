@@ -1,0 +1,13 @@
+<% editable = @collection.canedit?(@current_user.id)
+deletable = @collection.candelete?(@current_user.id)
+editable = true if deletable
+%>
+<% form_remote_tag :url => update_others_project_collection_path(params[:project_id],@collection, :parameter=> :collection_date), :update => { :failure => "div_collection_date" }, :method => :put do %>
+<b>Coll start date :</b> <%=h @collection.send('coll_start_date') %>
+<br/>					<%= date_select 'collection', 'coll_start_date' , :start_year => 1800 %></p>
+<br/>
+<b>Coll End date :</b> <%=h @collection.send('coll_end_date') %>
+<br/>					<%= date_select 'collection', 'coll_end_date' , :start_year => 1800 %></p>
+<br/>
+<%= submit_tag 'save', :disabled=> !editable	%>
+<% end %>

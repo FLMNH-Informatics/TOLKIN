@@ -1,0 +1,14 @@
+%span.selected.head
+  %a#a_character_states.tab_character_states{:href => '#'}Character States
+%span.unselected.head
+  %a#a_character_images.tab_character_images{:href => '#'}Images
+%span.unselected.head
+  %a#a_character_citations.tab_character_citations{:href => '#'}Citations
+%br
+.morphology_character_info
+  #character_states.character_states.morphology_selected
+    = render :partial => 'character_states.html.haml'
+  #character_images.character_images.morphology_unselected
+    = render :partial => 'character_images.html.haml'
+  #character_citations.character_citations.morphology_unselected
+    = render :partial => 'character_citations.html.haml'

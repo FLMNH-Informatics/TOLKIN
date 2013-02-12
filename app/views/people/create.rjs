@@ -1,0 +1,6 @@
+page.replace_html 'notice', :inline=>"Successfully created author"
+page.visual_effect(:highlight, "notice", :duration => 2)
+if params[:add_to_drpdwn] && params[:add_to_drpdwn]==true
+  #TODO later make sure the author gets added authomatically tot the list
+  #<%= collection_select(:contributorships, :author_id, @people, :id, :display_name) %>
+end

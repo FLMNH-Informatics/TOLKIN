@@ -1,0 +1,55 @@
+<% form_tag set_permissions_project_taxa_path do %>
+
+<input type="hidden" name="json_finder_params" value="<%= @json_finder_params %>" />
+<input type="hidden" name="permissions[permission_set_rtid]" value="<%= @permission_set_rtid %>"/>
+<table>
+  <tr>
+    <td>
+      
+      <% @roles.each do |role| %>
+
+        <% if role.label == 'Public' %>
+       <table>
+         <tr>
+          <td><%= role.label %></td>
+          <td style="background-color: <%= (color = set_perm_view_color(role.permissions, 'view')) %>">
+            <input  type="checkbox" name="permissions[role][<%= role.rtid %>][visible]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.visible) ? "checked='true'" : '' %> /> View
+          </td>
+         </tr>
+        </table>
+          <div style="display:none">
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][editable]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.editable) ? "checked='true'" : '' %> /> Edit
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][deletable]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.deletable) ? "checked='true'" : '' %> /> Delete
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][permissible]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.permissible) ? "checked='true'" : '' %> /> Permit
+          </div>
+        <% else %>
+          <div style="display:none">
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][visible]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.visible) ? "checked='true'" : '' %> /> View
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][editable]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.editable) ? "checked='true'" : '' %> /> Edit
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][deletable]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.deletable) ? "checked='true'" : '' %> /> Delete
+            <input type="checkbox" name="permissions[role][<%= role.rtid %>][permissible]" <%= (role.permissions_2.empty? ? color == 'green' : role.permissions_2.first.permissible) ? "checked='true'" : '' %> /> Permit
+          </div>
+        <% end %>
+      <% end %>
+      
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td style="background-color: green"></td>
+          <td>Permitted</td>
+        </tr>
+        <tr>
+          <td style="background-color: yellow"></td>
+          <td>Mixed</td>
+        </tr>
+        <tr>
+          <td style="background-color: red"></td>
+          <td>Not Permitted</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<% end %>

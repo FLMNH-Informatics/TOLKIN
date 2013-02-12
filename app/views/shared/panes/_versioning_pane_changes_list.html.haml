@@ -1,0 +1,6 @@
+#changes_list
+  .bodytext
+    %span Changes
+    %span
+      = raw revert_all_changes
+    %ol#matrix_change_items.numbered{ :start => changes_start_position }= raw change_item_rows

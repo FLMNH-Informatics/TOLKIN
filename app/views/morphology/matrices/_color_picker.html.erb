@@ -1,0 +1,43 @@
+
+<%= window_head 'Color picker', 'windowdiv' %>
+
+<div>       
+        <div id="content">
+            <h1 id="h1">Color Picker</h1>
+            <form action="" method="post">
+                  <div id="colorpicker">contents</div>
+                  <input type="text" id="output" value="#eeeeee"/>
+                  <input type="submit" />
+            </form>
+            <p id="copy">
+                Powered by <a href="http://raphaeljs.com/">Raphaël</a>
+            </p>
+        </div>
+        
+<script type="text/javascript">
+
+            var out = document.getElementById("output");            
+            // this is where colorpickers created
+             
+            pos = Element.cumulativeOffset($('colorpicker'))
+            //var pos = $('colorpicker').Offset();
+            alert( pos[0] +" ,"+ pos[1]);
+
+             var cp = Raphael.colorpicker(20, 20, 200, "#fff",$('colorpicker'));
+
+
+            // assigning onchange event handler
+            out.onkeyup = cp.onchange =  function (clr) {
+                clr = this == out ? this.value : clr;
+                out.value = clr;
+                this != cp && cp.color(clr);                
+                out.style.background = clr;
+                out.style.color = Raphael.rgb2hsb(clr).b < .5 ? "#fff" : "#000";
+            };
+            // that’s it. Too easy
+
+        </script>
+</div>
+        
+
+

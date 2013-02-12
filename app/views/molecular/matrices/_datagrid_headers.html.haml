@@ -1,0 +1,6 @@
+- @markers.each_with_index do |marker, index|
+  %td.mh{:id => "ch_#{marker.id}", :valign => "top", :col => index + 1, :data => {:"marker-id" => marker.id} }
+    .marker_div{:title => marker.name}
+      %span{:title => marker.name}
+        = raw truncate(get_formatted_name(marker.name, true), :length => 30)
+      .marker_checkbox

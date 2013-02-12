@@ -1,0 +1,65 @@
+= draggable_element :dna_details
+#dna_details.window
+  #windowtitle.windowtitle
+    %span#title.title
+      = controller.controller_name.singularize.titleize
+      Details
+    %span{ :id => "closebutton", :class => "closebutton", :onClick => "$('dna_details').remove();" }= link_to "X", "javascript:void(0)"
+  .window_contents
+
+    - form_for @dna_sample, :url => project_molecular_dna_sample_path do |f|
+      %table
+        %tr
+          %td= 'Taxon:'
+          %td{ :colspan => 3 }= @dna_sample.taxon
+          %td= f.label :collection, 'Collection:'
+          %td{ :colspan => 2 }= @dna_sample.collection.label
+        %tr
+          %td= f.label :sample_nr, 'Sample #:'
+          %td{ :colspan => 2 }= @dna_sample.sample_nr
+          %td
+          %td= f.label :sample_type, 'Sample type:'
+          %td{ :colspan => 2 }= @dna_sample.sample_type
+        %tr
+          %td= f.label :amount, 'Amount:'
+          %td{ :colspan => 2 }= @dna_sample.amount
+          %td
+          %td= f.label :deposited, 'Deposited:'
+          %td{ :colspan => 2 }= @dna_sample.deposited
+        %tr
+          %td Location:
+          %td= f.label :loc_freezer, 'Freezer'
+          %td= f.label :loc_shelf_bin, 'Shelf/Bin'
+          %td= f.label :loc_rack_bag, 'Rack/Bag'
+          %td= f.label :loc_box, 'Box'
+          %td= f.label :loc_column, 'Column'
+          %td= f.label :loc_row, 'Row'
+        %tr
+          %td
+          %td= @dna_sample.loc_freezer
+          %td= @dna_sample.loc_shelf_bin
+          %td= @dna_sample.loc_rack_bag
+          %td= @dna_sample.loc_box
+          %td= @dna_sample.loc_column
+          %td= @dna_sample.loc_row
+        %tr
+          %td= f.label :date_received, 'Date Received:'
+          %td{ :colspan => 2 }= @dna_sample.date_received
+          %td
+          %td= f.label :date_extracted, 'Date Extracted:'
+          %td{ :colspan => 2 }= @dna_sample.date_extracted
+        %tr
+          %td= f.label :extraction_protocol, 'Extraction Protocol:'
+          %td{ :colspan => 6 }= @dna_sample.extraction_protocol
+        %tr
+          %td= f.label :source, 'Source:'
+          %td{ :colspan => 2 }= @dna_sample.source
+          %td
+          %td= f.label :private_source, 'Private Source:'
+          %td{ :colspan => 2 }= @dna_sample.private_source
+        %tr
+          %td= f.label :team, 'Team:'
+          %td{ :colspan => 6 }= @dna_sample.team
+        %tr
+          %td= f.label :notes, 'Notes:'
+          %td{ :colspan => 6 }= @dna_sample.notes

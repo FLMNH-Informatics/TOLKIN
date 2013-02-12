@@ -1,0 +1,28 @@
+<h1>Editing image</h1>
+
+<% form_for(@image) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :date_taken %><br />
+    <%= f.date_select :date_taken %>
+  </p>
+  <p>
+    <%= f.label :created_by %><br />
+    <%= f.text_field :created_by %>
+  </p>
+  <p>
+    <%= f.label :modified_by %><br />
+    <%= f.text_field :modified_by %>
+  </p>
+  <p>
+    <%= f.label :project %><br />
+    <%= f.text_field :project %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @image %> |
+<%= link_to 'Back', images_path %>

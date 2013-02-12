@@ -1,0 +1,14 @@
+= raw window_head 'Copy Matrix', 'windowdiv'
+.window_contents
+  -form_tag copy_matrix_project_morphology_matrix_path, :method => :put do
+    %table
+      %tr
+        %td Copy matrix to
+        %td=select :branch, :copy_type, [ ['new matrix', 'new'] ]
+        /%td=select :branch, :copy_type, [ ['new matrix', 'new'], ['existing matrix', 'existing'] ]
+      %tr
+        %td Matrix name
+        %td=text_field_with_auto_complete :branch, :name, { :id => :copy_to_matrix_name_field, :name => 'branch[name]', :size => '25px' }, { :method => :get }
+    .submitbuttonrow
+      %input.simple-button{ :type => 'submit', :value => 'Submit', :onclick => "document.getElementById('busy').style.display='block';"}
+    =render :partial => 'shared/busy_indicator', :locals => { :display_text => "Please Wait.." }

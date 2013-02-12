@@ -1,0 +1,7 @@
+#newimagediv {
+    position: absolute;
+    width: 500px;
+    height: 100px;
+    z-index:1
+}
+

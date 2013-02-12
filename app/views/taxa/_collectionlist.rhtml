@@ -1,0 +1,8 @@
+<div style="padding: 0px 0px 0px 50px">
+<% if !collectionlist.nil? && collectionlist.length!=0 %>
+	<% collectionlist.each do |collection|%>
+<p><span id="collection_<%= collection.id %>" class="window_link"><%= collection.collector%> <%= collection.collection_number %></span></p>
+<%= render(:partial => "collectiondetails", :locals=>{:collectiondetails => collection,:@collection=> collection}) %>
+	<% end %>
+<% end %>
+</div>

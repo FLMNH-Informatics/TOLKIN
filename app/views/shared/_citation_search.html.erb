@@ -1,0 +1,11 @@
+<%= text_field "citation", "search_#{id}" %>
+<%= observe_field("citation_search_#{id}",
+		                  		:frequency => 1,
+		                  		:update     => "citations_select_results_#{obj}_#{id}",
+		                  		:url        => citations_search_project_library_citations_path(params[:project_id]),
+								:with => "'obj=#{obj}&search=' + value",#"search",
+								:method => :get
+								)%>
+<%= link_to "New Citation", project_library_citations_path(params[:project_id])%>
+<div id="citations_select_results_<%=obj%>_<%=id%>">
+</div>

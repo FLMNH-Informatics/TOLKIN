@@ -1,0 +1,7 @@
+if flash[:error]
+  page.replace_html :notice, flash[:error]
+else
+  page.remove "role_#{@deleted_role.id}"
+  page.replace_html :notice, flash[:notice]
+end
+flash.discard

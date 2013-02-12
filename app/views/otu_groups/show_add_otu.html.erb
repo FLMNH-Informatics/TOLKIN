@@ -1,0 +1,16 @@
+<% form_remote_tag(:url => add_otu_project_otu_group_path(params[:project_id], params[:id]), :update => 'actor_list', :position => 'bottom', :html => {:id => 'add_otu_form'} ) do %>
+
+  <%= hidden_field 'otu_group', 'otu_group_id', 'value' => params[:id] -%>
+<table>
+  <tr>
+    <td style="vertical-align: middle;">
+      <%= label  'otu_group', 'OTU Name', 'OTU Name' %>
+    </td>
+    <td>
+      <span id="otu_name" class="field">
+        <%= raw otu_name_field %>
+      </span>
+    </td>
+  </tr>
+</table>
+<%  end %>

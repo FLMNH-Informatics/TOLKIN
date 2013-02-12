@@ -1,0 +1,5 @@
+.character_citations
+  - unless interact_mode == "browse"
+    %input{:type => 'button', :value => 'Add Citation', :class => 'add_citation', :data => {:character_id => @character.id.to_s}}
+  %br
+  = raw display_character_citations

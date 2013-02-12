@@ -1,0 +1,5 @@
+%span.title_text Name:
+%span.body_text= link_to((h truncate @timeline.matrix.name, :length => 50), project_morphology_matrix_path(current_project.id, @timeline.id)) + ' from ' + params[:date].to_datetime.to_s
+= render :partial => "matrix_details_bar", :object => @timeline
+= render :partial => "datagrid"
+= render :partial => "chr_state_tooltips"

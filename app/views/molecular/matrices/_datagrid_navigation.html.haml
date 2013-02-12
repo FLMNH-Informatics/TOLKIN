@@ -1,0 +1,21 @@
+%table.autofill
+  %tr.link_buttons
+    %td#table_empty_message
+      = raw matrix_empty_message
+    %td#table_pagination.center
+      %span.bodytext
+        = raw will_paginate(@markers, :container => false) if params[:action] == 'show' #|| params[:action] == 'view_by_date' TODO: fix view_by_date pagination
+    %td.right
+      - unless @timeline.markers.empty? || @timeline.otus.empty? || params["action"] != 'show'
+        %a#autofill Autofill
+#export_mode_controls.link_buttons{:style => "display:none;"}
+  #selected_seqs_controls
+    %a#export_selected_seqs
+      Export Selected
+    &nbsp;&nbsp;&nbsp;
+    %a#create_alignment
+      Create Alignment
+    &nbsp;&nbsp;&nbsp;
+    %a#toggle_all
+      Check All
+      %input#toggle_all_chk.leveled{:type => "checkbox"}

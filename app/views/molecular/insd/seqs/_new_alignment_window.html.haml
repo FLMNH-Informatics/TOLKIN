@@ -1,0 +1,197 @@
+.notice_area
+%form{:id => "new_primer" , :action=> form_action , :method => "post"}
+  %input{ type: 'hidden', name: 'ids', value: seq_ids() }
+  %table
+    %tr
+      %td.key_cell
+        %label Name
+      %td
+        %input{ type: 'text', name: 'title' }
+    %tr
+      %td.key_cell
+        %label Description
+      %td{colspan: 3}
+        %input{ type: 'text', name: 'description', :size => 20}
+    %tr
+      %td.key_cell
+        %label KTUP
+      %td
+        %select{ name: 'align[ktuple]'}
+          %option{ value: 'def' } def
+          %option{ value: '1' } 1
+          %option{ value: '2' } 2
+          %option{ value: '3' } 3
+          %option{ value: '4' } 4
+          %option{ value: '5' } 5
+      %td.key_cell
+        %label Window
+        %br Length
+      %td
+        %select{ name: 'align[window]'}
+          %option{ value: 'def' }  def
+          %option{ value: '10' } 10
+          %option{ value: '9' } 9
+          %option{ value: '8' } 8
+          %option{ value: '7' } 7
+          %option{ value: '6' } 6
+          %option{ value: '5' } 5
+          %option{ value: '4' } 4
+          %option{ value: '3' } 3
+          %option{ value: '2' } 2
+          %option{ value: '1' } 1
+          %option{ value: '0' } 0
+      %td.key_cell
+        %label Score
+        %br Type
+      %td
+        %select{ name: 'align[score]'}
+          %option{ value: 'percent' } percent
+          %option{ value: 'absolute' } absolute
+    %tr
+      %td.key_cell
+        %label Topdiag
+      %td
+        %select{ name: 'align[topdiags]'}
+          %option{ value: 'def' }  def
+          %option{ value: '10' } 10
+          %option{ value: '9' } 9
+          %option{ value: '8' } 8
+          %option{ value: '7' } 7
+          %option{ value: '6' } 6
+          %option{ value: '5' } 5
+          %option{ value: '4' } 4
+          %option{ value: '3' } 3
+          %option{ value: '2' } 2
+          %option{ value: '1' } 1
+          %option{ value: '0' } 0
+      %td.key_cell
+        %label Pairgap
+      %td
+        %select{ name: 'align[pairgap]'}
+          %option{ value: 'def'} def
+          %option{ value: '1' } 1
+          %option{ value: '2' } 2
+          %option{ value: '3' } 3
+          %option{ value: '4' } 4
+          %option{ value: '5' } 5
+          %option{ value: '10' } 10
+          %option{ value: '25' } 25
+          %option{ value: '50' } 50
+          %option{ value: '100' } 100
+          %option{ value: '250' } 250
+          %option{ value: '500' } 500
+      %td.key_cell
+        %label Matrix
+      %td
+        %select{ name: 'align[matrix]'}
+          %option{ value: 'blosum'} blosum
+          %option{ value: 'pam'} pam
+          %option{ value: 'gonnet'} gonnet
+          %option{ value: 'id'} id
+    %tr
+      %td.key_cell
+        %label Gap Open
+      %td
+        %select{ name: 'align[gapopen]'}
+          %option{ value: 'def'} def
+          %option{ value: '100'} 100
+          %option{ value: '50' } 50
+          %option{ value: '25' } 25
+          %option{ value: '10' } 10
+          %option{ value: '5' } 5
+          %option{ value: '2' } 2
+          %option{ value: '1' } 1
+      %td.key_cell
+        %label No End
+        %br Gaps
+      %td
+        %select{ name: 'align[endgaps]'}
+          %option{ value: 'yes'} yes
+          %option{ value: 'no' } no
+      %td.key_cell
+        %label Gap
+        %br Extension
+      %td
+        %select{ name: 'align[gapext]'}
+          %option{ value: 'def'} def
+          %option{ value: '0.05'} 0.05
+          %option{ value: '0.5'} 0.5
+          %option{ value: '1.0'} 1.0
+          %option{ value: '2.5'} 2.5
+          %option{ value: '5.0'} 5.0
+          %option{ value: '7.5'} 7.5
+          %option{ value: '10.0'} 10.0
+    %tr
+      %td.key_cell
+        %label Gap
+        %br Distances
+      %td
+        %select{ name: 'align[gapdist]'}
+          %option{ value: 'def' }  def
+          %option{ value: '10' } 10
+          %option{ value: '9' } 9
+          %option{ value: '8' } 8
+          %option{ value: '7' } 7
+          %option{ value: '6' } 6
+          %option{ value: '5' } 5
+          %option{ value: '4' } 4
+          %option{ value: '3' } 3
+          %option{ value: '2' } 2
+          %option{ value: '1' } 1
+      %td.key_cell
+        %label Iteration
+      %td
+        %select{ name: 'align[iteration]'}
+          %option{ value: 'none'} none
+          %option{ value: 'tree'} tree
+          %option{ value: 'alignment'} alignment
+      %td.key_cell
+        %label Numiter
+      %td
+        %select{ name: 'align[numiter]'}
+          %option{ value: '1' } 1
+          %option{ value: '2' } 2
+          %option{ value: '3' } 3
+          %option{ value: '4' } 4
+          %option{ value: '5' } 5
+          %option{ value: '6' } 6
+          %option{ value: '7' } 7
+          %option{ value: '8' } 8
+          %option{ value: '9' } 9
+          %option{ value: '10' } 10
+    %tr
+      %td.key_cell
+        %label Tree
+        %br Type
+      %td
+        %select{ name: 'align[outputtree]'}
+          %option{ value: 'none'} none
+          %option{ value: 'nj' } nj
+          %option{ value: 'phylip'} phylip
+          %option{ value: 'dist' } dist
+      %td.key_cell
+        %label Correct
+        %br Dist.
+      %td
+        %select{ name: 'align[kimura]' }
+          %option{ value: 'off'} off
+          %option{ value: 'on'} on
+      %td.key_cell
+        %label Ignore
+        %br Gaps
+      %td
+        %select{ name: 'align[tossgaps]'}
+          %option{ value: 'off'} off
+          %option{ value: 'on' } on
+    %tr
+      %td.key_cell
+        %label Clustering
+      %td
+        %select{ name: 'align[clustering]'}
+          %option{ value: 'NJ'} NJ
+          %option{ value: 'UPGMA'} UPGMA
+    %tr
+      %td
+        %input{type: 'submit', value: 'Submit'}
+
+

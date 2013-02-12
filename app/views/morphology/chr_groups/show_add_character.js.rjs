@@ -1,0 +1,6 @@
+page << "if($('addCharacterWindow')) {"
+  page.replace 'addCharacterWindow', :partial => 'add_character_window'
+page << "} else {"
+  page.insert_html :bottom, 'contents', :partial => 'add_character_window'
+page << "}"
+page.call :showWindow, :addCharacterWindow

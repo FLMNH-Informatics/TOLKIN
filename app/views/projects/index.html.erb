@@ -1,0 +1,39 @@
+<div id="test_container"></div>
+
+<div id="projects_body">
+  <div>
+    <h3>Project List:</h3>
+  </div>
+
+  <div id="project_list">
+    
+    <table id="projects">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Website</th>
+      </tr>
+      
+      <%= zero_projects_message %>
+      <%# @projects.each do |project| %>
+        <%# debugger %>
+        <%# if project.has_permissions?(@current_user) %>
+        <%#= render :partial => 'project', :collection => @projects %>
+        <%# end %>
+      <%# end %>
+
+      <%# if is_admin? %>
+        <%= render :partial => 'project', :collection => @projects %>
+      <%# end %>
+    </table>
+    <%- if current_user.username == 'public' %>
+     <!--<p>Enter user <em><b>demo</b></em> and password <em><b>demo</b></em> to log in.</p>-->
+    <%- end %>
+    <% if  @pending_project_requests %>
+      <h3>Your Pending Project Requests:</h3>
+      <table id="pending_projects">
+        <%= render :partial => 'project', :collection => @pending_project_requests.try(:collect){|project_req| project_req.project} %>
+      </table>
+    <%end%>
+  </div>
+</div>

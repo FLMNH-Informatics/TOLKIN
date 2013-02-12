@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @nexus_dataset.name %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%=h @nexus_dataset.project %>
+</p>
+
+
+<%= link_to 'Edit', edit_nexus_dataset_path(@nexus_dataset) %> |
+<%= link_to 'Back', nexus_datasets_path %>

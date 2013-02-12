@@ -1,0 +1,9 @@
+.char_container
+  %h4
+    Character &nbsp; &nbsp; &nbsp;
+    (
+    %a{:id => 'edit_character', :class => 'edit_character', :href => '#'} edit
+    )
+  = render :partial => 'character_display.html.erb'
+  .obj_attachments
+    = render :partial => 'character_attachments.html.haml'

@@ -1,0 +1,150 @@
+// MIXINS
+
+=head-cell
+  font-family: tahoma, verdana, sans-serif
+  font-size: 70%
+  background-color: $dark_gray
+  color: $off_white
+  padding: 3px
+  a
+    text-decoration: none
+    color: $off_white
+
+// MAIN
+.marker_div
+  position: relative
+  height: 58px
+  .marker_checkbox
+    position: absolute
+    bottom: -6px
+    right: -5px
+#table_navigation
+  table
+    width: 100%
+  position:  relative
+
+.datagrid
+  .bt
+    font-family: tahoma, verdana, sans-serif
+    padding: 3px
+    height: inherit
+    text-align: center
+    font-size: 9px
+    vertical-align: middle
+    .cell_div
+      position: relative
+      .seq_count
+        position: absolute
+        top: -4.5px
+        left: -2.5px
+      .cell_checkbox
+        position: absolute
+        bottom: -6px
+        right: -6px
+    &.a
+      background-color: #fde981
+    &.b
+      background-color: #9be6fd
+    &.c
+      background-color: #fe4f4f
+    &.d
+      background-color: #ebe
+    &.e
+      background-color: #1d7
+    &.f
+      background-color: #fb2
+
+  .body
+    &.container
+      height: 600px
+      overflow: auto
+      border: 0px
+      width: 84%
+    td
+      &:first-child
+        width: 300px
+        +head-cell
+
+      &:hover
+        cursor: pointer
+    >tbody >tr >td
+      width: 60px
+      vertical-align: top
+
+  .head
+    &.container
+      width: 84%
+      overflow-x: hidden
+    th
+      +head-cell
+    >thead
+      >tr
+        text-align: center
+        color: $off_white
+        >td
+          width: 60px
+          vertical-align: top
+
+  .navigation
+    position: relative
+    height: 60px
+    width: 300px
+    .back_link
+      vertical-align: top
+      text-align: left
+
+  .pagination
+    vertical-align: bottom
+    text-align: center
+    *
+      font-size: 9px
+      color: gray
+    a
+      color: $off_white
+
+  .message
+    &.container
+      &.table_empty
+        position: absolute
+        top: 20px
+        left: 60px
+        color: $gray
+        font-size: 12px
+        font-weight: normal
+      &.cell_saved
+        padding-top: 10px
+        padding-bottom: 5px
+        color: green
+        text-align: center
+        height: 28px
+
+.selected_heading
+  background-color: pink !important
+  color: #4E4E4E !important
+  a
+    color: #4E4E4E !important
+
+.row_loading
+  text-align: center
+  font-size: 70%
+  background-color: $dark_gray
+  color: $off_white
+  margin-left: 1px
+#sort_otus
+  position: absolute
+  left:  5px
+  bottom:  2px
+#selected_seqs_controls
+  position: absolute
+#sort_markers
+  position: absolute
+  right:  3px
+  top:  4px
+#sort_characters
+  position: absolute
+  right:  3px
+  top:  4px
+#sort_both
+  position: absolute
+  right:  3px
+  bottom:  2px

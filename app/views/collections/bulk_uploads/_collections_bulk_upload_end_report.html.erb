@@ -1,0 +1,84 @@
+<% if @errors_exist.nil? %>
+
+    <div style="font-family: verdana,sans-serif; font-size: 12px">
+      <%	 error_row_index = 0 %>
+      <h1>Collections Successful Bulk Upload Report</h1>
+      <br/>
+      <div style="font-family: verdana,sans-serif; font-weight: bolder; font-size: 12px">No Errors were encountered!</div><br/>
+      All Collections were imported successfully. Thank you.<br/>
+      <br/>
+      <table style="border: 50, #000000; background-color: #ffebcd;font-family: verdana,sans-serif; font-size: 12px">
+        <th align="left">
+          Row Number
+        </th>
+        <th align="left">
+          Collection Number
+        </th>
+
+        <% @imported_collections.each do |collection| %>
+            <tr>
+              <td align="left">
+                <%=	 collection[0] %>
+              </td>
+              <td align="left">
+                <%=	 collection[1] %>
+              </td>
+
+            </tr>
+        <% end %>
+      </table>
+      <br/>
+      <% if @created_taxonomies.empty? %>
+      <% else %>
+          <table style="border: 50, #000000; background-color: #ffebcd;font-family: verdana,sans-serif; font-size: 12px">
+            <th align="left">
+              Created Taxonomy
+            </th>
+            <% @created_taxonomies.each do |taxon| %>
+                <tr>
+                  <td align="left">
+                    <%= taxon %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% end %>
+
+      </table>
+
+    </div>
+
+<% else %>
+
+    <div style="font-family: verdana,sans-serif; font-size: 12px">
+      <%	 error_row_index = 0 %>
+      <h1>Collections Bulk Upload End Report</h1>
+
+      <br/>
+      <div style="color: red; font-family: verdana,sans-serif; font-weight: bolder; font-size: 12px">Errors were encountered!</div><br/>
+      Please revise the file uploaded for the following errors and re-submit. Thank you.<br/>
+      <br/>
+
+      <table style="border: 50, #000000; background-color: #ffebcd;font-family: verdana,sans-serif; font-size: 12px">
+        <th align="left">
+          Row Number
+        </th>
+        <th align="left">
+          Error Description
+        </th>
+        <% @errors.each do |error| %>
+            <tr>
+              <% if error[1].empty? %>
+              <% else %>
+                  <td align="left">
+                    <%=	 error[0] %>
+                  </td>
+                  <td align="left">
+                    <%=	 error[1] %>
+                  </td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+<% end %>

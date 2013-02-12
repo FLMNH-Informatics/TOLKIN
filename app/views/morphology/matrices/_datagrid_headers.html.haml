@@ -1,0 +1,6 @@
+- @characters.each_with_index do |char, index|
+  %td.mh{:id => "ch_#{char.id}", :valign => "top", :col => index + 1, :data => {:"character-id" => char.id} }
+    .char_div{:title => char.name}
+      %a{:href => project_morphology_matrix_character_path(@project, @timeline, char), :title => char.name, :class => "matrix_heading_link"}
+        = raw truncate(get_formatted_name(char.name, true), :length => 30)
+      .char_checkbox.marker_checkbox

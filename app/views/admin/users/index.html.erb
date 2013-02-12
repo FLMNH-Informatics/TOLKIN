@@ -1,0 +1,13 @@
+<%= render :partial => "admin/nav_right" %>
+
+<div class="title">Users List</div>
+<div style="margin:20px 0px">
+<select id="admin_project_select">
+  <% current_user.projects.each do |p| %>
+     <option value="<%= p.id %>"><%= p.label %></option>
+  <% end %>
+</select>  Users List
+</div>
+<div id="users-table-holder">
+<%=  render :partial => 'users_table' %>
+</div>

@@ -1,0 +1,7 @@
+page.replace_html 'notice', :inline=>"Successfully updated collection"
+if(@parameter == "collection_date")
+  page.replace_html 'div_collection_date', :partial=>"collection_date", :layout=>false
+elsif(@parameter == "collection_annotation")
+  page.replace_html 'div_coll_annotations', :partial=>"annotations", :object=>@collection.annotations, :layout=>false
+end
+page.visual_effect(:highlight, "notice", :duration => 2)

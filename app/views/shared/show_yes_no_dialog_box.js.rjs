@@ -1,0 +1,28 @@
+page << "if($('dialog_box')) {"
+  page.replace 'dialog_box', :partial => "shared/yes_no_dialog_box", :locals => { :message => dialog_box_message }
+page << "} else {"
+page.insert_html :bottom, :contents, :partial => "shared/yes_no_dialog_box", :locals => { :message => dialog_box_message }
+page << "}"
+page.call :positionWindow, 'dialog_box'
+page.visual_effect :appear, 'dialog_box', { :duration => 0.3 }
+
+page << "
+$('dialog_box_form').observe('submit', function(submissionEvent) {
+  submissionEvent.stop()
+});
+$('dialog_box_form_yes').observe('click', function(event) {
+  $('dialog_box').hide();
+  $('dialog_box_form').notice_response.value = 'yes';
+  $('dialog_box_form').request()
+});
+$('dialog_box_form_no').observe('click', function(event) {
+  $('dialog_box').hide();
+  $('dialog_box_form').notice_response.value = 'no';
+  $('dialog_box_form').request()
+});
+$('dialog_box_form_cancel').observe('click', function(event) {
+  $('dialog_box').hide();
+  $('busy').hide();
+  $('#{parent_window}').down('.simple-button').enable();
+});
+"

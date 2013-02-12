@@ -1,0 +1,36 @@
+%div.versioning_pane.widget{ id: id, :'data-changeset-id' => changeset.id }
+  .windowtitle
+    Versioning
+    = raw view_history
+  - unless matrix.version_number.zero?
+    %div
+      %table#version_navigation
+        %tr
+          %td.double_arrow= raw previous_version_link
+          %td
+            #goto_version_control.bodytext.large
+              %table
+                %tr
+                  %td Version:
+                  %td
+                    %span#matrix_version_number= h matrix.version_number
+          %td.double_arrow= raw next_version_link
+      %table.bodytext
+        %tr
+          %td Created:
+          %td= matrix.updated_at || matrix.created_at
+        %tr
+          %td By:
+          %td= matrix.updater || matrix.creator
+  %br
+  = render :partial => 'shared/panes/versioning_pane_changes_list'
+  %table
+    %tr
+      %td{ :colspan => "3", :align => "center" }
+        = context.form_remote_tag url: show_commit_changes_options_project_morphology_matrix_path, method: :get
+        %input{ :type => "hidden", :name => "changeset_id", :value => matrix.changeset.id }
+        - if matrix.changeset.items.empty?
+          %input#commit_changes_button.simple-button{ :type => "submit", :disabled => "true", :value => "Commit Changes" }
+        - else
+          %input#commit_changes_button.simple-button{ :type => "submit", :value => "Commit Changes" }
+        </form>

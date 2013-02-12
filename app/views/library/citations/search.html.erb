@@ -1,0 +1,15 @@
+<%#*<div id="navpane">%>
+    <%#= render :partial => "leftnav" %>
+<%#*</div>%>
+<%= link_to "Back", project_library_citations_path(params[:project_id])%>
+<h5>Citation Search</h5>
+<div id="author_search">
+    <span>
+    <%= render :partial=>"search_filters", :locals => { :id => nil.to_s} %>
+    <span/>
+</div>
+<div id="div_citation_list">
+</div>
+<div id="div_citation" style='position: absolute; width: 700px; height: 700px; display: none;z-index:1'>
+</div>
+<%= draggable_element :div_citation %>

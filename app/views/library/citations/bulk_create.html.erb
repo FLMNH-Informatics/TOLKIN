@@ -1,0 +1,26 @@
+<%= link_to 'Back', project_library_citations_path(params[:project_id]) %>
+<%debugger%>
+<div>
+<% if !@records.nil? && !@records.empty? %>
+<% @records.each do |record|%>
+<%auth_string = ""%>
+<%if !record[:errors].nil?%>
+<%record[:people].each {|person| auth_string.concat(" "+person[:last_name].to_s)}%>
+for record with authors: auth_string
+<ul>
+<%record[:errors].each do |error|%>
+	<li> <%= error.to_s %> </li>
+<%end%>
+</ul>
+<% end %>
+<% end %>
+<% end %>
+</div>
+<div>
+
+	</div>
+<div>
+	<%=render :partial=>"citations", :object=>@citations%>
+</div>
+<div id="div_citation" style='position: absolute; width: 700px; height: 700px; display: none;z-index:1' class="window">
+</div>

@@ -1,0 +1,106 @@
+<div class="clearer">
+  <div class="char_boxed">
+    <table id="chr_states_table">
+    <tr>
+    <td>
+      <div id="detailsdiv" class="detailsdiv">
+        <table border="0" id="state<%= chr_state.id %>" cellpadding="1px" cellspacing="1px">
+          <tr>
+            <td  style="width: 75px;" align="right" valign="top">
+              <span class="titletext">Name:</span>
+            </td>
+            <td style="width: 200px;" style="WORD-BREAK:BREAK-ALL;">
+              <span class="bodytext"><%=h chr_state.name %><%= render :partial=>"tags/tagme", :locals => { :tagme => chr_state } %></span>
+            </td>
+            <td align="right" valign="top">
+              <span class="titletext">State:</span>
+            </td>
+            <td><span class="bodytext"><%=h chr_state.state %></span></td>
+          </tr>
+
+          <tr>
+            <td align="right"><span class="titletext">Polarity:</span></td>
+            <td colspan="3"><span class="bodytext"><%=h chr_state.polarity %></span></td>
+          </tr>
+
+          <tr>
+            <td align="right"><span class="titletext">Description:</span></td>
+            <td colspan="3"><span class="bodytext"><%=h chr_state.description %></span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top">
+              <span class="titletext">Created By: </span>
+            </td>
+            <td valign="top">
+              <span class="bodytext"><%=h chr_state.creator.full_name %></span>
+            </td>
+            <td align="right" valign="top">
+              <span class="titletext">Last Update: </span>
+            </td>
+            <td valign="top">
+              <span class="bodytext"><%=h chr_state.updator.full_name %></span>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="right" valign="top">
+              <span class="titletext">Created At: </span>
+            </td>
+            <td valign="top">
+              <span class="bodytext"><%=h chr_state.created_at %></span>
+            </td>
+            <td align="right" valign="top">
+              <span class="titletext">Last Update: </span>
+            </td>
+            <td valign="top">
+              <span class="bodytext"><%=h chr_state.updated_at %></span>
+            </td>
+          </tr>
+          <tr>
+            <td align="right" valign="top">
+              <span class="titletext">Library Reference: </span>
+            </td>
+            <td valign="top" colspan="3">
+              <div id=<%="div_chr_state_#{chr_state.id}_citations"%>>
+                <%= render(:partial => "/shared/list_citations" , :collection => chr_state.citations, :locals => { :obj => chr_state, :url_options => { :controller => :chr_states, :project_id => params[:project_id], :id => chr_state }} )%>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" align="right">
+              <span class="bodytext">
+                <%=
+                #TODO - Fix Me
+                #link_to 'Edit', :action => 'delete_state', :confirm => 'Are you sure?', :method => :post
+                link_to_remote 'Edit', :url => optional_matrix_resource_url(:controller => :chr_states, :action => :edit, :project_id => params[:project_id], :matrix_id => params[:matrix_id], :character_id => params[:id], :id => chr_state.id), :method => :get
+              %> <!--| -->
+<%#=
+link_to_remote 'Add Image', :url=> add_chr_state_image_project_character_chr_state_path(params[:project_id],params[:id], chr_state.id), :method=>:get
+                %> |
+                <%=
+                #TODO - Fix Me
+                #link_to 'Delete', :action => 'delete_state', :confirm => 'Are you sure?', :method => :post
+                link_to 'Delete', optional_matrix_resource_url(:controller => :chr_states, :action => :destroy, :project_id => params[:project_id], :matrix_id => params[:matrix_id], :character_id => params[:id], :id => chr_state.id), :method => :delete, :confirm => 'Are you sure?'
+              %>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4"> </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+    <td>
+      <div id=<% "imagesdiv_chr_state_#{chr_state.id}" %> class="imagesdiv" >
+        <div class="sectiontitle">
+          <span class="titletext">Images &nbsp;&nbsp;<%= link_to_remote 'add', :url=> add_chr_state_image_project_morphology_character_chr_state_path(params[:project_id],params[:id], chr_state.id), :method=>:get %></span>
+        </div>
+        <%= render :partial => 'shared/image', :collection => chr_state.chr_state_images %>
+      </div>
+    </td>
+  </tr>
+  </table>
+  </div>
+
+</div>

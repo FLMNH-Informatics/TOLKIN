@@ -1,0 +1,21 @@
+:asset_root: public
+:load_path:
+  - app
+  - lib
+  - lib/morphology/*
+  - lib/molecular/*
+  - app/helpers
+  - app/models
+  - app/roles
+  - app/widgets
+  - app/pages
+  - app/javascripts
+  - app/javascripts/app
+  - app/javascripts/lib
+  - app/javascripts/vendor
+  - vendor/sprockets/*/src
+  - vendor/plugins/*/javascripts
+  - vendor/js
+:source_files:
+  - config/boot.js
+

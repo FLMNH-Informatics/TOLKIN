@@ -1,0 +1,30 @@
+<% if citations && citations.size>0 %>
+  <input type="hidden" name="authenticity_token" value='<%=form_authenticity_token%>' />
+  <table>
+    <tr>
+      <th class="h">
+      </th>
+      <th class="h">
+        Authors
+      </th>
+      <th class="h">
+        Year
+      </th>
+      <th class="h">
+        Title
+      </th>
+      <th class="h">
+        Publication
+      </th>
+      <th class="h">
+        Type
+      </th>
+      <th class="h">
+        Attachment
+      </th>
+    </tr>
+    <%= render :partial=>"citation", :collection => citations %>
+  </table>
+<%else%>
+  <h5>No Results Found</h5>
+<%end%>

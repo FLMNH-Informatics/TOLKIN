@@ -1,0 +1,21 @@
+<% show_links ||= nil %>
+<div  id='img_<%= image.image.id %>'>
+  <% if !image.image.nil? %>
+   <a href='<%= image.image.attachment.url(:original)%>' target='_blank'><img src='<%= image.image.attachment.url(:thumb) %>' class='noborderimage' /></a>
+  <% end %>
+   <br/>
+  <%if !show_links %>
+  <span class="bodytext">
+  <% #params[:interact_mode] only exists for some pages in citations..so dont interfere with other pages if no interactmode present %>
+  <% if (params.has_key?(:interact_mode) && params[:interact_mode] == 'edit') || !params.has_key?(:interact_mode) %>
+    <%=  link_to_remote "Delete", 
+          :url => project_image_join_path(current_project, image.image, image),
+          :confirm => 'Are you sure you would like to remove this image?',
+          :method => :delete,
+          :complete => "$(\"img_#{image.image.id}\").remove()"
+
+     %>
+   <% end %>
+  </span>
+  <%end%>
+</div>

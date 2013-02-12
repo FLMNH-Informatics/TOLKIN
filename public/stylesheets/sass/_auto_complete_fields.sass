@@ -1,0 +1,70 @@
+.widget.auto_complete_field
+  position: relative
+
+
+  .box
+    font-size: 12px
+    padding-top: 0
+    padding-bottom: 0
+    padding-left: 0
+    color: black
+
+  table
+    width: 220px
+
+    td
+      vertical-align: middle
+
+      &:first-child
+        padding-top: 0
+        padding-bottom: 0
+        padding-left: 0
+
+  .box td:last-child
+    width: 20px
+    text-align: left
+
+  .dropdown
+    position: absolute
+    background-color: #F5F5F5
+    border: 1px solid black
+    z-index: 20
+
+    table
+      border: 2px solid #AAA
+
+    td
+      padding: 0px
+
+      &:first-child
+        text-align: left
+
+    img
+      margin: 2px 4px
+
+  .results_TD
+    text-align: left
+
+  .loader_image_TD
+    width: 25px
+
+  ul.results
+    margin: 0
+    max-height: 275px
+    padding: 0
+    overflow: auto
+    list-style-type: none
+
+    li
+      padding: 5px
+      padding-left: 10px
+
+      &.option
+        cursor: pointer
+        border: 1px solid #CCC
+
+        &.even
+          background-color: white
+        
+        &.highlighted
+          background-color: #FF9

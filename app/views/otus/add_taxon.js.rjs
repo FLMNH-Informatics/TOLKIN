@@ -1,0 +1,4 @@
+page.insert_html :bottom, "otu_#{@otu.id}_taxa_list", :partial => 'list_taxa', :object => @taxon
+page.replace_html :notice, flash[:notice]
+page["addTaxonWindow"].hide
+flash.discard

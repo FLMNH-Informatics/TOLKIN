@@ -1,0 +1,20 @@
+<%= draggable_element :show_item_window %>
+<div id="show_item_window" class="window">
+
+  <div id="windowtitle" class="windowtitle" >
+    <span id="title" class="title">
+      <%= controller.controller_name.singularize.titleize %> Details
+    </span>
+
+      <span id="closebutton" class ="closebutton" onClick=<%="$('show_item_window').remove();" %>><%= link_to "X", "javascript:void(0)" %></span>
+  </div>
+  <div class="top_panel">
+    <%= link_to 'Delete', url_for(:action => :delete, :id => item), :confirm => 'Are you sure?', :method => :delete %>
+  </div>
+<table>
+  <%= render :partial => "/shared/show_editable_attribute", :collection => @attributes %>
+  <% if controller.controller_name == 'seqs' -%>
+    <%= render :partial => "custom_attributes" %>
+  <% end -%>
+</table>
+</div>
