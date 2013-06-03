@@ -1,0 +1,57 @@
+#viewport_content_frame_matrices_datagrid.datagrid.widget
+  #table_head_container.table_head_container
+    .table_head_expander{ :style => "width: #{300 + @submatrix.markers.count * 150}px;" }
+      %table.table_head{ :cellspacing => '1px' }
+        %thead
+          %tr
+            %th.link_buttons
+              #table_navigation
+                .mode_controls.link_buttons
+                  - unless @timeline.markers.empty? || @timeline.otus.empty? || params["action"] != 'show'
+                    %span#export_mode.datagrid_mode
+                      %a#toggle_export_mode_link
+                        Enter export mode
+                    %span#move_mode.datagrid_mode
+                      - unless params[:sort_both] || params[:sort_markers] || params[:sort_otus]
+                        %a#toggle_move_mode_link
+                          Move markers/OTUs
+                %table.autofill
+                  %tr.link_buttons
+                    %td#table_empty_message
+                      = raw matrix_empty_message
+                    %td#table_pagination.center
+                      %span.bodytext
+                        = raw will_paginate(@markers, :container => false) if params[:action] == 'show' #|| params[:action] == 'view_by_date' TODO: fix view_by_date pagination
+                %span#export_mode_controls.link_buttons{:style => "display:none;"}
+                  #selected_seqs_controls
+                    %a#export_selected_seqs
+                      Export Selected
+                    &nbsp;&nbsp;&nbsp;
+                    %a#create_alignment
+                      Create Alignment
+                    &nbsp;&nbsp;&nbsp;
+                    %a#toggle_all
+                      Check All
+                      %input#toggle_all_chk.leveled{:type => "checkbox"}
+                #sort_otus
+                  =raw order_link("otus")
+                #sort_markers
+                  =raw order_link("markers")
+                #sort_both
+                  =raw order_link("both")
+            - @submatrix_markers.each_with_index do |mmarker, index|
+              %td.mh{:id => "ch_#{mmarker.marker.id}", :valign => "top", :col => index + 1, :data => {:"marker-id" => mmarker.marker.id} }
+                .movement_container
+                  .move_marker{:style => "display:none;"}
+                    = render :partial => "move_item"
+                .marker_div{:title => mmarker.marker.name}
+                  %span{:title => mmarker.marker.name}
+                    = raw truncate mmarker.marker.name, :length => 30
+                  .marker_checkbox
+                    %span.cell_count= raw mmarker.cells_count + (mmarker.cells_count == "1" ? " cell" : " cells") if mmarker.respond_to?(:cells_count)
+  #table_body_container.table_body_container
+    .table_body_expander{ :style => "width: #{300 + @submatrix.markers.count * 150}px;" }
+      %table#table_body.table_body{ :cellspacing => '1px' }
+        %tbody
+  %script{:type=>"text/javascript"}
+    = raw %(matrices_otus = #{@matrices_otus.to_json})

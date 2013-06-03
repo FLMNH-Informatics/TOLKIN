@@ -1,0 +1,29 @@
+%h4= raw  %(Name: #{submatrix_name_field})
+%input#remove_otus{:type => :hidden}
+%input#remove_markers{:type => :hidden}
+.submatrix_children
+  %form#add_form
+    .submatrix_otus
+      %h4
+        OTUs
+        = raw %((<a id="add_more_otus" class="add_more">add more</a>))
+      %ul
+        -@submatrix.submatrix_otus.each do |smotu|
+          %li
+            %span{:title => smotu.otu.name}= raw truncate smotu.otu.name, :length => 30
+            - unless interact_mode.to_s == "browse"
+              %span.right= raw %(<a data-submatrix-child-type="otu" data-submatrix-child-id="#{smotu.id}" title="#{smotu.otu.name}" class="remove">remove</a>)
+      .all_otus{:style => "display:none;"}
+        = render :partial => "existing_otus.html.haml"
+    .submatrix_markers
+      %h4
+        Markers
+        = raw %((<a id="add_more_markers" class="add_more">add more</a>))
+      %ul
+        -@submatrix.submatrix_markers.each do |sm_marker|
+          %li
+            %span= raw sm_marker.marker.name
+            - unless interact_mode.to_s == "browse"
+              %span.right= raw %(<a data-submatrix-child-type="marker" data-submatrix-child-id="#{sm_marker.id}" title="#{sm_marker.marker.name}" class="remove">remove</a>)
+      .all_markers{:style => "display:none;"}
+        = render :partial => "existing_markers.html.haml"

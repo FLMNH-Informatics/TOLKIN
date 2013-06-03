@@ -1,0 +1,18 @@
+%ul
+  -unless @timeline.matrices_markers.empty?
+    %li
+      %span
+        %a.check_all#check_all_markers Check all
+    -#@timeline.matrices_markers.each do |mmarker|
+    -(params[:action] == "edit" ? @timeline.matrices_markers.where(marker_conditions) : @matrices_markers).each do |mmarker|
+      %li
+        %label{:for => "chk_marker_#{mmarker.id}", :title => mmarker.marker.name}
+          - unless interact_mode.to_s == "browse"
+            %input.sub_marker_checkbox{:type => 'checkbox',
+                                       :id => "chk_marker_#{mmarker.id}",
+                                       :value => mmarker.marker.id,
+                                       :name => "markers[]",
+                                       :data => {:'matrix-marker-id' => mmarker.id,
+                                                 :'marker-id' => mmarker.marker.id,
+                                                 :cellsCount => (mmarker.respond_to?(:cells_count) ? mmarker.cells_count : "na")}}
+          = raw mmarker.marker.name

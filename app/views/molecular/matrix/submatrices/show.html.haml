@@ -1,0 +1,8 @@
+%h4.matrix_title
+  %span.title_text Timeline name:
+  %span.body_text{:title => @timeline.name}= link_to((h truncate @timeline.name, :length => 50), project_molecular_matrix_path(current_project.id, @timeline.id))
+  %span.title_text Submatrix name:
+  %span.body_text{:title => @submatrix.name}= h truncate @submatrix.name, :length => 50
+  %span.body_text= link_to('Edit', '#', {:id => 'edit_submatrix'})
+= render :partial => "/molecular/matrices/matrix_details_bar", :object => @timeline
+= render :partial => "submatrix_datagrid"

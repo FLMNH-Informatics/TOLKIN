@@ -1,0 +1,16 @@
+= form_for [current_project,@submatrix] do |f|
+  = f.label :name, "Name"
+  = f.text_field :name
+  = f.hidden_field :timeline_id, :value => @timeline.id
+  -if params[:no_seqs]
+    .submatrix_children
+      .submatrix_otus
+        %h4 OTUs
+        %ul
+          %li= raw %{<a class="min_check">Check</a> OTUs with at least <input name="min_otus" type="number" style="width:20px;"/> cells}
+        = render :partial => "existing_otus.html.haml"
+      .submatrix_markers
+        %h4 Markers
+        %ul
+          %li= raw %{<a class="min_check">Check</a> Markers with at least <input name="min_markers" type="number" style="width:30px;"/> cells}
+        = render :partial => "existing_markers.html.haml"

@@ -1,0 +1,12 @@
+%h3
+  Errors
+%h4 Sorry, please <a href="mailto:tolkin@flmnh.ufl.edu">Contact Us</a> if you encounter these errors.
+%p
+  - @instance_errors.each do |er|
+    %p instance error
+  = raw "No creation Errors" if @instance_errors.empty?
+%p
+  - @saving_errors.each do |er|
+    %p saving error
+  = raw "No saving errors" if @saving_errors.empty?
+= raw "Everything successfully saved" if @saving_errors.empty? and @instance_errors.empty?

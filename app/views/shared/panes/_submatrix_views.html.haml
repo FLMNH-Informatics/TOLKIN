@@ -1,0 +1,18 @@
+.windowtitle
+  Submatrices
+.timeline_submatrices.submatrix_views.widget{id: submatrix_views_pane_id}
+  %ul.action_list_spans
+    %li
+      %span.link
+        %a.new_submatrix New Submatrix
+      %span.right.link
+        %a{:id => "Enter_submatrix_mode"} Enter submatrix mode
+    -if @submatrices.empty?
+      %li No submatrix views
+    -else
+      -@submatrices.each do |submatrix|
+        %li{:data => {:"submatrix_name" => submatrix.name}}
+          %span.link{:title => submatrix.name}= raw link_to(truncate(submatrix.name, :length => 25), project_molecular_matrix_submatrix_path(:matrix_id => params[:matrix_id] || params[:id], :id => submatrix.id))
+          %span.right.link= raw %(<a class="delete_submatrix" data-submatrix-id="#{submatrix.id}">delete</a>)
+          %span.right &nbsp;|&nbsp;
+          %span.right.link= raw %(<a class="edit_submatrix" data-submatrix-id="#{submatrix.id}">edit</a>)

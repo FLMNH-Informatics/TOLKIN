@@ -1,0 +1,5 @@
+= form_tag eval(@new_upload_path_string), {:multipart => true} do
+  %p= label_tag :file, 'Choose file:'
+  %p= file_field :file, "file"
+  %p= submit_tag 'Upload'
+= raw test_csv

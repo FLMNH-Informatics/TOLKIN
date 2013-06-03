@@ -1,0 +1,13 @@
+#map_container
+  %h3= @map.name
+  %table{:data => {:id => @map.id}}
+    %tr
+      %th File column
+      %th
+      %th Tolkin column
+    - @map.map_hash.each do |k,v|
+      %tr
+        %td= k.to_s
+        %td= raw '&nbsp;=>&nbsp;'
+        %td= v.to_s
+  = raw '(<a id="delete_map" class="delete_map">delete</a>)'

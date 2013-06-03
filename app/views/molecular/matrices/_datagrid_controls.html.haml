@@ -1,0 +1,8 @@
+= render :partial => "datagrid_export_controls.html.haml"
+= render :partial => "datagrid_navigation.html.haml"
+#sort_otus
+  =raw order_link("otus")
+#sort_markers
+  =raw order_link("markers")
+#sort_both
+  =raw order_link("both")

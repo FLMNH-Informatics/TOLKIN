@@ -1,0 +1,12 @@
+%ul
+  -unless @timeline.matrices_otus.empty?
+    %li
+      %span
+        %a.check_all#check_all_otus Check all
+    -#@timeline.matrices_otus.where(otu_conditions).each do |motu|
+    -(params[:action] == "edit" ? @timeline.matrices_otus.where(otu_conditions) : @matrices_otus).each do |motu|
+      %li
+        %label{ :for => "chk_otu_#{motu.id}", :title => motu.otu.name}
+          - unless interact_mode.to_s == "browse"
+            %input.sub_otu_checkbox{:type => 'checkbox', :id => "chk_otu_#{motu.id}", :value => motu.otu.id, :name => "otus[]", :style => "display: inline;", :data => {:'matrix-otu-id' => motu.id, :'otu-id' => motu.otu.id, :cellsCount => (motu.respond_to?(:cells_count) ? motu.cells_count : "na")}}
+          = raw truncate motu.otu.name, :length => 25

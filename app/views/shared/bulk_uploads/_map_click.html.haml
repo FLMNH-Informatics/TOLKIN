@@ -1,0 +1,23 @@
+#file_headings.headings
+  %h3 File Headings  (<a class='clear_headings'>clear</a>)
+  %table
+    %tr
+      - @uploaded_file[:headers].each_slice(20) do |chunk|
+        %td
+          -chunk.each do |header|
+            .header_container{:data => {:userHeader => header}}
+              .user_header= header
+              .tolkin_header{:data => {:userHeader => header}}
+.tolkin_headings.headings
+  %h3 TOLKIN Headings
+  %table
+    %tr
+      - @tolkin_headers.each_slice(35) do |chunk|
+        %select{:size => "35"}
+          - chunk.each do |header|
+            %option{:value => header}= header
+- if @taxon == true
+  .tolkin_headings.headings
+    %h3 Taxon Headings
+    = select_tag :taxon_headings, options_for_select(%w(name author infra_author infra_name).map{|attr|%(taxon[#{attr}])}), {:size => 4}
+  %p= # select_tag :tolkin_headings, options_for_select(@tolkin_headers), {:size => @tolkin_headers.length}

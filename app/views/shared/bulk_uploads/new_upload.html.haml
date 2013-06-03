@@ -1,0 +1,23 @@
+#errors_container
+= form_tag eval(@form_path) do
+  = hidden_field_tag 'filename', @uploaded_file[:name]
+  = raw @uploaded_file[:name]
+  %p
+    %input.map_type{:type => 'radio', :name => 'map_type', :value => 'new', :checked => 'true', :disabled => 'true'} New Map
+    - unless @custom_mappings.empty?
+      %br
+      %input.map_type{:type => 'radio', :name => 'map_type', :value => 'existing', :disabled => 'true'} Existing Map
+    = submit_tag "Upload", {:id => 'upload', :disabled => 'true'}
+  #new_map{ :data => {:type => "new"} }
+    %p
+      = label_tag :name, 'Name this mapping:'
+      = text_field_tag :name
+    #headings
+      = render 'shared/bulk_uploads/map_click'
+  - unless @custom_mappings.empty?
+    #existing_map{:style => "display:none;", :data => {:type => "existing"}}
+      %p= label_tag  :map, "Select existing column map:"
+      %p
+        = select_tag :map, options_for_select(@custom_mappings.map{|cm| [cm.name, cm.id]}, "Select")
+        = raw '(<a id="view_map" class="view_map">view map</a>)'
+        #view_map_container

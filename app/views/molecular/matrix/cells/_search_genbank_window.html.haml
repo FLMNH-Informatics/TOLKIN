@@ -1,0 +1,16 @@
+#search_genbank_window.window
+  #search_genbank_window_title.window_title
+    %span.title Search GenBank
+    %span.close_button{ :onclick => "this.up('.window').hide();" } X
+  .window_contents
+    .notice_area
+    %form#esearch_nucleotide_form
+      %input{ :type => "text", :name => "search_query", :value => @search_query }
+      %input{ :type => "submit", :value => "Search" }
+    = form_remote_tag(:url => project_molecular_matrix_cell_path, :method => :post) do
+      #genbank_search_results.search_results_box
+        %span{ :style => "color: #CCC; font-size: 24px; font-weight: bolder;" }
+          Search for sequences
+      .submit_button{ :style => 'text-align: right;'}
+        %input{ :type => "submit", :value => 'Select sequences', :class => 'simple-button'}
+= draggable_element :search_genbank_window, :handle => "'search_genbank_window_title'"
