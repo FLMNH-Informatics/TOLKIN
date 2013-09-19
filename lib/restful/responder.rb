@@ -101,6 +101,28 @@ module Restful
 
     def index resource
       @resource = self.resource || resource
+
+      if params[:template] == 'true' && params[:conditions] == 'false'
+        col_names = []
+        @resource.column_names.each{|col|
+          col_name = col.to_s
+          col_names.push(col_name) unless (
+            col_name.include?('_id')  ||
+            col_name.include?('rtid') ||
+            col_name.include?('vtid') ||
+            %w(created_at updated_at has_children deleted_at).include?(col_name)
+        )}
+        params[:select] = col_names
+      end
+      #params[:select] = @resource.column_names.map{ |col|
+      #  col_name = col.to_s
+      #  (
+      #    col_name.include?('_id')  ||
+      #    col_name.include?('rtid') ||
+      #    col_name.include?('vtid') ||
+      #    %w(created_at updated_at has_children deleted_at).include?(col_name)
+      #  ) ? nil : col_name
+      #} if params[:template] == 'true' && params[:conditions] == 'false'
       filter_select if request.format.csv?
       @conditions = params[:conditions]
       validate(params) && parse(params)

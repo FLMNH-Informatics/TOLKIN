@@ -5,4 +5,6 @@ class TaxonImage < ActiveRecord::Base
 
   belongs_to :object, polymorphic: true
   belongs_to :image
+
+  belongs_to :taxon, class_name: "Taxon", :foreign_key => 'object_id'
 end

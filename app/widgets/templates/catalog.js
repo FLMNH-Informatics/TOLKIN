@@ -597,7 +597,7 @@ Module('Templates', function() {
       },
 
       _publifierControl: function () {
-        var actions = ["Make Selected Public", "Make All Public","Make All Private","Make Selected Private"];
+        var actions = ["Make Selected Public", "Make All Public","Make Selected Private","Make All Private"];
         var selectOptions = actions.inject("", function(memo,action){
           memo += '<option value="' + action + '">'+action+'</option>'
           return memo;

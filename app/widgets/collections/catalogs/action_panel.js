@@ -3,11 +3,13 @@
 //= require <collections/action_panel_tool_tip>
 //= require <collections_helper>
 //= require <templates/action_panel>
+//= require <templates/action_panel_upload>
+
 
 Module('Collections.Catalogs', function () {
   JooseClass('ActionPanel', {
     isa: Templates.ActionPanel,
-    does: CollectionsHelper,
+    does: [CollectionsHelper, ActionPanelUpload],
     has: {
       catalog: { is: 'ro', init: function(){ return this.parent(); } },
       collection_view: { is: 'ro', init: function () { return this.parent() } },
@@ -16,7 +18,8 @@ Module('Collections.Catalogs', function () {
         init: [
           { label: 'Create', img: { src: "/images/small_addnew.gif" }, imode: 'edit' },
           { label: 'Delete', img: { src: "/images/small_cross.png" }, imode: 'edit' },
-          { label: 'Export', img: { src: "/images/small_report.png" }, imode: [ 'browse', 'edit' ] }
+          { label: 'Export', img: { src: "/images/small_report.png" }, imode: [ 'browse', 'edit' ] },
+          { label: 'Bulk Upload', img: { src: "/images/small_addnew.gif" }, imode: 'edit' }
         ]
       },
       tooltip: { is: 'ro', init: function () {

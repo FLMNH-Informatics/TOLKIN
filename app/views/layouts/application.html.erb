@@ -20,6 +20,10 @@
       <%=stylesheet_link_tag controller.controller_name %>
     <%  end %>
 
+    <% if controller.controller_name == "submatrices" %>
+      <%=  stylesheet_link_tag "matrices" %>
+    <% end %>
+
     <%  if FileTest.exists?("public/stylesheets/#{controller.controller_path.gsub(/\//, '_')}.css") %>
       <%=stylesheet_link_tag controller.controller_path.gsub(/\//, '_') %>
     <%  end %>

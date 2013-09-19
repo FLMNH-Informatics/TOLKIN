@@ -127,6 +127,10 @@ Tolkin::Application.routes.draw do |map|
           get :z_files
         end
         collection do
+          get :show_new_upload
+          post :new_upload
+          post :bulk_upload
+          get :view_map
           delete :delete_selected
         end
         resources :z_files
@@ -365,6 +369,10 @@ Tolkin::Application.routes.draw do |map|
 
     resources :otus do
       collection do
+        get :show_new_upload
+        post :new_upload
+        post :bulk_upload
+        get :view_map
         post :destroy_all
         get :auto_complete_for_otu_name
         get :auto_complete_for_taxon_name
@@ -383,8 +391,14 @@ Tolkin::Application.routes.draw do |map|
       end
     end
 
+    resources :custom_mappings
+
     resources :taxa do
       collection do
+        get :show_new_upload
+        post :new_upload
+        post :bulk_upload
+        get :view_map
         get :citation_insert
         get :display_taxa_column_names
         get :ubio_retrieve_taxon_details
@@ -424,6 +438,7 @@ Tolkin::Application.routes.draw do |map|
         post :add_protologue
         get :get_protologue
         delete :delete_protologue
+        get :search_outlinks
       end
       resources :images, controller: 'taxa/images'
       resources :collections
@@ -444,6 +459,10 @@ Tolkin::Application.routes.draw do |map|
           end
           get :download_bulk_upload_templates
         end
+        get :show_new_upload
+        post :new_upload
+        post :bulk_upload
+        get :view_map
         delete :delete_selected
         put :create_copy
         get :auto_complete_for_collection_collection_number
@@ -462,6 +481,10 @@ Tolkin::Application.routes.draw do |map|
     namespace :library do
       resources :citations do
         collection do
+          get :show_new_upload
+          post :new_upload
+          post :bulk_upload
+          get :view_map
           delete :delete_selected
           get :new_two
           get :search
@@ -525,7 +548,7 @@ Tolkin::Application.routes.draw do |map|
           post  :new_from_genbank
           post  :create_marker
           get   :auto_complete_for_collection_collection_number
-          get   :show_add_genbank_markers
+          get   :show_add_genbank_seqs
           get   :show_upload_seqs
           post  :import_seqs
           get   :new_sequence_marker_select
@@ -578,6 +601,10 @@ Tolkin::Application.routes.draw do |map|
           delete :delete_selected
           get :auto_complete_for_collection_collection_number
           get :display_dna_samples_column_names
+          get :show_new_upload
+          get :view_map
+          post :new_upload
+          post :bulk_upload
         end
         member do
           get :display_dna_samples_column_names
@@ -646,6 +673,12 @@ Tolkin::Application.routes.draw do |map|
           get :show_next_version
           get :show_create_next_version
           get :load_row
+        end
+
+        resources :submatrices, controller: 'matrix/submatrices' do
+          member do
+            post :change_position
+          end
         end
 
         resources :cells, :controller => 'matrix/cells' do

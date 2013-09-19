@@ -44,12 +44,15 @@ class Molecular::Insd::SeqsController < ApplicationController
       oldmarkersarray = params[:mol_marker].values.transpose.map{|a| Hash[params[:mol_marker].keys.zip(a)]} unless params[:mol_marker].nil?
       if newmarkersarray
         newmarkersarray.each { |marker|
-                  @seq.seq_markers.create!(:marker => current_project.markers.create!(marker.reject{|k,v| k == 'position' } ),
-                                           :position => marker['position']) }
+                  @seq.seq_markers.create!(:marker => current_project.markers.create!(marker.reject{|k,v| k.include?('position') } ),
+                                           :start_position => marker['start_position'],
+                                           :end_position => marker['end_position']) }
       end
       if oldmarkersarray
-        oldmarkersarray.each { |marker| marker["marker_id"] = marker.delete('id') }
-        oldmarkersarray.each { |marker| @seq.seq_markers.create!(marker) }
+        oldmarkersarray.each  do |marker|
+          marker["marker_id"] = marker.delete('id')
+          @seq.seq_markers.create!(marker)
+        end
       end
       if @seq.save
         respond_to{|format| format.json { render :json => @seq}}
@@ -77,41 +80,41 @@ class Molecular::Insd::SeqsController < ApplicationController
     end
   end
 
-  #Save the id, sequence, organism information of the fasta file in the database
-  def save_imported_fasta_to_db (id, organism, sequence)
-    @project = Project.find(params[:project_id])
-    Molecular::Bioentry.transaction do
-      biodatabase = Molecular::Biodatabase.find_by_name('nucleotide') || Molecular::Biodatabase.create!(:name => 'nucleotide')
-      @seq = Molecular::Bioentry.create!(:biodatabase => biodatabase,
-        #:taxon_id => '',
-        :name => '',
-        #:accession => ,
-        #:identifier => '',
-        :division => '',
-        :description => id + " : " + organism,
-        :version => 1,
-        :project => @project,
-        :uuid => id,
-        :user_id => session[:user_id].to_i,
-        :species_name => organism)
-      debugger
-      @biosequence = Molecular::Biosequence.create!(:bioentry => @seq,
-        :version => 1,
-        :length => sequence.length,
-        :alphabet => 'dna',
-        :seq => sequence)
-      debugger
-
-      @seqfeat = SequenceFeature.new()
-      @seqfeat.start_loc = 1
-      @seqfeat.end_loc = sequence.length
-      @seqfeat.feature = 'gene'
-      @seqfeat.qual = 'gene'
-      #@seqfeat.value = params[:marker]
-      @seqfeat.seq_id = id
-      @seqfeat.save
-    end
-  end
+  ##Save the id, sequence, organism information of the fasta file in the database
+  #def save_imported_fasta_to_db (id, organism, sequence)
+  #  @project = Project.find(params[:project_id])
+  #  Molecular::Bioentry.transaction do
+  #    biodatabase = Molecular::Biodatabase.find_by_name('nucleotide') || Molecular::Biodatabase.create!(:name => 'nucleotide')
+  #    @seq = Molecular::Bioentry.create!(:biodatabase => biodatabase,
+  #      #:taxon_id => '',
+  #      :name => '',
+  #      #:accession => ,
+  #      #:identifier => '',
+  #      :division => '',
+  #      :description => id + " : " + organism,
+  #      :version => 1,
+  #      :project => @project,
+  #      :uuid => id,
+  #      :user_id => session[:user_id].to_i,
+  #      :species_name => organism)
+  #    debugger
+  #    @biosequence = Molecular::Biosequence.create!(:bioentry => @seq,
+  #      :version => 1,
+  #      :length => sequence.length,
+  #      :alphabet => 'dna',
+  #      :seq => sequence)
+  #    debugger
+  #
+  #    @seqfeat = SequenceFeature.new()
+  #    @seqfeat.start_loc = 1
+  #    @seqfeat.end_loc = sequence.length
+  #    @seqfeat.feature = 'gene'
+  #    @seqfeat.qual = 'gene'
+  #    #@seqfeat.value = params[:marker]
+  #    @seqfeat.seq_id = id
+  #    @seqfeat.save
+  #  end
+  #end
 
   def render_alignment_seqs
     @seqs = Molecular::Insd::Seq.where(:pk => JSON.parse(params[:ids]).map{ |id| Integer(id) })
@@ -218,7 +221,7 @@ class Molecular::Insd::SeqsController < ApplicationController
   end
 
   def search_nucleotide
-    options = {"term" => params["term"]}
+    options = {"term" => params["term"],"sort" => 'accession' }
     @start, @limit, @columns = Integer(params["retstart"]), Integer(params["retmax"]), params['columns']
     if params["webenv"] = ''
       results = Molecular::Resources::Ncbi::EUtils.esearch( options.merge( { "retstart" => params["retstart"], "retmax" => params["retmax"] } ) )
@@ -263,9 +266,9 @@ class Molecular::Insd::SeqsController < ApplicationController
     head :ok
   end
 
-  def show_add_genbank_markers
+  def show_add_genbank_seqs
     respond_to do |format|
-      format.html { render 'show_add_genbank_markers', layout: request.xhr? ? false : 'application' }
+      format.html { render 'show_add_genbank_seqs', layout: request.xhr? ? false : 'application' }
     end
   end
 
@@ -376,7 +379,7 @@ class Molecular::Insd::SeqsController < ApplicationController
         new_seq.taxon = taxon
         new_seq.sequence = nil if new_seq.sequence == 'genome'
         new_seq.save!
-        markers.each { |mrkr| mrkr.each { |k,v| new_seq.seq_markers.create(:marker => k, :position => v) } }
+        markers.each { |mrkr| mrkr.each { |k,v| new_seq.seq_markers.create(:marker => k, :start_position => v.first, :end_position => v.last) } }
         count = count + 1
       else
         already_there = already_there + 1
@@ -397,9 +400,9 @@ class Molecular::Insd::SeqsController < ApplicationController
         mrkr = current_project.markers.new
         mrkr.attributes.each{|k,v| mrkr[k] = gb_seq[k] if gb_seq.has_key?(k)}
         mrkr.save!
-        return { mrkr => gb_seq["position"] }
+        return { mrkr => [gb_seq["start_position"], gb_seq["end_position"]] }
       else
-        return { current_project.markers.where('type = ? and lower_name = ?', gb_seq["type"], gb_seq["name"].downcase).first => gb_seq["position"] }
+        return { current_project.markers.where('type = ? and lower_name = ?', gb_seq["type"], gb_seq["name"].downcase).first => [gb_seq["start_position"], gb_seq["end_position"]] }
       end
   end
 
@@ -431,13 +434,15 @@ class Molecular::Insd::SeqsController < ApplicationController
         newmarkersarray = params[:seq_marker].values.transpose.map{|a| Hash[params[:seq_marker].keys.zip(a)] } unless params[:seq_marker].nil?
         oldmarkersarray = params[:mol_marker].values.transpose.map{|a| Hash[params[:mol_marker].keys.zip(a)] } unless params[:mol_marker].nil?
         newmarkersarray.each { |marker|
-          @seq.seq_markers.create!(:marker => current_project.markers.create!(marker.reject{|k,v| k == 'position' } ),
-                                   :position => marker['position'])
+          @seq.seq_markers.create!(:marker => current_project.markers.create!(marker.reject{|k,v| k.include?('position') } ),
+                                                         :start_position => marker['start_position'],
+                                                         :end_position => marker['end_position'])
         } if newmarkersarray
         if oldmarkersarray
-          mapping = { 'id' => 'marker_id'}
-          oldmarkersarray.each { |marker| Hash[marker.map{|k,v| [mapping[k], v] }] }
-          oldmarkersarray.each { |marker| @seq.seq_markers.create!(marker) } if oldmarkersarray
+          oldmarkersarray.each do |marker|
+            marker["marker_id"] = marker.delete('id')
+            @seq.seq_markers.create!(marker)
+          end
         end
         if @seq.save then respond_to {|format| format.json { render :json => {:id => @seq.id}} }
         else

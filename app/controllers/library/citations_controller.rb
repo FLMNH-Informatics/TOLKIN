@@ -3,6 +3,8 @@ require 'restful/responder'
 class Library::CitationsController < ApplicationController
 
   include Restful::Responder
+  include BulkUploader
+
 
   before_filter :params_to_hash
   before_filter :requires_selected_project
@@ -15,6 +17,26 @@ class Library::CitationsController < ApplicationController
   before_filter :requires_project_manager, :only => [ :destroy ]
 
   before_filter :get_project, :only => [:show, :new, :update, :create]
+
+  def show_new_upload
+      super resource
+    end
+
+    def new_upload
+      super resource
+    end
+
+    def bulk_upload
+      super resource
+    end
+
+    def view_map
+      super
+    end
+
+    def resource
+      Library::Citation
+    end
 
   def index
     params[:conditions] &&
@@ -170,6 +192,7 @@ class Library::CitationsController < ApplicationController
 #      params.delete(:pubfile)
 #      @status = @citation.save! ? 'success' : 'failure'
 #    end
+    flash[:notice] = "Citation updated"
     respond_to do |format|
       format.html { render text: "<html><body><span id='citation_status'>#{@status}</span></body></html>" }
     end

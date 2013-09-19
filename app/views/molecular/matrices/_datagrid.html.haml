@@ -6,14 +6,7 @@
           %tr
             %th.link_buttons
               #table_navigation
-                = render :partial => "datagrid_export_controls"
-                = render :partial => "datagrid_navigation"
-                #sort_otus
-                  =raw order_link("otus")
-                #sort_markers
-                  =raw order_link("markers")
-                #sort_both
-                  =raw order_link("both")
+                = render :partial => "datagrid_controls"
             = render :partial => "datagrid_headers"
   #table_body_container.table_body_container
     = render :partial => "datagrid_body_new"

@@ -1,9 +1,11 @@
 require 'restful/responder'
+require 'bulk_uploader'
 
 class CollectionsController < ApplicationController
 
   include Restful::Responder
-  
+  include BulkUploader
+
   before_filter :params_to_hash
   before_filter :requires_selected_project
   before_filter :requires_project_guest, :only => [ :list, :show ]
@@ -21,6 +23,22 @@ class CollectionsController < ApplicationController
 
 
   auto_complete_for :collection, :collection_number, :project_scope => true
+
+  def show_new_upload
+    super resource
+  end
+
+  def new_upload
+    super resource
+  end
+
+  def bulk_upload
+    super resource
+  end
+
+  def view_map
+    super
+  end
 
   def resource
     Collection
@@ -337,18 +355,25 @@ class CollectionsController < ApplicationController
 
   def display_collection_column_names
     @array_col = []
-    @collection_col = Collection.column_names
-    @collection_col.each do |col_name|
-      if !col_name.include?('length_unit_id') && !col_name.include?('copied_from_id')
-        if col_name.include?('_id')
-          #@array_col.push(col_name.gsub('_id','')+'_label')
-          @array_col.push(col_name)
-        else
-          @array_col.push(col_name)
-        end
-      end
-    end
-    @table_col = @array_col
+    @collection_col = Collection.column_names.reject{ |col_name|
+      col_name.include?('length_unit_id') ||
+        col_name.include?('copied_from_id') ||
+        col_name.include?('_old') ||
+        %w(recpermission_id elevation_unit_id old_tolkin_id created_at updated_at project_id user_id last_updated_by).include?(col_name) ||
+        %w(valid_distribution_flag lat_long_rep lat_deg lat_min lat_sec lat_dd long_deg long_min long_sec long_dd long_dir lat_dir).include?(col_name)
+    }
+    #@collection_col.each do |col_name|
+    #  if !col_name.include?('length_unit_id') && !col_name.include?('copied_from_id') && !col_name.include?('created_at') && !col_name.include?('updated_at')
+    #    if col_name.include?('_id')
+    #      #@array_col.push(col_name.gsub('_id','')+'_label')
+    #      @array_col.push(col_name)
+    #    else
+    #      @array_col.push(col_name)
+    #    end
+    #  end
+    #end
+    #@table_col = @array_col
+    @table_col = @collection_col
     #render :partial => "shared/list_of_table_columnnames" , :locals => {:controller_name => "collections"}
     render :partial => "list_of_collections_columns" , :locals => {:controller_name => "collections"}
   end

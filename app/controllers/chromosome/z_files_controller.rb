@@ -3,9 +3,15 @@ require 'zip/zip'
 class Chromosome::ZFilesController < ApplicationController
   include Restful::Responder
 
+
   before_filter :requires_project_guest, :except => [:index,:show ]
   before_filter :requires_project_updater, :except => [ :index,:show]
   # before_filter :requires_project_manager, :except => [ ]
+
+
+    def resource
+      Chromosome::ZFile
+    end
 
   def index
     @z_files = current_project.z_files

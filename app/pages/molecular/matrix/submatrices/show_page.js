@@ -18,6 +18,17 @@ JooseModule('Molecular.Matrix.Submatrices', function () {
         var me = this;
 
         Event.delegate({
+          '.bt': function () {
+            var clickedCell = (event.element().localName == 'td') ? event.element() : event.element().up('td');
+            if (clickedCell.hasClassName('bt')){
+              if (clickedCell.hasAttribute('data-cell-id')){
+                me.frame().viewport().widgets().get('window').loadPage('show_cell_info_project_molecular_matrix_cell_path', {
+                  id: clickedCell.readAttribute('data-cell-id'),
+                  matrix_id: params['matrix_id']
+                })
+              }
+            }
+          },
           '#edit_submatrix': function () {
             if (me.iMode()._value == 'edit'){
               me.frame().viewport().widgets().get('window').loadPage('edit_project_molecular_matrix_submatrix_path', {id: params["id"], matrix_id: params["matrix_id"]})

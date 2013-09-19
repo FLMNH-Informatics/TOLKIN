@@ -36,6 +36,7 @@ class User < Record
   has_many :role_member_users, primary_key: :rtid, foreign_key: :obj_rtid
   has_many :cells, class_name: 'Molecular::Matrix::Cell', foreign_key: 'responsible_user_id'
   has_many :otus, class_name: 'Otu', foreign_key: 'creator_id'
+  has_many :custom_mappings
 
   has_many :issues
   has_many :project_user_requests

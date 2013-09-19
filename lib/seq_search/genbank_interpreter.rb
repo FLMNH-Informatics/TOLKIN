@@ -12,8 +12,10 @@ module SeqSearch
         :locus      => gb_seq.locus.entry_id,
         :markers    => gb_seq.features.inject([]){ |memo, feat|
                         if ['gene', 'rrna', 'misc_rna'].include? feat.feature.downcase
+                          split_position = feat.position.split('..')
                           memo << { :type => feat.feature,
-                                    :position => feat.position,
+                                    :start_position => split_position.first[/\d+/],
+                                    :end_position => split_position.last[/\d+/],
                                     :name => feat.qualifiers.first.value }
                         else
                           memo

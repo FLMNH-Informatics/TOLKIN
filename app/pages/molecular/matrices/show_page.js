@@ -28,8 +28,10 @@ Module('Molecular.Matrices', function() {
     },
     after: {
       initialize: function() {
+        var me = this;
         params['mol_matrix_id'] = params['id'];
         params['matrix_id'] = params['id'];
+        window.onpopstate = function (){ if (this.ID != params["id"]) window.location.reload(); }
       }
     },
     methods: {
@@ -40,9 +42,18 @@ Module('Molecular.Matrices', function() {
           , wndw = this.frame().viewport().widgets().get('window');
 
         Event.delegate({
-          '#edit_matrix': function(event){ me.matrixInfo().doIfLastVersion(function(){wndw.loadPage('edit_project_molecular_matrix_path')}, me);},
+          '#edit_matrix': function(event){
+            event.stop();
+            me.matrixInfo().doIfLastVersion(function(){wndw.loadPage('edit_project_molecular_matrix_path', {id: params["matrix_id"]})}, me);
+          },
+
+          '#submatrix_selected_seqs': function (event){
+            event.stop();
+            me.matrixInfo().doIfEditMode(function(){wndw.loadPage('new_project_molecular_matrix_submatrix_path', {"matrix_id": params["matrix_id"]})}, me);
+          },
 
           '#create_alignment': function () {
+            event.stop();
             me.matrixInfo().doIfNotProcessing(function(){
               var ids = $$('input[type="checkbox"][data-cell-id]:checked').inject('', function (memo,chk){return chk.readAttribute('data-cell-id') + ',' + memo;});
               if (ids == ""){
@@ -54,14 +65,16 @@ Module('Molecular.Matrices', function() {
           },
 
           '#autofill': function () {
+            event.stop();
             if (confirm("Autofilling very large matrices may take a couple minutes.  Continue?")){
               me.matrixInfo().doIfLastVersion( function () {
-                wndw.loadPage('show_autofill_matrix_project_molecular_matrix_path')
+                wndw.loadPage('show_autofill_matrix_project_molecular_matrix_path', {id: params["matrix_id"]})
               }, me);
             }
           },
 
           '#export_selected_seqs': function () {
+            event.stop();
             me.matrixInfo().doIfNotProcessing(function(){
               var ids = $$('input[type="checkbox"][data-cell-id]:checked').inject('', function (memo,chk){return chk.readAttribute('data-cell-id') + ',' + memo;});
               if (ids == ""){

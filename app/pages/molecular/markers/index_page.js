@@ -102,21 +102,27 @@ JooseModule('Molecular.Markers', function () {
               var td = event.element().up('tr').down('td');
               if (td.innerHTML == ""){
                 var markerId = event.element().up('tr').readAttribute('data-marker-id')
-                  , name = event.element().up().previous(3).down().value
-                  , type = event.element().up().previous(2).down().value;
-                td.insert({bottom: new Element('img', {'src': '/images/ajax-loader.gif', 'alt': 'saving...'} )});
-                me.notifier().working('Saving...')
-                new Ajax.Request(window.location.pathname + '/' + markerId, {
-                  method: 'post',
-                  parameters: { 'name': name, 'type': type },
-                  onSuccess: function (response) {
-                    event.element().up('tr').replace(response.responseJSON.row)
-                    me.notifier().success('Updated marker.')
-                  },
-                  onFailure: function (response) {
-                    me.notifier().error('Something went wrong.')
-                  }
-                })
+                  , name = event.element().up().previous(4).down().value
+                  , type = event.element().up().previous(3).down().value;
+                if (!type){
+                  me.notifier().error('You must choose a type.');
+                }else if (name == ""){
+                  me.notifier().error('You must choose a name.');
+                }else{
+                  td.insert({bottom: new Element('img', {'src': '/images/ajax-loader.gif', 'alt': 'saving...'} )});
+                  me.notifier().working('Saving...')
+                  new Ajax.Request(window.location.pathname + '/' + markerId, {
+                    method: 'post',
+                    parameters: { 'name': name, 'type': type },
+                    onSuccess: function (response) {
+                      event.element().up('tr').replace(response.responseJSON.row)
+                      me.notifier().success('Updated marker.')
+                    },
+                    onFailure: function (response) {
+                      me.notifier().error('Something went wrong.')
+                    }
+                  })
+                }
               }
           },
           'input:button': function (event){

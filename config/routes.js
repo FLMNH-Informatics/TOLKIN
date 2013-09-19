@@ -11,6 +11,8 @@
 //= require <collections/create_copy_page>
 //= require <collections/bulk_uploads/index_page>
 //= require <collections/bulk_uploads/new_bulk_upload_page>
+//= require <collections/show_new_upload_page>
+//= require <collections/new_upload_page>
 //= require <views/layouts/blank>
 //= require <library/citations/index_page>
 //= require <library/citations/new_page>
@@ -38,6 +40,9 @@
 //= require <molecular/matrix/cells/show_cell_page>
 //= require <molecular/matrix/cells/show_cell_info_page>
 //= require <molecular/matrix/cells/new_page>
+//= require <molecular/matrix/submatrices/new_page>
+//= require <molecular/matrix/submatrices/edit_page>
+//= require <molecular/matrix/submatrices/show_page>
 //= require <molecular/markers/index_page>
 //= require <molecular/markers/display_seqs_page>
 //= require <molecular/markers/display_matrices_page>
@@ -49,7 +54,7 @@
 //= require <molecular/insd/seqs/new_alignment_page>
 //= require <molecular/insd/seqs/new_page>
 //= require <molecular/insd/seqs/show_page>
-//= require <molecular/insd/seqs/show_add_genbank_markers_page>
+//= require <molecular/insd/seqs/show_add_genbank_seqs_page>
 //= require <molecular/insd/seqs/show_upload_seqs_page>
 //= require <molecular/insd/seqs/import_page>
 //= require <molecular/insd/seqs/show_create_alignment_page>
@@ -104,6 +109,8 @@
 //= require <taxa/tree_view_page>
 //= require <taxa/set_permissions_view_page>
 //= require <taxa/load_citation_search_widget_page>
+//= require <taxa/search_outlinks_page>
+//= require <taxa/show_jstor_widget_page>
 //= require <image_albums/index_page>
 //= require <images/show_page>
 //= require <projects/edit_page>

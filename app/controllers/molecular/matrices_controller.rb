@@ -7,6 +7,58 @@ class Molecular::MatricesController < ApplicationController
   before_filter :requires_project_guest
   before_filter :requires_project_updater, :except => [ :index, :show ]
   before_filter :requires_selected_project
+  before_filter :require_current_version, :only => [:modify_matrix, :edit, :update_info, :create_next_version, :show_create_next_version, :change_position, :delete_selected, :update_otu, :update_marker, :remove_otu, :remove_marker]
+
+  helper_method :mmarker_sql
+  helper_method :motu_sql
+
+  def mmarker_sql
+    %(  SELECT mm.*, coalesce(mc_count.cells_count,0) as cells_count, coalesce(mc_seq_count.seq_count,0) as seq_count
+            FROM mol_matrices_markers mm
+                LEFT OUTER JOIN
+                  (
+                    SELECT marker_id, count(marker_id) as cells_count
+                    FROM mol_matrix_cells
+                    WHERE timeline_id = #{@timeline.id} and is_active = true
+                    GROUP BY marker_id
+                  ) as mc_count
+                ON mm.marker_id = mc_count.marker_id
+                LEFT OUTER JOIN
+                  (
+                    SELECT marker_id, sum(sequence_count) as seq_count
+                    FROM mol_matrix_cells
+                    WHERE timeline_id = #{@timeline.id} and is_active = true
+                    GROUP BY marker_id
+                  ) as mc_seq_count
+                ON mm.marker_id = mc_seq_count.marker_id
+            WHERE mm.timeline_id = #{@timeline.id}
+      )
+  end
+
+  def motu_sql
+    %(
+        SELECT mo.*, COALESCE(mc_count.count, 0) as cells_count, coalesce(mc_seq_count.seq_count, 0) as seq_count
+        FROM mol_matrices_otus mo
+           LEFT OUTER JOIN
+               (
+                 SELECT otu_id, count(otu_id) as count
+                 FROM mol_matrix_cells
+                 WHERE timeline_id = #{@timeline.id} and is_active = true
+                 GROUP BY otu_id
+               ) as mc_count
+           ON mo.otu_id = mc_count.otu_id
+           LEFT OUTER JOIN
+               (
+                  SELECT otu_id, sum(sequence_count) as seq_count
+                  FROM mol_matrix_cells
+                  WHERE timeline_id = #{@timeline.id} and is_active = true
+                  GROUP BY otu_id
+               ) as mc_seq_count
+           ON mo.otu_id = mc_seq_count.otu_id
+        WHERE mo.timeline_id = #{@timeline.id}
+        ORDER BY cells_count DESC NULLS LAST, seq_count DESC NULLS LAST, mo.position
+      )
+  end
 
   def create
     Molecular::Matrix.transaction do
@@ -46,10 +98,18 @@ class Molecular::MatricesController < ApplicationController
   end
 
   def create_next_version
-    timeline = Molecular::Matrix::Timeline.find(params[:id])
-    @timeline = timeline.create_next_version
-    @matrix = timeline.matrix
-    respond_to{|format|format.json{ render :json => {:id => @timeline.id, :name => @matrix.name, :description => @timeline.description}}}
+    @timeline = Molecular::Matrix::Timeline.find(params[:id]).create_next_version
+    @submatrices = @timeline.submatrices
+    @matrix = @timeline.matrix
+    params[:id] = params["id"] = @timeline.id
+    respond_to{|format| format.json { render json: {
+      :timeline_id => @timeline.id.to_s,
+      :timeline_display_pane => render_to_string('/shared/panes/_timeline_display_pane.html.haml'),
+      :action_list_pane => render_to_string('/shared/panes/_action_list_pane.html.haml'),
+      :submatrix_views => params["page"] == "ShowPage" ? render_to_string('/shared/panes/_submatrix_views.html.haml') : '',
+      :matrix_title => render_to_string('_matrix_title.html.haml'),
+      :sorting_links => sort_link("otus") + "," + sort_link('markers') + "," + sort_link('both')
+    }}}
   end
 
   def show_create_next_version
@@ -86,9 +146,11 @@ class Molecular::MatricesController < ApplicationController
   def view_by_date
     date = params[:date].to_datetime.utc
     @timeline = Molecular::Matrix::Timeline.find(params[:id])
-    @matrices_markers = Molecular::Matrix::MatricesMarkers.includes(:marker).where('timeline_id = ? and create_date <= ? and (delete_date >= ? or delete_date is null)', params[:id], date, date).order('position')
+    @matrices_markers = Molecular::Matrix::MatricesMarkers.includes(:marker).find_by_sql(mmarker_sql + " and mm.create_date <= timestamp '#{date.to_formatted_s(:db)}' and (mm.delete_date >= timestamp '#{date.to_formatted_s(:db)}' or mm.delete_date is null) ORDER BY mm.position")
+    #@matrices_markers = Molecular::Matrix::MatricesMarkers.includes(:marker).where('timeline_id = ? and create_date <= ? and (delete_date >= ? or delete_date is null)', params[:id], date, date).order('position')
     @markers = @matrices_markers.map{|mm|mm.marker}
-    @matrices_otus    = Molecular::Matrix::MatricesOtus.includes(:otu).where('timeline_id = ? and create_date <= ? and (delete_date >= ? or delete_date is null)', params[:id], date, date).order('position')
+    @matrices_otus = Molecular::Matrix::MatricesOtus.includes(:otu).find_by_sql(motu_sql.split("ORDER").first + " and mo.create_date <= timestamp '#{date.to_formatted_s(:db)}' and (mo.delete_date >= timestamp '#{date.to_formatted_s(:db)}' or mo.delete_date is null) ORDER BY mo.position")
+    #@matrices_otus = Molecular::Matrix::MatricesOtus.includes(:otu).where('timeline_id = ? and create_date <= ? and (delete_date >= ? or delete_date is null)', params[:id], date, date).order('position')
     respond_to do |format|
       format.html { render 'view_by_date', layout: request.xhr? ? false : true }
       format.json { render json: {:info => {:timeline => @timeline, :matrix => @timeline.matrix, :versions => @timeline.matrix.timelines, :matrices_otus => @matrices_otus }}}
@@ -97,7 +159,7 @@ class Molecular::MatricesController < ApplicationController
 
   def load_row
     date = ( params["date"] || Time.now ).to_datetime.utc
-    @motu = Molecular::Matrix::MatricesOtus.find(params['matrix_otu_id'])
+    @motu = params["type"] == "Submatrices" ? Molecular::Matrix::Submatrix::SubmatrixOtus.find(params["matrix_otu_id"]) : Molecular::Matrix::MatricesOtus.find(params['matrix_otu_id'])
     marker_ids = params[:y_ids]
     @cells_array = marker_ids.collect do |marker_id|
       [Molecular::Matrix::Cell.where('timeline_id = ? and otu_id = ? and marker_id = ? and create_date <= ? and (overwrite_date >= ? or overwrite_date IS NULL)', params[:id], params[:otu_id], marker_id, date, date).first, params[:otu_id], marker_id]
@@ -111,62 +173,14 @@ class Molecular::MatricesController < ApplicationController
       params[:sort_otus]    = true
     end
     @timeline = Molecular::Matrix::Timeline.includes(:markers).find(params[:id])
-    timeline_id = params[:id]
-    if params[:sort_markers].nil?
-      @markers = @timeline.markers.paginate(:page => params[:page], :per_page => 15, :order => "mol_matrices_markers.position")
-      #@markers = @markers.paginate(:page => params[:page], :per_page => 15, :order => "mol_matrices_markers.position")
-    else
-      date = DateTime.now.utc
-      marker_sql = %(
-        SELECT mm.*, coalesce(mc_count.cells_count,0) as cells_count, coalesce(mc_seq_count.seq_count,0) as seq_count
-        FROM mol_matrices_markers mm
-            LEFT OUTER JOIN
-              (
-                SELECT marker_id, count(marker_id) as cells_count
-                FROM mol_matrix_cells
-                WHERE timeline_id = #{timeline_id} and is_active = true
-                GROUP BY marker_id
-              ) as mc_count
-            ON mm.marker_id = mc_count.marker_id
-            LEFT OUTER JOIN
-              (
-                SELECT marker_id, sum(sequence_count) as seq_count
-                FROM mol_matrix_cells
-                WHERE timeline_id = 24 and is_active = true
-                GROUP BY marker_id
-              ) as mc_seq_count
-            ON mm.marker_id = mc_seq_count.marker_id
-        WHERE mm.timeline_id = #{timeline_id}
-        ORDER BY cells_count DESC NULLS LAST, seq_count DESC NULLS LAST, mm.position
-      )
-      @matrices_markers = Molecular::Matrix::MatricesMarkers.find_by_sql(marker_sql)
-      @markers = @matrices_markers.map{ |mm| mm.marker }.paginate( :page => params[:page], :per_page => 15 )
-    end
+    @submatrices = @timeline.submatrices
+    final_marker_sql = mmarker_sql
+    final_marker_sql +=  params[:sort_markers].nil? ? " ORDER BY mm.position" : " ORDER BY cells_count DESC NULLS LAST, seq_count DESC NULLS LAST, mm.position"
+    @matrices_markers = Molecular::Matrix::MatricesMarkers.find_by_sql(final_marker_sql).paginate( :page => params[:page], :per_page => 15 )
+    @markers = @matrices_markers.map{ |mm| mm.marker }.paginate( :page => params[:page], :per_page => 15 )
     if params[:sort_otus].nil?
       @matrices_otus = @timeline.matrices_otus
     else
-      motu_sql = %(
-        SELECT mo.*, COALESCE(mc_count.count, 0) as cells_count, coalesce(mc_seq_count.seq_count, 0) as seq_count
-        FROM mol_matrices_otus mo
-           LEFT OUTER JOIN
-               (
-                 SELECT otu_id, count(otu_id) as count
-                 FROM mol_matrix_cells
-                 WHERE timeline_id = #{timeline_id} and is_active = true
-                 GROUP BY otu_id
-               ) as mc_count
-           ON mo.otu_id = mc_count.otu_id
-           LEFT OUTER JOIN
-               (
-                  SELECT otu_id, sum(sequence_count) as seq_count
-                  FROM mol_matrix_cells
-                  WHERE timeline_id = #{timeline_id} and is_active = true
-                  GROUP BY otu_id
-               ) as mc_seq_count
-           ON mo.otu_id = mc_seq_count.otu_id
-        WHERE mo.timeline_id = #{timeline_id}
-        ORDER BY cells_count DESC NULLS LAST, seq_count DESC NULLS LAST, mo.position
-      )
       motus = Molecular::Matrix::MatricesOtus.find_by_sql(motu_sql)
       @matrices_otus = motus
     end
@@ -360,5 +374,19 @@ class Molecular::MatricesController < ApplicationController
     @cells = Molecular::Matrix::Cell.find_by_timeline_and_date(@timeline, date)
     @markers = @matrices_markers.map{|mmarker|mmarker.marker}
     @otus = @matrices_otus.map{|motu|motu.otu}
+  end
+
+  def sort_link type
+    view_context.order_link(type).to_s
+  end
+
+  def require_current_version
+    @timeline = Molecular::Matrix::Timeline.find(params[:id])
+    @timeline.is_last_version? || wrong_version_msg
+  end
+
+  def wrong_version_msg
+    flash[:error] = 'You may only complete that action on the most current version.'
+    redirect_to request.env["rack.session"]["last_uri"]
   end
 end

@@ -92,7 +92,7 @@ require 'templates/null'
       end
 
       def publifier_control
-        actions = ["Make Selected Public", "Make All Public","Make All Private","Make Selected Private"]
+        actions = ["Make Selected Public", "Make All Public","Make Selected Private","Make All Private"]
         model = params[:controller].camelize.singularize.constantize
         output =  select_tag("publifier_select", options_for_select(actions)) + raw("<input class=\"publifier\" type=\"button\" id=\"publifierButton\" value=\"Go\"/>")
         output if current_user.is_updater_for?(current_project) && model.public_model? && @can_publify

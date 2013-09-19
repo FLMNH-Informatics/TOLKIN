@@ -35,17 +35,15 @@
       <tr><td>Toxicity</td><td><%= text_field "taxon", "toxicity", "size" => 70 %></td></tr>
 
       <tr><td>Notes</td><td><%= text_area "taxon", "notes", cols: 60, rows: 5 %></td></tr>
-      <tr><td>Record Permissions</td><td>
-           <%=render :partial => "permissions_drop_down"%>
-<%#= collection_select(:taxon, :recpermission_id, Recpermission.find(:all), :id, :name,{:include_blank => false}) %></td></tr>
-      <!-- <tr><td><%= label_tag :library_references, "Add Citation",:onClick=>"$('div_add_citations').toggle();", :style=>"text-decoration: underline;" %><span class="field" id="span_citation_list"></span></td></tr> -->
+      <tr><td>Record Permissions</td><td><%=render :partial => "permissions_drop_down"%></td></tr>
+      <!-- <tr><td><%#= label_tag :library_references, "Add Citation",:onClick=>"$('div_add_citations').toggle();", :style=>"text-decoration: underline;" %><span class="field" id="span_citation_list"></span></td></tr> -->
       
       <tr><td><%= hidden_field "sop", "parentTaxon"%></td></tr>
       <tr><td><%#= submit_tag 'Save' %> </td></tr>
     </table>
   <% end %>
   <div id="div_add_citations" style="width: 100%; display: none;" class="window">
-    <%=render :partial=>"shared/add_citations", :object=> Morphology::Character.new %>
+    <%#=render :partial=>"shared/add_citations", :object=> Morphology::Character.new %>
   </div>
-  <%= draggable_element :div_add_citations %>
+  <%#= draggable_element :div_add_citations %>
 </div>

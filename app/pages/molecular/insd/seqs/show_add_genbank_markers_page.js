@@ -12,7 +12,7 @@ JooseModule('Molecular.Insd.Seqs', function () {
       savable:        { is: 'ro', init: true },
       saveButtonText: { is: 'ro', init: 'Save sequences' },
       htmlLoader:     { is: 'ro', init: function () { return $HtmlLoader({
-        pathname: 'show_add_genbank_markers_project_molecular_sequences_path'
+        pathname: 'show_add_genbank_seqs_project_molecular_sequences_path'
       }, this ) } },
       sequences:      { is: 'rw', init: null },
       dontsave:       { is: 'rw', init: [] }

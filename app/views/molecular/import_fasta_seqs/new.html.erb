@@ -1,5 +1,7 @@
 <% form_for :seq, :url => project_molecular_import_fasta_seqs_path(:project_id => params[:project_id]), :html => {:multipart => true} do |f| %>
-  <style type="text/css" xmlns="http://www.w3.org/1999/html">
+  <style type="text/css" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+         xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+         xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     .checkboxes {
       -moz-column-width: 45px;
 	    -webkit-column-width: 45px;
@@ -25,7 +27,6 @@
     }
   </style>
   <table><tr><td>
-    <label>Choose organism (optional):</label><span><%= raw taxon_name_field %></span><br/>
     <div id="upload_div">
       Select file:<br/>
       <%= f.file_field :uploaded_data %>
@@ -33,25 +34,19 @@
     <div id="upload"></div>
     <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
     <div id="fasta_format_note">
-      <p style="width:275px; font-size: 80%;">
-        NOTE:  Chosen marker(s) and organism will be assigned to every sequence uploaded in this file.
-      </p>
-      <p>
+      <p style="width:310px; font-size: 80%;">
         Optionally include the following in your definition/description line to process markers/organism for individual sequences.*
       </p>
-      <table>
-        <tr>
-          <td>Markers</td>
-          <td>Organism</td>
-        </tr>
-        <tr>
-          <td><pre>tol_gene=[gene name]</pre></td>
-          <td><pre>tol_org=[organism name]</pre></td>
-        </tr>
-      </table>
+          Markers:
+      <pre>tol_gene=[gene name:##..##]</pre>
+      <p style="width: 295px; font-size: 80%; padding-left: 20px; margin-top: 0px">
+            (Where ##..## refers to START LOCATION..END LOCATION,<br/> ex: tol_gene[matK:1..400].  You may also simply use tol_gene=[matK] with no gene location.)</p>
+          Organism:
+          <pre>tol_org=[organism name]</pre>
       <p>
         *Sequences can be edited after upload
       </p>
+      <p style="width:295px;"><%= link_to("Download sample FASTA", "/files/sample_fasta.fasta", {:target => "_blank"}) %> (click to view, right click to save)</p>
       <!--<p>-->
         <!--For markers:  <pre>tol_gene=[gene name]</pre>-->
       <!--</p>-->
@@ -60,6 +55,12 @@
     </div>
   </td><td>
     <table>
+      <tr><td colspan="2"><span style="font-weight: bold">Optional attributes:</span><br/> <span style="font-size: 80%">NOTE:  Chosen marker(s) and organism will be assigned to every sequence uploaded in this file.</span>
+            </td></tr>
+      <tr>
+        <td><label>Choose organism (optional):</label></td>
+        <td><%= raw taxon_name_field %></td>
+      </tr>
         <tr>
           <td style="vertical-align: middle;">
             <%= label  'marker_matrix', 'Create new marker (optional)' %>
@@ -74,7 +75,7 @@
         <table>
         <tr>
           <td>
-            <%= label 'marker_matrix', 'Choose existing markers (optional):' %> (<a id="mrk_sel_all" href="#">select all</a>)
+            <%= label 'marker_matrix', 'Choose existing markers (optional):' %> (<a id="mrk_sel_none" href="#">select none</a>)
           </td>
         </tr>
         <tr>

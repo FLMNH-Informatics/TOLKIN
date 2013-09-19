@@ -1,38 +1,22 @@
 //= require <templates/action_panel>
 //= require <chromosome/probe>
+//= require <templates/action_panel_upload>
+
 
 Module('Chromosome.Probes.Catalogs', function () {
   JooseClass('ActionPanel', {
     isa: Templates.ActionPanel,
+    does: ActionPanelUpload,
     has: {
       buttons: {
         is: 'ro',
         init: function () {
-          return [
-
-          {
-            label: 'Create',
-            img: {
-              src: '/images/small_addnew.gif'
-            },
-            imode: 'edit'
-          },
-          {
-            label: 'Delete',
-            img: {
-              src: '/images/small_cross.png'
-            },
-            imode: 'edit'
-          }
-          ]
+          return [ { label: 'Create',      img: { src: '/images/small_addnew.gif'},  imode: 'edit' },
+                   { label: 'Delete',      img: { src: '/images/small_cross.png'},   imode: 'edit' },
+                   { label: 'Bulk Upload', img: { src: "/images/small_addnew.gif" }, imode: 'edit' }]
         }
       },
-      catalog: {
-        is: 'ro',
-        init: function () {
-          return this.parent()
-        }
-      }
+      catalog: { is: 'ro', init: function () { return this.parent() } }
     },
     methods: {
 

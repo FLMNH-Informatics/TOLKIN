@@ -1,5 +1,51 @@
 # coding: utf-8
 module TaxaHelper
+
+  def outlinks_type_name
+    case params[:outlink_type]
+      when 'ncbi'     then 'NCBI'
+      when 'treebase' then 'treeBASE'
+      when 'ubio'     then 'uBio'
+      when 'gbif'     then 'GBIF'
+      when 'eol'      then 'EOL'
+        else params[:outlink_type] | 'Outlink'
+    end
+  end
+
+  def jstor_widget
+    %{<script type="text/javascript"
+              src="http://plants.jstor.org/page/search/search_widget.js">
+      </script>
+      <script type="text/javascript">
+
+        JstorPlantsWidgets.init()
+      </script>
+      <div id="JSTOR-PLANTS"
+           query="Euphorbia peplus"
+           iWidth="700"
+           iHeight="800"
+           records="8"
+           wmetadata="true"
+           wresTypes="ALL"
+           wthumbnail="true"
+           wtitle="true"  />}
+  end
+
+  def taxon_outlink type, id
+    case type
+      when 'ubio'
+        %{http://www.ubio.org/browser/details.php?namebankID=#{id}}
+      when 'ncbi'
+        %{http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=#{id}}
+      when 'treebase'
+        %{http://treebase.org/treebase-web/search/taxonSearch.html?query=tb.identifier.taxon=Tx#{id}}
+      when 'gbif'
+        %{http://data.gbif.org/species/#{id}/}
+      when 'eol'
+        %{htt[://eol.org/pages/#{id}/overview}
+    end
+  end
+
   def set_perm_view_color(permissions, type)
     perm_type =
       case type

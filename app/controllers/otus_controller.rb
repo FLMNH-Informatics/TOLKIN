@@ -5,6 +5,8 @@ class OtusController < ApplicationController
   include Restful::Responder
   include Morphology::MatricesHelper
   include TolkinExporter
+  include BulkUploader
+
 
   before_filter :params_to_hash
 
@@ -16,6 +18,22 @@ class OtusController < ApplicationController
   auto_complete_for :otu, :name, :project_scope => true, active_scope: true
   auto_complete_for :otu_group, :name, :project_scope => true
   auto_complete_for :taxon, :name, :project_scope => true
+
+  def show_new_upload
+    super resource
+  end
+
+  def new_upload
+    super resource
+  end
+
+  def bulk_upload
+    super resource
+  end
+
+  def view_map
+    super
+  end
 
   def resource
     Otu

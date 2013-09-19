@@ -2,10 +2,12 @@
 //= require <widget>
 //= require <molecular/dna_samples/action_panel_tool_tip>
 //= require <templates/action_panel>
+//= require <templates/action_panel_upload>
 
 Module('Molecular.DnaSamples.Catalogs', function () {
   JooseClass('ActionPanel', {
     isa: Templates.ActionPanel,
+    does: ActionPanelUpload,
     has:{
       catalog: { is: 'ro', init: function () { return this.parent() } },
       tooltip: { is: 'ro', init: function(){

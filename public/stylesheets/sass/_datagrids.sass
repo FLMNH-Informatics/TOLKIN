@@ -13,11 +13,37 @@
 // MAIN
 .marker_div
   position: relative
-  height: 58px
+  height: 44px
   .marker_checkbox
     position: absolute
-    bottom: -6px
+    bottom: -19px
     right: -5px
+    span
+      padding-right: 1px
+    input
+      margin-left: 0px !important
+.move_marker
+  a
+    padding-left: 2px
+    padding-right: 2px
+  div
+    display: inline-block
+    &:hover
+      background-color: grey
+.move_otu
+  margin-right: 8px
+  float: right
+  a
+    padding-left: 2px
+    padding-right: 2px
+  div
+    display: inline-block
+    -webkit-transform: rotate(90deg)
+    -moz-transform: rotate(90deg)
+    -o-transform: rotate(90deg)
+    text-transform: rotate(90deg)
+    &:hover
+      background-color: grey
 #table_navigation
   table
     width: 100%
@@ -148,3 +174,25 @@
   position: absolute
   right:  3px
   bottom:  2px
+.mode_controls
+  text-align: left
+  padding-top: 4px
+  margin-bottom: 4px
+#export_mode
+  border-right: solid
+  border-width:  0.1px
+#submatrix_mode
+  padding-left: 2px
+#submatrix_mode_controls
+  position:  absolute
+  top: 22px
+  right: 0px
+.chk_otu
+  margin: 0 !important
+  padding-left: 2px
+.datagrid_mode
+  border:  none !important
+#move_mode
+  margin-left: 10px
+.movement_container
+  height: 14px

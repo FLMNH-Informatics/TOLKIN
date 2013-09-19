@@ -9,7 +9,8 @@ JooseModule('Molecular.ImportFastaSeqs', function () {
       canRender:      { is: "ro", init: true },
       savable:        { is: 'ro', init: true },
       saveButtonText: { is: 'ro', init: 'Upload' },
-      height:         { is: 'ro', init: 300 },
+      height:         { is: 'ro', init: 370 },
+      width:          { is: 'rw', init: 900 },
       htmlLoader:     { is: 'ro', init: function () { return $HtmlLoader({
         pathname: 'new_project_molecular_import_fasta_seq_path'
       }, this ) } },
@@ -33,6 +34,12 @@ JooseModule('Molecular.ImportFastaSeqs', function () {
       onClick: function (event) {
         var me = this;
         Event.delegate({
+          'input[type="checkbox"]': function(event){
+            me.shiftCheck(event);
+          },
+          '#mrk_sel_none':function(){
+            $$('input[type="checkbox"]').each(function(chk){chk.checked = false;});
+          },
           'input[type="button"].saveButton': function  () {
             if ($('seq_uploaded_data').value != ""){
               me.notifier().working('Uploading fasta file...')

@@ -1,10 +1,13 @@
 //= require <widgets/templates/tooltip>
 //= require <widget>
 //= require <templates/action_panel>
+//= require <templates/action_panel_upload>
+
 
 Module('Library.Citations.Catalogs', function () {
   JooseClass('ActionPanel', {
     isa: Templates.ActionPanel,
+    does: ActionPanelUpload,
     has:{
         catalog: { is: 'ro', init: function(){ return this.parent(); } },
         collection_view: { is: 'ro', init: function () { return this.parent() } },
@@ -34,9 +37,6 @@ Module('Library.Citations.Catalogs', function () {
                   var citation = new Library.Citation({context: this.context()});
                   citation.deleteSelected({collectionString: "Citation(s)"});
                 });
-                break;
-              case 'Bulk Upload':
-                window.location = me.context().routes().pathFor('bulk_upload_project_library_citations_path');
                 break;
               case 'Citations Search':
                 window.location = me.context().routes().pathFor('search_project_library_citations_path');

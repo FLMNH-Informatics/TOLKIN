@@ -20,12 +20,17 @@ gem 'yui-compressor'
 gem 'ruby-recaptcha'
 gem 'bio'
 gem 'passenger'
+gem 'json', '1.7.7'
 #excel spreadsheet
 #gem 'spreadsheet'
 
 gem 'will_paginate', '3.0.pre2'
 gem 'rmagick'
-gem 'json', '1.7.7'
+
+
+
+gem 'rubyzip', '~> 0.9.9'
+
 gem "paperclip", "~> 2.3"
 gem "sass"
 # gem 'netzke-basepack'
@@ -55,7 +60,7 @@ gem 'factory_girl_rails'
 
 group :test do
 	gem 'rspec'
-	gem 'capybara'
+	#gem 'capybara' #requires newer ruby
   gem 'uuidtools'
 end
 	

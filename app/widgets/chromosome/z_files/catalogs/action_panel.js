@@ -10,6 +10,7 @@ Module('Chromosome.ZFiles.Catalogs', function () {
         { label: 'Upload',   img: { src: '/images/small_addnew.gif' }, imode: 'edit' },
         { label: 'Download', img: { src: '/images/small_arrow.png' },  imode: 'edit' },
         { label: 'Delete',   img: { src: '/images/small_cross.png' },  imode: 'edit' }
+
       ]}},
       catalog: { is: 'ro', init: function () { return this.parent() }}
     },

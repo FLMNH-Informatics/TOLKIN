@@ -1,11 +1,10 @@
-<div class="imageSingle">
+<div class="imageSingle" xmlns="http://www.w3.org/1999/html">
   <div class="image" data-id="<%= image.id%>" align="center">
     <a href="<%= image.attachment.url(:original)%>" target="_blank"><%= image_tag image.attachment.url(:thumb), :size => "80x80"%></a>
   </div>
   <div class="footer">
-    <div class="text"><%= raw image.caption %></div>
-    <br/>
-    Photographer: <%= raw image.photographers_credits %>
+    <div class="text" title="<%= raw image.caption %>"><%= raw image.caption %></div>
+    Photographer:<br/> <span title="<%= raw image.photographers_credits %>"><%= raw truncate(image.photographers_credits, :length => 15) %></span>
     <br/>
     <% begin %>
         <div class="text">Taxon: <% image.image_joins.first
@@ -19,12 +18,13 @@
     <% end %>
     </div>
     <% begin %>
-        <div class="text">Location: <% image.image_joins.first
-                                       taxon_id = image.image_joins.first[:object_id]
-                                       taxon_location = Taxon.find(taxon_id).general_distribution %>
+      <% image.image_joins.first
+         taxon_id = image.image_joins.first[:object_id]
+         taxon_location = Taxon.find(taxon_id).general_distribution %>
+        <div class="text" title="<%= taxon_location %>">Distribution:<br/>
           <%= taxon_location %>
     <% rescue %>
-        No Location found
+      <div class="text" title="N/A">Distribution: N/A
     <% end %>
     </div>
   </div>

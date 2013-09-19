@@ -5,8 +5,87 @@ require 'roo'
 require 'base64'
 
 class Collections::BulkUploadsController < ApplicationController
+  #TODO Remove this function once use
+=begin
+  def import_kina
+    project = Project.where("label = ?", 'Kinaballua Dicots').first
+    ProjectStamper.instance.project =  project
+    user = User.where("username = ?", 'rbeaman').first
+    UserSignature.instance.user = user
 
+    #name author parser by species name identifier
+    matcher = '/(\A[A-Z][a-z\s\d.-]+)([\(A-Z][\d\w\W]+)*/',  #matches taxon name from author
+    paths = ["/db/migrate/kina_data/kina_names_an.csv","/db/migrate/kina_data/kina_names_oz.csv" ]#fix this
+    taxas = {}
 
+    paths.each do |path|
+      CSV.foreach("#{Rails.root}#{path}", :headers => :first_row, :row_sep => :auto, :header_converters => :symbol) do |row|
+        matches = row[:name].match(/(\A[A-Z][a-z\s\d.-]+)([\(A-Z][\d\w\W]+)*/)
+        if matches.respond_to?(:length) && matches.length > 0
+          taxon = Taxon.new
+          taxon.name = matches[1].strip
+          taxon.author = matches[2].strip if !matches[2].blank?
+          taxon.habitat = row[:habitat]
+          taxon.infra_name = row[:infraname]
+          taxon.description = row[:lifeform]
+          taxon.notes = row[:remarks].to_s +  ' ' +  row[:citation].to_s
+
+          taxon.save!
+          taxas[matches[1].to_s.downcase.strip]=taxon.taxon_id
+        end    
+      end
+    end
+
+    paths = ["/db/migrate/kina_data/dicot_al.csv","/db/migrate/kina_data/dicot_mz.csv" ]
+    paths.each do |path|
+      CSV.foreach("#{Rails.root}#{path}", :headers => :first_row, :row_sep => :auto, :header_converters => :symbol) do |row|
+        matches = row[:name].match(/(\A[A-Z][a-z\s\d.-]+)([\(A-Z][\d\w\W]+)*/)
+        if matches.respond_to?(:length) && matches.length > 0
+          begin
+            col = Collection.new
+            if taxas.has_key?(matches[1].to_s.downcase.strip)
+              col.taxon_id = taxas[matches[1].to_s.downcase.strip]
+            else
+              taxon = Taxon.new
+              taxon.name = matches[1].strip
+              taxon.author = matches[2].strip if !matches[2].blank?
+              taxon.infra_name = row[:infraname]
+      
+              taxon.save!
+              taxas[matches[1].to_s.downcase.strip]=taxon.taxon_id
+              col.taxon_id = taxon.taxon_id
+            end
+            col.project = project
+            col.recpermission_id = 2
+            col.user = user
+            col.collector = row[:collector]
+            col.collection_number = row[:number]
+            col.elevation_start = row[:elevationf] 
+            col.elevation_end = row[:elevatinfl] 
+            col.verbatim_coll_date = row[:date]
+            col.locality = row[:locality]
+            col.prefix = row[:prefix]
+            col.suffix = row[:suffix]
+            col.notes = row[:notes] 
+            col.notes <<  '   detdate: '+ row[:detdate] if row.respond_to?(:detdate)
+            col.notes <<  '   pltdescr: ' + row[:pltdescr] if row.respond_to?(:pltdescr)
+            col.notes <<  '   herbarium:  ' + row[:herbarium] if row.respond_to?(:herbarium)
+            col.type_status = row[:typestatus]
+            col.plant_description = row[:pltdescr]
+            col.vegetation = row[:vegitation]
+            col.geology = row[:geology]
+            col.save!
+          rescue 
+            next
+          end
+        end    
+      end
+    end
+
+    render :text => 'Import Done!'
+  end
+  #REMOVE above method
+=end
 
   def new_bulk_upload(params, file_name)
     @csv_file_path = "#{Rails.root}/private/files/#{params[:upload_type]}/bulk_uploads_temp_files/#{file_name}.csv"
@@ -91,8 +170,9 @@ class Collections::BulkUploadsController < ApplicationController
           "section" => "SECTION", "sub_genus" => "SUB GENUS", "subclade" => "SUBCLADE", "subsection" => "SUBSECTION",
           "temp_family" => "TEMPORARY FAMILY", "temp_genus" => "TEMPORARY GENUS", "temp_species" => "TEMPORARY SPECIES",
           "toxicity" => "TOXICITY", "type_collection" => "TYPE COLLECTION", "type_herbaria" => "TYPE HERBARIA",
-          "type_locality" => "TYPE LOCALITY", "type_species" => "TYPE SPECIES", "uses" => "USES", "volume_num" => "VOLUME NUMBER",
-          "year" => "YEAR"}
+          "type_locality" => "TYPE LOCALITY", "type_species" => "TYPE SPECIES", "uses" => "USES", "volume_num" => "VOLUME NUMBER", "year" => "YEAR"
+      }
+
       @taxon_attributes = taxon.column_names
 
       @taxon_option_attributes = Hash.new

@@ -1,13 +1,9 @@
 <h1>Image Album Index</h1>
-
   <%= image_list_widget %>
 <br/>
 
-<%#= paginate @images, :window => 2 %>
-
-<%#= will_paginate @images %>
 <br/>
-<div class="digg_pagination">
+<div id="digg_pagination" class="digg_pagination">
   <div class="page_info">
     <%= page_entries_info @images %>
   </div>

@@ -17,13 +17,13 @@ module Molecular::MatricesHelper
   end
 
   def order_link(type)
-    if params[:action] == 'show'
+    if params[:action] == 'show' || params[:action] == 'create_next_version'
       if params["sort_#{type}"] == "true"
-        link_to %(Don't sort #{type})
+        link_to %(Don't sort), project_molecular_matrix_path(current_project,@timeline)
       elsif type == "both"
-        link_to("Sort both", :"sort_both" => true)
+        link_to("Sort both", project_molecular_matrix_path(current_project,@timeline, :"sort_both" => true))
       else
-        link_to( "Sort #{type == "otus" ? "OTUs" : "Markers"}", :"sort_#{type}" => true )
+        link_to( "Sort #{type == "otus" ? "OTUs" : "Markers"}", project_molecular_matrix_path(current_project,@timeline, :"sort_#{type}" => true ))
       end
     end
   end
@@ -39,6 +39,10 @@ module Molecular::MatricesHelper
 
   def timeline_display_pane_id
     "viewport_molecular_matrices_user_panel_molecular_matrices_versioning_action_list"
+  end
+
+  def submatrix_views_pane_id
+    "viewport_molecular_matrices_user_panel_molecular_matrices_submatrix_views"
   end
 
   def versioning_action_list_id
@@ -67,7 +71,7 @@ module Molecular::MatricesHelper
   end
 
   def row_builder motu
-    @row = row_begin(motu.otu)
+    @row = row_begin(motu)
     @cells_array.each{|cell| @row += row_builder_cell(cell)} unless @cells_array.nil?
     @row
   end
@@ -99,12 +103,22 @@ module Molecular::MatricesHelper
     %(<td class="#{cell_class || "bt a"}" id="#{"c_#{otu.id}_#{marker.id}"}" #{extra_attrs || ""}><div class="cell_div">#{link_text || "----"} #{seq_icon || ""}<div class="seq_count">#{(seq_count unless seq_count == 0) || ""}</div><div class="cell_checkbox"></div></div></td>)
   end
 
-  def row_begin otu
-    "<tr id = \"r_#{otu.id}\" >" + mol_otus_display(otu)
+  def row_begin motu
+    "<tr id=\"r_#{motu.otu.id}\" >" + mol_otus_display(motu)
   end
 
-  def mol_otus_display otu
-    %(<td id="rh_#{otu.id}" class="mh" #{otu.respond_to?(:color) ? 'style="background-color:' + otu.color + '"' : ""}>#{mol_matrix_otu_link otu}</td>)
+  def mol_otus_display motu
+    num_cells = 0
+    @cells_array.each{|ca| num_cells += 1 unless ca.first.nil?}
+    %(<td data-matrix-otu-id="#{motu.id.to_s}" data-otu-id="#{motu.otu.id.to_s}" data-motu-id="#{motu.id.to_s}" data-cellsCount="#{num_cells.to_s}" id="rh_#{motu.otu.id}" class="mh" #{motu.otu.respond_to?(:color) ? 'style="background-color:' + motu.otu.color + '"' : ""} >
+        #{mol_matrix_otu_link motu.otu}
+        <span class="cell_count" data-cellsCount="#{num_cells.to_s}" style="float:right;">
+            #{num_cells.to_s + (num_cells == 1 ? ' cell' : ' cells')}
+        </span>
+        <div class="move_otu" style="display:none;">
+          #{render_to_string :partial => 'molecular/matrix/submatrices/move_item.html.erb'}
+        </div>
+      </td>)
   end
 
   def row_display

@@ -9,7 +9,7 @@
     }else{
        var firstPath = "/" + address[1] + "/" + ($F('project_select'))
        window.location.pathname = address.length > 3 ? //if address length is more than 3, use the full path
-          firstPath + "/" + address[3] + (address[4] && isNaN(address[4]) ? "/" + address[4] : "")  //if there's more dirs and they're not a number, add them to the path
+          firstPath + "/" + address[3] + (address[4] && isNaN(address[4]) && $w('show_new_upload new_upload').every(function(term){return term != address[4];}) ? "/" + address[4] : "")  //if there's more dirs and they're not a number, add them to the path
             : firstPath //else just use the base path
     }
   });

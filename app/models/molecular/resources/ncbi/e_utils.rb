@@ -53,7 +53,7 @@ class Molecular::Resources::Ncbi::EUtils
                      }
       parameters = start_params.merge(esearch_params)
       html_params = parameters.keys.collect { |key| "#{key.to_s}=#{parameters[key].to_s.gsub(/\s+/, '+')}" }.join('&')
-      Timeout::timeout(5) { @response = Net::HTTP.get('eutils.ncbi.nlm.nih.gov', "/entrez/eutils/esearch.fcgi?#{html_params}&sort=accession") }
+      Timeout::timeout(5) { @response = Net::HTTP.get('eutils.ncbi.nlm.nih.gov', "/entrez/eutils/esearch.fcgi?#{html_params}") }
       Molecular::Resources::Ncbi::EUtils::ESearch.from_xml(@response)
     rescue Timeout::Error
       fail Ncbi::TimeoutError

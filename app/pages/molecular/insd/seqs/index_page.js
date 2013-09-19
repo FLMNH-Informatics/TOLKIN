@@ -91,7 +91,7 @@ Module('Molecular.Insd.Seqs', function() {
               if (this._selectedSeqs.length != 0) {
                 var seqs = this._selectedSeqs.collect(function(s){return Object.toQueryString(s)});
                 var window = this.context().viewport().widget('window');
-                window.loadPage('show_add_genbank_markers_project_molecular_sequences_path');
+                window.loadPage('show_add_genbank_seqs_project_molecular_sequences_path');
                 window._page.setSequences(this._selectedSeqs.sortBy(function (s){ return s.marker ? s.organism : '0' }));
               }
             break;

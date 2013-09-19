@@ -46,12 +46,15 @@ JooseModule('Molecular.Insd.Seqs', function () {
         var me = this;
         if (event.element().value == 'Save') {
           var markerNames = $('sequence_markers_table_body').select('input[name="seq_marker[name][]"]')
-          if (markerNames.all(function (ctrl){ctrl.value != ''})){
+          if (markerNames.all(function (ctrl){return ctrl.value != ''})){
+            $$('select[name="mol_marker[id]"]').each(function(sel){
+              sel.removeAttribute('id')
+              sel.writeAttribute('name', sel.readAttribute('name') + '[]')
+            })
             event.stop();
             me.notifier().working('Saving new sequence ...');
-            new Ajax.Request('/projects/'+params['project_id']+'/molecular/sequences', {
-              method: 'post',
-              parameters: $('viewport_window_content').down('form').serialize(),
+            $('viewport_window_content').down('form').request({
+              requestHeaders: {Accept: 'application/json'},
               onSuccess: function (response) {
                 if (response.responseJSON){
                   var rjs = response.responseJSON;
@@ -70,12 +73,38 @@ JooseModule('Molecular.Insd.Seqs', function () {
                   }
                 }
               },
-              onFailure: function (transport) {
+              onFailure: function (){
                 var msg = transport.responseJSON.msg.toString();
                 me.notifier().error(msg);
-              },
-              onComplete: function (response) {}
+              }
             })
+//            new Ajax.Request('/projects/'+params['project_id']+'/molecular/sequences', {
+//              method: 'post',
+//              parameters: $('viewport_window_content').down('form').serialize(),
+//              onSuccess: function (response) {
+//                if (response.responseJSON){
+//                  var rjs = response.responseJSON;
+//                  if (rjs.msg){
+//                    me.notifier().error(rjs.msg);
+//                    if (rjs.msg == "You have not entered a taxa name."){
+//                      $('molecular_insd_seq_taxon_name_auto_input').setStyle({backgroundColor: 'red'});
+//                    }
+//                  }else if (rjs.id){
+//                    new Molecular.Insd.Seq({ context: me.context() }).fire('create');
+//                    me.notifier().success('Successfully created sequence');
+//                    me.frame().loadPage('project_molecular_sequence_path', { id: rjs.id });
+//                  }
+//                  else{
+//                    me.notifier().error("Something went wrong.  Problem creating sequence.");
+//                  }
+//                }
+//              },
+//              onFailure: function (transport) {
+//                var msg = transport.responseJSON.msg.toString();
+//                me.notifier().error(msg);
+//              },
+//              onComplete: function (response) {}
+//            })
           }else{
             $('sequence_markers_table_body').select('input[name="seq_marker[name][]"]').each(function(ctrl){
               if(ctrl.value == ''){

@@ -73,34 +73,7 @@ Module('Taxa', function () {
     methods: {
       onClick: function (event) {
         Event.delegate({
-          '.ubio':function(event){
-            event.stop();
-            var window = new Taxa.NewWindow({parent: this.viewport(), title: "Search results from uBio"});
-            this.viewport().widgets().add(window);
-            if(this.context().interactMode() == 'edit') {
-              var name =  $('viewport_window').down("input[name='taxon[name]']").value;
-              window.searchUbio(name);
-            }
-          },
-          '.treeBase':function(event){
-            event.stop();
-            var window = new Taxa.NewWindow({parent: this.viewport()});
-            this.viewport().widgets().add(window);
-            if(this.context().interactMode() == 'edit'){
-              var name =  $('viewport_window').down("input[name='taxon[name]']").value;
-              window.searchTreeBase(name);
-            }
 
-          },
-          '.ncbi':function(event){
-            event.stop();
-            var window = new Taxa.NewWindow({parent: this.viewport(), title: "Search results from NCBI"});
-            this.viewport().widgets().add(window);
-            if(this.context().interactMode() == 'edit'){
-              var name = $('viewport_window').down("input[name='taxon[name]']").value;
-              window.searchNcbi(name);
-            }
-          },
           'input.delete_citation':function(event){
             var cit_id = event.element().up('*[data-citation-id]').readAttribute('data-citation-id');
             var tabb_box = this;

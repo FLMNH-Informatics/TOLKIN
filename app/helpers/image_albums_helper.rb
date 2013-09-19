@@ -23,15 +23,23 @@ module ImageAlbumsHelper
     Widgets::ImageAlbums::Catalogs::ActionPanel.new({
       parent: viewport
     })
-#    action_panel 'viewport_content_frame_molecular_bioentry_catalog_molecular_bioentry_action_panel',
-#      [ { label: 'Import',
-#          img: { src: '/images/addnew.gif' },
-#        }
-#      ]
   end
 
   def images
     @images
+  end
+
+  def options_for_search
+    options = ""
+    search_options.each do |option|
+      options += %(<option value="#{option}" #{option == "taxon" ? %(disabled="disabled") : "" } >#{option.capitalize}</option>)
+    end
+    options
+  end
+
+  def search_options
+    %w(taxon caption distribution photographer section subsection subgenus)
+    #note: if you add more options, make sure to add where condition in image_albums_controller index method
   end
 
   def images

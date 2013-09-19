@@ -6,7 +6,6 @@ module CollectionsHelper
   def type_name; text_field_or_text(:type_name) end
   def type_status; text_field_or_text(:type_status) end
 
-
   def get_external_link( link_name, collection)
     external_links  = { :herbarium => "http://sweetgum.nybg.org/ih/"
     }

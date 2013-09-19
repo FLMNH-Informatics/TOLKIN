@@ -3,7 +3,8 @@ class Morphology::Matrix::Timeline < ActiveRecord::Base
   has_many :matrices_characters,
            :class_name  => "Morphology::Matrix::MatricesCharacters",
            :foreign_key => "timeline_id",
-           :order       => "position"
+           :order       => "position",
+           :conditions => ("position is not null")
 
   has_many :characters,
            :through    => :matrices_characters,
@@ -11,7 +12,8 @@ class Morphology::Matrix::Timeline < ActiveRecord::Base
 
   has_many :matrices_otus,
            :class_name  => "Morphology::Matrix::MatricesOtus",
-           :foreign_key => "timeline_id"
+           :foreign_key => "timeline_id",
+           :conditions => ("position is not null")
 
   has_many :otus,
            :through => :matrices_otus

@@ -2,6 +2,9 @@ require 'zip/zip'
 
 class Chromosome::ProbesController < ApplicationController
   include Restful::Responder
+  include BulkUploader
+
+  before_filter :params_to_hash
 
   before_filter :requires_project_guest, :except => [:index, :show ]
   before_filter :requires_project_updater, :except => [:index, :show ]
@@ -9,6 +12,26 @@ class Chromosome::ProbesController < ApplicationController
   #skip_before_filter :requires_any_guest, :only => [ :index, :show ]
   # GET /probes
   # GET /probes.xml
+
+  def show_new_upload
+      super resource
+    end
+
+    def new_upload
+      super resource
+    end
+
+    def bulk_upload
+      super resource
+    end
+
+    def view_map
+      super
+    end
+
+    def resource
+      Chromosome::Probe
+    end
 
   def index
     query_params_provided? ||

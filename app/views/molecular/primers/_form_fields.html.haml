@@ -4,7 +4,7 @@
     %td= raw f.text_field :name
   %tr
     %td= f.label :sequence
-    %td= f.text_area :sequence, rows: 8, cols: 50
+    %td= f.text_area :sequence, rows: 8, cols: 50, :disabled => (interact_mode == "browse")
   %tr
     %td= f.label :taxon_name, 'Target Organism'
     %td= raw taxon_auto_complete_field(f)
@@ -27,13 +27,13 @@
         %input{:id => 'primer_purification_method', :type => 'text', :size => '30', :name => 'primer[purification_method]'}
   %tr
     %td= f.label :tm, 'TM'
-    %td= f.text_field :tm, size: 8
+    %td= raw f.text_field :tm, size: 8
   %tr
     %td= f.label :pmol, 'PMOL'
-    %td= f.text_field :pmol, size: 8
+    %td= raw f.text_field :pmol, size: 8
   %tr
     %td= f.label :e260, 'e260'
-    %td= f.text_field :e260, size: 8
+    %td= raw f.text_field :e260, size: 8
   %tr
     %td= f.label :in_stock
     %td= f.check_box :in_stock
@@ -41,12 +41,12 @@
     %td Storage Location
     %td
       = f.label :storage_box, 'Box'
-      = f.text_field :storage_box, size: 3 
+      = raw f.text_field :storage_box, size: 3
       = f.label :storage_row, 'Row'
-      = f.text_field :storage_row, size: 3
+      = raw f.text_field :storage_row, size: 3
       = f.label :storage_col, 'Col'
-      = f.text_field :storage_col, size: 3
+      = raw f.text_field :storage_col, size: 3
   %tr
     %td= f.label :notes
-    %td= f.text_area :notes, rows: 4, cols: 30
+    %td= f.text_area :notes, rows: 4, cols: 30, :disabled => (interact_mode == "browse")
   = raw submit_row_submit

@@ -25,8 +25,11 @@ class Image < ActiveRecord::Base
   attr_accessor :collection
   attr_accessor :orig_width, :orig_height
 
+  has_many :taxon_images, :class_name => "TaxonImage"
+
   has_many :image_joins, class_name: 'ImageJoin'
   has_many :objects, :through => :image_joins
+
   has_one :thumb, class_name: 'Image', foreign_key: 'parent_id'
   belongs_to :project
   has_attached_file :attachment, 

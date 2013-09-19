@@ -1,18 +1,21 @@
 //= require <widgets/templates/tooltip>
 //= require <widget>
 //= require <matrices>
-//= require <molecular/matrix/exporter>
 //= require <widgets/matrices/datagrids/observer>
 //= require <widgets/matrices/datagrids/cell>
 //= require <widgets/matrices/datagrids/cells/focus>
+//= require <molecular/matrix/datagrid_selector>
 
 JooseModule('Matrices', function () {
   JooseClass('Datagrid', {
     isa: Widget,
+    does: DatagridSelector,
     has: {
       tooltip:          { is: 'rw', init: null  },
       quickEditModeOn:  { is: 'rw', init: false },
       exportModeOn:     { is: 'rw', init: false },
+      submatrixModeOn:  { is: 'rw', init: false },
+      moveModeOn:       { is: 'rw', init: false },
       preExportHTML:    { is: 'rw', init: null  },
       selectedRow:      { is: 'rw', init: null  },
       selectedCol:      { is: 'rw', init: null  },
@@ -46,8 +49,9 @@ JooseModule('Matrices', function () {
         this.tooltip().show(mousePosX, mousePosY);
       },
       onChange: function () {},
+
       toggleQuickEditMode: function () {
-        if(this._quickEditModeOn == true) {
+        if(this._quickEditModeOn) {
           $('toggle_quick_edit_mode_link').update('Enter Quick Edit Mode')
           this._quickEditModeOn = false;
           this.context().notifier().success("Quick edit mode off");
@@ -59,32 +63,87 @@ JooseModule('Matrices', function () {
           this.observer().observeForQuickEditMode();
         }
       },
+
       toggleExportMode: function () {
+        if (this._submatrixModeOn){
+          this.toggleSubmatrixMode();
+        }
         this.highlightNone();
-        if (this._exportModeOn == true){
+        if (this._exportModeOn){
           this._exportModeOn = false;
-          this.context().notifier().success('Export mode off')
-          $$('input.exporting_checkbox').each(function(el){el.remove()})
+          this.context().notifier().success('Export mode off');
+          $$('input.selecting_checkbox').each(function(el){el.remove()})
           $('export_mode_controls').toggle();
-//          if(this._preExportHTML){
-//            $(this._id).innerHTML = this._preExportHTML
-//            $('toggle_export_mode_link').update('Enter Export Mode')
-//          }else{
-//            window.location.reload()
-//          }
+          $w('toggle_export_mode_link Enter_export_mode').each(function(id){$(id).update('Enter export mode')})
+          $('toggle_all_chk').checked = false;
+
         }else{
-          $('toggle_export_mode_link').update('Exit Export Mode')
+          $w('toggle_export_mode_link Enter_export_mode').each(function(id){$(id).update('Exit export mode')})
           this._exportModeOn = true;
           this.context().notifier().success('Export mode on.');
-//          this.setPreExportHTML($(this._id).innerHTML);
           this.prepareExportMode();
           $('export_mode_controls').toggle();
         }
-        $('autofill').toggle();
+        if ($('autofill')) $('autofill').toggle();
       },
+
+      toggleSubmatrixMode: function () {
+        if (this.parent().page().iMode()._value == 'edit'){
+          if (this._exportModeOn){
+            this.toggleExportMode();
+          }
+          this.highlightNone();
+          if (this._submatrixModeOn){
+            this._submatrixModeOn = false;
+            this.context().notifier().success('Submatrix selection off')
+            $$('input.selecting_checkbox').each(function(el){el.remove()})
+            $w('toggle_submatrix_mode_link Enter_submatrix_mode').each(function(id){$(id).update('Enter submatrix mode')})
+            $('submatrix_mode_controls').toggle();
+            $('toggle_otus_chk').checked = false
+            $('toggle_markers_chk').checked = false
+          }else{
+            this._submatrixModeOn = true;
+            $w('toggle_submatrix_mode_link Enter_submatrix_mode').each(function(id){$(id).update('Exit submatrix mode')})
+            this.context().notifier().success('Begin selecting for submatrix creation');
+            this.prepareSubmatrixMode();
+            $('submatrix_mode_controls').toggle();
+          }
+          $('autofill').toggle();
+        }else{
+          this.context().notifier().warn('You must be in edit mode to create submatrices.')
+        }
+      },
+
+      toggleMoveMode: function (){
+        if (this.parent().page().iMode()._value == 'edit'){
+        if (this.parent().page()._currentlyLoading){
+          this.context().notifier().warn('All rows must be loaded before you can move markers/OTUs.');
+        }else{
+          if (this._moveModeOn){
+            this._moveModeOn = false;
+            this.context().notifier().success('Moving Markers/OTUs disabled');
+            ["move_marker","move_otu"].each(function(div_class){ $$("."+div_class).each(function(div){div.toggle()})});
+            $('toggle_move_mode_link').update('Move markers/OTUs');
+          }else{
+            this._moveModeOn = true;
+            this.context().notifier().success('Use controls to move Markers/OTUs');
+            ["move_marker","move_otu"].each(function(div_class){ $$("."+div_class).each(function(div){div.toggle()})});
+            $('toggle_move_mode_link').update('Stop moving');
+          }
+        }
+        }else{
+          this.context().notifier().warn('You must be in edit mode to complete this action.')
+        }
+      },
+
+      prepareSubmatrixMode: function(){
+        this.prepareForSubmatrix();
+      },
+
       prepareExportMode: function () {
-        prepareForExport();
+        this.prepareForExport();
       },
+
       showMouseHover: function(event){
         var gridCell;
         if (event.element().className == "cell_div"){ gridCell = event.element().up('td');}
@@ -97,6 +156,7 @@ JooseModule('Matrices', function () {
         rowHeader.toggleClassName('selected_otu');
         $('ch_' + columnId).toggleClassName('selected_header')
       },
+
       onMouseover: function(event){
         if (!this._quickEditModeOn){
           Event.delegate({
@@ -176,6 +236,7 @@ JooseModule('Matrices', function () {
               }
             }
           },
+
           '#toggle_quick_edit_mode_link': function () {
             var me = this;
             if (me.parent().page().iMode()._value == 'edit'){
@@ -185,25 +246,52 @@ JooseModule('Matrices', function () {
             }else{
               me.parent().page().context().notifier().warn('You must be in Edit mode to complete this action.')
             }
-
           },
+
           '#toggle_export_mode_link': function (){
             this.toggleExportMode();
           },
+
+          '#toggle_submatrix_mode_link': function () {
+            this.toggleSubmatrixMode();
+          },
+
+          '#toggle_move_mode_link': function () {
+            this.toggleMoveMode();
+          },
+
           '#modify_matrix_morphology_link': function () {
             window.location.pathname = this.context().routes().pathFor('modify_matrix_project_morphology_matrix_path');
           },
+
           'input[type="checkbox"]': function () {
-            if (this._exportModeOn == true){
-              checkOtherChecks(this, event.element()); //lib/molecular/matrix/exporter.js
+            if (this._exportModeOn == true || this._submatrixModeOn == true){
+              this.checkOtherChecks(this, event.element()); //lib/molecular/matrix/selector.js
             }
           },
+
           '#toggle_all': function (){
             if (this._exportModeOn == true){
               var chk = event.element().down('input[type="checkbox"]')
                 , inner = $('toggle_all').innerHTML;
               chk.checked = chk.checked ? false : true;
-              checkOtherChecks(this, chk);
+              this.checkOtherChecks(this, chk);
+            }
+          },
+
+          '#submatrix_otus': function (){
+            if (this._submatrixModeOn == true){
+              var chk = event.element().down('input[type="checkbox"]');
+              chk.checked = chk.checked ? false : true;
+              this.checkOtherChecks(this,chk);
+            }
+          },
+
+          '#submatrix_markers': function (){
+            if (this._submatrixModeOn == true){
+              var chk = event.element().down('input[type="checkbox"]');
+              chk.checked = chk.checked ? false : true;
+              this.checkOtherChecks(this,chk);
             }
           }
         }).bind(this)(event);

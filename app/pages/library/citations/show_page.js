@@ -16,7 +16,7 @@ JooseModule('Library.Citations', function () {
     does: [ Polling, Library.Citations.FormsHelper ],
     has: {
       canRender: { is: 'ro', init: true },
-      width: { is: 'ro', init: 800 },
+      width: { is: 'ro', init: 840 },
       title: { is: 'ro', init: 'Citation : Show' },
       savable: { is: 'ro', init: true },
       records: { is: 'ro', lazy: true, init: function () { return $Records({
@@ -77,6 +77,11 @@ JooseModule('Library.Citations', function () {
       templates: { is: 'ro', lazy: true, init: function () { return $Templates([
         'library/citations/_authors_catalog_action_panel'
       ], this) } }
+    },
+    after: {
+      onLoad: function () {
+        if (!$$('input[type="submit"]').empty() && params["action"] == "index") $$('input[type="submit"]').first().hide();
+      }
     },
     methods: {
 //      onLoad: function () {

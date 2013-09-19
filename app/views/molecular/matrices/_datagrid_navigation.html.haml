@@ -4,11 +4,11 @@
       = raw matrix_empty_message
     %td#table_pagination.center
       %span.bodytext
-        = raw will_paginate(@markers, :container => false) if params[:action] == 'show' #|| params[:action] == 'view_by_date' TODO: fix view_by_date pagination
+        = raw will_paginate(@markers, :container => false) if params[:action] == 'show' || params[:action] == 'create_next_version' #|| params[:action] == 'view_by_date' TODO: fix view_by_date pagination
     %td.right
-      - unless @timeline.markers.empty? || @timeline.otus.empty? || params["action"] != 'show'
+      - unless @timeline.markers.empty? || @timeline.otus.empty? || (params["action"] != 'show' && params["action"] != 'create_next_version')
         %a#autofill Autofill
-#export_mode_controls.link_buttons{:style => "display:none;"}
+%span#export_mode_controls.link_buttons{:style => "display:none;"}
   #selected_seqs_controls
     %a#export_selected_seqs
       Export Selected
@@ -19,3 +19,15 @@
     %a#toggle_all
       Check All
       %input#toggle_all_chk.leveled{:type => "checkbox"}
+%span#submatrix_mode_controls.link_buttons{:style => "display:none;"}
+  #submatrix_seqs_conrols
+    %a#submatrix_selected_seqs
+      Choose Selected
+    &nbsp;&nbsp;&nbsp;
+    %a#submatrix_otus
+      Select OTUs
+      %input#toggle_otus_chk.leveled{:type => "checkbox"}
+    &nbsp;&nbsp;&nbsp;
+    %a#submatrix_markers
+      Select Markers
+      %input#toggle_markers_chk.leveled{:type => "checkbox"}

@@ -1,6 +1,4 @@
-<% 
-html_options ||= {}
-%>
+<% html_options ||= {} %>
 <div id="div_notice" class="notice_area">
   <%=if @citation.errors.empty?
        flash[:notice]
@@ -59,5 +57,5 @@ html_options ||= {}
         </td></tr>
     </tbody>
   </table>
-  <%= f.submit unless request.xhr? %>
+  <%= f.submit "Save" %>
 <% end %>

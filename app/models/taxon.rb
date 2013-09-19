@@ -12,8 +12,8 @@ class Taxon < Record
   has_many :images, through: :taxa_images, include: :thumb
   has_one  :protologue, class_name: 'ProtologueFile'
 
-  has_many :dna_samples, class_name: "Molecular::DnaSample"
-  has_many :collections
+  has_many :dna_samples, class_name: "Molecular::DnaSample", :dependent => :nullify
+  has_many :collections, :dependent => :nullify
   has_many :sequences, class_name: "Molecular::Insd::Seq"
   belongs_to :project, foreign_key: :owner_graph_rtid, primary_key: :rtid
   belongs_to :namestatus
@@ -22,6 +22,7 @@ class Taxon < Record
   has_many :synonyms, :class_name => 'Taxon', :foreign_key => :accepted_name_id, :primary_key => :taxon_id
 
   after_create :create_and_attach_to_otu
+  before_create :assign_namestatus_if_nil
   before_destroy :remove_seqs
 
   scope :root, lambda{
@@ -196,6 +197,95 @@ class Taxon < Record
     save
   end
 
+  def get_treebase_taxa
+    name  = CGI::escape('"' + self.name + '"')
+    url  = 'http://treebase.org/treebase-web/search/taxonSearch.html'
+    url << '?query=dcterms.title.taxon==' + name
+    url << '&format=rss1&recordSchema=otu'
+    uri = URI.parse(url)
+    response = Net::HTTP.get(uri)
+    results = []
+    Nokogiri::XML(response).search('item').each do |name|
+      link = (name/"link").inner_html
+      id   = link.gsub(/.+TB2:/,'')
+      results << {
+        'treebase_url'  => link,
+        'treebase_id'   => id,
+        'id_number'     => id[/\d+/],
+        'value'     => id[/\d+/],
+        'treebase_name' => (name/"title").inner_html,
+        'label' => (name/"title").inner_html
+      }
+    end
+    results
+  end
+
+  def get_ubio_taxa
+    name  = CGI::escape(self.name)
+    url = "http://www.ubio.org/webservices/service.php?function=namebank_search&searchName=#{name}&sci=1&vern=0&keyCode=#{UBIO_KEY}"
+    uri = URI.parse(url)
+    response = Net::HTTP.get(uri)
+    results = []
+    Nokogiri::XML(response).search("/results/scientificNames/value").each do |name|
+      results << {
+        "value" => name.search('namebankID').inner_html,
+        'label' => Base64.decode64(name.search('fullNameString').inner_html)
+      }
+    end
+    results
+  end
+
+  def get_ncbi_taxa
+    name = CGI::escape(self.name)
+    options = { term: name,
+                db: "Taxonomy",
+                tool: "Tolkin",
+                email: "tolkin@flmnh.ufl.edu" }
+    html_params = options.keys.collect { |key| "#{key.to_s}=#{options[key].to_s.gsub(/\s+/, '+')}" }.join('&')
+    esearch_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + html_params
+    esearch_uri = URI.parse(esearch_url)
+    esearch_response = Net::HTTP.get(esearch_uri)
+    esearch_results  = Molecular::Resources::Ncbi::EUtils::ESearch.from_xml(esearch_response)
+    fetch_response   = Net::HTTP.get('eutils.ncbi.nlm.nih.gov', "/entrez/eutils/esummary.fcgi?db=#{options[:db]}&id=#{ [*esearch_results[:ids]].join(',') }&retmax=20&retmode=xml" )
+    results = []
+    Nokogiri::XML(fetch_response).search("//DocSum").each do |name|
+      results << { "label" => name.search("Item[@Name='ScientificName']").inner_html,
+                   "value" => name.search("Item[@Name='TaxId']").inner_html }
+    end
+    results
+  end
+
+  def get_gbif_taxa
+    name = CGI::escape(self.name)
+    options = { name: name,
+                strict: true }
+    html_params = options.keys.collect { |key| "#{key.to_s}=#{options[key].to_s.gsub(/\s+/, '+')}" }.join('&')
+    url = 'http://api.gbif.org/lookup/name_usage?' + html_params
+    uri = URI.parse(url)
+    response = JSON.parse(Net::HTTP.get(uri))
+    results = []
+    results.push({'label' => response['scientificName'],
+                  'value' => response['usageKey'] })
+    results
+  end
+
+  def get_eol_taxa
+    name = CGI::escape(self.name)
+    options = { q: name,
+                page: 1,
+                exact: false}
+    html_params = options.keys.collect{|key| "#{key.to_s}=#{options[key].to_s.gsub(/\s+/, '+')}" }.join('&')
+    url = 'http://eol.org/api/search/1.0.json?' + html_params
+    uri = URI.parse(url)
+    response = JSON.parse(Net::HTTP.get(uri))
+    results = []
+    response["results"].each do |result|
+      results.push({"value" => result["id"],
+                    "label" => result["title"]})
+    end
+    results
+  end
+
   def self.fetch_children(id, param_selected)
     current = self.find(id)
     children = current.children
@@ -255,6 +345,9 @@ class Taxon < Record
     #[ "name", "author", "year", "types", "type_country", "general_distribution", "descriptiton", "volumne_num", "pages", "infra_name", "infra_author", "herbaria", "neotype", "sub__genus"]
   private
 
+    def assign_namestatus_if_nil
+      self.namestatus_id = 13 if self.namestatus_id.nil?
+    end
       def create_and_attach_to_otu
         otu = Otu.new
         otu.name, otu.project_id, otu.creator_id = self.name, self.project.project_id, User.where('rtid = ?', self.creator_rtid).first.user_id

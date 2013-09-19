@@ -3,11 +3,13 @@
 //= require <widgets/taxa/action_panel_tool_tip>
 //= require <taxa/new_window>
 //= require <templates/action_panel>
+//= require <templates/action_panel_upload>
 
 
 Module('Taxa.Catalogs', function () {
   JooseClass('ActionPanel', {
     isa: Templates.ActionPanel,
+    does: ActionPanelUpload,
     has:{
       catalog: {
         is: 'ro', init: function () { return this.parent(); }
@@ -29,7 +31,9 @@ Module('Taxa.Catalogs', function () {
           { label: 'Create', img: { src: "/images/small_addnew.gif" }, imode: 'edit' },
           { label: 'Delete', img: { src: "/images/small_cross.png" },  imode: 'edit' },
           { label: 'Export', img: { src: "/images/small_report.png" }, imode: [ 'browse', 'edit' ] },
-          { label: 'Set Permissions', imode: 'edit' }
+          { label: 'Set Permissions', imode: 'edit' },
+          { label: 'Bulk Upload', img: { src: "/images/small_addnew.gif" }, imode: 'edit' }
+
         ]
       }
     },

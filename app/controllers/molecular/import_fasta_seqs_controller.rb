@@ -18,8 +18,8 @@ class Molecular::ImportFastaSeqsController < ApplicationController
     filename = Molecular::FastaFilename.create!(:filename => params[:seq][:uploaded_data].original_filename, :upload_date => Time.now, :project_id => current_project.project_id)
     uploaded_data = params[:seq][:uploaded_data].read
     @project = current_project
-    @fasta_seqs = uploaded_data.split('>').collect{|fs| Molecular::ImportFastaSeq.from_filestring(fs) unless fs.blank? }.compact
-    @tolkin_seqs = @fasta_seqs.collect{ |fastaseq| Molecular::Insd::Seq.from_biofasta(fastaseq, current_project, filename) }
+    fasta_seqs = uploaded_data.split('>').collect{|fs| Molecular::ImportFastaSeq.from_filestring(fs) unless fs.blank? }.compact
+    @tolkin_seqs = fasta_seqs.collect{ |fastaseq| Molecular::Insd::Seq.from_biofasta(fastaseq, current_project, filename) }
     unless @marker_names.empty?
       @tolkin_seqs.each do |seq|
         if seq.markers.empty?

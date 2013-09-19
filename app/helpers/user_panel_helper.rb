@@ -50,7 +50,7 @@ module UserPanelHelper
       when /^\/molecular\/dna_samples/        				        then [ :action_list_pane ]
       when /^\/molecular\/primers/            				        then [ :action_list_pane ]
       when /^\/molecular\/matrices#index$/    				        then [ :action_list_pane ]
-      when /^\/molecular\/matrices#show/           			      then [ :timeline_display_pane, :action_list_pane ]
+      when /^\/molecular\/matrices#show/           			      then [ :timeline_display_pane, :action_list_pane, :submatrix_views ]
       when /^\/molecular\/matrices#view_by_date/              then [ :action_list_pane ]
       when /^\/molecular\/matrices#modify_matrix/             then [ :timeline_display_pane, :action_list_pane ]
       when /^\/molecular\/matrices#bulk_sequence_exporter$/ 	then [ :action_list_pane ]
@@ -62,7 +62,7 @@ module UserPanelHelper
       when /^\/morphology\/matrices#modify_matrix/            then [ :timeline_display_pane, :action_list_pane ]
       when /^\/taxa/
         case request[:action]
-          when 'tree_view'                						then [ :current_selection, :shopping_cart_pane ]
+          when 'tree_view'                						        then [ :current_selection, :shopping_cart_pane ]
 #         when 'index'                    						then [ :current_selection, :shopping_cart_pane ]
         else                                 						 []
         end
@@ -129,7 +129,7 @@ module UserPanelHelper
             link_to_remote('Merge Matrices', :url => show_merge_window_project_matrices_path(@project), :method => :get),
             link_to_remote('Designate Submatrix', :url => show_designate_submatrix_window_project_matrices_path(@project), :method => :get)
           ]
-        when 'show'
+        when 'show','create_next_version'
           [
             link_to('Edit Characters and Otus', modify_matrix_project_morphology_matrix_path),
             "Copy this matrix",
@@ -149,13 +149,6 @@ module UserPanelHelper
             "Export Nexus file"
           ].map{ |text| text.class == String ? link_to(text, '#', { :id => text.gsub(" ", "_"), :class => text.gsub(" ", "_") } ) : text }
 
-          #[
-          #  link_to('Show Matrix', project_morphology_matrix_path(current_project.id, @matrix.id)),
-          #  #link_to_remote('Add Character/Group old', :url => add_character_project_morphology_matrix_path(current_project.id, @matrix.id, :type => 'new'), :method => :get),
-          #  link_to('Add Character/Group', optional_matrix_resource_url(:controller => '/morphology/matrices', :action => 'show_add_character', :matrix_id => params[:matrix_id], :project_id => params[:project_id], :id => params[:id])),
-          #  link_to_remote('Add Otu/Group', :url => add_otu_project_morphology_matrix_path(current_project.id, @matrix.id, :type => 'new'), :method => :get),
-          #  link_to('Delete selected', "#", :id=>"lnk_del_sel")
-          #]
       end
     when '/molecular/alignments'
       [
@@ -165,7 +158,6 @@ module UserPanelHelper
     when '/molecular/dna_samples'
       [
         'New Raw DNA',
-#        link_to_remote('New Raw DNA', :url => new_project_molecular_dna_sample_path, :method => :get),
         link_to_function('Delete Selected', "if(confirm('Are you sure you would like to delete these raw DNA sequences?')){
                                                                                  $('list_items_form').writeAttribute('action','#{delete_selected_project_molecular_dna_samples_path(params[:project_id])}');
                                                                                  $('list_items_form').writeAttribute('method','post');
@@ -184,13 +176,6 @@ module UserPanelHelper
         'Export DNA Sequence',
         link_to_remote('Import Fasta File', :url => browse_fasta_file_project_molecular_sequences_path, :method => :get),
          #Genbank sequence submission changes - END
-#        link_to_function('Delete Selected',
-#          "if(confirm('Are you sure you would like to delete these sequences?')){
-#                                                                                 $('list_items_form').writeAttribute('action','#{delete_selected_project_bioentries_path(params[:project_id])}');
-#                                                                                 $('list_items_form').writeAttribute('method','post');
-#                                                                                 $('list_items_form').submit();
-#                                                                                 $('list_items_form').writeAttribute('action','');
-#                                                                                }")
       ]
     when '/molecular/plastome/tables'
       case request[:action]
@@ -216,24 +201,37 @@ module UserPanelHelper
       end
     when '/molecular/matrices'
       case request[:action]
+        when "create_next_version"
+          (params["page"] == "ShowPage" ? [
+            link_to('Edit Markers and Otus', modify_matrix_project_molecular_matrix_path(current_project, @timeline)),
+            link_to("Bulk Sequence Exporter", bulk_sequence_exporter_project_molecular_matrix_path(current_project, @timeline)),
+            link_to("Copy this matrix", show_copy_matrix_project_molecular_matrix_path(current_project, @timeline)),
+            link_to("Autofill matrix", show_autofill_matrix_project_molecular_matrix_path(current_project, @timeline)),
+            "Enter export mode"
+          ] : [
+            link_to('View Matrix', project_molecular_matrix_path(current_project,@timeline)),
+            link_to("Bulk Sequence Exporter", bulk_sequence_exporter_project_molecular_matrix_path(current_project,@timeline)),
+          ]).map{ |text| text.class == String ? link_to(text, '#', { :id => text.gsub(" ", "_"), :class => text.gsub(" ", "_") } ) : text }
         when "show"
           [
-            link_to('Edit Markers and Otus', modify_matrix_project_molecular_matrix_path),
-            link_to("Bulk Sequence Exporter", bulk_sequence_exporter_project_molecular_matrix_path),
-            "Copy this matrix",
-            "Autofill matrix"
+            link_to('Edit Markers and Otus', modify_matrix_project_molecular_matrix_path(current_project, @timeline)),
+            link_to("Bulk Sequence Exporter", bulk_sequence_exporter_project_molecular_matrix_path(current_project, @timeline)),
+            link_to("Copy this matrix", show_copy_matrix_project_molecular_matrix_path(current_project, @timeline)),
+            link_to("Autofill matrix", show_autofill_matrix_project_molecular_matrix_path(current_project, @timeline)),
+            "Enter export mode"
           ].map{ |text| text.class == String ? link_to(text, '#', { :id => text.gsub(" ", "_"), :class => text.gsub(" ", "_") } ) : text }
         when "modify_matrix"
           [
-            link_to('View Matrix', '#'),
+            link_to('View Matrix', project_molecular_matrix_path),
             link_to("Bulk Sequence Exporter", bulk_sequence_exporter_project_molecular_matrix_path),
           ].map{ |text| text.class == String ? link_to(text, '#', { :id => text.gsub(" ", "_"), :class => text.gsub(" ", "_") } ) : text }
         when "view_by_date"
           [
+            link_to('View matrix', project_molecular_matrix_path),
             link_to('Edit Markers and OTUs', modify_matrix_project_molecular_matrix_path),
             link_to("Bulk Sequence Exporter", bulk_sequence_exporter_project_molecular_matrix_path(:date => params[:date])),
-            "Copy this matrix",
-            "View history by date"
+            link_to("Copy this matrix", show_copy_matrix_project_molecular_matrix_path(current_project, @timeline)),
+            link_to("View history by date", show_view_by_date_project_molecular_matrix_path(current_project, @timeline))
           ].map{ |text| text.class == String ? link_to(text, '#', { :id => text.gsub(" ", "_"), :class => text.gsub(" ", "_") } ) : text }
       end
     when '/workflows'

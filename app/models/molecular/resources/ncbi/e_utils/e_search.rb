@@ -4,7 +4,7 @@ class Molecular::Resources::Ncbi::EUtils::ESearch
   def self.from_xml xml_string
     ids = []
     results = Hash.from_xml(xml_string)
-    if results['eSearchResult']['IdList']['Id'].nil?
+    if results['eSearchResult']['IdList'].nil? || results['eSearchResult']['IdList']['Id'].nil?
       if results['eSearchResult']['TranslationStack'].nil?
         error_list = results['eSearchResult']['ErrorList']
         gen_message = results['eSearchResult']['WarningList']['OutputMessage'].chomp('.')

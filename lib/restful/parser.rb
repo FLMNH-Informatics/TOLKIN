@@ -55,7 +55,7 @@ class Restful::Parser
         nil
       else
         out = nil
-        input.split(/(?<=\])\+(?=%)/u).each do |cond|
+        input.split(/(?<=\]|true|false)\+(?=%)/u).each do |cond|
           next if cond == 'true'
           if cond == 'false'
             out = "false"

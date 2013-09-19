@@ -18,7 +18,7 @@ module TabsHelper
       @@nav_menu[:primary][:taxa][:subnav] = [ :taxa_catalog, :taxa_list ]
       @@nav_menu[:primary][:chromosome][:subnav] = [ :probes, :z_files ]
     else
-      @@nav_menu[:primary][:taxa][:subnav] = [ :taxa_catalog, :taxa, :otus, :otu_groups ]
+      @@nav_menu[:primary][:taxa][:subnav] = [ :taxa_catalog, :tree_view, :otus, :otu_groups ]
       @@nav_menu[:primary][:chromosome][:subnav] = [ :probes, :z_files ]
     end
     display_tabs
@@ -28,30 +28,33 @@ module TabsHelper
   # method doesn't require traversing the whole tab map just to see if a tab is active or not
   @@current_tab_by_controller_action = {
 
-    :taxa                      => { :default => { }, :index => { :secondary => :taxa_catalog }, :list => {:secondary => :taxa_list} },
-    :granted_roles             => { :default => { :primary => :admin, :secondary => :user_controls } },
-    :"admin/users"             => { :default => { }, :index => { :primary => :admin, :secondary => :user_controls }, :new => {:primary => :admin, :secondary => :user_controls} },
-    :help                      => { :default => { }, :index => {  } },
-    :"morphology/characters"   => { :default => { :primary => :chr_matrices, :secondary => :characters } },
-    :"morphology/chr_groups"   => { :default => { :primary => :chr_matrices, :secondary => :chr_groups } },
-    :"morphology/matrices"     => { :default => { :primary => :chr_matrices, :secondary => :chr_matrices } },
-    :"molecular/dna_samples"   => { :default => { :primary => :molecular, :secondary => :dna_samples } },
-    :"molecular/insd/seqs"     => { :default => { :primary => :molecular, :secondary => :seqs } },
-    :"molecular/primers"       => { :default => { :primary => :molecular, :secondary => :primers } },
-    :"molecular/alignments"    => { :default => { :primary => :molecular, :secondary => :alignments } },
-    :"molecular/matrices"      => { :default => { :primary => :molecular, :secondary => :mol_matrices } },
-    :"molecular/markers"        => { :default => { :primary => :molecular, :secondary => :markers}},
-    :"chromosome/probes"        => { :default => { :primary => :chromosome, :secondary => :probes} },
-    :"chromosome/sequence_contigs"  => { :default => { :primary => :chromosome, :secondary => :sequence_contigs} },
-    :"chromosome/z_files"      => { :default => { :primary => :chromosome, :secondary => :z_files} },
-    :"collections/bulk_uploads"      => { :default => { :primary => :collections, :secondary => :bulk_uploads} },
-    :"library/citations"       => { :default => { :primary => :citations, :secondary => :citations } },
-    :"library/publications"    => { :default => { :primary => :citations, :secondary => :publications } },
-    :"library/publishers"      => { :default => { :primary => :citations, :secondary => :publishers } },
-    :"library/people"          => { :default => { :primary => :citations, :secondary => :people } },
-    :roles                     => { :default => { :primary => :admin,     :secondary => :roles } },
-    #:permission_sets           => { :default => { :primary => :admin,     :secondary => :permission_sets } },
-    :"admin/projects"          => { :default => { :primary => :admin,     :secondary => :project_controls } }
+    :taxa                           => { :default => { }, :index => { :secondary => :taxa_catalog }, :list => {:secondary => :taxa_list}, :tree_view => {:secondary => :tree_view} },
+    :granted_roles                  => { :default => { :primary => :admin, :secondary => :user_controls } },
+    :"admin/users"                  => { :default => { }, :index => { :primary => :admin, :secondary => :user_controls },
+                                                     :new => {:primary => :admin, :secondary => :user_controls} },
+    :help                           => { :default => { }, :index => {  } },
+    :"morphology/characters"        => { :default => { :primary => :chr_matrices, :secondary => :characters } },
+    :"morphology/chr_groups"        => { :default => { :primary => :chr_matrices, :secondary => :chr_groups } },
+    :"morphology/matrices"          => { :default => { :primary => :chr_matrices, :secondary => :chr_matrices } },
+    :"molecular/dna_samples"        => { :default => { :primary => :molecular,    :secondary => :dna_samples } },
+    :"molecular/insd/seqs"          => { :default => { :primary => :molecular,    :secondary => :seqs } },
+    :"molecular/primers"            => { :default => { :primary => :molecular,    :secondary => :primers } },
+    :"molecular/alignments"         => { :default => { :primary => :molecular,    :secondary => :alignments } },
+    :"molecular/matrices"           => { :default => { :primary => :molecular,    :secondary => :mol_matrices } },
+    :"molecular/markers"            => { :default => { :primary => :molecular,    :secondary => :markers}},
+    :"chromosome/probes"            => { :default => { :primary => :chromosome,   :secondary => :probes} },
+    :"chromosome/sequence_contigs"  => { :default => { :primary => :chromosome,   :secondary => :sequence_contigs} },
+    :"chromosome/z_files"           => { :default => { :primary => :chromosome,   :secondary => :z_files} },
+    :"collections"                  => { :default => {}, :index => {:secondary => :coll_catalog}, :new_upload => {:secondary => :bulk_upload} },
+    :"collections/bulk_uploads"     => { :default => { :primary => :collections,  :secondary => :bulk_uploads} },
+    :"collections/bulk_upload"      => { :default => { :primary => :collections,  :secondary => :bulk_upload} },
+    :"library/citations"            => { :default => { :primary => :citations,    :secondary => :citations } },
+    :"library/publications"         => { :default => { :primary => :citations,    :secondary => :publications } },
+    :"library/publishers"           => { :default => { :primary => :citations,    :secondary => :publishers } },
+    :"library/people"               => { :default => { :primary => :citations,    :secondary => :people } },
+    :roles                          => { :default => { :primary => :admin,        :secondary => :roles } },
+    #:permission_sets                          => { :default => { :primary => :admin,     :secondary => :permission_sets } },
+    :"admin/projects"               => { :default => { :primary => :admin,     :secondary => :project_controls } }
   }
 
   # map for holding display and linking behavior of tabs
@@ -81,7 +84,7 @@ module TabsHelper
 
       :citations  => { :text => "Library",
         :active_when => { :no_project => false, :no_login => false },
-        :subnav => [ :citations ],
+        :subnav => [ :citations],
         :link => "project_library_citations_path(session[:project_id] || '')" },
 
       :workflows => { :text => "Workflows",
@@ -90,7 +93,7 @@ module TabsHelper
 
       :collections => { :text => "Collections",
         :active_when => { :no_project => false, :no_login => false },
-        :subnav => [:coll_catalog, :bulk_uploads ],
+        :subnav => [:coll_catalog],
         :link => "project_collections_path(session[:project_id] || '')" },
 
       :image_albums => { :text => "Images",
@@ -117,12 +120,14 @@ module TabsHelper
     },
     #TODO rather than listing controller these secondaries should just have path attributes
     :secondary => {
-      :taxa          => { :title => "Taxon Tree View",                            :path => "tree_view_project_taxa_path(session[:project_id] || '')" },
+      #:taxa          => { :title => "Taxon Tree View",                            :path => "tree_view_project_taxa_path(session[:project_id] || '')" },
+      :tree_view     => { :title => "Taxon Tree View",                            :path => "tree_view_project_taxa_path(session[:project_id] || '')" },
       :taxa_list     => { :title => "Taxon List",                                 :path => "list_project_taxa_path(session[:project_id] || '')"},
       :taxa_catalog  => { :title => "Taxon Catalog",    :parent => :taxa,         :path => "project_taxa_path(session[:project_id] || '')" },
       :otus          => { :title => "OTUs",             :parent => :taxa,         :path => "project_otus_path(session[:project_id] || '')" },
       :otu_groups    => { :title => "OTU Groups",       :parent => :taxa,         :path => "project_otu_groups_path(session[:project_id] || '')" },
       :bulk_uploads  => { :title => "Bulk Uploads",     :parent => :collections,  :path => "project_bulk_uploads_path(session[:project_id] || '')", :controller => "collections/bulk_uploads" },
+
       :coll_catalog  => { :title => "Collection Catalog", :parent => :collections, :path => "project_collections_path(session[:project_id] || '')", :controller => "collections"},
       :chr_matrices  => { :title => "Matrices",                                   :path => "project_morphology_matrices_path(session[:project_id] || '')", :controller => "morphology/matrices" },
       :chr_groups    => { :title => "Character Groups", :parent => :chr_matrices, :path => "project_morphology_chr_groups_path(session[:project_id] || '')" },
@@ -192,7 +197,6 @@ module TabsHelper
 
     # show subnavigation if current tab is selected
     @current_subtab = get_current_subtab
-
     # send project_id as param to next controller only if it is a project specific controller
     project_id = nil
     project_id = session[:project_id] unless @current_tab.to_s == 'projects' || @current_tab.to_s == 'tag' || @current_tab.to_s == 'admin'

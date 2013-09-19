@@ -1,6 +1,7 @@
-- @markers.each_with_index do |marker, index|
-  %td.mh{:id => "ch_#{marker.id}", :valign => "top", :col => index + 1, :data => {:"marker-id" => marker.id} }
-    .marker_div{:title => marker.name}
-      %span{:title => marker.name}
-        = raw truncate(get_formatted_name(marker.name, true), :length => 30)
+- @matrices_markers.each_with_index do |mmarker, index|
+  %td.mh{:id => "ch_#{mmarker.marker.id}", :valign => "top", :col => index + 1, :data => {:"marker-id" => mmarker.marker.id, :cellsCount => mmarker.cells_count, :"matrix-marker-id" => mmarker.id} }
+    .marker_div{:title => mmarker.marker.name}
+      %span{:title => mmarker.marker.name}
+        = raw truncate(get_formatted_name(mmarker.marker.name, true), :length => 30)
       .marker_checkbox
+        %span.cell_count= raw mmarker.cells_count + (mmarker.cells_count == "1" ? " cell" : " cells") if mmarker.respond_to?(:cells_count)

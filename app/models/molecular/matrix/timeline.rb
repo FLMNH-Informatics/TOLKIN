@@ -3,7 +3,8 @@ class Molecular::Matrix::Timeline < ActiveRecord::Base
   has_many :matrices_markers,
            :class_name  => "Molecular::Matrix::MatricesMarkers",
            :foreign_key => "timeline_id",
-           :order       => "position"
+           :order       => "position",
+           :conditions => ("position is not null")
 
   has_many :markers,
            :through     => :matrices_markers,
@@ -11,8 +12,9 @@ class Molecular::Matrix::Timeline < ActiveRecord::Base
 
   has_many :matrices_otus,
            :class_name  => "Molecular::Matrix::MatricesOtus",
-           :foreign_key => "timeline_id"#,
-           #:order       => "position"
+           :foreign_key => "timeline_id",
+           :order       => "position",
+           :conditions => ("position is not null")
 
   has_many :otus,
            :through => :matrices_otus
@@ -33,6 +35,10 @@ class Molecular::Matrix::Timeline < ActiveRecord::Base
   belongs_to :matrix,
              :class_name  => "Molecular::Matrix",
              :foreign_key => "matrix_id"
+
+  has_many :submatrices,
+           :class_name => "Molecular::Matrix::Submatrix",
+           :foreign_key => "timeline_id"
 
 
   #belongs_to :project

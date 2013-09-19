@@ -107,7 +107,7 @@ module Molecular::Insd::SeqsHelper
   #end
 
   def marker_name_select
-    select('sdsfgdfgeq_marker', 'marker_id[]', Molecular::Marker.for_project(current_project).sort_by{ |m| m.name }.collect{ |m| [m.name, m.id] })
+    select('seq_marker', 'marker_id[]', Molecular::Marker.for_project(current_project).sort_by{ |m| m.name }.collect{ |m| [m.name, m.id] })
   end
 
   def unfiltered_ncbi

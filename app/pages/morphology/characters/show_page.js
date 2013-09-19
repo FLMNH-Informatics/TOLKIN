@@ -135,7 +135,7 @@ JooseModule('Morphology.Characters', function () {
             })
           },
           '.add_citation_to_state': function (event) {
-            var chrStateId = event.element().dataset.state_id;
+            var chrStateId = event.element().dataset.stateId;
             me.validateEdit(function(){ me.frame().viewport().widget('window').loadPage('show_add_citation_project_morphology_character_chr_state_path', {character_id: me._characterId, id: chrStateId})})
           },
           '.state_citation_edit': function (event) {

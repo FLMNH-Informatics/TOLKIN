@@ -91,14 +91,20 @@ class Molecular::Insd::Seq < ActiveRecord::Base
   end
 
   def self.from_biofasta(fasta, proj, filename)
-    marker_names = fasta.definition.scan(/(?<=tol_gene=\[)[-_a-zA-Z. 0-9\-\+]+(?=\])/)
-    markers       = marker_names.collect{|name| Molecular::Marker.find_or_create_by_project_and_name(proj,name)}
-    organism_name = fasta.definition.match(/(?<=tol_org=\[)[-_a-zA-Z. 0-9]+(?=\])/)
     seq = Molecular::Insd::Seq.create!(:sequence   => fasta.seq.upcase,
                                        :definition => fasta.definition,
                                        :project_id => proj.project_id,
                                        :fasta_filename => filename )
-    markers.each{|m| seq.markers << m }
+    marker_names  = fasta.definition.scan(/(?<=tol_gene=\[)[-_a-zA-Z. :0-9\-\+]+(?=\])/)
+    markers_with_locations = marker_names.collect{|name| Molecular::Marker.find_or_create_by_project_and_name(proj,name)}
+    marker_names.each do |marker|
+      split = marker.split(':').flatten
+      name, location = split.first, split.second
+      marker = Molecular::Marker.find_or_create_by_project_and_name(proj,name)
+      seq_marker = location.nil? ? { :marker_id => marker.id } : { :marker_id => marker.id, :start_position => location.split('..').first, :end_position => location.split('..').second }
+      seq.seq_markers.create!(seq_marker)
+    end
+    organism_name = fasta.definition.match(/(?<=tol_org=\[)[-_a-zA-Z. 0-9]+(?=\])/)
     unless organism_name.nil?
       taxon = Taxon.where('lower(name) = ? and owner_graph_rtid = ?', organism_name.to_s.gsub("_"," ").downcase, proj.rtid).first || Taxon.create!(:name => organism_name.to_s.gsub("_"," "), :project => proj)
       seq.taxon = taxon

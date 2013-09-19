@@ -1,6 +1,6 @@
-.curvy_box {
+table.curvy_box {
   border-collapse: collapse; }
-  .curvy_box .header {
+  table.curvy_box .header {
     font-size: 14px;
     font-weight: bold;
     padding-top: 10px;
@@ -11,7 +11,7 @@
     -moz-border-radius-topright: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px; }
-  .curvy_box .footer {
+  table.curvy_box .footer {
     height: 15px;
     -webkit-border-bottom-left-radius: 10px;
     -webkit-border-bottom-right-radius: 10px;
@@ -24,15 +24,15 @@
   width: 60%; }
   #local_bioentries table {
     margin: auto; }
-  #local_bioentries >tbody >tr >td {
-    background-color: #C6E2FF;
+  #local_bioentries > tbody > tr > td {
+    background-color: #c6e2ff;
     text-align: center; }
 
-#viewport_content_frame_bioentries_genbank_sequences_catalog .header {
+#genbank_bioentries .header {
   color: white; }
-#viewport_content_frame_bioentries_genbank_sequences_catalog >tbody >tr >td {
+#genbank_bioentries > tbody > tr > td {
   text-align: center;
-  background-color: #555;
+  background-color: #555555;
   color: white; }
 
 #genbank_sequences_check_list table {

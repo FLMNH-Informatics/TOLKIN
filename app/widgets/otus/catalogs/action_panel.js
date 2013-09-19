@@ -1,11 +1,13 @@
 //= require <templates/tooltip>
 //= require <templates/action_panel>
 //= require <widgets/taxa/action_panel_tool_tip>
+//= require <templates/action_panel_upload>
 
 
 Module('Otus.Catalogs', function () {
   JooseClass('ActionPanel', {
     isa: Templates.ActionPanel,
+    does: ActionPanelUpload,
     has: {
       catalog: { is: 'ro', init: function () { return this.parent() } },
       tooltip: {

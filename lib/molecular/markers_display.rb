@@ -14,39 +14,25 @@ module Molecular::MarkersDisplay
         <th class="h"></th>
         <th class="h">Name</th>
         <th class="h">Type</th>
-        <th class="h">Position</th>
+        <th class="h">Start position</th>
+        <th class="h">End position</th>
       </tr>
     </thead>)
   end
 
   def markers_table_rows
+    #new table rows using start_position and end position
     rows = ''
     if @seq.class == Molecular::Insd::Seq
-      @seq.seq_markers.sort { |a,b|
-        if !a.position.blank? and !b.position.blank?
-          if a.position.split('..').first.include?('<')
-            if b.position.split('..').first.include?('<')
-              a.position.split('..').first.tr('<','').to_i <=> b.position.split('..').first.tr('<','').to_i
-            else
-              a.position.split('..').first.tr('<','').to_i <=> b.position.split('..').first.to_i
-            end
-          else
-            a.position.split('..').first.to_i <=> b.position.split('..').first.to_i
-          end
-        elsif !a.position.blank? and b.position.blank?
-          a.position.split('..').first.tr('<','') <=> b.marker.name
-        elsif !b.position.blank? and a.position.blank?
-          a.marker.name <=> b.position.split('..').first.tr('<','')
-        else
-          a.marker.name <=> b.marker.name
-        end
-      }.each do |sm|
+      #@seq.seq_markers.sort{|a,b| a.start_position <=> b.start_position unless (a.start_position.nil? || b.start_position.nil? || a.start_position.blank? || b.start_position.blank?) }.each do |sm|
+      @seq.seq_markers.each do |sm|
         rows += %(
-          <tr id="tr_sm_#{sm.id}" class="#{cycle('body-odd', 'body-even')}" sm_id="#{sm.id}">
-            <td class="b td_seq_markers"><a class="remove_marker_from_seq"><img src="/images/16-em-cross.png" alt="remove" /></a></td>
-            <td class="b td_seq_markers">#{ (sm.marker and sm.marker.name)  ? sm.marker.name : ''   }</td>
-            <td class="b td_seq_markers">#{ (sm.marker and sm.marker.type)  ? sm.marker.type : 'n/a'}</td>
-            <td class="b td_seq_markers">#{  sm.position                    ? sm.position    : 'n/a'}</td>
+          <tr id="tr_sm_#{sm.id}" class="#{cycle('body-odd', 'body-even')}" data-sm_id="#{sm.id}">
+            <td class="b td_seq_markers">#{interact_mode == 'edit' ? %(<a class="remove_marker_from_seq"><img src="/images/16-em-cross.png" alt="remove" /></a>) : ''}</td>
+            <td class="b td_seq_markers">#{ (sm.marker and sm.marker.name)  ? sm.marker.name    : ''   }</td>
+            <td class="b td_seq_markers">#{ (sm.marker and sm.marker.type)  ? sm.marker.type    : 'n/a'}</td>
+            <td class="b td_seq_markers">#{  sm.start_position              ? sm.start_position : 'n/a'}</td>
+            <td class="b td_seq_markers">#{  sm.end_position                ? sm.end_position   : 'n/a'}</td>
           </tr>
         )
       end

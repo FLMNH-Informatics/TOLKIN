@@ -7,6 +7,24 @@ class Molecular::DnaSamplesController < ApplicationController
 
   include Restful::Responder
   include TolkinExporter
+  include BulkUploader
+
+
+  def show_new_upload
+    super resource
+  end
+
+  def new_upload
+    super resource
+  end
+
+  def bulk_upload
+    super resource
+  end
+
+  def view_map
+    super
+  end
 
   def resource
     Molecular::DnaSample

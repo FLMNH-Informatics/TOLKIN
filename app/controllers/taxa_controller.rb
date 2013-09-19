@@ -6,6 +6,8 @@ class TaxaController < ApplicationController
   helper :application, :forms
   
   include Restful::Responder
+  include BulkUploader
+
 
   before_filter :params_to_hash
 
@@ -23,6 +25,7 @@ class TaxaController < ApplicationController
   #  before_filter :find_project, :only=> [:create, :taxon_details, :citation_add, :get_morphology_references, :new_citation_for_taxonomy]
   #before_filter :new_taxon, :only=>[:create]
   before_filter :find_taxon, :only=>[:move_to, :citation_add, :new_citation_for_taxonomy]
+  before_filter :begin_search, :only => [:search_treebase,:search_ubio,:search_ncbi]
   #before_filter :assign_other_information, :only=>[:create]
   skip_before_filter :requires_any_guest, :only => [:add_protologue]
   # for the move control field
@@ -38,6 +41,26 @@ class TaxaController < ApplicationController
   #  Collection.content_columns.each do |column|
   #    in_place_edit_for :collection, column.name
   #  end
+
+  def show_new_upload
+    super resource
+  end
+
+  def new_upload
+    super resource
+  end
+
+  def begin_upload
+    super resource
+  end
+
+  def bulk_upload
+    super resource
+  end
+
+  def view_map
+    super
+  end
 
   def resource
     Taxon
@@ -638,7 +661,7 @@ class TaxaController < ApplicationController
       
         flash[:notice] = 'Successfully added taxon to otu.'
       else
-        flash[:notice] = 'Please select atleast one taxon.'
+        flash[:notice] = 'Please select at least one taxon.'
       end
     end
   
@@ -652,84 +675,105 @@ class TaxaController < ApplicationController
       end
     end
 
-    def treebase_search
-      uri = 'http://treebase.nescent.org/treebase-web/search/taxonSearch.html?&query=dcterms.title.taxon=%22'
-      @name_split = params[:name].split(' ')
-      if @name_split.length > 1
-        @append_name = ""
-        @name_split.each do |specifier_name|
-          @append_name = @append_name + specifier_name + '%20'
-        end
-        @append_name = @append_name.chop
-        @append_name = @append_name.chop
-        @append_name = @append_name.chop
-      else
-        @append_name = params[:name]
-      end
-      uri = uri+@append_name+'%22&format=rss1'
-      @doc = Hpricot(open(uri).string.gsub('.','-'))
-      render :partial => "shared/treebase_selection"
+  def search_outlinks
+    begin_search
+    @results = @taxon.try('get_' + params[:outlink_type] + '_taxa')
+    end_search 'search_outlinks'
+  end
 
+  def begin_search
+    @taxon = passkey.unlock(Taxon, to: 'edit').find(params[:id], readonly: false)
+  end
+
+  def end_search partial
+    respond_to do |format|
+      format.html {render partial, layout: request.xhr? ? false : 'application' }
     end
+  end
 
+  def show_jstor_widget
+    @taxon = passkey.unlock(Taxon, to: 'view').find(params[:id], readonly: true)
+    respond_to { |format| format.html { render :show_jstor_widget, layout: request.xhr? ? false : 'application'} }
+  end
 
-    def ubio_search
-      key="0e6f4af5959e3c6eb7fa7c0a1dfb578be821c736"
-      uri = "http://www.ubio.org/webservices/service.php?function=namebank_search&searchName="
-      @name_split = params[:name].split(' ')
-      if @name_split.length > 1
-        @append_name = ""
-        @name_split.each do |specifier_name|
-          @append_name = @append_name + specifier_name + '+'
-        end
-        @append_name = @append_name.chop
-      else
-        @append_name = params[:name]
-      end
-      uri = uri+@append_name+"&sci=1&vern=0&keyCode="+key
-      @doc = Nokogiri::XML(open(uri))
-      render :partial => "shared/ubio_selection"
-    end
+    #def treebase_search
+    #  uri = 'http://treebase.nescent.org/treebase-web/search/taxonSearch.html?&query=dcterms.title.taxon=%22'
+    #  @name_split = params[:name].split(' ')
+    #  if @name_split.length > 1
+    #    @append_name = ""
+    #    @name_split.each do |specifier_name|
+    #      @append_name = @append_name + specifier_name + '%20'
+    #    end
+    #    @append_name = @append_name.chop
+    #    @append_name = @append_name.chop
+    #    @append_name = @append_name.chop
+    #  else
+    #    @append_name = params[:name]
+    #  end
+    #  uri = uri+@append_name+'%22&format=rss1'
+    #  @doc = Hpricot(open(uri).string.gsub('.','-'))
+    #  render :partial => "shared/treebase_selection"
+    #
+    #end
+    #
+    #
+    #def ubio_search
+    #  key="0e6f4af5959e3c6eb7fa7c0a1dfb578be821c736"
+    #  uri = "http://www.ubio.org/webservices/service.php?function=namebank_search&searchName="
+    #  @name_split = params[:name].split(' ')
+    #  if @name_split.length > 1
+    #    @append_name = ""
+    #    @name_split.each do |specifier_name|
+    #      @append_name = @append_name + specifier_name + '+'
+    #    end
+    #    @append_name = @append_name.chop
+    #  else
+    #    @append_name = params[:name]
+    #  end
+    #  uri = uri+@append_name+"&sci=1&vern=0&keyCode="+key
+    #  @doc = Nokogiri::XML(open(uri))
+    #  render :partial => "shared/ubio_selection"
+    #end
 
-    def ubio_retrieve_taxon_details
-      key="0e6f4af5959e3c6eb7fa7c0a1dfb578be821c736"
-      uri = "http://www.ubio.org/webservices/service.php?function=namebank_object&namebankID="
-      uri = uri+params[:ubio_id]+"&keyCode="+key
-      @doc = Nokogiri::XML(open(uri))
-      render :partial => "shared/ubio_id_desc"
-    end
-
-    def ncbi_search
-      esearch_uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=Taxonomy&tool=REGNUM&email=ugandharc18@gmail.com&field=SCIN&term="
-      @name_split = params[:name].split(' ')
-      if @name_split.length > 1
-        @append_name = ""
-        @name_split.each do |specifier_name|
-          @append_name = @append_name + specifier_name + '+'
-        end
-        @append_name = @append_name.chop
-      else
-        @append_name = params[:name]
-      end
-      uri = esearch_uri+@append_name+'*'
-      @doc = Nokogiri::XML(open(uri))
-      @uri_id = ""
-      @doc.search("//Id").each do |id|
-        @uri_id = @uri_id + id.inner_html + ","
-      end
-      @uri_id = @uri_id.chop
-      esummary_uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=Taxonomy&tool=REGNUM&email=ugandharc18@gmail.com&id="
-      uri = esummary_uri+@uri_id+"&retmode=xml"
-      @doc = Nokogiri::XML(open(uri))
-      render :partial => "shared/ncbi_selection"
-    end
-
-    def ncbi_retrieve_taxon_details
-      esummary_uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=Taxonomy&tool=REGNUM&email=ugandharc18@gmail.com&id="
-      uri = esummary_uri+params[:ncbi_id]+"&retmode=xml"
-      @doc = Nokogiri::XML(open(uri))
-      render :partial => "shared/ncbi_id_desc"
-    end
+    #def ubio_retrieve_taxon_details
+    #  key="0e6f4af5959e3c6eb7fa7c0a1dfb578be821c736"
+    #  uri = "http://www.ubio.org/webservices/service.php?function=namebank_object&namebankID="
+    #  uri = uri+params[:ubio_id]+"&keyCode="+key
+    #  @doc = Nokogiri::XML(open(uri))
+    #  render :partial => "shared/ubio_id_desc"
+    #end
+    #
+    #def ncbi_search
+    #  esearch_uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=Taxonomy&tool=REGNUM&email=ugandharc18@gmail.com&field=SCIN&term="
+    #  @name_split = params[:name].split(' ')
+    #  if @name_split.length > 1
+    #    @append_name = ""
+    #    @name_split.each do |specifier_name|
+    #      @append_name = @append_name + specifier_name + '+'
+    #    end
+    #    @append_name = @append_name.chop
+    #  else
+    #    @append_name = params[:name]
+    #  end
+    #  uri = esearch_uri+@append_name+'*'
+    #  @doc = Nokogiri::XML(open(uri))
+    #  @uri_id = ""
+    #  @doc.search("//Id").each do |id|
+    #    @uri_id = @uri_id + id.inner_html + ","
+    #  end
+    #  @uri_id = @uri_id.chop
+    #  esummary_uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=Taxonomy&tool=REGNUM&email=ugandharc18@gmail.com&id="
+    #  uri = esummary_uri+@uri_id+"&retmode=xml"
+    #  @doc = Nokogiri::XML(open(uri))
+    #  render :partial => "shared/ncbi_selection"
+    #end
+    #
+    #def ncbi_retrieve_taxon_details
+    #  esummary_uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=Taxonomy&tool=REGNUM&email=ugandharc18@gmail.com&id="
+    #  uri = esummary_uri+params[:ncbi_id]+"&retmode=xml"
+    #  @doc = Nokogiri::XML(open(uri))
+    #  render :partial => "shared/ncbi_id_desc"
+    #end
 
     def load_citation_search_widget
       @taxon = passkey.unlock(Taxon).find(params[:id])
@@ -767,15 +811,7 @@ class TaxaController < ApplicationController
     end
    
     def display_taxa_column_names
-      #     @array_col =
-      @taxa_col = Taxon.column_names.reject{|col_name|col_name.include?('_id')}
-      #      @taxa_col = @taxa_col.
-      #        if col_name.gsub!('_id','')
-      ##            @array_col.push(col_name.gsub('_id','')+'_label')
-      #        else
-      #          @array_col.push(col_name)
-      #        end
-      #      end
+      @taxa_col = Taxon.column_names.reject{|col_name|col_name.include?('_id') || col_name.include?('rtid') || col_name.include?('vtid') || %w(created_at updated_at has_children deleted_at).include?(col_name) }
       @table_col = @taxa_col
       render :partial => "shared/list_of_table_columnnames" , :locals => {:controller_name => "taxa"}
     end

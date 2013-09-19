@@ -12,6 +12,10 @@ module ApplicationHelper
   
   end
 
+  def test_csv
+    %(<a href="#{eval('project_'+@resource.to_s.downcase.pluralize.sub('::','_')+'_path')}.csv?template=true&conditions=false">Download CSV template for #{@resource.to_s.pluralize}</a>)
+  end
+
   #stupid helper helper to convert a hash into a JSON options list
   # (without the encompasing {}'s or any type of recursion
   #Is there a rails API function that does this?
