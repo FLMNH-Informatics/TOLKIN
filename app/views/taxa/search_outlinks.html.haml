@@ -1,0 +1,25 @@
+%h1
+  = outlinks_type_name
+  Results
+%a.back_to_taxon{:href => project_taxon_path(current_project, @taxon)} Back
+%table.outlink_results
+  -if @results.length > 0
+    %tr
+      %th
+      %th Name
+      %th=outlinks_type_name + " ID"
+    -@results.each do |result|
+      %tr.selectable{:data=>{:outlink_type => params[:outlink_type], :outlink_id=>result['value']}}
+        %td
+          %input.select_outlink_taxon{:type=>'button',:value=>'Select'}
+        %td
+          %a{:target => '_blank', :href => taxon_outlink(params[:outlink_type],result['value'])}
+            = result['label']
+            &#8599;
+        %td= result['value']
+  -else
+    %tr
+      %td{:style => 'text-align:center;width:200px;'} No Matching Results
+    %tr
+      %td{:style => 'text-align:center;width:200px;'}
+        %a.back_to_taxon{:href => project_taxon_path(current_project,@taxon)} Back
