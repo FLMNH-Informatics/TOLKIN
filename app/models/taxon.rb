@@ -260,12 +260,13 @@ class Taxon < Record
     options = { name: name,
                 strict: true }
     html_params = options.keys.collect { |key| "#{key.to_s}=#{options[key].to_s.gsub(/\s+/, '+')}" }.join('&')
-    url = 'http://api.gbif.org/lookup/name_usage?' + html_params
+    url = 'http://api.gbif.org/lookup/species?' + html_params
     uri = URI.parse(url)
-    response = JSON.parse(Net::HTTP.get(uri))
+    result = Net::HTTP.get(uri)
+    response = JSON.parse(result.blank? ? '{}' : result)
     results = []
     results.push({'label' => response['scientificName'],
-                  'value' => response['usageKey'] })
+                  'value' => response['usageKey'] }) unless response.empty?
     results
   end
 
@@ -309,7 +310,6 @@ class Taxon < Record
   end
 
   def publication_info
-
       if  publication != nil && publication.strip() != '' && volume_num !=nil && volume_num.strip() != '' && pages != nil && pages != ''
          ((((publication << ' ') << volume_num) << ' ') << pages)
       elsif publication != nil && publication != '' && volume_num != nil && volume_num = '' && pages != nil && pages != ''
@@ -325,7 +325,6 @@ class Taxon < Record
       else
         publication
       end
-
   end
 
   def accepted_name_label

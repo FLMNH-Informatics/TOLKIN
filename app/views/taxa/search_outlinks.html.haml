@@ -1,7 +1,8 @@
 %h1
   = outlinks_type_name
   Results
-%a.back_to_taxon{:href => project_taxon_path(current_project, @taxon)} Back
+-unless @results.empty?
+  %a.back_to_taxon{:href => project_taxon_path(current_project, @taxon)} Back
 %table.outlink_results
   -if @results.length > 0
     %tr

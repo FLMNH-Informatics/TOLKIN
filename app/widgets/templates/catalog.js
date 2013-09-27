@@ -510,7 +510,12 @@ Module('Templates', function() {
       _entriesHTML: function () {
         var entriesHTML
           , entries = this.collection().data() && this.collection().entries();
-        function tooltipify (string){if (!string.startsWith('<')) return (typeof(string) == 'string') ? string.split(/(.{0,60})/).join(' ').strip() : string;}
+        function tooltipify (string){
+          if (!string.startsWith('<')){
+            string = string.gsub('"','')
+            return (typeof(string) == 'string') ? string.split(/(.{0,60})/).join(' ').strip() : string;
+          }
+        }
         if(entries && entries.size() > 0) {
           entriesHTML = entries.inject('', function(acc, item) {
             item = Object.values(item).first() // real attributes contained behind object type label
@@ -538,8 +543,7 @@ Module('Templates', function() {
                   this._nestedAttribute(item, column.cssClass),
                   column.moveControls ? 'move_controls' : null
                 ].compact().join(' ');
-
-                return "<td style=\""+bgColor+"\"><div title=\"" + encodeURI(tooltipify(contents)) + "\" class=\""+cssClass+"\" style=\"width: "+(column.width-8)+"px\">"+contents+"</div></td>"; //.truncate((column.width-4) / 6)
+                return "<td style=\""+bgColor+"\"><div title=\"" + tooltipify(contents) + "\" class=\""+cssClass+"\" style=\"width: "+(column.width-8)+"px\">"+contents+"</div></td>"; //.truncate((column.width-4) / 6)
               }.bind(this)).join('')
             });
           }.bind(this));
