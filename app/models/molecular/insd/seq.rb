@@ -176,10 +176,12 @@ class Molecular::Insd::Seq < ActiveRecord::Base
                     "creator_id",
                     "updater_id",
                     "taxon_id",
-                    "markers_fulltext"]
+                    "markers_fulltext",
+                    "contig",
+                    "old_dna_id", "fasta_filename_id", "gb_metadata"]
     cols = self.column_names.inject([]) { |memo, name|
       unless exclude_cols.include?(name.to_s)
-        memo.push({ column: name.to_s, label: name.to_s.split('_').join(' ').capitalize }) unless exclude_cols.include?(name.to_s)
+        memo.push({ column: name.to_s, label: name.to_s.split('_').join(' ').capitalize })
       else
         memo
       end

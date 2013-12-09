@@ -375,7 +375,8 @@ class CollectionsController < ApplicationController
     #@table_col = @array_col
     @table_col = @collection_col
     #render :partial => "shared/list_of_table_columnnames" , :locals => {:controller_name => "collections"}
-    render :partial => "list_of_collections_columns" , :locals => {:controller_name => "collections"}
+    render :partial => "shared/list_of_table_columnnames" , :locals => {:controller_name => "collections"}
+    #render :partial => "list_of_collections_columns" , :locals => {:controller_name => "collections"}
   end
 
   def export_csv

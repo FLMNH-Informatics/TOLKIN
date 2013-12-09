@@ -1,6 +1,6 @@
 #mergeWindow.window
   = raw window_head 'Merge Matrices', 'mergeWindow'
-  - form_tag merge_project_morphology_matrices_path(@project) do
+  = form_tag merge_project_morphology_matrices_path(@project) do
     #note_box{:style => 'padding: 5px; font-weight: bold;'} Note : cells in from-matrix will always overwrite cells in with-matrix when overlapping
     %table
       %tr.form_row

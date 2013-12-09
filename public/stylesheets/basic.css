@@ -134,6 +134,11 @@ ol.numbered {
 .b {
   font-weight: bold
 }
+
+.u {
+  text-decoration:underline;
+}
+
 .LV_validation_message{
     font-weight:bold;
     margin:0 0 0 5px;

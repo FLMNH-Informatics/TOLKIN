@@ -91,11 +91,22 @@ require 'templates/null'
         end
       end
 
+      def can_publify
+        model = params[:controller].camelize.singularize.constantize
+        model.public_model?.to_s
+      end
+
+      def publifier_container
+        %(<td id="publifier_container" style="width:33%" data-can-publify="#{can_publify}">
+            #{publifier_control}
+          </td>)
+      end
+
       def publifier_control
         actions = ["Make Selected Public", "Make All Public","Make Selected Private","Make All Private"]
         model = params[:controller].camelize.singularize.constantize
         output =  select_tag("publifier_select", options_for_select(actions)) + raw("<input class=\"publifier\" type=\"button\" id=\"publifierButton\" value=\"Go\"/>")
-        output if current_user.is_updater_for?(current_project) && model.public_model? && @can_publify
+        output if current_user.is_updater_for?(current_project) && model.public_model? && @can_publify && interact_mode == "edit"
       end
 
       def render_to_string

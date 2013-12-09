@@ -5,7 +5,7 @@ module Otus
       options = {
         columns: [
           { :attribute => "name", :width => 250 },
-          { :attribute => "otu_groups_joined", :width => 200 },
+          { :attribute => "otu_groups_joined", :label => 'OTU groups joined', :width => 200 },
           { :attribute => "creator.label", :label => 'Owner', :width => 150 }
         ],
       }.merge!(options)

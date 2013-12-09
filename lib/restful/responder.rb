@@ -127,6 +127,9 @@ module Restful
       @conditions = params[:conditions]
       validate(params) && parse(params)
       #hack for eol export - needs this for joining to project
+      if params[:select].include?('tolkin_url')
+        params[:select].concat params[:controller]=="taxa" ? %w(taxon_id rtid owner_graph_rtid) : %w(id project_id)
+      end
       params[:select].concat ['owner_graph_rtid'] if params.has_key?(:report_format) && params[:report_format] == 'eol'
       result = (current_user.username == "public" && resource.first.class.name != 'Taxon' && resource.first.class.name != 'Collection') ?
         resource.scoped.apply_finder_options(prepare(params.delete_if{|k,v|k=='limit'}, :for => :finder)) :

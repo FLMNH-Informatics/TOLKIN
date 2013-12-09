@@ -21,4 +21,8 @@ class Namestatus < ActiveRecord::Base
     status
   end
 
+  def name
+    status
+  end
+
 end

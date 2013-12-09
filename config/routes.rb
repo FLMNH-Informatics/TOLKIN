@@ -438,6 +438,7 @@ Tolkin::Application.routes.draw do |map|
         post :add_protologue
         get :get_protologue
         delete :delete_protologue
+        get :search_treebase
         get :search_outlinks
       end
       resources :images, controller: 'taxa/images'

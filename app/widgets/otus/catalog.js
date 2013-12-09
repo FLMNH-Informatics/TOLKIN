@@ -11,7 +11,7 @@ JooseModule('Otus', function () {
       collection: { is: 'rw', required: true, nullable: false },
       columns: { init: function () { return [ 
         { attribute: "name", width: 250 },
-        { attribute: "otu_groups_joined", width: 200 },
+        { attribute: "otu_groups_joined", label: 'OTU groups joined', width: 200 },
 //        { attribute: "otu_groups.otu_groups", map: 'name', width: 200 },
         { attribute: "creator.user.label", label: 'Owner', width: 150 }
       ] }},

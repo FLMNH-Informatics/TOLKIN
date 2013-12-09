@@ -270,6 +270,7 @@ class TaxaController < ApplicationController
         params.merge!(
         select: [ 'taxon_id', 'name', 'author', 'infra_author', 'publication',
           'publication_date', 'volume_num', 'pages', 'css_class', 'namestatus_id' ],
+        joins: :namestatus.outer,
         include: {
           namestatus: { select: ['id', 'status'] } },
         order: 'name',
@@ -812,6 +813,7 @@ class TaxaController < ApplicationController
    
     def display_taxa_column_names
       @taxa_col = Taxon.column_names.reject{|col_name|col_name.include?('_id') || col_name.include?('rtid') || col_name.include?('vtid') || %w(created_at updated_at has_children deleted_at).include?(col_name) }
+
       @table_col = @taxa_col
       render :partial => "shared/list_of_table_columnnames" , :locals => {:controller_name => "taxa"}
     end

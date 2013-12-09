@@ -21,8 +21,8 @@ Module('Templates', function() {
       hasContentsForm:  { is: 'ro', init: true },
       collection:       { is: 'ro', required: true, nullable: false},
       cycle:            { is: 'ro', lazy: true, init: function() { return new TOLJS.Cycle(); }},
-      canPublify:       { is: 'rw', lazy: true, init: function () {
-        if (this._collection._data){return this._collection._data.can_publify;}else{ return false;}} },
+      canPublify:       { is: 'ro', init: function () {
+        if (this._collection._data){return this._collection._data.can_publify;}else{ return $('publifier_container').dataset.canPublify == 'true'}} },
       dataId:           { is: 'ro', init: 'id' }, // id that should be used for checkboxes / form submission (in the case of matrices especially
       loaded:           { is: 'ro', init: false},
       showFiller:       { is: 'ro', init: true},
@@ -58,7 +58,11 @@ Module('Templates', function() {
       },
 
       initialize: function() {
-        this.handlers();
+        this.handlers().push(
+          this.iMode().on('change', function(){
+            $('publifier_container').update(this._publifierControl());
+          }, { once: false }, this)
+        );
         this.state().set($(this.id()) ? 'loadedDisplayed' : 'notDisplayed');
         if(this.state().is('loadedDisplayed')) {
           //this.state().set($(this.id()).down('.spinner') ? 'loading' : 'idle');
@@ -292,43 +296,48 @@ Module('Templates', function() {
           },
 
           '.publifier': function (event){
-            var page = this
-              , projectId = params["project_id"]
-              , path = params["controller"];
-            var ids, action, success, confirmation;
+            if (this.isEditMode()){
+              var page = this
+                , projectId = params["project_id"]
+                , path = params["controller"];
+              var ids, action, success, confirmation;
 
-            switch($('publifier_select').value){
-              case 'Make Selected Public':
-                ids          = $$('.selected_row').map(function(row){return row.down('input[type="checkbox"]').value}).join(',');
-                action       = "make_public";
-                success      = "Record(s) successfully made public.";
-                confirmation = "Are you sure you want to make your selection publicly viewable?"
-                break;
-              case 'Make All Public':
-                ids          = "all";
-                action       = "make_all_public";
-                success      = "Entire collection successfully made public.";
-                confirmation = "Are you sure you want to make the entire collection publicly viewable?"
-                break;
-              case 'Make Selected Private':
-                ids          = $$('.selected_row').map(function(row){return row.down('input[type="checkbox"]').value}).join(',');
-                action       = "make_private";
-                success      = "Record(s) no longer viewable by public.";
-                confirmation = "Are you sure you want to make your selection not publicly viewable?";
-                break;
-              case 'Make All Private':
-                ids          = "all";
-                action       = "make_all_private";
-                success      = "Entire collection is not viewable by public.";
-                confirmation = "Are you sure you want to make the entire collection not publicly viewable?";
-                break;
+              switch($('publifier_select').value){
+                case 'Make Selected Public':
+                  ids          = $$('.selected_row').map(function(row){return row.down('input[type="checkbox"]').value}).join(',');
+                  action       = "make_public";
+                  success      = "Record(s) successfully made public.";
+                  confirmation = "Are you sure you want to make your selection publicly viewable?"
+                  break;
+                case 'Make All Public':
+                  ids          = "all";
+                  action       = "make_all_public";
+                  success      = "Entire collection successfully made public.";
+                  confirmation = "Are you sure you want to make the entire collection publicly viewable?"
+                  break;
+                case 'Make Selected Private':
+                  ids          = $$('.selected_row').map(function(row){return row.down('input[type="checkbox"]').value}).join(',');
+                  action       = "make_private";
+                  success      = "Record(s) no longer viewable by public.";
+                  confirmation = "Are you sure you want to make your selection not publicly viewable?";
+                  break;
+                case 'Make All Private':
+                  ids          = "all";
+                  action       = "make_all_private";
+                  success      = "Entire collection is not viewable by public.";
+                  confirmation = "Are you sure you want to make the entire collection not publicly viewable?";
+                  break;
+              }
+              if (!ids.empty()){
+                if(confirm(confirmation)){
+                  publify(page,projectId,ids,path,action,success, function(){
+                    $$('.selected_row').each(function(row){
+                      //should unselect rows here
+                      //but need to handle molecular/seqs seperate selection
+                    })
+                });}
+              } //lib/publifier.js
             }
-            if (!ids.empty()){ if(confirm(confirmation)) publify(page,projectId,ids,path,action,success, function(){
-              $$('.selected_row').each(function(row){
-                //should unselect rows here
-                //but need to handle molecular/seqs seperate selection
-              })
-            });} //lib/publifier.js
           },
 
           ".unselect": function (event){ this.selected().deselectAll(); }
@@ -448,11 +457,16 @@ Module('Templates', function() {
           var catalog = $(me.id());
           if (catalog) {
             catalog.down('.catalog-contents table').update(me._contents());
-            catalog.down('.catalog-footer').down('.border').update(me._footerContents());
+            me.renderFooter();
+//            catalog.down('.catalog-footer').down('.border').update(me._footerContents());
 //            catalog.down('.catalog-footer').down('.border').update(me._counterNav());
             me.state().set('loadedDisplayed');
           }
         }, { once: true });
+      },
+
+      renderFooter: function (){
+        $(this.id()).down('.catalog-footer').down('.border').update(this._footerContents());
       },
 
       renderToString: function() {
@@ -468,6 +482,7 @@ Module('Templates', function() {
                            || (this.widget('actionPanel').render && this.widget('actionPanel').render()),
           'raw filters':   filters ? "<tr><td>"+filters+"</td></tr>" : '',
           id:              this.id(),
+          'can_publify':   'test',
           'raw column_headings': this._columnHeadings(),
           'raw counter_nav':     this._counterNav(),
           'raw contents':        this._contents(),
@@ -592,7 +607,7 @@ Module('Templates', function() {
         var output;
         output = "<table class=\"bottom\" style=\"width:100%;border:none;\">" +
           "<tr>" +
-            "<td style=\"width:33%\">" + this._publifierControl() + "</td>" +
+            "<td id='publifier_container' style=\"width:33%\">" + this._publifierControl() + "</td>" +
             "<td style=\"width:33%\">" + this._counterNav() + "</td>" +
             "<td style=\"width:33%\"></td>" +
           "</tr>" +
@@ -606,7 +621,7 @@ Module('Templates', function() {
           memo += '<option value="' + action + '">'+action+'</option>'
           return memo;
         })
-        return this.canPublify() ? '<select id="publifier_select" name="publifier_select">'+ selectOptions +'</select>' + "<input id=\"publifierButton\" class=\"publifier\" type=\"button\" value=\"Go\">" : "";
+        return (this.canPublify() && this.isEditMode()) ? '<select id="publifier_select" name="publifier_select">'+ selectOptions +'</select>' + "<input id=\"publifierButton\" class=\"publifier\" type=\"button\" value=\"Go\">" : "";
       },
 
       _counterNav: function () {

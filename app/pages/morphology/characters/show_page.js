@@ -172,7 +172,7 @@ JooseModule('Morphology.Characters', function () {
             }
           },
           '.add_image_to_state': function (event) {
-            var chrStateId = event.element().dataset.state_id;
+            var chrStateId = event.element().dataset.stateId;
             me.validateEdit(function(){me.frame().viewport().widget('window').loadPage('show_add_image_project_morphology_character_chr_state_path', {character_id: me._characterId, id: chrStateId})})
           },
           '.remove_image_from_chr_state': function (event) {

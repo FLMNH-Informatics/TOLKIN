@@ -15,25 +15,26 @@ class CsvExporter::Export
 #		@recs = model.find(:all , :select => (column_names))
 #	end
 
+    to_exclude = %w(rtid owner_graph_rtid)
 	  csv_string = CSV.generate do |csv|
 	    # header row
-	    csv << column_names
+	    csv << (column_names - to_exclude)
 
       # data rows
       recs.each do |rec|
         csv <<  column_names.inject([]) do |out, col|
              #hack for taxon export on collection
-             if col.include?('taxon_id')
-               out.push(rec.send(col.gsub('_id','')).try(:name))
-             else
-               out.push(rec[col])
-             end
+          unless to_exclude.include?(col)
+            if col.include?('taxon_id') && rec.class != Taxon
+              out.push(rec.send(col.gsub('_id','')).try(:name))
+            else
+              out.push(rec.respond_to?(col) ? rec.send(col) : nil)
+            end
+          else
+            out
+          end
         end
-        
       end
     end
-
-
-
   end
 end

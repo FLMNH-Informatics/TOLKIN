@@ -18,7 +18,6 @@ class Admin::UsersController < ApplicationController
 =end
     @users = (current_user.is_admin? ? User : params.has_key?(:id) ?  User.with_roles_in_project(Project.find(params[:id]))  : User.with_roles_in_project(current_project) )
     .order([:last_name, :first_name ]).select([:user_id, :first_name, :last_name, :username, :email, :enabled ])
-    .all
     .paginate(:page => params[:page], :per_page => 20)
 
      render :partial => 'users_table' if request.xml_http_request?

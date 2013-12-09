@@ -1,1 +1,1 @@
-<%= render :partial => 'dna_details', :locals => { :container_id => 'dna_sample_details_window', :path => project_molecular_dna_sample_path }%>
+<%= render :partial => (interact_mode == 'edit' ? 'dna_details' : 'dna_details_no_edit'), :locals => { :container_id => 'dna_sample_details_window', :path => project_molecular_dna_sample_path }%>

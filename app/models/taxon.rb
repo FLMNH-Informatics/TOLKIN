@@ -28,6 +28,10 @@ class Taxon < Record
   scope :root, lambda{
     where(parent_taxon_id: nil)
   }
+
+  #scope to use for riki's request via Name, URL text output
+  scope :accepted_in_project, lambda { |proj|  self.where(:owner_graph_rtid => proj.rtid, :namestatus => Namestatus.find(1)).order(:name) }
+
 #  named_scope :is_root_taxon, lambda{ |t_or_f|
 #    { conditions: {
 #        parent_taxon_id: (t_or_f ? nil : fail('no false for is_root_taxon right now'))
@@ -38,6 +42,20 @@ class Taxon < Record
 #  delegate :namestatus, to: :vtattrs
 
   # handle empty strings
+
+  def actual_url
+    "http://app.tolkin.org/projects/"  + project.project_id.to_s + "/taxa/" + taxon_id.to_s
+  end
+
+  def self.list_with_urls_for_project(proj)
+    tax = Taxon.accepted_in_project(proj)
+    list = tax.inject('') do |memo, taxon|
+      memo << taxon.name + ', ' + project_taxon_url(proj,taxon,:host=>'app.tolkin.org') + "\n"
+      memo
+    end
+    list
+  end
+
   def self.before_validation
     attr = self.attributes
     attr.each do |k,v|

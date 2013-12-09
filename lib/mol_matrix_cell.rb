@@ -62,7 +62,7 @@ module MolMatrixCell
     link_text = cell.try(:responsible_user).try(:initials)
     link_text = cell.try(:status).try(:name) || "----" if link_text.blank?
     #debugger unless cell.nil?
-    seq_icon = (cell.try(:primary_sequence_id) && !cell.sequences.empty?) ? genbank_image_link : "" unless cell.primary_sequence.locus == '' || cell.primary_sequence.locus.nil?
+    seq_icon = (cell.try(:primary_sequence_id) && !cell.sequences.empty?) ? genbank_image_link : "" unless !cell.primary_sequence || cell.primary_sequence.locus == '' || cell.primary_sequence.locus.nil? || cell.primary_sequence.nil?
     id = "c_#{otu_id}_#{marker_id}"
     extra_attrs = cell ? "data-cell-id='#{cell.id}'" : ""
     seq_count = cell ? cell.try(:sequences).try(:count) : ""

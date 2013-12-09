@@ -8,11 +8,11 @@ module GenericSearch
     class << klass
 
       def get_filters
-        searchable_columns.inject({}){|hash, c| 
+        searchable_columns.inject({}){|hash, col|
           (
             hash[
-              c.respond_to?(:name) ? c.name : c['name']
-            ] = c
+              col.respond_to?(:name) ? col.name : col['name']
+            ] = col
           ) &&
           hash
         }
@@ -30,7 +30,7 @@ module GenericSearch
       def searchable_columns
         @searchable_columns  ||= (
           columns
-            .reject { |c| c.primary || c.name =~ /(_count|_at|_by)$/ || c.name == inheritance_column || c.name =="desc" || c.sql_type == "integer" && c.name[-3..-1] != "_id" || c.sql_type == "date" || c.sql_type == "tsvector"}
+            .reject { |col| col.primary || col.name =~ /(_count|_at|_by)$/ || col.name == inheritance_column || col.name =="desc" || col.sql_type == "integer" && col.name[-3..-1] != "_id" || col.sql_type == "date" || col.sql_type == "tsvector"}
         )
         @searchable_columns
         

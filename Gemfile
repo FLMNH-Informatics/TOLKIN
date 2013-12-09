@@ -16,7 +16,7 @@ gem 'pg'
 gem 'sprockets', '1.0.2'
 # gem 'hpricot'
 gem 'mixology'
-gem 'yui-compressor'
+gem 'yui-compressor', '0.11.0'
 gem 'ruby-recaptcha'
 gem 'bio'
 gem 'passenger'
@@ -24,7 +24,7 @@ gem 'json', '1.7.7'
 #excel spreadsheet
 #gem 'spreadsheet'
 
-gem 'will_paginate', '3.0.pre2'
+gem 'will_paginate'
 gem 'rmagick'
 
 

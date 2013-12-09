@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108153954) do
+ActiveRecord::Schema.define(:version => 20130912153934) do
 
   create_table "advanced_searches", :force => true do |t|
     t.string   "params"
@@ -189,6 +189,19 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.integer  "copied_from_id"
   end
 
+  create_table "bulk_upload_filenames", :force => true do |t|
+    t.string   "filename"
+    t.datetime "date"
+    t.string   "record_model"
+    t.integer  "project_id"
+  end
+
+  create_table "bulk_upload_records", :force => true do |t|
+    t.integer "bulk_upload_filename_id"
+    t.integer "record_id"
+    t.boolean "is_taxon"
+  end
+
   create_table "bulk_uploads_custom_mappings", :force => true do |t|
     t.string   "name"
     t.text     "map"
@@ -238,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.boolean  "is_working_copy",                :default => false, :null => false
     t.boolean  "is_current",                     :default => false
     t.integer  "copied_from_id"
+    t.integer  "old_id"
   end
 
   create_table "characters_chr_groups", :force => true do |t|
@@ -316,6 +330,7 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.datetime "updated_at"
     t.integer  "citation_id",    :limit => 8
     t.integer  "copied_from_id"
+    t.integer  "old_id"
   end
 
   create_table "chr_states_citations", :id => false, :force => true do |t|
@@ -419,6 +434,16 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
   create_table "countries", :force => true do |t|
     t.string "name", :limit => 100, :null => false
     t.string "iso2", :limit => 2,   :null => false
+  end
+
+  create_table "custom_mappings", :force => true do |t|
+    t.string   "type"
+    t.string   "name"
+    t.text     "mapping"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "dbxref", :primary_key => "dbxref_id", :force => true do |t|
@@ -702,6 +727,7 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.text     "gb_metadata"
     t.text     "markers_fulltext"
     t.integer  "fasta_filename_id"
+    t.integer  "old_dna_id"
   end
 
   create_table "insd_seq_comment_set", :id => false, :force => true do |t|
@@ -723,6 +749,8 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.integer "seq_id"
     t.integer "marker_id"
     t.string  "position"
+    t.integer "start_position"
+    t.integer "end_position"
   end
 
   create_table "insd_seq_other_seqid", :primary_key => "pk", :force => true do |t|
@@ -956,12 +984,20 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
   end
 
   create_table "molecular_matrix_submatrices", :force => true do |t|
-    t.integer "molecular_matrix_timeline_id"
+    t.integer "timeline_id"
+    t.string  "name"
   end
 
-  create_table "molecular_matrix_submatrix_cells", :force => true do |t|
+  create_table "molecular_matrix_submatrix_markers", :force => true do |t|
     t.integer "submatrix_id"
-    t.integer "cell_id"
+    t.integer "marker_id"
+    t.integer "position"
+  end
+
+  create_table "molecular_matrix_submatrix_otus", :force => true do |t|
+    t.integer "submatrix_id"
+    t.integer "otu_id"
+    t.integer "position"
   end
 
   create_table "molecular_matrix_timelines", :force => true do |t|
@@ -970,6 +1006,7 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.integer  "updater_id"
     t.datetime "updated_at"
     t.datetime "delete_date"
+    t.boolean  "editable",    :default => true
   end
 
   create_table "morphology_matrices", :force => true do |t|
@@ -1022,11 +1059,19 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
   create_table "morphology_matrix_submatrices", :force => true do |t|
     t.integer "timeline_id"
     t.integer "matrix_id"
+    t.string  "name"
   end
 
-  create_table "morphology_matrix_submatrix_cells", :force => true do |t|
+  create_table "morphology_matrix_submatrix_characters", :force => true do |t|
     t.integer "submatrix_id"
-    t.integer "cell_id"
+    t.integer "character_id"
+    t.integer "position"
+  end
+
+  create_table "morphology_matrix_submatrix_otus", :force => true do |t|
+    t.integer "submatrix_id"
+    t.integer "otu_id"
+    t.integer "position"
   end
 
   create_table "morphology_matrix_timelines", :force => true do |t|
@@ -1036,6 +1081,7 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.datetime "updated_at"
     t.datetime "delete_date"
     t.integer  "version"
+    t.boolean  "editable",    :default => true
   end
 
   create_table "name_strings", :force => true do |t|
@@ -1714,6 +1760,8 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.integer  "copied_from_id"
     t.string   "subsection",                :limit => nil
     t.string   "type_date"
+    t.integer  "gbif_id"
+    t.integer  "eol_id"
   end
 
   add_index "taxa", ["rtid"], :name => "taxa_rtid_key", :unique => true
@@ -1990,8 +2038,59 @@ ActiveRecord::Schema.define(:version => 20121108153954) do
     t.datetime "deleted_at"
   end
 
+  create_table "wexec_paras", :force => true do |t|
+    t.integer  "wexec_id"
+    t.string   "pname"
+    t.text     "pcaption"
+    t.string   "ptype"
+    t.string   "select_list"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wexecs", :force => true do |t|
+    t.string   "name"
+    t.text     "eloc"
+    t.string   "inputs"
+    t.string   "outputs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wflows", :force => true do |t|
+    t.text     "name"
+    t.text     "desc"
+    t.string   "wstatus"
+    t.string   "wfolder"
+    t.integer  "project_id"
+    t.integer  "creator_id"
+    t.integer  "updater"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 # Could not dump table "workflows" because of following StandardError
 #   Unknown type 'workflow_status' for column 'status'
+
+  create_table "wtask_ports", :force => true do |t|
+    t.integer  "wtask_id"
+    t.integer  "ptype"
+    t.text     "ploc"
+    t.string   "pname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wtasks", :force => true do |t|
+    t.integer  "wflow_id"
+    t.integer  "exe_id"
+    t.text     "inline"
+    t.string   "name"
+    t.string   "wtasks_status"
+    t.string   "wtasks_folder"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "z_files", :force => true do |t|
     t.datetime "created_at"

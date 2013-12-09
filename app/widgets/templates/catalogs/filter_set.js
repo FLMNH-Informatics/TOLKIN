@@ -184,7 +184,7 @@ JooseModule('Templates.Catalogs', function() {
         var str, str_name, row;
         if(filter.name.endsWith("_id")){
           str = filter.name.strip().underscore().gsub(' ', '_').gsub('_id', '');
-          str_name = str + '.name';
+          str_name = (filter.name == 'namestatus_id' ? 'namestatuses.status' : (str + '.name'));
 //          row = "<tr><td id='fv_"+filter.name+"' size='3'>x</td><td><label>"+filter_label+"</label></td><td><input type='text' size='"+this._textBoxSize+"' name='search["+str_name+"]' value='"+term+"' /></td></tr>";
 //       } else if (filter['type'] == "integer"){
           // WHERE IS THIS BEING USED?
@@ -212,7 +212,7 @@ JooseModule('Templates.Catalogs', function() {
             </td>\n\
             <td style='width:10px'></td>\n\
             <td><label>"+filter_label+"</label></td>\n\
-            <td><input type='text' size='"+this._textBoxSize+"' name='search["+str_name+"]' value='"+term+"' /></td>\n\
+            <td>" + (filter.name == 'namestatus_id' ? filter.input : "<input type='text' size='"+this._textBoxSize+"' name='search["+str_name+"]' value='"+term+"' />") + "</td>\n\
           </tr>";
         return row;
       },
@@ -232,7 +232,8 @@ JooseModule('Templates.Catalogs', function() {
             var attrName = pair.key.match(/search\[([\w\.]+)\]/)[1]
             var newCond =
               pair.value.split(/\s+/).inject(null, function (acc, item) {
-                 var toAdd = SyncRecord.attr(attrName).matches('%'+item+'%')
+                //TODO:  Make this work for all _id attributes
+                 var toAdd = SyncRecord.attr(attrName)._name == "namestatus_id" ? SyncRecord.attr(attrName).eq(item) : SyncRecord.attr(attrName).matches('%'+item+'%')
                  return ( acc ? acc.and(toAdd) : toAdd )
               }, this)
   //           SyncRecord.attr(attrName).matches('%'+pair.value+'%')
@@ -245,7 +246,7 @@ JooseModule('Templates.Catalogs', function() {
       // events
       onChange: function(event) {
         Event.delegate({
-          'select': function(event) {
+          'select[name=filter_select]': function(event) {
             var select = event.element();
             var option = select.childElements()[select.selectedIndex];
             if(select.selectedIndex != 0) { // 'Select Filter' option is select if index is 0
@@ -253,14 +254,16 @@ JooseModule('Templates.Catalogs', function() {
               //alert(this._filters[option.value]);
               if(this._filters) {
                 var filterRow = this._filterRow(this._filters[option.value]);
-                $(this.id()).down('.container > tbody').insert(filterRow);
+                var new_row = $(this.id()).down('.container > tbody').insert(filterRow);
+                if (new_row.down('select') && option.value == "namestatus_id") new_row.down('select').writeAttribute({name: 'search[namestatus_id]'}).setStyle({width: '324px'})
               } else {
                 $(this.id()).down('.container > tbody').insert("<tr class='"+option.value+"_filter_row'><td colspan='4'>loading filter info ...</td></tr>")
                 this.poll({
                   on: function () { return this._filters },
                   run: function () {
                     var filterRow = this._filterRow(this._filters[option.value])
-                    $(this.id()).down('.container > tbody').down('.'+option.value+'_filter_row').replace(filterRow)
+                    var new_row = $(this.id()).down('.container > tbody').down('.'+option.value+'_filter_row').replace(filterRow)
+                    if (new_row.down('select') && option.value == "namestatus_id") new_row.down('select').writeAttribute({name: 'search[namestatus_id]'}).setStyle({width: '324px'})
                   }
                 })
               }

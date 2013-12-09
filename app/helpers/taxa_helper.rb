@@ -287,6 +287,26 @@ module TaxaHelper
     @parent_combo_box ||= Taxa::ParentComboBox.new({ taxon: @taxon, parent: parent, context: self })
   end
 
+  def status_select
+    output = ""
+    output+="<select id='namestatus_select' name='taxon[namestatus_id]'>"
+    output+="<option value='13' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 13 ? "selected='selected'" : '') + ">None</option>"
+    output+="<option value='1' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 1 ? "selected='selected'" : '') + ">Accepted Name</option>"
+    output+="<option value='2' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 2 ? "selected='selected'" : '') + ">Basionym</option>"
+    output+="<option value='3' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 3 ? "selected='selected'" : '') + ">Synonym</option>"
+    output+="<option value='4' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 4 ? "selected='selected'" : '') + ">Doubtful synonym</option>"
+    output+="<option value='5' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 5 ? "selected='selected'" : '') + ">Invalid</option>"
+    output+="<option value='6' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 6 ? "selected='selected'" : '') + ">Misapplied name</option>"
+    output+="<option value='7' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 7 ? "selected='selected'" : '') + ">Spelling variant</option>"
+    output+="<option value='8' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 8 ? "selected='selected'" : '') + ">Nom nud</option>"
+    output+="<option value='9' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 9 ? "selected='selected'" : '') + ">Nom illeg</option>"
+    output+="<option value='10' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 10 ? "selected='selected'" : '') + ">Nom nov</option>"
+    output+="<option value='11' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 11 ? "selected='selected'" : '') + ">Unpublished</option>"
+    output+="<option value='12' " + (@taxon && @taxon.namestatus && @taxon.namestatus.id == 12 ? "selected='selected'" : '') + ">Unplaced</option>"
+    output+="</select>";
+    output
+  end
+
 
 
   def status
@@ -299,21 +319,7 @@ module TaxaHelper
                     output+= @taxon.namestatus.status
                 end
           else
-            output+="<select id='namestatus_select' name='taxon[namestatus_id]'>" 
-            output+="<option value='13' " + (@taxon.namestatus && @taxon.namestatus.id == 13 ? "selected='selected'" : '') + ">None</option>"
-            output+="<option value='1' " + (@taxon.namestatus && @taxon.namestatus.id == 1 ? "selected='selected'" : '') + ">Accepted Name</option>"
-            output+="<option value='2' " + (@taxon.namestatus && @taxon.namestatus.id == 2 ? "selected='selected'" : '') + ">Basionym</option>"
-            output+="<option value='3' " + (@taxon.namestatus && @taxon.namestatus.id == 3 ? "selected='selected'" : '') + ">Synonym</option>"
-            output+="<option value='4' " + (@taxon.namestatus && @taxon.namestatus.id == 4 ? "selected='selected'" : '') + ">Doubtful synonym</option>"
-            output+="<option value='5' " + (@taxon.namestatus && @taxon.namestatus.id == 5 ? "selected='selected'" : '') + ">Invalid</option>"
-            output+="<option value='6' " + (@taxon.namestatus && @taxon.namestatus.id == 6 ? "selected='selected'" : '') + ">Misapplied name</option>"
-            output+="<option value='7' " + (@taxon.namestatus && @taxon.namestatus.id == 7 ? "selected='selected'" : '') + ">Spelling variant</option>"
-            output+="<option value='8' " + (@taxon.namestatus && @taxon.namestatus.id == 8 ? "selected='selected'" : '') + ">Nom nud</option>"
-            output+="<option value='9' " + (@taxon.namestatus && @taxon.namestatus.id == 9 ? "selected='selected'" : '') + ">Nom illeg</option>"
-            output+="<option value='10' " + (@taxon.namestatus && @taxon.namestatus.id == 10 ? "selected='selected'" : '') + ">Nom nov</option>"
-            output+="<option value='11' " + (@taxon.namestatus && @taxon.namestatus.id == 11 ? "selected='selected'" : '') + ">Unpublished</option>"
-            output+="<option value='12' " + (@taxon.namestatus && @taxon.namestatus.id == 12 ? "selected='selected'" : '') + ">Unplaced</option>"
-            output+="</select>";
+            output+= status_select
           end
       output    
   end

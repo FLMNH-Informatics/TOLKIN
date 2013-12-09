@@ -9,19 +9,21 @@ class ExcelExporter::Export
 
     book = Spreadsheet::Workbook.new
     sheet1 = book.create_worksheet :name => 'tolkin export'
-
+    to_exclude = %w(rtid owner_graph_rtid)
     rownum = 0
-    column_names.each do |c|
-      sheet1.row(rownum).push c
+    column_names.each do |col|
+      sheet1.row(rownum).push col unless to_exclude.include? col
     end
 
-    recs.each do |r|
+    recs.each do |rec|
       rownum += 1
-      column_names.each do |c|
-        if c.include?('taxon_id')
-           sheet1.row(rownum).push r.try(c.gsub('_id', '')).try(:name)
-        else
-           sheet1.row(rownum).push r.send(c)
+      column_names.each do |col|
+        unless to_exclude.include? col
+          if col.include?('taxon_id') && rec.class != Taxon
+            sheet1.row(rownum).push rec.try(col.gsub('_id', '')).try(:name)
+          else
+            sheet1.row(rownum).push rec.send(col)
+          end
         end
       end
     end
