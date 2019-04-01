@@ -1,18 +1,18 @@
 source 'http://rubygems.org'
-source 'http://gems.github.com'
+#source 'http://gems.github.com'
 
 gem 'rails', '~>3.0.0'
-gem 'addressable', '~>2.2'
+gem 'addressable', '2.2'
 gem 'meta_where'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rake'
+gem 'rake', '0.8.7'
 gem 'delayed_job'
-gem 'haml'
+gem 'haml', '~>4.0.5'
 #gem 'sass'
 gem 'libxml-ruby'
-gem 'pg'
+gem 'pg', '0.17.1'
 gem 'sprockets', '1.0.2'
 # gem 'hpricot'
 gem 'mixology'
@@ -20,19 +20,19 @@ gem 'yui-compressor', '0.11.0'
 gem 'ruby-recaptcha'
 gem 'bio'
 gem 'passenger'
-gem 'json', '1.7.7'
+gem 'json'
 #excel spreadsheet
 #gem 'spreadsheet'
 
 gem 'will_paginate'
-gem 'rmagick'
+gem 'rmagick', '2.16.0'
 
 
 
 gem 'rubyzip', '~> 0.9.9'
 
 gem "paperclip", "~> 2.3"
-gem "sass"
+gem "sass", "3.3.4"
 # gem 'netzke-basepack'
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -45,7 +45,7 @@ gem 'ruby-debug19'
 
 # Bundle the extra gems:
 # gem 'bj'
- gem 'nokogiri'
+ gem 'nokogiri', '~>1.6.1'
  gem 'fastercsv'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
