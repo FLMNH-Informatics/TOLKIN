@@ -27,3 +27,4 @@ profile.html
 /db/migrate/*
 /config/initializers/site_keys.rb
 
+.idea
