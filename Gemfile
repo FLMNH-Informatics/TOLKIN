@@ -7,7 +7,7 @@ gem 'meta_where'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rake', '0.8.7'
+gem 'rake'
 gem 'delayed_job'
 gem 'haml', '~>4.0.5'
 #gem 'sass'
@@ -15,7 +15,7 @@ gem 'libxml-ruby'
 gem 'pg', '0.17.1'
 gem 'sprockets', '1.0.2'
 # gem 'hpricot'
-gem 'mixology'
+# gem 'mixology'
 gem 'yui-compressor', '0.11.0'
 gem 'ruby-recaptcha'
 gem 'bio'
@@ -41,11 +41,11 @@ gem "sass", "3.3.4"
 # gem 'capistrano'
 
 # To use debugger
-gem 'ruby-debug19'
+gem 'byebug'
 
 # Bundle the extra gems:
 # gem 'bj'
- gem 'nokogiri', '~>1.6.1'
+ gem 'nokogiri', '~>1.8.5'
  gem 'fastercsv'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
@@ -56,7 +56,7 @@ gem 'ruby-debug19'
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem 'factory_girl_rails'
+#gem 'factory_girl_rails'
 
 group :test do
 	gem 'rspec'
