@@ -1,4 +1,4 @@
-#class Insd::Qualifier < ActiveRecord::Base
+#class Molecular::Insd::Qualifier < ActiveRecord::Base
 #  self.primary_key = 'pk'
 #  self.table_name = 'insd_qualifier'
 #

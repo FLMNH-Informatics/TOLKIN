@@ -1,4 +1,4 @@
-class Insd::AltSeqData < ActiveRecord::Base
+class Molecular::Insd::AltSeqData < ActiveRecord::Base
   self.primary_key = 'pk'
   self.table_name = 'insd_alt_seq_data'
 

@@ -56,7 +56,7 @@ class Molecular::Resources::Ncbi::EUtils
       Timeout::timeout(5) { @response = Net::HTTP.get('eutils.ncbi.nlm.nih.gov', "/entrez/eutils/esearch.fcgi?#{html_params}") }
       Molecular::Resources::Ncbi::EUtils::ESearch.from_xml(@response)
     rescue Timeout::Error
-      fail Ncbi::TimeoutError
+      fail Molecular::Resources::NcbiTimeoutError
     end
 
     def esummary ids

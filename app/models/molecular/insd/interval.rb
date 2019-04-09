@@ -1,4 +1,4 @@
-#class Insd::Interval < ActiveRecord::Base
+#class Molecular::Insd::Interval < ActiveRecord::Base
 #  self.primary_key = 'pk'
 #  self.table_name = 'insd_interval'
 #

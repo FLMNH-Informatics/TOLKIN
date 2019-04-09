@@ -4,8 +4,8 @@ class UserSignature < ActiveRecord::Observer
   observe(
     Collection,
     Library::Publication,
-    Matrix::Changeset,
-    Matrix::Branch,
+    # Matrix::Changeset,
+    # Matrix::Branch,
     Molecular::Alignment,
     Molecular::Insd::Seq,
     Molecular::Matrix::Cell,
