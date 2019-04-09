@@ -1,4 +1,4 @@
-class Insd::Author < ActiveRecord::Base
+class Molecular::Insd::Author < ActiveRecord::Base
   self.primary_key = 'pk'
   self.table_name = 'insd_author'
 

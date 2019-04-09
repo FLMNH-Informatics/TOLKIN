@@ -1,3 +1,3 @@
-class Ncbi::Seq < ActiveResource::Base
+class Molecular::Resources::NcbiSeq < ActiveResource::Base
   include GenbankSearch
 end

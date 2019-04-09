@@ -1,6 +1,6 @@
 require 'timeout'
 
-class Ncbi::SeqsController < ApplicationController
+class Molecular::Resources::NcbiSeqsController < ApplicationController
   def index
     esearch_results = Molecular::Resources::Ncbi::EUtils.esearch params
     esummary_results = Molecular::Resources::Ncbi::EUtils.esummary(esearch_results[:ids])

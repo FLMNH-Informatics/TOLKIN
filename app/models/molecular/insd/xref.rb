@@ -1,4 +1,4 @@
-#class Insd::Xref < ActiveRecord::Base
+#class Molecular::Insd::Xref < ActiveRecord::Base
 #  self.primary_key = 'pk'
 #  self.table_name = 'insd_xref'
 #

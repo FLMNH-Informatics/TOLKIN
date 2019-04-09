@@ -1,4 +1,4 @@
-#class Insd::FeatureSet < ActiveRecord::Base
+#class Molecular::Insd::FeatureSet < ActiveRecord::Base
 #  self.table_name = 'insd_feature_set'
 #  self.primary_key = 'pk'
 #

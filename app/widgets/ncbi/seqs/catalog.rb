@@ -1,4 +1,4 @@
-class Ncbi::Bioentries::Catalog < Templates::Catalog
+class  Molecular::Resources::Ncbi::Bioentries::Catalog < Templates::Catalog
   def initialize options
     options = {
       columns: [
