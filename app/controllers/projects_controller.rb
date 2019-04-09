@@ -53,7 +53,6 @@ class ProjectsController < ApplicationController
     @user = User.find(session[:user_id])
 
     save_success = @project.save
-    debugger
     if save_success && !@user.is_admin?
       GrantedRole.create(:user => @user, :project => @project, :role_type => RoleType.find_by_name('manager'))
   end

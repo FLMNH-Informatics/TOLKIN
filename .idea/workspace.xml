@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a230bf98-7e34-4d67-b360-c3aef43d79a4" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/molecular/insd/seqs/_genbank_seq_search.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/molecular/insd/seqs/_genbank_seq_search_bar.html.erb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/_bulk_export_markers_table.html.erb" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/_bulk_export_markers_table.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/_bulk_export_otus_table.html.erb" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/_bulk_export_otus_table.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid.html.haml" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/morphology/matrices/_datagrid.html.haml" afterPath="$PROJECT_DIR$/app/views/morphology/matrices/_datagrid.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/morphology/matrices/_datagrid_controls.html.haml" afterPath="$PROJECT_DIR$/app/views/morphology/matrices/_datagrid_controls.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid_export_controls.html.haml" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid_export_controls.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid_headers.html.haml" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid_headers.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/morphology/matrices/_datagrid_headers.html.haml" afterPath="$PROJECT_DIR$/app/views/morphology/matrices/_datagrid_headers.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid_navigation.html.haml" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/_datagrid_navigation.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/image_albums/_image_album_and_paginate.html.erb" afterPath="$PROJECT_DIR$/app/views/image_albums/_image_album_and_paginate.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/image_albums/_image_singles.html.erb" afterPath="$PROJECT_DIR$/app/views/image_albums/_image_singles.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/_matrix_title.html.haml" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/_matrix_title.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/morphology/matrices/_matrix_title.html.haml" afterPath="$PROJECT_DIR$/app/views/morphology/matrices/_matrix_title.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/insd/seqs/_seq_markers_display.html.erb" afterPath="$PROJECT_DIR$/app/views/molecular/insd/seqs/_seq_markers_display.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/accounts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/accounts_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/matrices/action_list.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/matrices/action_list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/chromosome/probes/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/chromosome/probes/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/chromosome/z_files/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/chromosome/z_files/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/collections/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/collections/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/library/citations/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/library/citations/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/alignments/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/alignments/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/dna_samples/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/dna_samples/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/insd/seqs/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/insd/seqs/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/matrices/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/matrices/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/primers/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/primers/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/morphology/characters/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/morphology/characters/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/morphology/chr_groups/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/morphology/chr_groups/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/morphology/matrices/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/morphology/matrices/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/otu_groups/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/otu_groups/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/otus/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/otus/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/taxa/catalogs/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/taxa/catalogs/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/templates/action_panel.js" afterPath="$PROJECT_DIR$/app/widgets/templates/action_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/templates/action_panel.rb" afterPath="$PROJECT_DIR$/app/widgets/templates/action_panel.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/otus/add_to_otu_group_wizard.html.erb" afterPath="$PROJECT_DIR$/app/views/otus/add_to_otu_group_wizard.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/otus/add_to_otu_group_wizard_page.js" afterPath="$PROJECT_DIR$/app/pages/otus/add_to_otu_group_wizard_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/alignment.js" afterPath="$PROJECT_DIR$/app/models/molecular/alignment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/alignments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/alignments_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/molecular/alignments_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/molecular/alignments_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/insd/alt_seq_data.rb" afterPath="$PROJECT_DIR$/app/models/molecular/insd/alt_seq_data.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/insd/author.rb" afterPath="$PROJECT_DIR$/app/models/molecular/insd/author.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/bioentries_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/bioentries_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrices/bulk_sequence_exporter_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrices/bulk_sequence_exporter_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/collections/bulk_uploads_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/collections/bulk_uploads_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/library/citations/catalog.js" afterPath="$PROJECT_DIR$/app/widgets/library/citations/catalog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/insd/seqs/catalog.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/insd/seqs/catalog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/templates/catalog.js" afterPath="$PROJECT_DIR$/app/widgets/templates/catalog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/templates/catalog.rb" afterPath="$PROJECT_DIR$/app/widgets/templates/catalog.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/matrix/cell.rb" afterPath="$PROJECT_DIR$/app/models/molecular/matrix/cell.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/matrix/cells_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/matrix/cells_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/morphology/characters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/morphology/characters_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/morphology/chr_group.js" afterPath="$PROJECT_DIR$/app/models/morphology/chr_group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/morphology/chr_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/morphology/chr_groups_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/library/citation.js" afterPath="$PROJECT_DIR$/app/models/library/citation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/library/citations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/library/citations_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/collections_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/collections_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/matrices/datagrid.js" afterPath="$PROJECT_DIR$/app/widgets/matrices/datagrid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/dna_samples_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/dna_samples_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/resources/ncbi/e_utils.rb" afterPath="$PROJECT_DIR$/app/models/molecular/resources/ncbi/e_utils.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/fasta_filenames_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/fasta_filenames_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/templates/catalogs/filter_set.js" afterPath="$PROJECT_DIR$/app/widgets/templates/catalogs/filter_set.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/matrices/datagrids/cells/focus.js" afterPath="$PROJECT_DIR$/app/widgets/matrices/datagrids/cells/focus.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/image_albums/get_image.html.erb" afterPath="$PROJECT_DIR$/app/views/image_albums/get_image.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/image_albums_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/image_albums_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/import_fasta_seq.rb" afterPath="$PROJECT_DIR$/app/models/molecular/import_fasta_seq.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/image_albums/index.html.erb" afterPath="$PROJECT_DIR$/app/views/image_albums/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/insd/seqs/index.html.haml" afterPath="$PROJECT_DIR$/app/views/molecular/insd/seqs/index.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/collections/bulk_uploads/index_page.js" afterPath="$PROJECT_DIR$/app/pages/collections/bulk_uploads/index_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/image_albums/index_page.js" afterPath="$PROJECT_DIR$/app/pages/image_albums/index_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/index_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/index_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/markers/index_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/markers/index_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/insd/alt_seq_data/item.rb" afterPath="$PROJECT_DIR$/app/models/molecular/insd/alt_seq_data/item.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/insd/struc_comment/item.rb" afterPath="$PROJECT_DIR$/app/models/molecular/insd/struc_comment/item.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/marker.rb" afterPath="$PROJECT_DIR$/app/models/molecular/marker.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/matrices_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/matrices_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/morphology/matrices_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/morphology/matrices_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/molecular/matrices_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/molecular/matrices_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/morphology/matrices_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/morphology/matrices_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/matrix.js" afterPath="$PROJECT_DIR$/app/models/molecular/matrix.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/morphology/matrix.js" afterPath="$PROJECT_DIR$/app/models/morphology/matrix.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/matrix_view.js" afterPath="$PROJECT_DIR$/app/models/molecular/matrix_view.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/morphology/matrix_view.js" afterPath="$PROJECT_DIR$/app/models/morphology/matrix_view.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/new_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/new_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/otu_group.rb" afterPath="$PROJECT_DIR$/app/models/otu_group.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/otu_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/otu_groups_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/otus_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/otus_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/primer.js" afterPath="$PROJECT_DIR$/app/models/molecular/primer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/primers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/primers_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/chromosome/probe.js" afterPath="$PROJECT_DIR$/app/models/chromosome/probe.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/chromosome/probes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/chromosome/probes_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/project.rb" afterPath="$PROJECT_DIR$/app/models/project.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/projects_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/projects_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin/projects_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/projects_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/insd/seq.js" afterPath="$PROJECT_DIR$/app/models/molecular/insd/seq.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/insd/seq.rb" afterPath="$PROJECT_DIR$/app/models/molecular/insd/seq.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/molecular/insd/seqs/seq_catalog.js" afterPath="$PROJECT_DIR$/app/widgets/molecular/insd/seqs/seq_catalog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/molecular/insd/seqs_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/molecular/insd/seqs_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/molecular/insd/seqs_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/molecular/insd/seqs_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrices/show_add_marker_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrices/show_add_marker_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrices/show_add_otu_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrices/show_add_otu_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrix/cells/show_cell.html.erb" afterPath="$PROJECT_DIR$/app/views/molecular/matrix/cells/show_cell.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrix/cells/show_cell_info_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrix/cells/show_cell_info_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrix/cells/show_cell_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrix/cells/show_cell_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrices/show_copy_matrix_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrices/show_copy_matrix_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/morphology/matrices/show_copy_matrix_page.js" afterPath="$PROJECT_DIR$/app/pages/morphology/matrices/show_copy_matrix_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/show_create_alignment_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/show_create_alignment_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/show_from_fasta_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/show_from_fasta_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/show_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/insd/seqs/show_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrices/show_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrices/show_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/morphology/matrices/show_page.js" afterPath="$PROJECT_DIR$/app/pages/morphology/matrices/show_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/taxa_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/taxa_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/taxon.js" afterPath="$PROJECT_DIR$/app/models/taxon.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/taxon.rb" afterPath="$PROJECT_DIR$/app/models/taxon.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/molecular/matrix/timeline.rb" afterPath="$PROJECT_DIR$/app/models/molecular/matrix/timeline.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/morphology/matrix/timeline.rb" afterPath="$PROJECT_DIR$/app/models/morphology/matrix/timeline.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/templates/toast.js" afterPath="$PROJECT_DIR$/app/widgets/templates/toast.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/user_panel_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/user_panel_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/molecular/matrices/view_by_date.html.haml" afterPath="$PROJECT_DIR$/app/views/molecular/matrices/view_by_date.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/molecular/matrices/view_by_date_page.js" afterPath="$PROJECT_DIR$/app/pages/molecular/matrices/view_by_date_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pages/morphology/matrices/view_by_date_page.js" afterPath="$PROJECT_DIR$/app/pages/morphology/matrices/view_by_date_page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/widgets/templates/window.js" afterPath="$PROJECT_DIR$/app/widgets/templates/window.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/chromosome/z_file.js" afterPath="$PROJECT_DIR$/app/models/chromosome/z_file.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/chromosome/z_files_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/chromosome/z_files_controller.rb" />
+    </list>
+    <ignored path="tolkin_2.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="a230bf98-7e34-4d67-b360-c3aef43d79a4" time="1360352879353" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="matrix_view.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/molecular/matrix_view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.024711696">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="39" />
+    <option name="width" value="1922" />
+    <option name="height" value="1081" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="RailsProjectView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tolkin_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="molecular" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="project.propSubversion" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RunManager" selected="Rails.Development: tolkin_2">
+    <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RailsRunConfigurationType" factoryName="Rails">
+      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
+      <module name="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
+      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="tolkin_2" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="test" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":test_unit " />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="spec" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="tolkin_2" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Production: tolkin_2" type="RailsRunConfigurationType" factoryName="Rails">
+      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
+      <module name="tolkin_2" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="production" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Development: tolkin_2" type="RailsRunConfigurationType" factoryName="Rails">
+      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
+      <module name="tolkin_2" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="1" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="2" class="java.lang.String" itemvalue="Rails.Production: tolkin_2" />
+      <item index="3" class="java.lang.String" itemvalue="Rails.Development: tolkin_2" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a230bf98-7e34-4d67-b360-c3aef43d79a4" name="Default" comment="" />
+      <created>1360352875845</created>
+      <updated>1360352875845</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="39" width="1922" height="1081" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947367" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973261" sideWeight="0.6705263" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORISONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/models/molecular/matrix_view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.024711696">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
