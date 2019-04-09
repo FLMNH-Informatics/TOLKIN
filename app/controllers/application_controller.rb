@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include Authorized::ActionController::ProvidesPasskey
   include Publifier
 
+  config.relative_url_root = ""
 
   after_filter :set_last_uri
   #TODO need to check how many links are broken

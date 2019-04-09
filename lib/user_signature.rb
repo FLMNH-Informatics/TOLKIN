@@ -2,6 +2,7 @@ require 'user'
 
 class UserSignature < ActiveRecord::Observer
   observe(
+
     Collection,
     Library::Publication,
     # Matrix::Changeset,
