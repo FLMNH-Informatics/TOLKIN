@@ -68,14 +68,14 @@ GEM
       activesupport (~> 3.0.0)
       arel (~> 2.0.7)
     mime-types (1.25.1)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.4.0)
     minitar (0.8)
     minitar-cli (0.8)
       minitar (~> 0.8.0)
       powerbar (~> 1.0)
     mixology (0.2.0)
-    nokogiri (1.6.8.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     paperclip (2.8.0)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -170,7 +170,7 @@ DEPENDENCIES
   libxml-ruby
   meta_where
   mixology
-  nokogiri (~> 1.6.1)
+  nokogiri (~> 1.10.4)
   paperclip (~> 2.3)
   passenger
   pg (= 0.17.1)
