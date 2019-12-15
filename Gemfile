@@ -31,7 +31,7 @@ gem 'rmagick', '2.16.0'
 
 gem 'rubyzip', '~> 0.9.9'
 
-gem "paperclip", "~> 2.3"
+gem "paperclip", "~> 4.2"
 gem "sass", "3.3.4"
 # gem 'netzke-basepack'
 # Use unicorn as the web server
