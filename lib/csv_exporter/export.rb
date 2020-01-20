@@ -8,8 +8,7 @@ class CsvExporter::Export
   end
 
   def self.stream_csv records, column_names
-    to_exclude = %w(rtid owner_graph_rtid)
-    header_columns = [column_names - to_exclude]
+    header_columns = [column_names - self.to_exclude]
     Enumerator.new do |output|
       CvsBuilder.new(header_columns, records, output)
     end
@@ -25,10 +24,9 @@ class CsvExporter::Export
 #		@recs = model.find(:all , :select => (column_names))
 #	end
 
-    to_exclude = %w(rtid owner_graph_rtid)
 	  csv_string = CSV.generate do |csv|
 	    # header row
-	    csv << (column_names - to_exclude)
+	    csv << (column_names - self.to_exclude)
 
       # data rows
       recs.each do |rec|
@@ -50,6 +48,9 @@ class CsvExporter::Export
 
   private
 
+  def self.to_exclude
+    %w(rtid owner_graph_rtid)
+  end
   class CsvBuilder
     attr_accessor :output, :header, :data
 

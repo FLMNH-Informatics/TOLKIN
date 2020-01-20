@@ -802,25 +802,27 @@ class TaxaController < ApplicationController
       render :partial => "shared/new_citation_taxa_window" ,:locals => {:controller => "Taxonomy"}
     end
 
-    def export_csv
-      #@taxa_export = @current_project.taxa.find(:all)
-      #csv = CsvExporter::Export.export_to_csv(@taxa_export, params[:taxon].values)
-      #send_data(csv,
-      #  :type => 'text/csv; charset=utf-8; header=present',
-      #  :disposition => "attachment",
-      #  :filename => "tolkin_report.csv")
+  def stream_csv
+    respond_to do |format|
+      format.csv do
+        headers["X-Accel-Buffering"] = "no"
+        headers["Cache-Control"] = "no-cache"
+        headers["Content-Type"] = "text/csv; charset=utf-8"
+        headers["Content-Disposition"] = %(attachment; filename="tolkin_report.csv")
+        headers["Last-Modified"] = Time.zone.now.ctime.to_s
 
-      respond_to do |format|
-        format.csv do
-          headers["X-Accel-Buffering"] = "no"
-          headers["Cache-Control"] = "no-cache"
-          headers["Content-Type"] = "text/csv; charset=utf-8"
-          headers["Content-Disposition"] = %(attachment; filename="tolkin_report.csv")
-          headers["Last-Modified"] = Time.zone.now.ctime.to_s
-
-          self.response_body = CsvExporter::Export.stream_csv(@current_project.taxa.find_each.lazy.map{ |t| t }, params[:taxon].values)
-        end
+        self.response_body = CsvExporter::Export.stream_csv(@current_project.taxa.find_each.lazy.map{ |t| t }, params[:taxon].values)
       end
+    end
+  end
+
+    def export_csv
+      @taxa_export = @current_project.taxa.find(:all)
+      csv = CsvExporter::Export.export_to_csv(@taxa_export, params[:taxon].values)
+      send_data(csv,
+        :type => 'text/csv; charset=utf-8; header=present',
+        :disposition => "attachment",
+        :filename => "tolkin_report.csv")
     end
    
     def display_taxa_column_names

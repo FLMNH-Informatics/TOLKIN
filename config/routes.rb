@@ -418,6 +418,7 @@ Tolkin::Application.routes.draw do |map|
         delete :delete_selected
         get :list
         get :export_csv
+        get :stream_csv
       end
       member do
         get :load_citation_search_widget
