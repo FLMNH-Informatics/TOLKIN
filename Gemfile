@@ -29,7 +29,7 @@ gem 'rmagick', '2.16.0'
 
 
 
-gem 'rubyzip', '~> 0.9.9'
+gem 'rubyzip', '~> 1.3.0'
 
 gem "paperclip", "~> 2.3"
 gem "sass", "3.3.4"
