@@ -7,7 +7,7 @@ gem 'meta_where'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rake', '0.8.7'
+gem 'rake', '12.3.3'
 gem 'delayed_job'
 gem 'haml', '~>4.0.5'
 #gem 'sass'
