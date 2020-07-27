@@ -54,7 +54,7 @@ GEM
       tilt
     hashie (3.6.0)
     i18n (0.5.4)
-    json (2.2.0)
+    json (2.3.0)
     libxml-ruby (3.1.0)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
