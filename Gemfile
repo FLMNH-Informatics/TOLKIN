@@ -45,7 +45,7 @@ gem 'ruby-debug19'
 
 # Bundle the extra gems:
 # gem 'bj'
- gem 'nokogiri', '~>1.6.1'
+ gem 'nokogiri', '~>1.11.4'
  gem 'fastercsv'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
